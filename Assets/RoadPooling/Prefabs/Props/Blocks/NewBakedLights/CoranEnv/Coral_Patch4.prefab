@@ -425,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 956270985979433531}
   distanceBeforeItCanReAppear: -1
-  instanceID: -76612
+  instanceID: -560080
   envCategory: {fileID: 11400000, guid: 007e54ce74cee0d498e1db4bbd1432ea, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: -0.000022888184
   DiffBWPivotAndColliderMaxBoundPoint: 20.663445
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableBaking: 1
-  errorMessage: prefab contains unapplied data (Road_04 (UnityEngine.MeshRenderer).m_Materials.Array.data[0])
+  errorMessage: this GameObject is not a prefab
 --- !u!1 &7310002257010771454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,9 +1233,11 @@ PrefabInstance:
     - target: {fileID: 7542734079671514007, guid: 45a7add67e0ba894fb62d9208fc0081b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2269052542093611568, guid: 45a7add67e0ba894fb62d9208fc0081b, type: 3}
+    - {fileID: 1757498148463068110, guid: 45a7add67e0ba894fb62d9208fc0081b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 45a7add67e0ba894fb62d9208fc0081b, type: 3}
 --- !u!4 &8957018704216479944 stripped
 Transform:

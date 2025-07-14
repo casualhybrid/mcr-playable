@@ -278,7 +278,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 00000000
+  idremap: 07000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 2246411441556098526}
   distanceBeforeItCanReAppear: -1
-  instanceID: -76258
+  instanceID: -611904
   envCategory: {fileID: 11400000, guid: 007e54ce74cee0d498e1db4bbd1432ea, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: -0.0001821518
   DiffBWPivotAndColliderMaxBoundPoint: 20.664566
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableBaking: 1
-  errorMessage: prefab contains unapplied data (Outdoor (UnityEngine.MeshRenderer).m_Materials.Array.data[0])
+  errorMessage: this GameObject is not a prefab
 --- !u!1 &2934875664530132895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,7 +1487,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GodRay (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2269052542093611568, guid: 45a7add67e0ba894fb62d9208fc0081b, type: 3}
+    - {fileID: 1757498148463068110, guid: 45a7add67e0ba894fb62d9208fc0081b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 45a7add67e0ba894fb62d9208fc0081b, type: 3}
 --- !u!4 &7563846327159745128 stripped
 Transform:

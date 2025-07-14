@@ -1,0 +1,516 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1584985373422678880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584985373422678881}
+  - component: {fileID: 2010773956851174628}
+  - component: {fileID: 8173808688180872945}
+  - component: {fileID: 6104615560631000283}
+  m_Layer: 0
+  m_Name: TruckPairs(UniqueEmptyLanes)_Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584985373422678881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3302158468529276650}
+  - {fileID: 7453334586952452773}
+  - {fileID: 1809621053401899301}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010773956851174628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3d7cf9b07846e4398d43ad80bca9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSkeleton: 1
+  instanceID: 31780
+  canSpawnInLowDifficulty: 1
+  requiredDifficultyInPercent: -1
+  startExtentionDis: 0
+  endExtentionDis: 0
+  encounterSize: 36
+  encounterOffset: 0
+  obstaclesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obstacleSynchronizerList: []
+  preplacedCoinGeneratorList: []
+  actionTimePreserverList: []
+  CustomEncounterSkeleton: {fileID: 6104615560631000283}
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+  obstaclesSafeAreaSO: {fileID: 11400000, guid: 196b28bcca65b6140b8c3d0889f95465,
+    type: 2}
+  obstaclesSafeAreaIsUpdated: {fileID: 11400000, guid: 8e8f62829bfb1d7448ec4216288da13e,
+    type: 2}
+  playerFinishedBoostingEvent: {fileID: 11400000, guid: ffb377575ad8713409c228e48fd6011d,
+    type: 2}
+  playerHasRevived: {fileID: 11400000, guid: fab69674e77117348814944d17cc2db5, type: 2}
+  Temp: {fileID: 0}
+  playerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+--- !u!114 &8173808688180872945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd5587ec6b39646a65f6807cde9ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customEncounter: {fileID: 2010773956851174628}
+  pairsToShuffle:
+  - pairFolderTransform: {fileID: 3302158468529276650}
+    pairObjectTransforms:
+    - {fileID: 0}
+    - {fileID: 0}
+  - pairFolderTransform: {fileID: 7453334586952452773}
+    pairObjectTransforms:
+    - {fileID: 0}
+    - {fileID: 0}
+  - pairFolderTransform: {fileID: 1809621053401899301}
+    pairObjectTransforms:
+    - {fileID: 0}
+    - {fileID: 0}
+--- !u!114 &6104615560631000283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a856ac94da10644b8441da31e4f4957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 8173808688180872945}
+    - {fileID: 3302158468529276650}
+    - {fileID: 7453334586952452773}
+    - {fileID: 1809621053401899301}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[ActionTimePreserverSubject,
+        Assembly-CSharp],[ActionTimeSubjectMetaData, Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserverSubject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimePreserversChildSyncedObstacles
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[ActionTimePreserver, Assembly-CSharp],[CustomEncounterSyncedObstacleMetaData[],
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserver,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shuffleObstaclePairData
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp],[ShuffleObstaclePairUniqueEmptyLaneMetaData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.ObjectEqualityComparer`1[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 6|ShuffleObstaclePairUniqueEmptyLaneMetaData, Assembly-CSharp
+    - Name: shuffleObstaclePairData
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[UnityEngine.Transform, UnityEngine.CoreModule],[System.Collections.Generic.List`1[[ParentAndChildOrderMeta,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 8|System.Collections.Generic.ObjectEqualityComparer`1[[UnityEngine.Transform,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[ParentAndChildOrderMeta, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 10|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 1
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 1
+    - Name: ChildOrder
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[ParentAndChildOrderMeta, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 13|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 2
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 14|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 2
+    - Name: ChildOrder
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 15|System.Collections.Generic.List`1[[ParentAndChildOrderMeta, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 16|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 3
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 17|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 3
+    - Name: ChildOrder
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  customEncounterObstacleMetaDatas:
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: -1, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 3302158468529276650}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 3302158468529276650}
+    ChildOrder: 1
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 1, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 7453334586952452773}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 7453334586952452773}
+    ChildOrder: 1
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: -1, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 1809621053401899301}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 1, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 1809621053401899301}
+    ChildOrder: 1
+  customEncounterObjectDestructionMetaData:
+  - ParentCachedInstanceID: 187596
+    OriginalWordPosition: {x: -1, y: 0, z: 0}
+  - ParentCachedInstanceID: 187598
+    OriginalWordPosition: {x: 0, y: 0, z: 0}
+  - ParentCachedInstanceID: 187614
+    OriginalWordPosition: {x: 1, y: 0, z: 18}
+  - ParentCachedInstanceID: 187576
+    OriginalWordPosition: {x: 0, y: 0, z: 18}
+  - ParentCachedInstanceID: 187622
+    OriginalWordPosition: {x: -1, y: 0, z: 36}
+  - ParentCachedInstanceID: 187616
+    OriginalWordPosition: {x: 1, y: 0, z: 36}
+  customEncounterSyncedObstacleMetaData: []
+  obstaclePool: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!1 &2161034034894844577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3302158468529276650}
+  m_Layer: 0
+  m_Name: Truck Pair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3302158468529276650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161034034894844577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8371879344746942384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809621053401899301}
+  m_Layer: 0
+  m_Name: Truck Pair (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1809621053401899301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8371879344746942384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9164539533202680708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7453334586952452773}
+  m_Layer: 0
+  m_Name: Truck Pair (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7453334586952452773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164539533202680708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

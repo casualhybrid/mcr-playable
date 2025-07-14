@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(EnvironmentSpawner))]
+public class ObstaclesSpawning : MonoBehaviour
+{
+    private EnvironmentSpawner environmentSpawner;
+
+    private void Awake()
+    {
+        environmentSpawner = GetComponent<EnvironmentSpawner>();
+
+        environmentSpawner.batchOfEnvironmentSpawned += HandleEnvBatchSpawned;
+    }
+
+    private void OnDestroy()
+    {
+        environmentSpawner.batchOfEnvironmentSpawned -= HandleEnvBatchSpawned;
+    }
+
+    private void HandleEnvBatchSpawned(List<Patch> patches)
+    {
+     
+    }
+}

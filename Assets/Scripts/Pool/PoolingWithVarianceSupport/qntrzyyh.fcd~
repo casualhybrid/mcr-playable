@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+namespace UOP1.Pool
+{
+    public abstract class PoolVarianceSO<T> : ScriptableObject, IPool<T> where T : Component
+    {
+        protected 
+
+        public void Prewarm(int num)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T Request()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Return(T member)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}

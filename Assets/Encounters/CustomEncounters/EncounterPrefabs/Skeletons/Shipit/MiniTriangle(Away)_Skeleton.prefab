@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1584985373422678880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584985373422678881}
+  - component: {fileID: 2010773956851174628}
+  - component: {fileID: 5172233194681896655}
+  m_Layer: 0
+  m_Name: MiniTriangle(Away)_Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584985373422678881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010773956851174628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3d7cf9b07846e4398d43ad80bca9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSkeleton: 1
+  instanceID: 31772
+  canSpawnInLowDifficulty: 1
+  requiredDifficultyInPercent: 30
+  startExtentionDis: 0
+  endExtentionDis: 0
+  encounterSize: 3
+  encounterOffset: 0
+  obstaclesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obstacleSynchronizerList: []
+  preplacedCoinGeneratorList: []
+  actionTimePreserverList: []
+  CustomEncounterSkeleton: {fileID: 5172233194681896655}
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+  obstaclesSafeAreaSO: {fileID: 11400000, guid: 196b28bcca65b6140b8c3d0889f95465,
+    type: 2}
+  obstaclesSafeAreaIsUpdated: {fileID: 11400000, guid: 8e8f62829bfb1d7448ec4216288da13e,
+    type: 2}
+  playerFinishedBoostingEvent: {fileID: 11400000, guid: ffb377575ad8713409c228e48fd6011d,
+    type: 2}
+  playerHasRevived: {fileID: 11400000, guid: fab69674e77117348814944d17cc2db5, type: 2}
+  Temp: {fileID: 0}
+  playerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+--- !u!114 &5172233194681896655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a856ac94da10644b8441da31e4f4957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[ActionTimePreserverSubject,
+        Assembly-CSharp],[ActionTimeSubjectMetaData, Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserverSubject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimePreserversChildSyncedObstacles
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[ActionTimePreserver, Assembly-CSharp],[CustomEncounterSyncedObstacleMetaData[],
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserver,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shuffleObstaclePairData
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp],[ShuffleObstaclePairUniqueEmptyLaneMetaData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.ObjectEqualityComparer`1[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  customEncounterObstacleMetaDatas:
+  - nameOfTheObstacle: Mini
+    OriginalPrefab: {fileID: 4268927440998296257, guid: 52c49e07fb12b5342acbf2831531810c,
+      type: 3}
+    localPosition: {x: -1, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 1584985373422678881}
+    ChildOrder: 0
+  - nameOfTheObstacle: Mini
+    OriginalPrefab: {fileID: 4268927440998296257, guid: 52c49e07fb12b5342acbf2831531810c,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 3}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 1584985373422678881}
+    ChildOrder: 1
+  - nameOfTheObstacle: Mini
+    OriginalPrefab: {fileID: 4268927440998296257, guid: 52c49e07fb12b5342acbf2831531810c,
+      type: 3}
+    localPosition: {x: 1, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 1584985373422678881}
+    ChildOrder: 2
+  customEncounterObjectDestructionMetaData:
+  - ParentCachedInstanceID: 186494
+    OriginalWordPosition: {x: -1, y: 0, z: 0}
+  - ParentCachedInstanceID: 186496
+    OriginalWordPosition: {x: 0, y: 0, z: 3}
+  - ParentCachedInstanceID: 186492
+    OriginalWordPosition: {x: 1, y: 0, z: 0}
+  customEncounterSyncedObstacleMetaData: []
+  obstaclePool: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}

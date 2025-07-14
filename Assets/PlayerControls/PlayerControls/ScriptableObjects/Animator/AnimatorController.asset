@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6b28fa2f7f12a49af3f99cfeb2dd16, type: 3}
+  m_Name: AnimatorController
+  m_EditorClassIdentifier: 
+  AnimationnLengthDictinary:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues:
+    - left
+    - right
+    - normal
+    - slide
+    - jump
+    - laneswitchinair
+    - springjump
+    _keys:
+    - left
+    - right
+    - normal
+    - slide
+    - jump
+    - laneswitchinair
+    - springjump
+    _values:
+    - 1.33
+    - 1.33
+    - 1.33
+    - 1.33
+    - 1.33
+    - 1.33
+    - 1.567
+  CharacterAnimations:
+    reorderableList:
+      canAdd: 0
+      canRemove: 0
+      draggable: 0
+      expandable: 0
+      multipleSelection: 0
+      isExpanded: 0
+      label:
+        m_Text: 
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 0
+      footerHeight: 0
+      slideEasing: 0
+      verticalSpacing: 0
+      showDefaultBackground: 0
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues: []
+    _keys: []
+    _values: []
+  PlayerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+  PlayerContainedData: {fileID: 11400000, guid: 5145ede1a52e30c42af224c0bd3e1f7e,
+    type: 2}
+  coinHasBeenPickedUp: {fileID: 11400000, guid: 3f2213881d561064794fd0a3c0c6d86f,
+    type: 2}
+  playerHasStartedDash: {fileID: 11400000, guid: e05e963261d579046a75e1b8d8d50d32,
+    type: 2}
+  playerHasStartedBoost: {fileID: 11400000, guid: a5f2c9f67197dbb4180c3c82f1e1fc7a,
+    type: 2}
+  playerFinishedBoost: {fileID: 11400000, guid: ffb377575ad8713409c228e48fd6011d,
+    type: 2}
+  springJump: {fileID: 11400000, guid: 041d1ec1b167f5b469c7f5d42ac4a4df, type: 2}
+  thurstStarted: {fileID: 11400000, guid: 546784925f938e94ca75adc490c181ff, type: 2}
+  magnetHasBeenPickedUp: {fileID: 11400000, guid: c0bd615027d431345ab6610a08cc1e9c,
+    type: 2}
+  diamondHasBeenPickedUp: {fileID: 11400000, guid: 80c75945656b90b44ad939973a9208eb,
+    type: 2}
+  figurineHasBeenPickedUp: {fileID: 11400000, guid: f59552157cea8604d9b205aed47003a3,
+    type: 2}
+  mysteryHasBeenPickedUp: {fileID: 11400000, guid: 2190334b299e9534aaadffae35072978,
+    type: 2}
+  playerHasDoneShockWave: {fileID: 11400000, guid: 0df4fddffef0f5b4d894787ba1e381ec,
+    type: 2}
+  playerHasCrashedFromFront: {fileID: 11400000, guid: a13a8deddf3b16b4fb21fb48c925b25c,
+    type: 2}
+  playerHasCrashedFromSide: {fileID: 11400000, guid: 86672d3b890fa8a4fabcfe846b7913e6,
+    type: 2}
+  playerHasStumbled: {fileID: 11400000, guid: 54317ce81905f8a4789d38aef869dc9f, type: 2}
+  playerHasJumped: {fileID: 11400000, guid: 1b8694f045706824dbbcbfa1e8ddf2c7, type: 2}
+  playerStartedFlying: {fileID: 11400000, guid: 0bfdc1cb14a80b942b3521a3a8aed430,
+    type: 2}
+  playerEndedFlying: {fileID: 11400000, guid: d5ac0a5f0db433746bb6e92faf3041e8, type: 2}

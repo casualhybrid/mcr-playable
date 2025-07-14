@@ -1,0 +1,733 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2599735553433381361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4814576277103825306}
+  - component: {fileID: 15363580963697358}
+  m_Layer: 0
+  m_Name: Skidmarks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4814576277103825306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599735553433381361}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &15363580963697358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599735553433381361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 3271d3a24bb2aa845ab52f421226c70d, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: b310b4f78c926bb4dab2bff648963a6e, type: 2}
+--- !u!1 &2730890896937144918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6311943430539128174}
+  - component: {fileID: 3909181295562394833}
+  m_Layer: 0
+  m_Name: MechanicsJump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6311943430539128174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730890896937144918}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3909181295562394833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730890896937144918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 423913720ebf63c4aa35c58f7d3cb3ce, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 1b8694f045706824dbbcbfa1e8ddf2c7, type: 2}
+--- !u!1 &2858366320409211584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874888928054970782}
+  - component: {fileID: 1654319273613679345}
+  m_Layer: 0
+  m_Name: MechanicsSwipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1874888928054970782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858366320409211584}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1654319273613679345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858366320409211584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 423913720ebf63c4aa35c58f7d3cb3ce, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 2daf5302e1b3db64195f58925332a8d6, type: 2}
+--- !u!1 &4099182045036339622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182045036339623}
+  - component: {fileID: 4099182045036339620}
+  m_Layer: 0
+  m_Name: CarHitMultiple
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182045036339623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045036339622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182045036339620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045036339622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 4271844f6012a8d429445a878076fd97, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents: []
+--- !u!1 &4099182045098818011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182045098818008}
+  - component: {fileID: 4099182045098818009}
+  m_Layer: 0
+  m_Name: Shockwave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182045098818008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045098818011}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182045098818009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045098818011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 468d7868c0e70c84e91a2750a0029c21, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 3d09cfa5962b60b458ba79de8f846583, type: 2}
+--- !u!1 &4099182045391543218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182045391543219}
+  - component: {fileID: 4099182045391543216}
+  m_Layer: 0
+  m_Name: CarHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182045391543219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045391543218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182045391543216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045391543218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 79eb91b831cc1f74a88a05814d2ecb0b, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents: []
+--- !u!1 &4099182045537440899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182045537440896}
+  - component: {fileID: 4099182045537440897}
+  m_Layer: 0
+  m_Name: Boost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182045537440896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045537440899}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182045537440897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045537440899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: e611d02cb7caba8489be33b02fd5af77, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: a5f2c9f67197dbb4180c3c82f1e1fc7a, type: 2}
+--- !u!1 &4099182045940828611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182045940828608}
+  - component: {fileID: 4099182045940828609}
+  m_Layer: 0
+  m_Name: PogoStick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182045940828608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045940828611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182045940828609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182045940828611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: f8dea0a7dcf0f4f40a9bcd4e81b12af7, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: f81e0ba525bcb844fb36dd5e5ec1899c, type: 2}
+--- !u!1 &4099182046258921009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182046258921022}
+  - component: {fileID: 4099182046258921023}
+  m_Layer: 0
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182046258921022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182046258921009}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182046258921023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182046258921009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 73de912d435dc244b97175cd1977ea77, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 9c83ec58a4b2ba648921bfe143d49ab0, type: 2}
+--- !u!1 &4099182046988676503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182046988676500}
+  m_Layer: 0
+  m_Name: AllParticlesEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182046988676500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182046988676503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4099182045098818008}
+  - {fileID: 4099182047169435829}
+  - {fileID: 4099182045537440896}
+  - {fileID: 4099182046258921022}
+  - {fileID: 4099182045940828608}
+  - {fileID: 4099182045391543219}
+  - {fileID: 4099182045036339623}
+  - {fileID: 6311943430539128174}
+  - {fileID: 1874888928054970782}
+  - {fileID: 1381057367327396893}
+  - {fileID: 328404443210285617}
+  - {fileID: 8185311082673783704}
+  - {fileID: 4814576277103825306}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4099182047169435828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099182047169435829}
+  - component: {fileID: 4099182047169435826}
+  m_Layer: 0
+  m_Name: Aeroplane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099182047169435829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182047169435828}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4099182047169435826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099182047169435828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 8249a6944b992ac4198d13f50331d85a, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 0bfdc1cb14a80b942b3521a3a8aed430, type: 2}
+--- !u!1 &5279301867542730079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8185311082673783704}
+  - component: {fileID: 3857919740887065683}
+  m_Layer: 0
+  m_Name: Coinpickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8185311082673783704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279301867542730079}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3857919740887065683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279301867542730079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 3271d3a24bb2aa845ab52f421226c70d, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 3f2213881d561064794fd0a3c0c6d86f, type: 2}
+--- !u!1 &5729108248099960154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328404443210285617}
+  - component: {fileID: 2627905421552565054}
+  m_Layer: 0
+  m_Name: ChaserPresence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &328404443210285617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5729108248099960154}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2627905421552565054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5729108248099960154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 3f32b57313a95b145a370a5462d48275, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 2.5, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 54317ce81905f8a4789d38aef869dc9f, type: 2}
+--- !u!1 &8459575160628268674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381057367327396893}
+  - component: {fileID: 525380541212281828}
+  m_Layer: 0
+  m_Name: MechanicsSlide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381057367327396893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459575160628268674}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4099182046988676500}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &525380541212281828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459575160628268674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c6bd20a9e9fb3438388445c056b410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleCue: {fileID: 11400000, guid: 423913720ebf63c4aa35c58f7d3cb3ce, type: 2}
+  _playOnStart: 0
+  transformToPlayIn: {fileID: 0}
+  onlyAssignParentPos: 0
+  position: {x: 0, y: 0, z: 0}
+  _particleCueEventChannel: {fileID: 11400000, guid: 613da2a21a0c6524b936608fb4ffe906,
+    type: 2}
+  gameEvents:
+  - {fileID: 11400000, guid: 5543815db0356e24091a3a1d5fd69e47, type: 2}

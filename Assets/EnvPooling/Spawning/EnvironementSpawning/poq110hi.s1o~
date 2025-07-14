@@ -1,0 +1,41 @@
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnviornmentSO", menuName = "ScriptableObjects/Environement/EnvironmentSO")]
+public class EnviornmentSO : SerializedScriptableObject
+{
+    public Dictionary<EnvCategory, List<Patch>> envCategoryDictionary;
+
+    private List<Patch> mergedPatchesIrrelevantToCategory;
+
+    private void OnEnable()
+    {
+        
+    }
+
+    public List<Patch> GetCollectionOfPossiblePatchesForCategory(EnvCategory category)
+    {
+        return envCategoryDictionary[category];
+    }
+
+    public List<Patch> GetMergedPatchesCollectionIrrelevantToCategories()
+    {
+        if (mergedPatchesIrrelevantToCategory == null)
+        {
+            mergedPatchesIrrelevantToCategory = new List<Patch>();
+        }
+
+        if (mergedPatchesIrrelevantToCategory.Count == 0)
+        {
+            mergedPatchesIrrelevantToCategory = new List<Patch>();
+            foreach (var item in envCategoryDictionary)
+            {
+                List<Patch> patchesCollection = item.Value;
+                mergedPatchesIrrelevantToCategory.AddRange(patchesCollection);
+            }
+        }
+
+        return mergedPatchesIrrelevantToCategory;
+    }
+}

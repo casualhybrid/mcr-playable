@@ -1,0 +1,62 @@
+﻿using Cinemachine;
+using UnityEngine;
+
+[RequireComponent(typeof(CinemachineVirtualCamera))]
+public class CameraShake : MonoBehaviour
+{
+    private CinemachineVirtualCamera cam;
+    private CinemachineBasicMultiChannelPerlin channelPerlin;
+    private float shakeTimer;
+
+    [SerializeField] private GameEvent playerSideHit;
+
+    [SerializeField] private CameraShakeVariations cameraShakeVariations;
+
+    private void Awake()
+    {
+        cam = GetComponent<CinemachineVirtualCamera>();
+        channelPerlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
+
+    private void OnEnable()
+    {
+        playerSideHit.TheEvent.AddListener(ShakeCameraAccordingToEvent);
+    }
+
+    private void OnDisable()
+    {
+        playerSideHit.TheEvent.RemoveListener(ShakeCameraAccordingToEvent);
+    }
+
+    private void ShakeCameraAccordingToEvent(GameEvent theEvent)
+    {
+        Debug.Log("Shake Camera For Event " + theEvent.name);
+
+        CameraShakeConfig cameraShakeConfig = cameraShakeVariations.GetShakeConfigforTheEvent(theEvent);
+        ShakeCamera(cameraShakeConfig.GetAmplitude, cameraShakeConfig.GetFrequenct, cameraShakeConfig.GetNoiseSettings);
+    }
+
+    private void ShakeCamera(float amplitude, float time, NoiseSettings noiseSettings)
+    {
+        shakeTimer = time;
+        channelPerlin.m_AmplitudeGain = amplitude;
+        channelPerlin.m_FrequencyGain = time;
+        channelPerlin.m_NoiseProfile = noiseSettings;
+    }
+
+    private void Update()
+    {
+        if (shakeTimer <= 0)
+        {
+            return;
+        }
+
+        shakeTimer -= Time.deltaTime;
+
+        if (shakeTimer <= 0)
+        {
+            channelPerlin.m_FrequencyGain = 0;
+            channelPerlin.m_AmplitudeGain = 0;
+        }
+    }
+}

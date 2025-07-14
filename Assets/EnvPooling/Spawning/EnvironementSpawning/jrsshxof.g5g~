@@ -1,0 +1,85 @@
+using System.Collections.Generic;
+using TheKnights.AddressableSystem;
+using UnityEngine;
+
+public class EnvironmentSpawner : MonoBehaviour
+{
+    [Tooltip("Increase this to maintain more patches in front of player")]
+    [SerializeField] private int minPatchesDistanceInFrontOfPlayer;
+
+    [SerializeField] private int minForwardDistThresholdToInvokeSpawn;
+
+    [SerializeField] private string nextEnvironmentKey;
+
+    [SerializeField] private PlayerRunTimeData playerRunTimeData;
+
+    [SerializeField] private GameEvent initialEnvHasSpawned;
+
+    [SerializeField] private EnviornmentSO tempSO;
+
+    private Patch lastSpawnedPatch;
+    private float zDistanceWhereLastPatchEnded;
+    private EnviornmentSO currentlyActiveEnv;
+
+    private bool initialized;
+
+    private void Awake()
+    {
+        lastSpawnedPatch = GetComponentInChildren<Patch>();
+        zDistanceWhereLastPatchEnded += lastSpawnedPatch.GetLengthOfPatch;
+    }
+
+    private void Start()
+    {
+        //var operationHandle = AddressableLoader.LoadTheAsset<EnviornmentSO>(nextEnvironmentKey);
+        //operationHandle.Completed += (handle) =>
+        //{
+        //    EnviornmentSO enviornmentSO = handle.Result;
+        //    currentlyActiveEnv = enviornmentSO;
+        //    SpawnPatchesInFrontOfPlayer(enviornmentSO);
+        //    initialized = true;
+        //    initialEnvHasSpawned.RaiseEvent();
+        //};
+
+        currentlyActiveEnv = tempSO;
+        SpawnPatchesInFrontOfPlayer(tempSO);
+        initialized = true;
+        initialEnvHasSpawned.RaiseEvent();
+    }
+
+    private void Update()
+    {
+        if (!initialized)
+            return;
+
+        float zDiff = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+
+        if (zDiff < minForwardDistThresholdToInvokeSpawn)
+        {
+            SpawnPatchesInFrontOfPlayer(currentlyActiveEnv);
+        }
+    }
+
+    private void SpawnPatchesInFrontOfPlayer(EnviornmentSO enviornmentSO)
+    {
+        float distBetweenLastPatchZandPlayer = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+
+        while (distBetweenLastPatchZandPlayer <= minPatchesDistanceInFrontOfPlayer)
+        {
+            distBetweenLastPatchZandPlayer = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+            EnvCategory envCategory = lastSpawnedPatch.NextPossibleCategory;
+
+            List<GameObject> possiblePatches = enviornmentSO.GetCollectionOfPossiblePatchesForCategory(envCategory);
+
+            int rand = UnityEngine.Random.Range(0, possiblePatches.Count);
+            GameObject patch = possiblePatches[rand];
+            GameObject patchSpawned = Instantiate(patch, transform);
+
+            patchSpawned.transform.localPosition = new Vector3(patch.transform.position.x, patch.transform.position.y, zDistanceWhereLastPatchEnded);
+            Patch thePatch = patchSpawned.GetComponent<Patch>();
+            lastSpawnedPatch = thePatch;
+
+            zDistanceWhereLastPatchEnded += thePatch.GetLengthOfPatch;
+        }
+    }
+}

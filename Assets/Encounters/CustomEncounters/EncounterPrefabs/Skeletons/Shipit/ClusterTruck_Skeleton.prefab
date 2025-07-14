@@ -1,0 +1,2085 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &647100113632570799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4942042218290361687}
+  m_Layer: 0
+  m_Name: Blocked Column (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4942042218290361687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647100113632570799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758020536545152245}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1348165039637533129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3314699500563327875}
+  - component: {fileID: 220802816951879439}
+  - component: {fileID: -8272438459648683126}
+  m_Layer: 9
+  m_Name: SyncedObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3314699500563327875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348165039637533129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4546519965898833062}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &220802816951879439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348165039637533129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!65 &-8272438459648683126
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348165039637533129}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}
+--- !u!1 &1449997894592040758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3817554973972657864}
+  - component: {fileID: 3004269562614101376}
+  m_Layer: 0
+  m_Name: Synchronizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3817554973972657864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449997894592040758}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.02, z: 11.228}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3362044806775786512}
+  m_Father: {fileID: 4751432693540789795}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3004269562614101376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449997894592040758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff39be16be2cbc4e88a6edf554bddd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleObstacles:
+  - {fileID: 199761564022677659, guid: f23f3d6fbfde733418b2eee9a4ac6c6b, type: 3}
+  - {fileID: 3324083467459039125, guid: 0c10328f27b14714f97ced0d1cbc0350, type: 3}
+  - {fileID: 4077603785112311113, guid: 2a4fd5c14333e9741bae3abe47c2f445, type: 3}
+  synchronizedColumns:
+  - {fileID: 1722383811759510224}
+  _customEncounter: {fileID: 2010773956851174628}
+  aeroplanePickup: {fileID: 6164580125676040400, guid: ceebc4bbc5bff844cbe38a7d93ac8b61,
+    type: 3}
+  gamePlaySessionData: {fileID: 11400000, guid: bc8c71ec233eda644ada020047cdb523,
+    type: 2}
+  pickupGenerationData: {fileID: 11400000, guid: 136f3e99f7362284fa2d160c1ecdd20f,
+    type: 2}
+  pickupsUtility: {fileID: 11400000, guid: 84f7bc9f4b9c0724dbff599ceb8d9ca8, type: 2}
+--- !u!1 &1584985373422678880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584985373422678881}
+  - component: {fileID: 2010773956851174628}
+  - component: {fileID: 6265116921480353848}
+  - component: {fileID: 6689434651466044363}
+  m_Layer: 0
+  m_Name: ClusterTruck_Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584985373422678881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6492603095503009054}
+  - {fileID: 758020536545152245}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010773956851174628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3d7cf9b07846e4398d43ad80bca9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSkeleton: 1
+  instanceID: 31760
+  canSpawnInLowDifficulty: 0
+  requiredDifficultyInPercent: -1
+  startExtentionDis: 1.31
+  endExtentionDis: 0
+  encounterSize: 22.81
+  encounterOffset: 1.31
+  obstaclesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obstacleSynchronizerList:
+  - {fileID: 3812460161162452736}
+  - {fileID: 3004269562614101376}
+  preplacedCoinGeneratorList: []
+  actionTimePreserverList:
+  - {fileID: 6265116921480353848}
+  CustomEncounterSkeleton: {fileID: 6689434651466044363}
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+  obstaclesSafeAreaSO: {fileID: 11400000, guid: 196b28bcca65b6140b8c3d0889f95465,
+    type: 2}
+  obstaclesSafeAreaIsUpdated: {fileID: 11400000, guid: 8e8f62829bfb1d7448ec4216288da13e,
+    type: 2}
+  playerFinishedBoostingEvent: {fileID: 11400000, guid: ffb377575ad8713409c228e48fd6011d,
+    type: 2}
+  playerHasRevived: {fileID: 11400000, guid: fab69674e77117348814944d17cc2db5, type: 2}
+  Temp: {fileID: 0}
+  playerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+--- !u!114 &6265116921480353848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4c0f8f8eb101d4f9917435fcf39076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagToSubjectify: Default
+  preservationMultiplier: 1
+  reversePreservation: 0
+  isPartOfCustomEncounter: 1
+  preservedSubjects:
+  - {fileID: 1500049920832581208}
+  - {fileID: 6049628893809257203}
+  _customEncounter: {fileID: 2010773956851174628}
+  speedHandler: {fileID: 11400000, guid: 803be8ce969fb89459f5c04079fe9eaa, type: 2}
+  gameManager: {fileID: 11400000, guid: 30ff116eaf48afd46b0d718637b16ab7, type: 2}
+--- !u!114 &6689434651466044363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a856ac94da10644b8441da31e4f4957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 1500049920832581208}
+    - {fileID: 6049628893809257203}
+    - {fileID: 6918594131884193905}
+    - {fileID: 6265116921480353848}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[ActionTimePreserverSubject,
+        Assembly-CSharp],[ActionTimeSubjectMetaData, Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserverSubject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 3|CustomEncounterObjectDestructionMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 4|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 5|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 6|CustomEncounterObjectDestructionMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 26
+    - Name: 
+      Entry: 7
+      Data: 7|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184586
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184546
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -0.999
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 2.446
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184490
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -0.999
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 7.351
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184452
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 4.895
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184482
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 9.801
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 12|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184512
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 1.0029999
+    - Name: 
+      Entry: 4
+      Data: 2.93099928
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184456
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -0.999
+    - Name: 
+      Entry: 4
+      Data: 1.004
+    - Name: 
+      Entry: 4
+      Data: 5.383
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 14|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184568
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 1.0029999
+    - Name: 
+      Entry: 4
+      Data: 7.83399963
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 15|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184362
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -0.999
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 12.255
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 16|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184504
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -0.999
+    - Name: 
+      Entry: 4
+      Data: 1.004
+    - Name: 
+      Entry: 4
+      Data: 10.28
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 17|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184590
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.077
+    - Name: 
+      Entry: 4
+      Data: 0.75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 18|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184590
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.077
+    - Name: 
+      Entry: 4
+      Data: 0.75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 19|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184448
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 6.737
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 20|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184516
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 9.188
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 21|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184514
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 4.291
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 22|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184564
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 11.638
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 23|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184418
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 24|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184454
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1.001
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 2.446
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 25|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184522
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1.001
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 7.351
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 26|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184442
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 4.895
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 27|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184420
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 9.801
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 28|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184572
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1.0029999
+    - Name: 
+      Entry: 4
+      Data: 2.9309988
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 29|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184444
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1.001
+    - Name: 
+      Entry: 4
+      Data: 1.004
+    - Name: 
+      Entry: 4
+      Data: 5.383
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 30|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184536
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1.0029999
+    - Name: 
+      Entry: 4
+      Data: 7.834
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 31|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184364
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1.001
+    - Name: 
+      Entry: 4
+      Data: 0.001
+    - Name: 
+      Entry: 4
+      Data: 12.255
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 32|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184474
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1.001
+    - Name: 
+      Entry: 4
+      Data: 1.004
+    - Name: 
+      Entry: 4
+      Data: 10.28
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 33|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 7
+      Data: 34|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 2
+    - Name: ChildOrder
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 7
+      Data: 35|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 2
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimePreserversChildSyncedObstacles
+      Entry: 7
+      Data: 36|System.Collections.Generic.Dictionary`2[[ActionTimePreserver, Assembly-CSharp],[CustomEncounterSyncedObstacleMetaData[],
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 37|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserver,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 38|CustomEncounterSyncedObstacleMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 39|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184422
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 21.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 40|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184566
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 21.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 41|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184458
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 21.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 42|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 184386
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1.02
+    - Name: 
+      Entry: 4
+      Data: 11.228
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shuffleObstaclePairData
+      Entry: 7
+      Data: 43|System.Collections.Generic.Dictionary`2[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp],[ShuffleObstaclePairUniqueEmptyLaneMetaData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 44|System.Collections.Generic.ObjectEqualityComparer`1[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  customEncounterObstacleMetaDatas:
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 0.001, z: 2.446}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 1
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 0.001, z: 7.351}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 2
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 4.895}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 3
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 9.801}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 4
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 1.0029999, z: 2.9309993}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 5
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 1.004, z: 5.383}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 6
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 1.0029999, z: 7.8339996}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 7
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 0.001, z: 12.255}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 8
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 1.004, z: 10.28}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6918594131884193905}
+    ChildOrder: 9
+  - nameOfTheObstacle: Transporter
+    OriginalPrefab: {fileID: 8640838619579925960, guid: 7f27858a98181714d87e73eb06647bac,
+      type: 3}
+    localPosition: {x: 0, y: 0.077, z: 0.75}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4751432693540789795}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0.001, z: 6.737}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4751432693540789795}
+    ChildOrder: 1
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 9.188}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4751432693540789795}
+    ChildOrder: 2
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 4.291}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4751432693540789795}
+    ChildOrder: 3
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 11.638}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4751432693540789795}
+    ChildOrder: 4
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 0.001, z: 2.446}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 1
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 0.001, z: 7.351}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 2
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 4.895}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 3
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 9.801}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 4
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 1.0029999, z: 2.9309988}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 5
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 1.004, z: 5.383}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 6
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 1.0029999, z: 7.834}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 7
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 0.001, z: 12.255}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 8
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0.001, y: 1.004, z: 10.28}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 4942042218290361687}
+    ChildOrder: 9
+  customEncounterObjectDestructionMetaData:
+  - ParentCachedInstanceID: 184586
+    OriginalWordPosition: {x: -1, y: 0, z: 0}
+  - ParentCachedInstanceID: 184546
+    OriginalWordPosition: {x: -0.999, y: 0.001, z: 2.446}
+  - ParentCachedInstanceID: 184490
+    OriginalWordPosition: {x: -0.999, y: 0.001, z: 7.351}
+  - ParentCachedInstanceID: 184452
+    OriginalWordPosition: {x: -1, y: 0, z: 4.895}
+  - ParentCachedInstanceID: 184482
+    OriginalWordPosition: {x: -1, y: 0, z: 9.801}
+  - ParentCachedInstanceID: 184512
+    OriginalWordPosition: {x: -1, y: 1.0029999, z: 2.9309993}
+  - ParentCachedInstanceID: 184456
+    OriginalWordPosition: {x: -0.999, y: 1.004, z: 5.383}
+  - ParentCachedInstanceID: 184568
+    OriginalWordPosition: {x: -1, y: 1.0029999, z: 7.8339996}
+  - ParentCachedInstanceID: 184362
+    OriginalWordPosition: {x: -0.999, y: 0.001, z: 12.255}
+  - ParentCachedInstanceID: 184504
+    OriginalWordPosition: {x: -0.999, y: 1.004, z: 10.28}
+  - ParentCachedInstanceID: 184590
+    OriginalWordPosition: {x: 0, y: 0.077, z: 0.75}
+  - ParentCachedInstanceID: 184590
+    OriginalWordPosition: {x: 0, y: 0.077, z: 0.75}
+  - ParentCachedInstanceID: 184448
+    OriginalWordPosition: {x: 0, y: 0.001, z: 6.737}
+  - ParentCachedInstanceID: 184516
+    OriginalWordPosition: {x: 0, y: 0, z: 9.188}
+  - ParentCachedInstanceID: 184514
+    OriginalWordPosition: {x: 0, y: 0, z: 4.291}
+  - ParentCachedInstanceID: 184564
+    OriginalWordPosition: {x: 0, y: 0, z: 11.638}
+  - ParentCachedInstanceID: 184418
+    OriginalWordPosition: {x: 1, y: 0, z: 0}
+  - ParentCachedInstanceID: 184454
+    OriginalWordPosition: {x: 1.001, y: 0.001, z: 2.446}
+  - ParentCachedInstanceID: 184522
+    OriginalWordPosition: {x: 1.001, y: 0.001, z: 7.351}
+  - ParentCachedInstanceID: 184442
+    OriginalWordPosition: {x: 1, y: 0, z: 4.895}
+  - ParentCachedInstanceID: 184420
+    OriginalWordPosition: {x: 1, y: 0, z: 9.801}
+  - ParentCachedInstanceID: 184572
+    OriginalWordPosition: {x: 1, y: 1.0029999, z: 2.9309988}
+  - ParentCachedInstanceID: 184444
+    OriginalWordPosition: {x: 1.001, y: 1.004, z: 5.383}
+  - ParentCachedInstanceID: 184536
+    OriginalWordPosition: {x: 1, y: 1.0029999, z: 7.834}
+  - ParentCachedInstanceID: 184364
+    OriginalWordPosition: {x: 1.001, y: 0.001, z: 12.255}
+  - ParentCachedInstanceID: 184474
+    OriginalWordPosition: {x: 1.001, y: 1.004, z: 10.28}
+  customEncounterSyncedObstacleMetaData:
+  - ParentCachedInstanceID: 184422
+    OriginalWordPosition: {x: -1, y: 0, z: 21.5}
+  - ParentCachedInstanceID: 184566
+    OriginalWordPosition: {x: 0, y: 0, z: 21.5}
+  - ParentCachedInstanceID: 184458
+    OriginalWordPosition: {x: 1, y: 0, z: 21.5}
+  - ParentCachedInstanceID: 184386
+    OriginalWordPosition: {x: 0, y: 1.02, z: 11.228}
+  obstaclePool: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!1 &1786422888870649792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3362044806775786512}
+  - component: {fileID: 1722383811759510224}
+  m_Layer: 0
+  m_Name: SyncedObstacleColumn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3362044806775786512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786422888870649792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1277448901273165940}
+  m_Father: {fileID: 3817554973972657864}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1722383811759510224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786422888870649792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 3386029668672100596}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!1 &2300846647699501195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703000133791907501}
+  - component: {fileID: 2730712497756474899}
+  m_Layer: 0
+  m_Name: SyncedObstacleColumn (Middle)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1703000133791907501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300846647699501195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7160892323950661065}
+  m_Father: {fileID: 6492603095503009054}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2730712497756474899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300846647699501195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 4526878486150974005}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!1 &2338619711115426269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6492603095503009054}
+  - component: {fileID: 3812460161162452736}
+  - component: {fileID: 1500049920832581208}
+  m_Layer: 0
+  m_Name: Synchronizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6492603095503009054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338619711115426269}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 21.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 199349974704072313}
+  - {fileID: 1703000133791907501}
+  - {fileID: 4546519965898833062}
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3812460161162452736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338619711115426269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff39be16be2cbc4e88a6edf554bddd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleObstacles:
+  - {fileID: 199761564022677659, guid: f23f3d6fbfde733418b2eee9a4ac6c6b, type: 3}
+  - {fileID: 3324083467459039125, guid: 0c10328f27b14714f97ced0d1cbc0350, type: 3}
+  - {fileID: 4077603785112311113, guid: 2a4fd5c14333e9741bae3abe47c2f445, type: 3}
+  synchronizedColumns:
+  - {fileID: 1793385842794926543}
+  - {fileID: 2730712497756474899}
+  - {fileID: 714141041834296333}
+  _customEncounter: {fileID: 2010773956851174628}
+  aeroplanePickup: {fileID: 6164580125676040400, guid: ceebc4bbc5bff844cbe38a7d93ac8b61,
+    type: 3}
+  gamePlaySessionData: {fileID: 11400000, guid: bc8c71ec233eda644ada020047cdb523,
+    type: 2}
+  pickupGenerationData: {fileID: 11400000, guid: 136f3e99f7362284fa2d160c1ecdd20f,
+    type: 2}
+  pickupsUtility: {fileID: 11400000, guid: 84f7bc9f4b9c0724dbff599ceb8d9ca8, type: 2}
+--- !u!114 &1500049920832581208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338619711115426269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Default
+  lastObjectInGroupTransform: {fileID: 6492603095503009054}
+  firstObjectInGroupTransform: {fileID: 6492603095503009054}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 21.5}
+--- !u!1 &3436239436445443056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758020536545152245}
+  - component: {fileID: 4434466030534429822}
+  - component: {fileID: 6049628893809257203}
+  m_Layer: 0
+  m_Name: Shuffleable Columns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758020536545152245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436239436445443056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6918594131884193905}
+  - {fileID: 4751432693540789795}
+  - {fileID: 4942042218290361687}
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4434466030534429822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436239436445443056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef959e98807532d4b913210d26fcf1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToShuffle:
+  - {fileID: 6918594131884193905}
+  - {fileID: 4751432693540789795}
+  - {fileID: 4942042218290361687}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!114 &6049628893809257203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436239436445443056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Default
+  lastObjectInGroupTransform: {fileID: 6001179867887008015}
+  firstObjectInGroupTransform: {fileID: 6158118273574144607}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 0}
+--- !u!1 &3609871377999225788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 199349974704072313}
+  - component: {fileID: 1793385842794926543}
+  m_Layer: 0
+  m_Name: SyncedObstacleColumn (Left)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &199349974704072313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609871377999225788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1947276855221809855}
+  m_Father: {fileID: 6492603095503009054}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793385842794926543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609871377999225788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 4501269264019561550}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!1 &4032611785578688892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6158118273574144607}
+  m_Layer: 0
+  m_Name: Temp_FirstSubjectChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6158118273574144607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032611785578688892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.001, y: 0.001, z: 12.255}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6918594131884193905}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5451936653016727545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4546519965898833062}
+  - component: {fileID: 714141041834296333}
+  m_Layer: 0
+  m_Name: SyncedObstacleColumn (Right)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4546519965898833062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451936653016727545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3314699500563327875}
+  m_Father: {fileID: 6492603095503009054}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &714141041834296333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451936653016727545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 220802816951879439}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!1 &6302243601558845929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6001179867887008015}
+  m_Layer: 0
+  m_Name: Temp_LastSubjectChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6001179867887008015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302243601558845929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6918594131884193905}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6834781976185553913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4751432693540789795}
+  m_Layer: 0
+  m_Name: Approachable Column
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4751432693540789795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834781976185553913}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3817554973972657864}
+  m_Father: {fileID: 758020536545152245}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6862689570484432482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6918594131884193905}
+  m_Layer: 0
+  m_Name: Blocked Column
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6918594131884193905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862689570484432482}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6158118273574144607}
+  - {fileID: 6001179867887008015}
+  m_Father: {fileID: 758020536545152245}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8035904532957639860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277448901273165940}
+  - component: {fileID: 3386029668672100596}
+  - component: {fileID: -8138244926258894271}
+  m_Layer: 9
+  m_Name: SyncedObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277448901273165940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035904532957639860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3362044806775786512}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3386029668672100596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035904532957639860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!65 &-8138244926258894271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035904532957639860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}
+--- !u!1 &8501440119796246323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1947276855221809855}
+  - component: {fileID: 4501269264019561550}
+  - component: {fileID: 2339819444496732697}
+  m_Layer: 9
+  m_Name: SyncedObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1947276855221809855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501440119796246323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 199349974704072313}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4501269264019561550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501440119796246323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!65 &2339819444496732697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501440119796246323}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}
+--- !u!1 &8788073772496188813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7160892323950661065}
+  - component: {fileID: 4526878486150974005}
+  - component: {fileID: -4131730753095293670}
+  m_Layer: 9
+  m_Name: SyncedObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7160892323950661065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788073772496188813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1703000133791907501}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4526878486150974005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788073772496188813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!65 &-4131730753095293670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788073772496188813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}

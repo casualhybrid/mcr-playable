@@ -1,0 +1,23 @@
+using Cinemachine;
+using UnityEngine;
+
+public class DampingXOverrideExtension : CinemachineExtension
+{
+    [SerializeField] private float damping;
+
+  
+    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    {
+       if(stage == CinemachineCore.Stage.Body)
+        {
+
+        //    var rawPosition = state.RawPosition;
+            float clampedXPosition = Mathf.Abs(vcam.Follow.position.x) > .64f ? Mathf.Sign(vcam.Follow.position.x) * .64f : vcam.Follow.position.x;
+           float x = Mathf.MoveTowards(rawPosition.x, clampedXPosition, deltaTime * damping);
+
+            Debug.Log($"Moving Cam To X {clampedXPosition}");
+            state.RawPosition = rawPosition;
+
+        }
+    }
+}

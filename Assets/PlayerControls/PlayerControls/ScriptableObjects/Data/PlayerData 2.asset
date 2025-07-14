@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a92b0118b01d674295c7d5ff1751e29, type: 3}
+  m_Name: PlayerData 2
+  m_EditorClassIdentifier: 
+  PlayerInformation:
+  - ForwarspeedMultiplier: 1.2
+    ForwardSpeedInitialValue: 0.1
+    MaxForwardSpeed: 0.5
+    canacelJumpSpeed: 0.2
+    jump_length: 10
+    jump_height: 0.7
+    JumpDurationInitialValue: 0.95
+    NextJumpTimer: 0.25
+    SpringJumpHeight: 1.6
+    SideWaysMultiplier: 1
+    SideWaysInitalSpeed: 0.35
+    MaxSideWaySpeed: 0.2
+    xDistToCover: 1
+    totalLanes: 1
+    SlideInitialSpeed: 0.8
+    SlideMultiplier: 1
+    MaxSlideSpeed: 0.4
+    HurtBoxYPosDuringSlide: -0.9
+    ShockWaveRadius: 4
+    RampRotationSpeed: 150
+    curvedRampRotationSpeed: 200
+    BuildingClimbRotationSpeed: 500
+    BuildingFallingRotationSpeed: 50
+    FallCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    FlyingMaxSpeed: 3
+    TimeToReachFlyingMaxSpeed: 2
+    TimeToReachFlyingTopHeight: 4
+    FlyingHeight: 5
+    RaycastHeight: 0.56
+    HoverHeight: 0.01
+    AdjustmentRaycastHeight: 0.56
+    RayHeightDuringWallRun: 1
+    Boosterspeed: 3
+    BoostDuration: 8
+    DashDuration: 1
+    DashSpeed: 2
+    ThurstDuration: 2.5
+    ThurstJumpLength: 10
+    ThurstJumpHeight: 6
+    MaxAnimationSpeed: 4
+    UpwardPos: 0
+    CarLayer:
+      serializedVersion: 2
+      m_Bits: 3328
+    PlayerStartinPosition: {x: 0, y: 0.02, z: -61}
+    ForwardInitialSpeed: 0.7713574
+    CurvedRampDuration: 1
+    StepHeight: 0.15

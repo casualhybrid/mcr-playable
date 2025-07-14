@@ -1,0 +1,116 @@
+﻿using DG.Tweening;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "SpeedHandler", menuName = "ScriptableObjects/SpeedHandler")]
+public class SpeedHandler : ScriptableObject
+{
+    public bool isOverriden { get; private set; }
+    public float GameTimeScale { get; set; }
+    public float GameTimeScaleRatio => (GameTimeScale - gameManager.GetMinimumSpeed) / (gameManager.GetMaximumSpeed - gameManager.GetMinimumSpeed);
+
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private PlayerSharedData PlayerSharedData;
+    [SerializeField] private PlayerContainedData PlayerContainedData;
+    [SerializeField] private GameEvent playerHasCrashed;
+    [SerializeField] private GameEvent gameHasStarted;
+
+    // private Vector3 movementVector;
+    private float my;
+
+    private float gameTimeScaleBeforeOverriden;
+    private Tween changeGameTimeScale;
+
+    private bool isInitialized;
+
+    private void OnEnable()
+    {
+        Debug.Log("CALLED");
+        UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (scene, mode) => { ResetVariable(); };
+    }
+
+    private void ResetVariable()
+    {
+        my = 0;
+        GameTimeScale = gameManager.GetStartingSpeed;
+
+        isInitialized = true;
+        isOverriden = false;
+        DeSubscribeToEvents();
+        SubscribeToEvents();
+    }
+
+    private void OnDisable()
+    {
+        DeSubscribeToEvents();
+    }
+
+    private void SubscribeToEvents()
+    {
+        playerHasCrashed.TheEvent.AddListener(HandlePlayerCrashed);
+    }
+
+    private void DeSubscribeToEvents()
+    {
+        playerHasCrashed.TheEvent.RemoveListener(HandlePlayerCrashed);
+    }
+
+    private void HandlePlayerCrashed()
+    {
+        PlayerSharedData.ForwardSpeed = 0f;
+        PlayerSharedData.SidewaysSpeed = 0f;
+        PlayerSharedData.SlideSpeed = 0f;
+        isInitialized = false;
+    }
+
+    public void ChangeGameTimeScaleInTime(float theSpeed, float time, bool overrideLogic = false, bool forceOverrideMaxSpeed = false)
+    {
+        if (isOverriden && !overrideLogic)
+        {
+            Debug.LogWarning("Trying to change game time which is already being changed");
+            return;
+        }
+
+        gameTimeScaleBeforeOverriden = GameTimeScale;
+
+        isOverriden = true;
+        changeGameTimeScale?.Kill();
+        changeGameTimeScale = DOTween.To(() => GameTimeScale, (x) => { if (x <= gameManager.GetMaximumSpeed || forceOverrideMaxSpeed) GameTimeScale = x; }, theSpeed, time);
+    }
+
+    public void RemoveOverrideGameTimeScaleMode(float time)
+    {
+        //Debug.Log("TO " + gameTimeScaleBeforeOverriden);
+        changeGameTimeScale?.Kill();
+        changeGameTimeScale = DOTween.To(() => GameTimeScale, (x) => { GameTimeScale = x; }, gameTimeScaleBeforeOverriden, time).OnComplete(() => { isOverriden = false; });
+    }
+
+    public void IncreaseSpeed()
+    {
+        //anyinitialspeed means from which value certain speed will start
+        //overallmultiplier is from multipling all speed by same value
+        //max speed is th elimit
+        //speed multiplier are for all specific speeds
+
+        float t = MyExtensions.NormalElapseTime(ref my, 600f);
+        float y = Mathf.Lerp(0, 1, t);
+
+        if (!isOverriden && isInitialized)
+        {
+            GameTimeScale = MyExtensions.EaseOutExpo(gameManager.GetMinimumSpeed, gameManager.GetMaximumSpeed, y);
+        }
+
+        PlayerSharedData.ForwardSpeed = PlayerContainedData.PlayerData.PlayerInformation[0].ForwardSpeedInitialValue * PlayerContainedData.PlayerData.PlayerInformation[0].ForwarspeedMultiplier * GameTimeScale;
+
+        //player sideway speed
+        PlayerSharedData.SidewaysSpeed = PlayerContainedData.PlayerData.PlayerInformation[0].SideWaysInitalSpeed / (1 + (GameTimeScaleRatio * PlayerContainedData.PlayerData.PlayerInformation[0].SideWaysMultiplier));
+
+        //player slide speed
+        //  PlayerSharedData.SlideSpeed = PlayerContainedData.PlayerData.PlayerInformation[0].SlideInitialSpeed / (GameTimeScale * PlayerContainedData.PlayerData.PlayerInformation[0].SlideMultiplier);
+    }
+
+    public void BoostDash(float speed, float midValue)
+    {
+        //Increasing Speed on Dash or Boost
+        PlayerSharedData.ForwardSpeed = MyExtensions.Lerp3(PlayerSharedData.ForwardSpeed, PlayerContainedData.PlayerData.PlayerInformation[0].Boosterspeed, PlayerContainedData.PlayerData.PlayerInformation[0].ForwardInitialSpeed, speed, midValue);
+    }
+}

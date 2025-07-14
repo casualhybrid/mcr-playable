@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a467feb38ea457e478ae9e7254613f28, type: 3}
+  m_Name: PlayerBasicMovementShared
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 11400000, guid: 30ff116eaf48afd46b0d718637b16ab7, type: 2}
+  playerHasDodged: {fileID: 11400000, guid: 2daf5302e1b3db64195f58925332a8d6, type: 2}
+  playerStoppedDodging: {fileID: 11400000, guid: c9166a2b9494356429fe292c476dae99,
+    type: 2}
+  playerHasDodgedLeft: {fileID: 11400000, guid: f75a89d84ad7cfa4b84e4bbde7e5d26f,
+    type: 2}
+  playerHasDodgedRight: {fileID: 11400000, guid: 8582361de23cdae479c802a352a44940,
+    type: 2}
+  playerHasHitFromFront: {fileID: 11400000, guid: 204569535b4e4a84da311d275801c152,
+    type: 2}
+  playerHasHitFromSide: {fileID: 11400000, guid: 0c8b9a9a0173abe42b1b271498c2ec6f,
+    type: 2}
+  playerHasStumbled: {fileID: 11400000, guid: 54317ce81905f8a4789d38aef869dc9f, type: 2}
+  playerCompletedWallClimbTouchedGround: {fileID: 11400000, guid: 3d09cfa5962b60b458ba79de8f846583,
+    type: 2}
+  playerStartedCurvedRamp: {fileID: 11400000, guid: 09d06319fa366a34d81a082ca01c7939,
+    type: 2}
+  playerEndedCurvedRamp: {fileID: 11400000, guid: d72fd956b77e63243bc1b9d00f483679,
+    type: 2}
+  playerBackToNormalLane: {fileID: 11400000, guid: 6966ed5aeafca1e41b1a2e1d78af2dcf,
+    type: 2}
+  playerTouchedTheGround: {fileID: 11400000, guid: f773424e58f8d674abde940e99261277,
+    type: 2}
+  ArmourHasBeenPickedup: {fileID: 11400000, guid: 773ccc49de9fe7a488e4b0a48a010b2d,
+    type: 2}
+  ArmourHasBeenUsedUp: {fileID: 11400000, guid: cdbad7b4ba28e2947982296108316f5b,
+    type: 2}
+  playerHasCrashedFromFront: {fileID: 11400000, guid: a13a8deddf3b16b4fb21fb48c925b25c,
+    type: 2}
+  playerHasCrashedFromSide: {fileID: 11400000, guid: 86672d3b890fa8a4fabcfe846b7913e6,
+    type: 2}
+  playerHasCrashed: {fileID: 11400000, guid: 81356fc585246d74185d444236330ded, type: 2}
+  playerHasRevived: {fileID: 11400000, guid: fab69674e77117348814944d17cc2db5, type: 2}
+  armourHasBeenUsedUp: {fileID: 11400000, guid: cdbad7b4ba28e2947982296108316f5b,
+    type: 2}
+  PlayerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+  PlayerContainedData: {fileID: 11400000, guid: 5145ede1a52e30c42af224c0bd3e1f7e,
+    type: 2}
+  speedHandler: {fileID: 11400000, guid: 803be8ce969fb89459f5c04079fe9eaa, type: 2}
+  inputChannel: {fileID: 11400000, guid: 33a59416319ecf54c8cf6f65158762d9, type: 2}
+  tutorialSegmentStateChannel: {fileID: 11400000, guid: 1cc22f05ceac93a43bd007bacb9fd154,
+    type: 2}
+  target_lane: 0
+  sidewaysDistanceToCover: 0
+  distForRayCast: 0.12469734
+  ypos: 0
+  xpos: 0
+  zpos: 0

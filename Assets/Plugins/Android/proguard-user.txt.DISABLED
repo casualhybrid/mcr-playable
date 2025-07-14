@@ -1,0 +1,58 @@
+-keep public class spacemadness.com.lunarconsole.settings.*
+-keepclassmembers class spacemadness.com.lunarconsole.settings.* {
+   public *;
+}
+-keep public enum spacemadness.com.lunarconsole.settings.ExceptionWarningSettings$** {
+    **[] $VALUES;
+    public *;
+}
+-keep public enum spacemadness.com.lunarconsole.settings.Gesture {
+    **[] $VALUES;
+    public *;
+}
+-keep public class spacemadness.com.lunarconsole.console.NativeBridge
+-keepclassmembers class spacemadness.com.lunarconsole.console.NativeBridge {
+   public *;
+}
+-keep class com.facebook.** {
+   *;
+}
+-keepattributes Signature
+-keep class com.google.unity.** {
+   *;
+}
+-keep public class com.google.android.gms.ads.**{
+   public *;
+}
+-keep public class com.google.ads.**{
+   public *;
+}
+-keep public class com.google.android.ump.**{
+   public *;
+}
+-keepattributes *Annotation*
+-keep public class com.frosty.androidviewwarmer.WebviewWarmup { *; }
+#-keepclassmembers class com.frosty.androidviewwarmer.WebviewWarmup {
+#   public *;
+#}
+-dontobfuscate
+-keep class androidx.lifecycle.DefaultLifecycleObserver
+-keep class androidx.lifecycle.FullLifecycleObserver
+-keep class com.google.android.play.core.** { *; }
+#unity
+-keep class com.ironsource.unity.androidbridge.** { *;}
+-keep class com.google.android.gms.appset.** { *; }
+-keep class com.google.android.gms.tasks.** { *; }
+#adapters
+-keep class com.ironsource.adapters.** { *; }
+#sdk
+-dontwarn com.ironsource.**
+-dontwarn com.ironsource.adapters.**
+-keepclassmembers class com.ironsource.** { public *; }
+-keep public class com.ironsource.**
+-keep class com.ironsource.adapters.** { *;
+}
+-keepclassmembers class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+-keep class com.unity.androidnotifications.** { *;}

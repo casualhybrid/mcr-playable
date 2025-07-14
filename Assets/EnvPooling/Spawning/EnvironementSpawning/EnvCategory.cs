@@ -1,0 +1,12 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+[CreateAssetMenu(fileName = "EnvCategory", menuName = "ScriptableObjects/Environement/EnvCategory")]
+public class EnvCategory : ScriptableObject
+{
+    [Tooltip("The categories for the next patch that would be spawned ahead of this")]
+    [SerializeField] private List<EnvCategory> nextPossibleCategories;
+
+    public List<EnvCategory> GetNextPossibleCategories => nextPossibleCategories;
+}

@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8c4f94a89234e499540f10638a7b58, type: 3}
+  m_Name: IndividualObstaclesSO
+  m_EditorClassIdentifier:
+  individualObstacles:
+  - obstacleName: One-Arm Automatic Barrier
+    obstaclePrefab: {fileID: 199761564022677659, guid: f23f3d6fbfde733418b2eee9a4ac6c6b,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 1
+      isDuckable: 1
+      isDashable: 0
+      isShockwaveable: 0
+      isMovingObstacle: 0
+  - obstacleName: Three-Arm Automatic Barrier
+    obstaclePrefab: {fileID: 3324083467459039125, guid: 0c10328f27b14714f97ced0d1cbc0350,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 0
+      isDuckable: 1
+      isDashable: 0
+      isShockwaveable: 0
+      isMovingObstacle: 0
+  - obstacleName: Roadblock
+    obstaclePrefab: {fileID: 4077603785112311113, guid: 2a4fd5c14333e9741bae3abe47c2f445,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 1
+      isDuckable: 0
+      isDashable: 0
+      isShockwaveable: 0
+      isMovingObstacle: 0
+  - obstacleName: Mini
+    obstaclePrefab: {fileID: 4268927440998296257, guid: 52c49e07fb12b5342acbf2831531810c,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 1
+      isDuckable: 0
+      isDashable: 1
+      isShockwaveable: 1
+      isMovingObstacle: 1
+  - obstacleName: Sporty
+    obstaclePrefab: {fileID: 6943111858051819776, guid: 8d0128da0a437634f9a7df69db4552fd,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 1
+      isDuckable: 0
+      isDashable: 1
+      isShockwaveable: 1
+      isMovingObstacle: 1
+  - obstacleName: Compact
+    obstaclePrefab: {fileID: 4051772746437317767, guid: a7d772a59a8b608438f0894f160c8682,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 1
+      isDuckable: 0
+      isDashable: 0
+      isShockwaveable: 0
+      isMovingObstacle: 0
+  - obstacleName: Scrappy
+    obstaclePrefab: {fileID: 706886118240066248, guid: e3d1a35795e1d844c8b9da679736c780,
+      type: 3}
+    obstacleProperties:
+      isJumpable: 1
+      isDuckable: 0
+      isDashable: 0
+      isShockwaveable: 0
+      isMovingObstacle: 0
+  individualForceLaneChangeObstacle:
+  - obstacleName: Truck
+    obstaclePrefab: {fileID: 3663400996804150964, guid: c2c84bd94a81dcd4ea5c1e3f9517e814,
+      type: 3}
+  individualNonActionObstacles:
+  - obstacleName: Transporter
+    obstaclePrefab: {fileID: 8871262390396412681, guid: 61877371d178e6b4188352b47ce8d398,
+      type: 3}
+  playerStartedBuildingClimb: {fileID: 11400000, guid: 68c65e5d561a41c45bf94378e1458cbf,
+    type: 2}
+  dependenciesLoaded: {fileID: 11400000, guid: 73023c5660ce9f245a5170ab238bc9de, type: 2}
+  difficultyScaleSO: {fileID: 11400000, guid: fcc974535c38023459a9a7f0d50d13ec, type: 2}

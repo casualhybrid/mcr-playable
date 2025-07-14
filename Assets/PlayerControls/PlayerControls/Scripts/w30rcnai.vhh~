@@ -1,0 +1,35 @@
+using Cinemachine;
+using UnityEngine;
+
+public class ZMovementExtension : CinemachineExtension
+{
+    [Tooltip("Accessing mian virtual cam for modyfiying certain values")]
+    [SerializeField] private CinemachineFramingTransposer cinemachineVirtualCamera; //Accessing mian virtual cam for modyfiying certain values
+
+    [Tooltip("Player shared Data contains all public variabls which are required in other scripts also")]
+    [SerializeField] private PlayerSharedData playerSharedData;
+
+    private float defaultCameraDistance;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        defaultCameraDistance = cinemachineVirtualCamera.m_CameraDistance;
+    }
+
+    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    {
+        if (stage != CinemachineCore.Stage.Finalize)
+            return;
+
+        float cameraDist = defaultCameraDistance;
+
+        if(playerSharedData.IsBoosting)
+        {
+
+
+        }
+
+     
+    }
+}

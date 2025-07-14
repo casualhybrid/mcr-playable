@@ -1,0 +1,153 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class EnvironmentSpawner : MonoBehaviour
+{
+    [Tooltip("Increase this to maintain more patches in front of player")]
+    [SerializeField] private int minPatchesDistanceInFrontOfPlayer;
+
+    [SerializeField] private int minForwardDistThresholdToInvokeSpawn;
+
+    [SerializeField] private string nextEnvironmentKey;
+
+    [SerializeField] private PlayerRunTimeData playerRunTimeData;
+
+    [SerializeField] private GameEvent initialEnvHasSpawned;
+
+    [SerializeField] private EnviornmentSO tempSO;
+
+    [SerializeField] private EnvPatchPoolSO envPatchPoolSO;
+
+    [SerializeField] private int initialCopiesPerPatch = 1;
+
+    private Dictionary<Patch, float> suspendedPatches = new Dictionary<Patch, float>();
+
+    private Patch lastSpawnedPatch;
+    private float zDistanceWhereLastPatchEnded;
+    private EnviornmentSO currentlyActiveEnv;
+    private EnvCategory currentlyActiveCategory;
+
+    private bool initialized;
+
+    private void Awake()
+    {
+        lastSpawnedPatch = GetComponentInChildren<Patch>();
+        zDistanceWhereLastPatchEnded += lastSpawnedPatch.GetLengthOfPatch;
+    }
+
+    private void Start()
+    {
+        //var operationHandle = AddressableLoader.LoadTheAsset<EnviornmentSO>(nextEnvironmentKey);
+        //operationHandle.Completed += (handle) =>
+        //{
+        //    EnviornmentSO enviornmentSO = handle.Result;
+        //    currentlyActiveEnv = enviornmentSO;
+        //    SpawnPatchesInFrontOfPlayer(enviornmentSO);
+        //    initialized = true;
+        //    initialEnvHasSpawned.RaiseEvent();
+        //};
+
+        currentlyActiveEnv = tempSO;
+        envPatchPoolSO.Prewarm(initialCopiesPerPatch);
+        envPatchPoolSO.SetParent(this.transform);
+        SpawnPatchesInFrontOfPlayer(tempSO);
+        initialized = true;
+        initialEnvHasSpawned.RaiseEvent();
+    }
+
+    private void Update()
+    {
+        if (!initialized)
+            return;
+
+        float zDiff = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+
+        if (zDiff < minForwardDistThresholdToInvokeSpawn)
+        {
+            SpawnPatchesInFrontOfPlayer(currentlyActiveEnv);
+        }
+    }
+
+    private void SpawnPatchesInFrontOfPlayer(EnviornmentSO enviornmentSO)
+    {
+        float distBetweenLastPatchZandPlayer = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+
+        while (distBetweenLastPatchZandPlayer < minPatchesDistanceInFrontOfPlayer)
+        {
+            distBetweenLastPatchZandPlayer = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+
+            List<Patch> possiblePatches;
+
+            if (currentlyActiveCategory == null)
+            {
+                possiblePatches = enviornmentSO.GetMergedPatchesCollectionIrrelevantToCategories();
+            }
+            else
+            {
+                possiblePatches = enviornmentSO.GetCollectionOfPossiblePatchesForCategory(currentlyActiveCategory);
+            }
+
+            List<Patch> reducedPossiblePatches;
+
+            if (suspendedPatches.Count > 0)
+            {
+                List<Patch> keysList = suspendedPatches.Keys.ToList();
+
+                for (int i = 0; i < keysList.Count; i++)
+                {
+                    Patch p = keysList[i];
+                    float diff = playerRunTimeData.TheTransform.position.z - suspendedPatches[p];
+
+                    if (diff >= p.DistanceBeforeItCanReAppear)
+                    {
+                        Debug.Log($"Removed from suspended patches {p.name}");
+                        suspendedPatches.Remove(p);
+                    }
+                }
+            }
+
+            if (suspendedPatches.Count > 0)
+            {
+                reducedPossiblePatches = new List<Patch>();
+                for (int i = 0; i < possiblePatches.Count; i++)
+                {
+                    Patch p = possiblePatches[i];
+                    if (!suspendedPatches.ContainsKey(p))
+                    {
+                        reducedPossiblePatches.Add(p);
+                    }
+                }
+            }
+            else
+            {
+                reducedPossiblePatches = possiblePatches;
+            }
+
+            int rand = UnityEngine.Random.Range(0, reducedPossiblePatches.Count);
+            Patch originalPatch = reducedPossiblePatches[rand];
+            GameObject originalPatchObject = originalPatch.gameObject;
+            Patch patchRequested = envPatchPoolSO.Request(originalPatch);
+            patchRequested.PatchHasFinished += HandlePatchHasFinished;
+            GameObject patchRequestedGameObject = patchRequested.gameObject;
+
+            patchRequestedGameObject.transform.localPosition = new Vector3(originalPatchObject.transform.position.x, originalPatchObject.transform.position.y, zDistanceWhereLastPatchEnded);
+
+            lastSpawnedPatch = patchRequested;
+
+            zDistanceWhereLastPatchEnded += patchRequested.GetLengthOfPatch;
+
+            if (patchRequested.isLimitedSpawningByDistance)
+            {
+                Debug.Log($"Added to suspended patches {patchRequested.name}");
+                suspendedPatches.Add(originalPatch, playerRunTimeData.TheTransform.position.z);
+            }
+        }
+    }
+
+    private void HandlePatchHasFinished(Patch patch)
+    {
+        patch.PatchHasFinished -= HandlePatchHasFinished;
+        envPatchPoolSO.Return(patch);
+    }
+}

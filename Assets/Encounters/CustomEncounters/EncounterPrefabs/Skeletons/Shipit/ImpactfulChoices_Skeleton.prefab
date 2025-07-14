@@ -1,0 +1,1540 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &751053782973155898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7163973410792378396}
+  - component: {fileID: 3648183013305494187}
+  m_Layer: 0
+  m_Name: SubjectTruck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7163973410792378396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751053782973155898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2099667878653127727}
+  m_Father: {fileID: 6664758221197307602}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3648183013305494187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751053782973155898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Trucks
+  lastObjectInGroupTransform: {fileID: 2099667878653127727}
+  firstObjectInGroupTransform: {fileID: 2099667878653127727}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 0}
+--- !u!1 &777452482108706417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6334098779680932516}
+  - component: {fileID: 975326146433444976}
+  - component: {fileID: 2032225658983137400}
+  - component: {fileID: 9132346014151920795}
+  - component: {fileID: 8580650054924009873}
+  - component: {fileID: 2242041117335028535}
+  m_Layer: 9
+  m_Name: Random Barrier (Furthest)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6334098779680932516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777452482108706417}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8510685530551607837}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &975326146433444976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777452482108706417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff39be16be2cbc4e88a6edf554bddd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleObstacles:
+  - {fileID: 199761564022677659, guid: f23f3d6fbfde733418b2eee9a4ac6c6b, type: 3}
+  - {fileID: 3324083467459039125, guid: 0c10328f27b14714f97ced0d1cbc0350, type: 3}
+  - {fileID: 4077603785112311113, guid: 2a4fd5c14333e9741bae3abe47c2f445, type: 3}
+  synchronizedColumns:
+  - {fileID: 2032225658983137400}
+  _customEncounter: {fileID: 2010773956851174628}
+  aeroplanePickup: {fileID: 6164580125676040400, guid: ceebc4bbc5bff844cbe38a7d93ac8b61,
+    type: 3}
+  gamePlaySessionData: {fileID: 11400000, guid: bc8c71ec233eda644ada020047cdb523,
+    type: 2}
+  pickupGenerationData: {fileID: 11400000, guid: 136f3e99f7362284fa2d160c1ecdd20f,
+    type: 2}
+  pickupsUtility: {fileID: 11400000, guid: 84f7bc9f4b9c0724dbff599ceb8d9ca8, type: 2}
+--- !u!114 &2032225658983137400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777452482108706417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 9132346014151920795}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!114 &9132346014151920795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777452482108706417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!114 &8580650054924009873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777452482108706417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Random Barriers
+  lastObjectInGroupTransform: {fileID: 6334098779680932516}
+  firstObjectInGroupTransform: {fileID: 6334098779680932516}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 16}
+--- !u!65 &2242041117335028535
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777452482108706417}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}
+--- !u!1 &974240928227825019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7622941091163187195}
+  - component: {fileID: 7977052379025866559}
+  m_Layer: 0
+  m_Name: Swappable Corners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7622941091163187195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974240928227825019}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8510685530551607837}
+  - {fileID: 6664758221197307602}
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7977052379025866559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974240928227825019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99629c87342cf245a586b2deece8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToSwap:
+  - {fileID: 8510685530551607837}
+  - {fileID: 6664758221197307602}
+--- !u!1 &1395944003739694313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572359825434894272}
+  - component: {fileID: 7415757019073246591}
+  m_Layer: 0
+  m_Name: SubjectTruck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &572359825434894272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395944003739694313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6535962659915726943}
+  m_Father: {fileID: 6574825004652437138}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7415757019073246591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395944003739694313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Trucks
+  lastObjectInGroupTransform: {fileID: 6535962659915726943}
+  firstObjectInGroupTransform: {fileID: 6535962659915726943}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 0}
+--- !u!1 &1417710972142754624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6535962659915726943}
+  m_Layer: 0
+  m_Name: Temp_FirstSubjectChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6535962659915726943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417710972142754624}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 572359825434894272}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1584985373422678880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584985373422678881}
+  - component: {fileID: 2010773956851174628}
+  - component: {fileID: 179128679357609367}
+  - component: {fileID: 6428177905313744269}
+  m_Layer: 0
+  m_Name: ImpactfulChoices_Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584985373422678881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6574825004652437138}
+  - {fileID: 7622941091163187195}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010773956851174628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3d7cf9b07846e4398d43ad80bca9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSkeleton: 1
+  instanceID: 31764
+  canSpawnInLowDifficulty: 1
+  requiredDifficultyInPercent: -1
+  startExtentionDis: 0
+  endExtentionDis: 1.08
+  encounterSize: 18.236
+  encounterOffset: 1.156
+  obstaclesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obstacleSynchronizerList:
+  - {fileID: 9131947758382480717}
+  - {fileID: 6124761510567835436}
+  - {fileID: 975326146433444976}
+  preplacedCoinGeneratorList: []
+  actionTimePreserverList:
+  - {fileID: 179128679357609367}
+  - {fileID: 4645020360074618177}
+  CustomEncounterSkeleton: {fileID: 6428177905313744269}
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+  obstaclesSafeAreaSO: {fileID: 11400000, guid: 196b28bcca65b6140b8c3d0889f95465,
+    type: 2}
+  obstaclesSafeAreaIsUpdated: {fileID: 11400000, guid: 8e8f62829bfb1d7448ec4216288da13e,
+    type: 2}
+  playerFinishedBoostingEvent: {fileID: 11400000, guid: ffb377575ad8713409c228e48fd6011d,
+    type: 2}
+  playerHasRevived: {fileID: 11400000, guid: fab69674e77117348814944d17cc2db5, type: 2}
+  Temp: {fileID: 0}
+  playerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+--- !u!114 &179128679357609367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4c0f8f8eb101d4f9917435fcf39076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagToSubjectify: Trucks
+  preservationMultiplier: 0.75
+  reversePreservation: 0
+  isPartOfCustomEncounter: 1
+  preservedSubjects:
+  - {fileID: 7415757019073246591}
+  - {fileID: 3827055495934014183}
+  - {fileID: 3648183013305494187}
+  _customEncounter: {fileID: 2010773956851174628}
+  speedHandler: {fileID: 11400000, guid: 803be8ce969fb89459f5c04079fe9eaa, type: 2}
+  gameManager: {fileID: 11400000, guid: 30ff116eaf48afd46b0d718637b16ab7, type: 2}
+--- !u!114 &6428177905313744269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584985373422678880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a856ac94da10644b8441da31e4f4957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 7415757019073246591}
+    - {fileID: 572359825434894272}
+    - {fileID: 3827055495934014183}
+    - {fileID: 6406095855985185747}
+    - {fileID: 3648183013305494187}
+    - {fileID: 7163973410792378396}
+    - {fileID: 9198906120644175028}
+    - {fileID: 66893440254316978}
+    - {fileID: 8580650054924009873}
+    - {fileID: 179128679357609367}
+    - {fileID: 4645020360074618177}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[ActionTimePreserverSubject,
+        Assembly-CSharp],[ActionTimeSubjectMetaData, Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserverSubject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 3|CustomEncounterObjectDestructionMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 4|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185712
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 5|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 7
+      Data: 6|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 1
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 7
+      Data: 7|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 1
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 8|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 9|CustomEncounterObjectDestructionMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185718
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 16
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 11|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 7
+      Data: 12|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 3
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 7
+      Data: 13|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 3
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 14|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 15|CustomEncounterObjectDestructionMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 16|CustomEncounterObjectDestructionMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185660
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 17|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 7
+      Data: 18|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 5
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 7
+      Data: 19|ParentAndChildOrderMeta, Assembly-CSharp
+    - Name: ParentT
+      Entry: 10
+      Data: 5
+    - Name: ChildOrder
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: 20|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 7
+      Data: 21|CustomEncounterObjectDestructionMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 22|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 23|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 9
+      Data: 21
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 24|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: 25|ActionTimeSubjectMetaData, Assembly-CSharp
+    - Name: actionTimeSubjectsChildObjectDestructions
+      Entry: 9
+      Data: 21
+    - Name: actionTimeSubjectFirstLastGroupMetaData
+      Entry: 7
+      Data: 26|ActionTimeSubjectFirstLastGroupMetaData, Assembly-CSharp
+    - Name: firstObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: lastObjectGroupMeta
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: actionTimePreserversChildSyncedObstacles
+      Entry: 7
+      Data: 27|System.Collections.Generic.Dictionary`2[[ActionTimePreserver, Assembly-CSharp],[CustomEncounterSyncedObstacleMetaData[],
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 28|System.Collections.Generic.ObjectEqualityComparer`1[[ActionTimePreserver,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 9
+    - Name: $v
+      Entry: 7
+      Data: 29|CustomEncounterSyncedObstacleMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 30|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185652
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: -1.156
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 31|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185668
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 6.844
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 32|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185684
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 14.844
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 10
+    - Name: $v
+      Entry: 7
+      Data: 33|CustomEncounterSyncedObstacleMetaData[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 34|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185652
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: -1.156
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 35|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185668
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 6.844
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 36|CustomEncounterSyncedObstacleMetaData, Assembly-CSharp
+    - Name: ParentCachedInstanceID
+      Entry: 3
+      Data: 185684
+    - Name: OriginalWordPosition
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 14.844
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: shuffleObstaclePairData
+      Entry: 7
+      Data: 37|System.Collections.Generic.Dictionary`2[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp],[ShuffleObstaclePairUniqueEmptyLaneMetaData, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 38|System.Collections.Generic.ObjectEqualityComparer`1[[ShuffleObstaclePairsToProvideUniqueEmptyLanes,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  customEncounterObstacleMetaDatas:
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 572359825434894272}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 16}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 6406095855985185747}
+    ChildOrder: 0
+  - nameOfTheObstacle: Truck
+    OriginalPrefab: {fileID: 9142404664595901954, guid: a37b8247454746240981af11ad5c3bd5,
+      type: 3}
+    localPosition: {x: 0, y: 0, z: 8}
+    localRotationEulers: {x: -0, y: 0, z: 0}
+    ParentTransform: {fileID: 7163973410792378396}
+    ChildOrder: 0
+  customEncounterObjectDestructionMetaData:
+  - ParentCachedInstanceID: 185712
+    OriginalWordPosition: {x: 0, y: 0, z: 0}
+  - ParentCachedInstanceID: 185718
+    OriginalWordPosition: {x: 0, y: 0, z: 16}
+  - ParentCachedInstanceID: 185660
+    OriginalWordPosition: {x: 1, y: 0, z: 8}
+  customEncounterSyncedObstacleMetaData:
+  - ParentCachedInstanceID: 185652
+    OriginalWordPosition: {x: -1, y: 0, z: -1.156}
+  - ParentCachedInstanceID: 185668
+    OriginalWordPosition: {x: -1, y: 0, z: 6.844}
+  - ParentCachedInstanceID: 185684
+    OriginalWordPosition: {x: -1, y: 0, z: 14.844}
+  obstaclePool: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!1 &5887483496949714034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099667878653127727}
+  m_Layer: 0
+  m_Name: Temp_FirstSubjectChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099667878653127727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5887483496949714034}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7163973410792378396}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6089618722125174575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775302259453190915}
+  - component: {fileID: 9131947758382480717}
+  - component: {fileID: 7274042169945345718}
+  - component: {fileID: 4846167695722193767}
+  - component: {fileID: 9198906120644175028}
+  - component: {fileID: 8930816343181922279}
+  m_Layer: 9
+  m_Name: Random Barrier (Closest)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1775302259453190915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089618722125174575}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8510685530551607837}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9131947758382480717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089618722125174575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff39be16be2cbc4e88a6edf554bddd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleObstacles:
+  - {fileID: 199761564022677659, guid: f23f3d6fbfde733418b2eee9a4ac6c6b, type: 3}
+  - {fileID: 3324083467459039125, guid: 0c10328f27b14714f97ced0d1cbc0350, type: 3}
+  - {fileID: 4077603785112311113, guid: 2a4fd5c14333e9741bae3abe47c2f445, type: 3}
+  synchronizedColumns:
+  - {fileID: 7274042169945345718}
+  _customEncounter: {fileID: 2010773956851174628}
+  aeroplanePickup: {fileID: 6164580125676040400, guid: ceebc4bbc5bff844cbe38a7d93ac8b61,
+    type: 3}
+  gamePlaySessionData: {fileID: 11400000, guid: bc8c71ec233eda644ada020047cdb523,
+    type: 2}
+  pickupGenerationData: {fileID: 11400000, guid: 136f3e99f7362284fa2d160c1ecdd20f,
+    type: 2}
+  pickupsUtility: {fileID: 11400000, guid: 84f7bc9f4b9c0724dbff599ceb8d9ca8, type: 2}
+--- !u!114 &7274042169945345718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089618722125174575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 4846167695722193767}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!114 &4846167695722193767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089618722125174575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!114 &9198906120644175028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089618722125174575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Random Barriers
+  lastObjectInGroupTransform: {fileID: 1775302259453190915}
+  firstObjectInGroupTransform: {fileID: 1775302259453190915}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 0}
+--- !u!65 &8930816343181922279
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089618722125174575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}
+--- !u!1 &6855201821955381245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6574825004652437138}
+  m_Layer: 0
+  m_Name: Middle Column
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6574825004652437138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855201821955381245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 572359825434894272}
+  - {fileID: 6406095855985185747}
+  m_Father: {fileID: 1584985373422678881}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7094390098359630821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6406095855985185747}
+  - component: {fileID: 3827055495934014183}
+  m_Layer: 0
+  m_Name: SubjectTruck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6406095855985185747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094390098359630821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6208885726778718798}
+  m_Father: {fileID: 6574825004652437138}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3827055495934014183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094390098359630821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Trucks
+  lastObjectInGroupTransform: {fileID: 6208885726778718798}
+  firstObjectInGroupTransform: {fileID: 6208885726778718798}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 0}
+--- !u!1 &7418495145736209501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8510685530551607837}
+  - component: {fileID: 4645020360074618177}
+  m_Layer: 0
+  m_Name: Swapable Column
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8510685530551607837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418495145736209501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: -1.156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1775302259453190915}
+  - {fileID: 4217055995887917931}
+  - {fileID: 6334098779680932516}
+  m_Father: {fileID: 7622941091163187195}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4645020360074618177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418495145736209501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4c0f8f8eb101d4f9917435fcf39076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagToSubjectify: Random Barriers
+  preservationMultiplier: 0.75
+  reversePreservation: 0
+  isPartOfCustomEncounter: 1
+  preservedSubjects:
+  - {fileID: 9198906120644175028}
+  - {fileID: 66893440254316978}
+  - {fileID: 8580650054924009873}
+  _customEncounter: {fileID: 2010773956851174628}
+  speedHandler: {fileID: 11400000, guid: 803be8ce969fb89459f5c04079fe9eaa, type: 2}
+  gameManager: {fileID: 11400000, guid: 30ff116eaf48afd46b0d718637b16ab7, type: 2}
+--- !u!1 &7506517015283462797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4217055995887917931}
+  - component: {fileID: 6124761510567835436}
+  - component: {fileID: 3351033279295949435}
+  - component: {fileID: 8796911779515738334}
+  - component: {fileID: 66893440254316978}
+  - component: {fileID: 4710127121459196699}
+  m_Layer: 9
+  m_Name: Random Barrier (Middle)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4217055995887917931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506517015283462797}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8510685530551607837}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6124761510567835436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506517015283462797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff39be16be2cbc4e88a6edf554bddd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleObstacles:
+  - {fileID: 199761564022677659, guid: f23f3d6fbfde733418b2eee9a4ac6c6b, type: 3}
+  - {fileID: 3324083467459039125, guid: 0c10328f27b14714f97ced0d1cbc0350, type: 3}
+  - {fileID: 4077603785112311113, guid: 2a4fd5c14333e9741bae3abe47c2f445, type: 3}
+  synchronizedColumns:
+  - {fileID: 3351033279295949435}
+  _customEncounter: {fileID: 2010773956851174628}
+  aeroplanePickup: {fileID: 6164580125676040400, guid: ceebc4bbc5bff844cbe38a7d93ac8b61,
+    type: 3}
+  gamePlaySessionData: {fileID: 11400000, guid: bc8c71ec233eda644ada020047cdb523,
+    type: 2}
+  pickupGenerationData: {fileID: 11400000, guid: 136f3e99f7362284fa2d160c1ecdd20f,
+    type: 2}
+  pickupsUtility: {fileID: 11400000, guid: 84f7bc9f4b9c0724dbff599ceb8d9ca8, type: 2}
+--- !u!114 &3351033279295949435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506517015283462797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd610f24ff463514c9b6f958f0469b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncOffset: 0
+  synchronizedObstacles:
+  - {fileID: 8796911779515738334}
+  _customEncounter: {fileID: 2010773956851174628}
+--- !u!114 &8796911779515738334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506517015283462797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fdc3d5c5247e74d9cac945f4d89eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
+--- !u!114 &66893440254316978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506517015283462797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc153f22446673a4b89b8f4da0c4c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTags:
+  - Random Barriers
+  lastObjectInGroupTransform: {fileID: 4217055995887917931}
+  firstObjectInGroupTransform: {fileID: 4217055995887917931}
+  preserverSubjectInitialPosition: {x: 0, y: 0, z: 8}
+--- !u!65 &4710127121459196699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506517015283462797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8123323, y: 0.5319559, z: 0.36414984}
+  m_Center: {x: 0, y: 0.26293096, z: 0}
+--- !u!1 &8602051926053146897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6208885726778718798}
+  m_Layer: 0
+  m_Name: Temp_FirstSubjectChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6208885726778718798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602051926053146897}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6406095855985185747}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8921265389267907410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6664758221197307602}
+  m_Layer: 0
+  m_Name: Swappable Column
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6664758221197307602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921265389267907410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7163973410792378396}
+  m_Father: {fileID: 7622941091163187195}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

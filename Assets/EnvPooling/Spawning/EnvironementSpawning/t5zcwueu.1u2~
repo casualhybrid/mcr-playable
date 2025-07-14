@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+[CreateAssetMenu(fileName = "EnvCategory", menuName = "ScriptableObjects/Environement/EnvCategory")]
+public class EnvCategory : ScriptableObject
+{
+    [Tooltip("The categories for the next patch that would be spawned ahead of this")]
+    [SerializeField] private List<EnvCategory> nextPossibleCategories;
+
+    [SerializeField] private float distanceBeforeCanReAppear = -1f;
+
+    public float distanceLastAppeared { get; set; }
+
+
+    public float DistanceBeforeCanReAppear => distanceBeforeCanReAppear;
+    public List<EnvCategory> GetNextPossibleCategories => nextPossibleCategories;
+}

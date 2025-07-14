@@ -1,0 +1,24 @@
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnviornmentSO", menuName = "ScriptableObjects/Environement/EnvironmentSO")]
+public class EnviornmentSO : SerializedScriptableObject
+{
+    public Dictionary<EnvCategory, List<GameObject>> envCategoryDictionary;
+
+    public List<GameObject> mergedPatchesIrrelevantToCategory { get; private set; }
+
+    public List<GameObject> GetCollectionOfPossiblePatchesForCategory(EnvCategory category)
+    {
+        return envCategoryDictionary[category];
+    }
+
+
+    private void SetMergedIrrelevantCategoryCollection()
+    {
+
+    }
+
+
+}

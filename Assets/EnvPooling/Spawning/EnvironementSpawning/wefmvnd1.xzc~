@@ -1,0 +1,12 @@
+using RotaryHeart.Lib.SerializableDictionary;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnviornmentSO", menuName = "ScriptableObjects/Environement/EnvironmentSO")]
+public class EnviornmentSO : ScriptableObject
+{
+    [System.Serializable]
+    private class EnvCategoryDictionary : SerializableDictionaryBase<EnvCategory, List<GameObject>> { }
+
+    [SerializeField] private EnvCategoryDictionary envCategoryDictionary;
+}

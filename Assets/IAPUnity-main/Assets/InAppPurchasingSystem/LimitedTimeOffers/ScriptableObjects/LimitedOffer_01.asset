@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b44927fd13d4e4a837b140160a3bd7, type: 3}
+  m_Name: LimitedOffer_01
+  m_EditorClassIdentifier: 
+  productType: 1
+  inAppIdStr: bundle_1
+  playerInventory: {fileID: 11400000, guid: 464c952e62c410741ac8d7239ab5fd43, type: 2}
+  EnableInventoryItems: 1
+  inventoryItemsToGive:
+  - itemType: {fileID: 11400000, guid: 32a89729ba1593c40ba54151e0fbf1d1, type: 2}
+    amount: 250
+  - itemType: {fileID: 11400000, guid: 3e2f2eb38808ac4469c47e5fdbcbbfa5, type: 2}
+    amount: 50
+  inventoryItemsPrice: []
+  EnableCars: 1
+  carsToUnlock:
+  - {fileID: 11400000, guid: 34a390c938aecd246ab2727ac30061e1, type: 2}

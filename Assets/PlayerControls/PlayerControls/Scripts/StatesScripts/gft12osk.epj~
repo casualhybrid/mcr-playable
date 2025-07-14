@@ -1,0 +1,148 @@
+﻿using FSM;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "PlayerBuildingRunState", menuName = "ScriptableObjects/PlayerBuildingRunState")]
+public class PlayerBuildingRunState : StateBase
+{
+    [SerializeField] private PlayerContainedData PlayerContainedData;
+    [SerializeField] private PlayerSharedData PlayerSharedData;
+    [SerializeField] private GameEvent playerStoppedVerticalMotionBuilding;
+    [SerializeField] private GameEvent playerStartedBuildingClimb;
+
+    private RaycastHit wallBuildinghit;
+    private int counter;
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (scene, mode) => { ResetVariable(); };
+    }
+
+    private void ResetVariable()
+    {
+        UnSubsribeInputEvents();
+        counter = 0;
+    }
+
+    //subscribing all events that can occur during this state
+    private void SubsribeInputEvents()
+    {
+        PlayerContainedData.InputChannel.SwipeRightOccured.AddListener(SwipedRight);
+        PlayerContainedData.InputChannel.SwipeLeftOccured.AddListener(SwipedLeft);
+    }
+
+    /// <summary>
+    ///unsubscribing all events that can occur during this state
+    /// </summary>
+    public void UnSubsribeInputEvents()
+    {
+        PlayerContainedData.InputChannel.SwipeRightOccured.RemoveListener(SwipedRight);
+        PlayerContainedData.InputChannel.SwipeLeftOccured.RemoveListener(SwipedLeft);
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        counter = 0;
+
+        PlayerSharedData.WallClimbDoing = true;
+        PlayerSharedData.WallRunBuilding = true;
+
+        UnSubsribeInputEvents();
+        SubsribeInputEvents();
+    }
+
+    //this is called when jump restarts
+
+    //onexit will be called once when state exits
+    public override void OnExit()
+    {
+        base.OnExit();
+        PlayerSharedData.BuildingRunPath.Clear();
+
+        UnSubsribeInputEvents();
+    }
+
+    //onlogic basically works as update , all work related to update will be done in this method
+    public override void OnLogic()
+    {
+        base.OnLogic();
+    }
+
+    //onfixlogic basically works as fixupdate , all work related to fixupdate will be done in this method
+    public override void OnFixedLogic()
+    {
+        base.OnFixedLogic();
+     
+
+        PlayerContainedData.PlayerBasicMovementShared.movement();
+        if (counter < PlayerSharedData.BuildingRunPath.Count)
+        {
+            if (PlayerSharedData.PlayerTransform.position.z >= PlayerSharedData.BuildingRunPath[counter].transform.position.z && !PlayerSharedData.RotateOnbuilding)
+            {
+               
+                playerStartedBuildingClimb.RaiseEvent();
+                PlayerSharedData.PlayerTransform.rotation = PlayerSharedData.BuildingRunPath[counter].transform.rotation;
+                counter++;
+            }
+        }
+        if (PlayerSharedData.RotateOnbuilding)
+            BuildingRotation();
+
+        //raycast method for climbing on building
+
+        //if (PlayerSharedData.WallRunBuilding && !PlayerSharedData.RotateOnbuilding)
+        //    Rotation(wallBuildinghit.normal, PlayerContainedData.PlayerData.PlayerInformation[0].BuildingClimbRotationSpeed);
+
+        //if (playershareddata.wallrunbuilding)
+        //{
+        //    wallrunbuildingraycast();
+        //}
+        //
+    }
+
+    private void SwipedRight()
+    {
+        PlayerContainedData.PlayerBasicMovementShared.change_lane(1);
+    }
+
+    private void SwipedLeft()
+    {
+        PlayerContainedData.PlayerBasicMovementShared.change_lane(-1);
+    }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+    }
+
+    public override void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == ("wallrunbuilding"))
+        {
+            PlayerSharedData.RotateOnbuilding = true;
+            playerStoppedVerticalMotionBuilding.RaiseEvent();
+        }
+    }
+
+    private void BuildingRotation()
+    {
+        Quaternion rotaiton = Quaternion.RotateTowards(PlayerSharedData.PlayerTransform.rotation, Quaternion.identity, Time.fixedDeltaTime * (PlayerContainedData.PlayerData.PlayerInformation[0].BuildingFallingRotationSpeed));
+        PlayerSharedData.PlayerRigidBody.MoveRotation(rotaiton);
+        if (PlayerSharedData.PlayerTransform.rotation == Quaternion.identity)
+        {
+            Debug.Log("WallRunBuilding is False");
+            PlayerSharedData.WallRunBuilding = false;
+            PlayerSharedData.RotateOnbuilding = false;
+            StateMachineEventsSender.SendStateMachineEvent("ToNormalMovement");
+        }
+    }
+
+    //raycast method for climbing on building
+    private void WallRunBuildingRaycast()
+    {
+        if (Physics.Raycast(PlayerSharedData.WallrunbuildingRay.transform.position, PlayerSharedData.WallrunbuildingRay.transform.forward, out wallBuildinghit, PlayerContainedData.SpeedHandler.GameTimeScaleRatio > 0.6f ? 2f : 1.3f, PlayerContainedData.PlayerData.PlayerInformation[0].CarLayer))
+        {
+            Debug.DrawRay(PlayerSharedData.WallrunbuildingRay.transform.position, PlayerSharedData.WallrunbuildingRay.transform.forward * (PlayerContainedData.SpeedHandler.GameTimeScaleRatio > 0.6f ? 2f : 1.3f), Color.green);
+            Debug.DrawLine(wallBuildinghit.point, wallBuildinghit.normal * 10, Color.red);
+        }
+    }
+}

@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+using TheKnights.AddressableSystem;
+using UnityEngine;
+
+public class EnvironmentSpawner : MonoBehaviour
+{
+    [Tooltip("Increase this to maintain more patches in front of player")]
+    [SerializeField] private int minPatchesDistanceInFrontOfPlayer;
+
+    [SerializeField] private int minForwardDistThresholdToInvokeSpawn;
+
+    [SerializeField] private string nextEnvironmentKey;
+
+    [SerializeField] PlayerRunTimeData playerRunTimeData;
+
+    private Patch lastSpawnedPatch;
+    private float zDistanceWhereLastPatchEnded;
+
+    private void Start()
+    {
+        var operationHandle = AddressableLoader.LoadTheAsset<EnviornmentSO>(nextEnvironmentKey);
+        operationHandle.Completed += (handle) =>
+        {
+            EnviornmentSO enviornmentSO = handle.Result;
+            SpawnPatchesInFrontOfPlayer(enviornmentSO);
+        };
+    }
+
+    private void Update()
+    {
+        float zDiff = zDistanceWhereLastPatchEnded - playerRunTimeData.TheTransform.position.z;
+    }
+
+    private void SpawnPatchesInFrontOfPlayer(EnviornmentSO enviornmentSO)
+    {
+        while (zDistanceWhereLastPatchEnded >= minPatchesDistanceInFrontOfPlayer)
+        {
+            EnvCategory envCategory = lastSpawnedPatch.NextPossibleCategory;
+            List<GameObject> possiblePatches = enviornmentSO.GetCollectionOfPossiblePatchesForCategory(envCategory);
+
+            int rand = UnityEngine.Random.Range(0, possiblePatches.Count);
+            GameObject patch = possiblePatches[rand];
+            GameObject patchSpawned = Instantiate(patch, transform);
+
+            patchSpawned.transform.localPosition = new Vector3(patchSpawned.transform.position.x, patchSpawned.transform.position.y, zDistanceWhereLastPatchEnded);
+            Patch thePatch = patchSpawned.GetComponent<Patch>();
+            lastSpawnedPatch = thePatch;
+
+            zDistanceWhereLastPatchEnded += thePatch.GetLengthOfPatch;
+        }
+    }
+}

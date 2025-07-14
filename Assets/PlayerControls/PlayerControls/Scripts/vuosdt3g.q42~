@@ -1,0 +1,188 @@
+﻿using Cinemachine;
+using System.Collections;
+using UnityEngine;
+
+public class CameraMovement : CinemachineExtension
+{
+    [Tooltip("Accessing mian virtual cam for modyfiying certain values")]
+    [SerializeField] private CinemachineVirtualCamera CinemachineVirtualCamera; //Accessing mian virtual cam for modyfiying certain values
+
+    [Tooltip("Player shared Data contains all public variabls which are required in other scripts also")]
+    [SerializeField] private PlayerSharedData PlayerSharedData;
+
+    [SerializeField] private PlayerContainedData PlayerContainedData;
+    private CinemachineFramingTransposer CinemachineFramingTransposer; // For changing values for transposer 
+
+    [SerializeField] private float offset;
+    [SerializeField] private float yFollowSpeed;
+    [SerializeField] private float yFollowSpeedCatchupSpeed;
+    [SerializeField] private float yFollowSpeedDistIncreased;
+    [SerializeField] private float inAirSpeed;
+
+    // GameEvents
+    [SerializeField] private GameEvent playerHasSpawnedEvent;
+
+    private float currentYFollowSpeed;
+
+    private bool isInitialized;
+    [SerializeField] private float yFollowSpeedDistDecreased;
+    [SerializeField] private float offsetAbovePlayerIfminimumYDist;
+    [SerializeField] private float minimumYDistToCamera;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        SubscribeEvents();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    
+
+    }
+
+    private void SubscribeEvents()
+    {
+        playerHasSpawnedEvent.TheEvent.AddListener(HandlePlayerSpawned);
+    }
+
+    private void UnSubscribeEvents()
+    {
+        playerHasSpawnedEvent.TheEvent.RemoveListener(HandlePlayerSpawned);
+    }
+
+    //private void Update()
+    //{
+    //    if (CinemachineFramingTransposer != null)
+    //    {
+    //        float targetX = PlayerSharedData.PlayerTransform.position.x == 0 ? PlayerContainedData.CameraData.xCenterOffset : PlayerSharedData.PlayerTransform.position.x >= 0.7f ? -PlayerContainedData.CameraData.xLanesOffset : PlayerSharedData.PlayerTransform.position.x <= -0.7f ? PlayerContainedData.CameraData.xLanesOffset : CinemachineFramingTransposer.m_TrackedObjectOffset.x;
+    //        CinemachineFramingTransposer.m_TrackedObjectOffset.x = Mathf.Lerp(CinemachineFramingTransposer.m_TrackedObjectOffset.x, targetX, PlayerSharedData.SidewaysSpeed);
+
+    //    }
+    //}
+
+    private void OnDisable()
+    {
+        UnSubscribeEvents();
+    }
+
+    private void Start()
+    {
+        SubscribeEvents();
+        CinemachineFramingTransposer = CinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+        // WTF is this?
+        MyExtensions.boostReturn = false;
+    }
+
+    public void FreezeForTime(float time)
+    {
+        StartCoroutine(FreezeForDurationRoutine(time));
+    }
+
+    private IEnumerator FreezeForDurationRoutine(float time)
+    {
+        this.enabled = false;
+
+        yield return new WaitForSeconds(time);
+
+        this.enabled = true;
+    }
+
+    protected override void PostPipelineStageCallback(
+    CinemachineVirtualCameraBase vcam,
+    CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    {
+        if (!isInitialized)
+        {
+            return;
+        }
+
+
+
+        if (stage == CinemachineCore.Stage.Finalize)
+        {
+            float differenceY = vcam.transform.position.y - PlayerSharedData.PlayerTransform.position.y;
+
+
+            // && !PlayerSharedData.WallRunBuilding && !PlayerSharedData.RotateOnbuilding
+            if (differenceY - offset >= Mathf.Epsilon && !PlayerSharedData.IsGrounded)
+            {
+               Debug.Log("FAlling");
+                Vector3 rawPosition = state.RawPosition;
+                float y = PlayerSharedData.PlayerTransform.position.y + offset;
+
+                y = Mathf.MoveTowards(vcam.transform.position.y, y, deltaTime * yFollowSpeedDistIncreased * Mathf.Pow(differenceY, 2) ); //* PlayerSharedData.ForwardSpeed
+                rawPosition.y = y;
+
+                state.RawPosition = rawPosition;
+
+                currentYFollowSpeed = 0;
+            }
+            else if (differenceY <= minimumYDistToCamera)
+            {
+                Debug.Log("Offsetting");
+                Vector3 rawPosition = state.RawPosition;
+                float y = PlayerSharedData.PlayerTransform.position.y + offsetAbovePlayerIfminimumYDist;
+
+                //  float t = Mathf.Abs(deltaTime * yFollowSpeedDistDecreased * (1f / Mathf.Pow(differenceY, 4))) ; //TimeScale
+                float t = Mathf.Abs(deltaTime * yFollowSpeedDistDecreased * (1f / Mathf.Pow(differenceY, 1.1))); //TimeScale
+                y = Mathf.MoveTowards(vcam.transform.position.y, y, t * PlayerSharedData.ForwardSpeed);
+                rawPosition.y = y;
+
+                state.RawPosition = rawPosition;
+
+                currentYFollowSpeed = 0;
+            }
+
+            //|| (PlayerSharedData.CurrentStateName == "PlayerJumpState") || PlayerSharedData.IsDash
+            else if (PlayerSharedData.IsGrounded )
+            {
+                 Debug.Log("IsGroundedCamera");
+
+                Vector3 rawPosition = state.RawPosition;
+
+                float y = PlayerSharedData.LastGroundedYPosition + offset;
+
+                currentYFollowSpeed += yFollowSpeedCatchupSpeed * deltaTime * PlayerSharedData.ForwardSpeed;
+                currentYFollowSpeed = Mathf.Clamp(currentYFollowSpeed, 0, yFollowSpeed);
+
+                y = Mathf.MoveTowards(vcam.transform.position.y, y, deltaTime * currentYFollowSpeed * PlayerSharedData.ForwardSpeed);
+
+                rawPosition.y = y;
+
+                state.RawPosition = rawPosition;
+            }
+            //else if (PlayerSharedData.InAir || PlayerSharedData.WallRunBuilding || PlayerSharedData.RotateOnbuilding)
+            //{
+            //    Vector3 rawPosition = state.RawPosition;
+            //    float y = PlayerSharedData.PlayerTransform.position.y + offset * 0.8f;
+
+            //    y = Mathf.MoveTowards(vcam.transform.position.y, y, deltaTime * yFollowSpeedDistIncreased * inAirSpeed);
+            //    rawPosition.y = y;
+
+            //    state.RawPosition = rawPosition;
+
+            //    currentYFollowSpeed = 0;
+            //}
+            else
+            {
+                Debug.Log("ElseCamera");
+                currentYFollowSpeed = 0;
+                Vector3 rawPosition = state.RawPosition;
+
+                rawPosition.y = vcam.transform.position.y;
+
+                state.RawPosition = rawPosition;
+            }
+        }
+    }
+
+    private void HandlePlayerSpawned()
+    {
+
+        isInitialized = true;
+    }
+}

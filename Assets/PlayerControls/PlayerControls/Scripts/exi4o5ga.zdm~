@@ -1,0 +1,56 @@
+using Cinemachine;
+using UnityEngine;
+
+public class ZMovementExtension : CinemachineExtension
+{
+    [Tooltip("Accessing mian virtual cam for modyfiying certain values")]
+    [SerializeField] private CinemachineVirtualCamera CinemachineVirtualCamera; //Accessing mian virtual cam for modyfiying certain values
+
+    [Tooltip("Player shared Data contains all public variabls which are required in other scripts also")]
+    [SerializeField] private PlayerSharedData playerSharedData;
+
+    [SerializeField] private CameraData cameraData;
+
+    [SerializeField] private float dashCameraDist;
+    [SerializeField] private float dashCameraFallBackSpeed;
+    [SerializeField] private float boostingCameraFallBackSpeed;
+
+    private CinemachineFramingTransposer cinemachineFramingTransposer;
+
+    private float defaultCameraDistance;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        cinemachineFramingTransposer = CinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        defaultCameraDistance = cinemachineFramingTransposer.m_CameraDistance;
+    }
+
+    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    {
+        if (stage != CinemachineCore.Stage.Finalize)
+            return;
+
+        float cameraDist = defaultCameraDistance;
+
+        if (playerSharedData.IsBoosting)
+        {
+            cameraDist = Mathf.MoveTowards(cinemachineFramingTransposer.m_CameraDistance, cameraData.targetZOffsetBoost, deltaTime * boostingCameraFallBackSpeed);
+        }
+        else
+        {
+            cameraDist = Mathf.MoveTowards(cinemachineFramingTransposer.m_CameraDistance, defaultCameraDistance, deltaTime * boostingCameraFallBackSpeed);
+        }
+
+        if (playerSharedData.IsDash && !playerSharedData.HalfDashCompleted)
+        {
+            cameraDist = Mathf.MoveTowards(cinemachineFramingTransposer.m_CameraDistance, dashCameraDist, deltaTime * dashCameraFallBackSpeed);
+        }
+        else
+        {
+            cameraDist = Mathf.MoveTowards(cinemachineFramingTransposer.m_CameraDistance, defaultCameraDistance, deltaTime * dashCameraFallBackSpeed);
+        }
+
+        cinemachineFramingTransposer.m_CameraDistance = cameraDist;
+    }
+}

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5e6a1e7a813444faa46841f7a2058c, type: 3}
+  m_Name: DefaultInventorySystem
+  m_EditorClassIdentifier: 
+  saveManagerObj: {fileID: 11400000, guid: 0f17cfd0fe49d5c4ba92a0c19ed9bfb9, type: 2}
+  intKeyItems:
+  - itemName: AccountCoins
+    itemValue: 0
+  - itemName: AccountDiamonds
+    itemValue: 0
+  - itemName: GameBoost
+    itemValue: 1
+  - itemName: GameMysteryBox
+    itemValue: 0
+  - itemName: GameGoldMysteryBox
+    itemValue: 0
+  - itemName: GameHeadStart
+    itemValue: 0
+  gameCars:
+  - name: Radle
+    isObjectUnlocked: 1
+    properties: []
+  - name: Modular
+    isObjectUnlocked: 0
+    properties: []
+  - name: Dynamo
+    isObjectUnlocked: 0
+    properties: []
+  - name: Alloy
+    isObjectUnlocked: 0
+    properties: []
+  - name: Tazion
+    isObjectUnlocked: 0
+    properties: []
+  inventoryHasBeenUpdated: {fileID: 11400000, guid: 9447829aec06bef4dbf5a46ef7547493,
+    type: 2}
+  updateUIEvent: {fileID: 11400000, guid: 931078dc574824a47bf6c5aad907881a, type: 2}
+  updateCelebrationEvent: {fileID: 11400000, guid: 6ffc11f932ff57e4c9ed796c9263acad,
+    type: 2}
+  onAnItemHasBeenAdded: {fileID: 0}
+  onCarPurchased: {fileID: 11400000, guid: dce01b1327ac28f4baf9bf5b03d0d35f, type: 2}
+  CharacterHasBeenUnlocked: {fileID: 11400000, guid: 4bb753bad3f70324db3829c0add1e536,
+    type: 2}
+  carsDataBase: {fileID: 11400000, guid: 9354989e45bb0f344af96c52cf1720d5, type: 2}
+  charactersDataBase: {fileID: 11400000, guid: 64def32bd6aef234e9bc0bf6a3dee26a, type: 2}

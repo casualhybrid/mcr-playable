@@ -1,0 +1,53 @@
+using Cinemachine;
+using UnityEngine;
+
+public class ZMovementExtension : CinemachineExtension
+{
+    [Tooltip("Accessing mian virtual cam for modyfiying certain values")]
+    [SerializeField] private CinemachineFramingTransposer cinemachineVirtualCamera; //Accessing mian virtual cam for modyfiying certain values
+
+    [Tooltip("Player shared Data contains all public variabls which are required in other scripts also")]
+    [SerializeField] private PlayerSharedData playerSharedData;
+
+    [SerializeField] private CameraData cameraData;
+
+    [SerializeField] private float dashDamping;
+    [SerializeField] private float boostingCameraFallBackSpeed;
+
+    private float defaultCameraDistance;
+    private float defaultZDamping;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        CinemachineFramingTransposer = CinemachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        defaultCameraDistance = cinemachineVirtualCamera.m_CameraDistance;
+        defaultZDamping = cinemachineVirtualCamera.m_ZDamping;
+    }
+
+    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    {
+        if (stage != CinemachineCore.Stage.Finalize)
+            return;
+
+        float cameraDist = defaultCameraDistance;
+        float zDamping = defaultZDamping;
+
+        if (playerSharedData.IsBoosting)
+        {
+            cameraDist = Mathf.MoveTowards(cinemachineVirtualCamera.m_CameraDistance, cameraData.targetZOffsetBoost, deltaTime * boostingCameraFallBackSpeed);
+        }
+        else
+        {
+            cameraDist = Mathf.MoveTowards(cinemachineVirtualCamera.m_CameraDistance, defaultCameraDistance, deltaTime * boostingCameraFallBackSpeed);
+        }
+
+        if (playerSharedData.IsDash && !playerSharedData.HalfDashCompleted)
+        {
+            zDamping = dashDamping;
+        }
+
+        cinemachineVirtualCamera.m_CameraDistance = cameraDist;
+        cinemachineVirtualCamera.m_ZDamping = zDamping;
+    }
+}

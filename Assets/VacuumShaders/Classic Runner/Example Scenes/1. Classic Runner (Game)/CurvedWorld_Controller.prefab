@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7399961265390711649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7399961265390711663}
+  - component: {fileID: 7399961265390711662}
+  - component: {fileID: 1922723302}
+  - component: {fileID: 1922723301}
+  m_Layer: 0
+  m_Name: CurvedWorld_Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7399961265390711663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399961265390711649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.17, y: 0, z: -3.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7399961265390711662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399961265390711649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2056026012, guid: 8d3086551becb90419828acceff4c051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotPoint: {fileID: 0}
+  _V_CW_Bend_X: 1
+  _V_CW_Bend_Y: 3.13
+  _V_CW_Bias_X: 0
+  _V_CW_Bias_Y: 0
+--- !u!114 &1922723302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399961265390711649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e943f25a50a463c42b2ec609d616213b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listenToAllScreens: 0
+  onPanelOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  onPanelClosed:
+    m_PersistentCalls:
+      m_Calls: []
+  onPanelOpenedBeforeAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922723301}
+        m_TargetAssemblyTypeName: CurvedHandler, Assembly-CSharp
+        m_MethodName: DisableCurvedWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPanelClosedBeforeAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922723301}
+        m_TargetAssemblyTypeName: CurvedHandler, Assembly-CSharp
+        m_MethodName: RestoreCurvedWorldToLastState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  panelsNameToListenTo:
+  - CarSelectionPanel
+  - CharacterSelectionPanel
+  - HighScoreScreen
+  - CarAvailablePopup
+  - LeaderBoardAwardAvailable
+  - CarUnlockedScreen
+  - CharacterUnlockedScreen
+--- !u!114 &1922723301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399961265390711649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd037f1a6d172f4cb44ef788b7f4493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXCurve: 2.2
+  maxXCurve: 5.7
+  minYCurve: -2.8
+  maxYCurve: 2.8
+  transitionDuration: 6
+  environmentChannel: {fileID: 11400000, guid: f5a96e5bd4d3bfc4dad85b7fad55145f, type: 2}
+  onCutSceneStarted: {fileID: 11400000, guid: b310b4f78c926bb4dab2bff648963a6e, type: 2}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feed24d1feead904b93fdacf488d203c, type: 3}
+  m_Name: PlayerBoostState
+  m_EditorClassIdentifier: 
+  speedHandler: {fileID: 11400000, guid: 803be8ce969fb89459f5c04079fe9eaa, type: 2}
+  PlayerSharedData: {fileID: 11400000, guid: 21076475d54b6d54e86b3a0e3fc27fc9, type: 2}
+  PlayerContainedData: {fileID: 11400000, guid: 5145ede1a52e30c42af224c0bd3e1f7e,
+    type: 2}
+  playerFinishedDashEvent: {fileID: 11400000, guid: 9c83ec58a4b2ba648921bfe143d49ab0,
+    type: 2}
+  playerStartedDashEvent: {fileID: 11400000, guid: e05e963261d579046a75e1b8d8d50d32,
+    type: 2}
+  playerHasCrashed: {fileID: 11400000, guid: 4bd79d2b62f357f4f94e9ee0ae1145ba, type: 2}
+  saveManager: {fileID: 11400000, guid: 0f17cfd0fe49d5c4ba92a0c19ed9bfb9, type: 2}
+  laserPrefab: {fileID: 978010607045097148, guid: 07b492cfe3dd1c740b3bba608dbb5165,
+    type: 3}
+  tempSpeed: 3
+  tempTime: 0.08
+  tempTimeDeAcceleration: 1
+  tempEase: 1
+  stopTempEase: 1

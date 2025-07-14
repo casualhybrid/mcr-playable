@@ -1,0 +1,27 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnvPatchPoolSO", menuName = "Pool/EnvPatchPoolSO Pool")]
+public class EnvPatchPoolSO : ComponentPoolVarianceSO<Patch>
+{
+    [SerializeField] private EnvFactorySO envFactory;
+
+    public override IFactoryVariance<Patch> Factory
+    {
+        get
+        {
+            return envFactory;
+        }
+        set
+        {
+            envFactory = value as EnvFactorySO;
+        }
+    }
+
+    public override void Return(Patch member)
+    {
+        base.Return(member);
+
+    
+    }
+}

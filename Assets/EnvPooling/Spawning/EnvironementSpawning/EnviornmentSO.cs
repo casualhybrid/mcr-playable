@@ -1,0 +1,74 @@
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+[CreateAssetMenu(fileName = "EnviornmentSO", menuName = "ScriptableObjects/Environement/EnvironmentSO")]
+public class EnviornmentSO : SerializedScriptableObject
+{
+    [SerializeField] private Environment environmentType;
+    public Dictionary<EnvCategory, List<Patch>> envCategoryDictionary;
+    public Environment GetEnvironmentType => environmentType;
+    private List<Patch> mergedPatchesIrrelevantToCategory;
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += SceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= SceneChanged;
+    }
+
+    private void OnValidate()
+    {
+        foreach (var item in envCategoryDictionary)
+        {
+            EnvCategory envCategory = item.Key;
+
+            foreach (var i in item.Value)
+            {
+                i.EnvCategory = envCategory;
+            }
+        }
+
+
+    }
+
+    private void SceneChanged(Scene a, Scene b)
+    {
+        Reset();
+    }
+
+    private void Reset()
+    {
+        mergedPatchesIrrelevantToCategory?.Clear();
+        mergedPatchesIrrelevantToCategory = null;
+    }
+
+    public List<Patch> GetCollectionOfPossiblePatchesForCategory(EnvCategory category)
+    {
+        return envCategoryDictionary[category];
+    }
+
+    public List<Patch> GetMergedPatchesCollectionIrrelevantToCategories()
+    {
+        if (mergedPatchesIrrelevantToCategory == null)
+        {
+            mergedPatchesIrrelevantToCategory = new List<Patch>();
+        }
+
+        if (mergedPatchesIrrelevantToCategory.Count == 0)
+        {
+            mergedPatchesIrrelevantToCategory = new List<Patch>();
+            foreach (var item in envCategoryDictionary)
+            {
+                List<Patch> patchesCollection = item.Value;
+                mergedPatchesIrrelevantToCategory.AddRange(patchesCollection);
+            }
+        }
+
+        return mergedPatchesIrrelevantToCategory;
+    }
+}

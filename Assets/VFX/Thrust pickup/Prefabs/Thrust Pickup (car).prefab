@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3034105268476286021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2400592350131506943}
+  - component: {fileID: 1657119686868123994}
+  - component: {fileID: 3538618584354010512}
+  m_Layer: 0
+  m_Name: Thrust Pickup (car)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2400592350131506943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034105268476286021}
+  m_LocalRotation: {x: -0.7810799, y: 0.18867297, z: 0.5248639, w: 0.280775}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_Children:
+  - {fileID: 5072994584611479956}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -140.456, y: 67.8, z: 0}
+--- !u!33 &1657119686868123994
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034105268476286021}
+  m_Mesh: {fileID: 2959467708922500008, guid: 06967c20ac8fffe42a8efa0b7029efb2, type: 3}
+--- !u!23 &3538618584354010512
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034105268476286021}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -1709277514330460371, guid: 06967c20ac8fffe42a8efa0b7029efb2, type: 3}
+  - {fileID: 8668964879408942006, guid: 06967c20ac8fffe42a8efa0b7029efb2, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1001 &4409042857185546858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2400592350131506943}
+    m_Modifications:
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.32854676
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9107507
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.08501848
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.23529136
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 146.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -35.731995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -21.903992
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887559935126926335, guid: 5287134ae95de08439070aa543fcb0d1,
+        type: 3}
+      propertyPath: m_Name
+      value: Thrust Pickup VFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5287134ae95de08439070aa543fcb0d1, type: 3}
+--- !u!4 &5072994584611479956 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8887559935126926334, guid: 5287134ae95de08439070aa543fcb0d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4409042857185546858}
+  m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,82 @@
+using Cinemachine;
+using RotaryHeart.Lib.SerializableDictionary;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class UnityCameraShakeConfigEvent : UnityEvent<CameraShakeConfig>
+{ }
+
+[System.Serializable]
+public struct CameraShakeConfig
+{
+    [SerializeField] private float amplitude;
+    [SerializeField] private float frequency;
+    [SerializeField] private NoiseSettings noiseSettings;
+
+    public float GetAmplitude => amplitude;
+    public float GetFrequenct => frequency;
+    public NoiseSettings GetNoiseSettings => noiseSettings;
+
+    public bool isValid;
+}
+
+[CreateAssetMenu(fileName = "CameraShakeVariations", menuName = "ScriptableObjects/Camera/CameraShakeConfig")]
+public class CameraShakeVariations : ScriptableObject
+{
+    public CameraShakeConfig CurrentCameraShakeConfig { get; private set; }
+    public UnityCameraShakeConfigEvent OnShakeTheCamera { get; set; } = new UnityCameraShakeConfigEvent();
+
+    public UnityEvent OnShakeEnded { get; private set; } = new UnityEvent();
+
+    [System.Serializable]
+    private class ShakeCameraDictionary : SerializableDictionaryBase<GameEvent, CameraShakeConfig>
+    { }
+
+    [Space]
+    [SerializeField] private ShakeCameraDictionary shakeCameraDictionary;
+
+    private void OnEnable()
+    {
+        foreach (var item in shakeCameraDictionary)
+        {
+            item.Key.TheEvent.AddListener(ShakeCameraAccordingToEvent);
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var item in shakeCameraDictionary)
+        {
+            item.Key.TheEvent.RemoveListener(ShakeCameraAccordingToEvent);
+        }
+    }
+
+    private void ShakeCameraAccordingToEvent(GameEvent theEvent)
+    {
+        CameraShakeConfig cameraShakeConfig = GetShakeConfigforTheEvent(theEvent);
+        cameraShakeConfig.isValid = true;
+        CurrentCameraShakeConfig = cameraShakeConfig;
+        //OnShakeTheCamera.Invoke(cameraShakeConfig);
+    }
+
+    public CameraShakeConfig GetShakeConfigforTheEvent(GameEvent theEvent)
+    {
+        if (shakeCameraDictionary.ContainsKey(theEvent))
+        {
+            return shakeCameraDictionary[theEvent];
+        }
+        else
+        {
+            Debug.LogWarning($"Failed getting shake configuration for the event {theEvent.name}");
+            return new CameraShakeConfig();
+        }
+    }
+
+    public void RaiseShakeEndedEvent()
+    {
+        CameraShakeConfig cameraShakeConfig = CurrentCameraShakeConfig;
+        cameraShakeConfig.isValid = false;
+        CurrentCameraShakeConfig = cameraShakeConfig;
+        OnShakeEnded.Invoke();
+    }
+}

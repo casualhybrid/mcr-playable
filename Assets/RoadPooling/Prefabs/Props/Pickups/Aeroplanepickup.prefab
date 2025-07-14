@@ -1,0 +1,588 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &242398511439156204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4814665765536859744}
+  m_Layer: 0
+  m_Name: RightWindTrailGenerationPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4814665765536859744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242398511439156204}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.79, y: -0.065, z: -0.035000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2710914200612979832}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1480084991179576255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8888647616999907573}
+  m_Layer: 0
+  m_Name: Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8888647616999907573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480084991179576255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.172, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8484464087979194152}
+  - {fileID: 7312460444037182313}
+  - {fileID: 517235381386454005}
+  m_Father: {fileID: 6164580125676040491}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6164580125676040400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6164580125676040491}
+  - component: {fileID: 6164580125676040494}
+  - component: {fileID: 6164580125676040495}
+  - component: {fileID: 1512553463045405614}
+  - component: {fileID: 880610308}
+  - component: {fileID: 1098564673241767486}
+  m_Layer: 0
+  m_Name: Aeroplanepickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6164580125676040491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164580125676040400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8888647616999907573}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6164580125676040494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164580125676040400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.45, z: 0.2}
+  m_Center: {x: 0, y: 0.05, z: 0}
+--- !u!114 &6164580125676040495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164580125676040400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72b49e221b9dd243a8746691ba5e6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512553463045405614}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GamePlayScreen_Airplane_Pickup
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 880610308}
+        m_TargetAssemblyTypeName: Pickup, Assembly-CSharp
+        m_MethodName: MarkPickupAsFinished
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  colliderTag: Player
+  Event: {fileID: 11400000, guid: 4814c429e7c0cec42bb93f1ca1544597, type: 2}
+--- !u!114 &1512553463045405614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164580125676040400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46803a09c79a5a24a9ed1da71d6d7155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEventChannel: {fileID: 11400000, guid: 95a5fa0bf07c2fd4d84d22bc14cc64d4, type: 2}
+  saveManager: {fileID: 11400000, guid: 0f17cfd0fe49d5c4ba92a0c19ed9bfb9, type: 2}
+  channelType: 0
+  eventType: 2
+  eventStr: event:/Gameplay/Goal_Power_Ups/Aeroplane
+  triggerTag: Player
+  isUsingParameter: 1
+  parameterName: Character
+--- !u!114 &880610308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164580125676040400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d4c0428cb2248479c59358342a367a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupType: {fileID: 11400000, guid: 3c219d3334ddc364dae437a042443674, type: 2}
+  PickupSet: {fileID: 11400000, guid: 00118c06ee7548e4cab1aac4e98f56c5, type: 2}
+  specialPickupIsSpawned: {fileID: 11400000, guid: 0e17c2bb6ada1c843a88c23d7b9523cd,
+    type: 2}
+--- !u!114 &1098564673241767486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164580125676040400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a8f83027bb5af4ba1d0fcc586dbc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  environmentChannel: {fileID: 11400000, guid: f5a96e5bd4d3bfc4dad85b7fad55145f, type: 2}
+--- !u!1 &8070963033613976389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3054317227453087907}
+  m_Layer: 0
+  m_Name: LeftWindTrailGenerationPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3054317227453087907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070963033613976389}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.79, y: -0.065, z: -0.035000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 364125778853483909}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8351181319139032875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2355808636642612614}
+  - component: {fileID: 7495252570682431244}
+  m_Layer: 0
+  m_Name: ParticlePlaceHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2355808636642612614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351181319139032875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8484464087979194152}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7495252570682431244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351181319139032875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a714a393b35c2844952f7973108e757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleInstantiationChannel: {fileID: 11400000, guid: 03856428ad4512b4384dc998a7ae202e,
+    type: 2}
+  particleToSpawn: {fileID: 6437861728654332643, guid: bbd597c3989bd2a4bb7759035973f598,
+    type: 3}
+--- !u!1001 &2670357057068848584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8888647616999907573}
+    m_Modifications:
+    - target: {fileID: 4644363089589151392, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_Name
+      value: Gameplay_AirplanePickupLeftWindTrails
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151398, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: _trailCreationPoint
+      value: 
+      objectReference: {fileID: 3054317227453087907}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17f00c781f964124f896ab807688b006, type: 3}
+--- !u!4 &7312460444037182313 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+    type: 3}
+  m_PrefabInstance: {fileID: 2670357057068848584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5141282601329755476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8888647616999907573}
+    m_Modifications:
+    - target: {fileID: 4644363089589151392, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_Name
+      value: Gameplay_AirplanePickupRightWindTrails
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644363089589151398, guid: 17f00c781f964124f896ab807688b006,
+        type: 3}
+      propertyPath: _trailCreationPoint
+      value: 
+      objectReference: {fileID: 4814665765536859744}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17f00c781f964124f896ab807688b006, type: 3}
+--- !u!4 &517235381386454005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4644363089589151393, guid: 17f00c781f964124f896ab807688b006,
+    type: 3}
+  m_PrefabInstance: {fileID: 5141282601329755476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5191959201476878285
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8888647616999907573}
+    m_Modifications:
+    - target: {fileID: 3961062023691186783, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_Name
+      value: AirplanePickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482770765182447113, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b40958ad98d8db2409a88f2412f33701, type: 2}
+    - target: {fileID: 7482770765844258918, guid: 89d22425abc91e14196984958cce47d4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b40958ad98d8db2409a88f2412f33701, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89d22425abc91e14196984958cce47d4, type: 3}
+--- !u!4 &364125778853483909 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5548479914350889544, guid: 89d22425abc91e14196984958cce47d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5191959201476878285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2710914200612979832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7895533043669064629, guid: 89d22425abc91e14196984958cce47d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5191959201476878285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8484464087979194152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4445989891500108005, guid: 89d22425abc91e14196984958cce47d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5191959201476878285}
+  m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4878949128640814577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275456651676305910}
+  - component: {fileID: 5105498884934243536}
+  - component: {fileID: 484211353974175345}
+  m_Layer: 0
+  m_Name: sliderTrigger (1)
+  m_TagString: wallrun
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 1
+  m_IsActive: 1
+--- !u!4 &1275456651676305910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878949128640814577}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.879, y: 0.915, z: 3.92}
+  m_LocalScale: {x: 4.406101, y: 2.8302097, z: 10.575317}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7156674494385374090}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5105498884934243536
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878949128640814577}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &484211353974175345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878949128640814577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.86123055}
+  m_Center: {x: 0, y: 0, z: -0.06938485}
+--- !u!1 &7501392948102175024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7156674494385374090}
+  - component: {fileID: 8055666855564838930}
+  m_Layer: 0
+  m_Name: New wired City 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 1
+  m_IsActive: 1
+--- !u!4 &7156674494385374090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501392948102175024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1275456651676305910}
+  - {fileID: 8338694694189748146}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8055666855564838930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501392948102175024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6090ef81e51c0ad4da5a1a37e6cf65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableBaking: 1
+  errorMessage: this GameObject is not a prefab
+--- !u!1001 &7447711019053226873
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7156674494385374090}
+    m_Modifications:
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.06736
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936720498340468816, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: m_Name
+      value: Long_Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205963956765957558, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: instanceID
+      value: -10836
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216589321698092391, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: idremap.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216589321698092391, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: idremap.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7251159767587816598, guid: 8d9e441c73820a94692f828493da13b2,
+        type: 3}
+      propertyPath: errorMessage
+      value: prefab contains unapplied data (Long_Slider (Patch).instanceID)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d9e441c73820a94692f828493da13b2, type: 3}
+--- !u!4 &8338694694189748146 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1505164428510975179, guid: 8d9e441c73820a94692f828493da13b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7447711019053226873}
+  m_PrefabAsset: {fileID: 0}

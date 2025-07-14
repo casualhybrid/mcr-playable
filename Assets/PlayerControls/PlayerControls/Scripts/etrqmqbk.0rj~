@@ -1,0 +1,40 @@
+using Cinemachine;
+using RotaryHeart.Lib.SerializableDictionary;
+using UnityEngine;
+
+
+
+[System.Serializable]
+public struct CameraShakeConfig
+{
+    [SerializeField] private float amplitude;
+    [SerializeField] private float frequency;
+    [SerializeField] private NoiseSettings noiseSettings;
+
+    public float GetAmplitude => amplitude;
+    public float GetFrequenct => frequency;
+    public NoiseSettings GetNoiseSettings => noiseSettings;
+}
+
+[CreateAssetMenu(fileName = "CameraShakeVariations", menuName = "ScriptableObjects/Camera/CameraShakeConfig")]
+public class CameraShakeVariations : ScriptableObject
+{
+    [System.Serializable]
+    private class ShakeCameraDictionary : SerializableDictionaryBase<GameEvent, CameraShakeConfig>
+    { }
+
+    [SerializeField] private ShakeCameraDictionary shakeCameraDictionary;
+
+    public CameraShakeConfig GetShakeConfigforTheEvent(GameEvent theEvent)
+    {
+        if (shakeCameraDictionary.ContainsKey(theEvent))
+        {
+            return shakeCameraDictionary[theEvent];
+        }
+        else
+        {
+            Debug.LogWarning($"Failed getting shake configuration for the event {theEvent.name}");
+            return new CameraShakeConfig();
+        }
+    }
+}

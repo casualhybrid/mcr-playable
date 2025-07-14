@@ -1,0 +1,74 @@
+﻿using UnityEngine;
+using UnityEngine.Events;
+
+public class ObjectDestruction : MonoBehaviour
+{
+    [SerializeField] private UnityEvent OnDestroyedCar;
+    [SerializeField] private Transform parentTransform;
+    [SerializeField] private PlayerSharedData PlayerSharedData;
+    [SerializeField] private bool destroyDuringDash, destroyDuringBoost, destroyDuringShockwave;
+    [SerializeField] private float destructionMoveSpeed;
+    public bool isDestroyableDuringDash => destroyDuringDash;
+    public bool isDestroyingDuringBoost => destroyDuringBoost;
+
+    private Vector3 throwAwayDirection;
+
+    private bool isDestroying;
+    [SerializeField] private bool distructable;
+
+    private void Update()
+    {
+        if (isDestroying)
+            DestroyObj();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy();
+        }
+    }
+
+    public void Destroy()
+    {
+        if ((PlayerSharedData.IsBoosting && destroyDuringBoost) || (PlayerSharedData.IsDash && destroyDuringDash) || (PlayerSharedData.CurrentStateName == "PlayerCanceljump") && destroyDuringShockwave)
+        {
+            OnDestroyedCar.Invoke();
+            ThrowMe();
+        }
+    }
+
+    public void ThrowMe()
+    {
+        // if my ref in list of ss do this
+        if (distructable && !isDestroying)
+        {
+            ThrowCarAway();
+
+            isDestroying = true;
+
+            return;
+        }
+    }
+
+    private void DestroyObj()
+    {
+        parentTransform.position += (throwAwayDirection * destructionMoveSpeed);
+    }
+
+    private void ThrowCarAway()
+    {
+        float z = UnityEngine.Random.Range(-60, 60);
+        float x = UnityEngine.Random.Range(-60, 60);
+        float y = 0;
+
+        Vector3 eulerAngles = new Vector3(x, y, z);
+
+        Quaternion rotation = Quaternion.Euler(eulerAngles);
+
+        throwAwayDirection = rotation * eulerAngles;
+
+        Debug.DrawRay(transform.position, throwAwayDirection * 100f, Color.blue, 4f);
+    }
+}

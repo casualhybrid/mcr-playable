@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8265809955920058228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8265809955920058230}
+  - component: {fileID: 8265809955920058231}
+  - component: {fileID: 8265809955722607036}
+  m_Layer: 0
+  m_Name: Swipe_Input_manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8265809955920058230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265809955920058228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.657014, y: -5434.1206, z: 112.87866}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8265809955920058231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265809955920058228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c34a3fb44215b3f4cb72053a68d9726d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputChannel: {fileID: 11400000, guid: 33a59416319ecf54c8cf6f65158762d9, type: 2}
+  gameHasStarted: {fileID: 11400000, guid: ecf75fc69b453ab4f9b2a877e2849f58, type: 2}
+  detectSwipeAfterRelease: 0
+  swipeThresholdInchesHorizontal: 0.1515
+  swipeThresholdInchesVertical: 0.16665
+  swipeThresholdOffsetForContinousSameDirectionSwipeNormPerct: 1
+  minVelocityForValidSwipe: 0.4318
+  minContiniousSwipeAngleForSwipeReDetection: 10
+  velocityReductionForLastSwipeRefreshNormalizedPercent: 0.2
+  lowVelocityDurationToCountSwipeAsStationary: 0.03
+  tapThresholdInches: 0.05
+  TapTimer: 0.4
+  doubleTapWindowDuraiton: 0.4
+  inputSettings: {fileID: 11400000, guid: 4009c0579343856438747af5eef3735d, type: 2}
+--- !u!114 &8265809955722607036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265809955920058228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e943f25a50a463c42b2ec609d616213b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listenToAllScreens: 0
+  onPanelOpened:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8265809955920058231}
+        m_TargetAssemblyTypeName: SwipeDetector, Assembly-CSharp
+        m_MethodName: initialize
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPanelClosed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8265809955920058231}
+        m_TargetAssemblyTypeName: SwipeDetector, Assembly-CSharp
+        m_MethodName: initialize
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPanelOpenedBeforeAnimation:
+    m_PersistentCalls:
+      m_Calls: []
+  onPanelClosedBeforeAnimation:
+    m_PersistentCalls:
+      m_Calls: []
+  panelsNameToListenTo:
+  - CarSelectionPanel
+  - CharacterSelectionPanel

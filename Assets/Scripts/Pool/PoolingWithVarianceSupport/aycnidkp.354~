@@ -1,0 +1,123 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace UOP1.Pool
+{
+    public abstract class PoolVarianceSO<T, U> : ScriptableObject, IPoolVariance<T>
+    {
+        protected Dictionary<U, Stack<T>> Available = new Dictionary<U, Stack<T>>();
+
+        /// <summary>
+        /// The factory which will be used to create <typeparamref name="T"/> on demand.
+        /// </summary>
+        public abstract IFactoryVariance<T, U> Factory { get; set; }
+
+        protected bool HasBeenPrewarmed { get; set; }
+
+        protected virtual void OnEnable()
+        {
+            SceneManager.activeSceneChanged += SceneChanged;
+        }
+
+        protected virtual void Reset()
+        {
+            Available.Clear();
+            HasBeenPrewarmed = false;
+        }
+
+        private void SceneChanged(Scene s, Scene d)
+        {
+            Reset();
+        }
+
+        protected virtual T Create(T key)
+        {
+            return Factory.Create(key);
+        }
+
+        protected virtual Dictionary<U, Stack<T>> CreateBatch(int copiesPerItem)
+        {
+            return Factory.CreateBatch(copiesPerItem);
+        }
+
+        /// <summary>
+        /// Prewarms the pool with a <paramref name="num"/> of <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="num">The number of members to create as a part of this pool.</param>
+        /// <remarks>NOTE: This method can be called at any time, but only once for the lifetime of the pool.</remarks>
+        public virtual void Prewarm(int num)
+        {
+            if (HasBeenPrewarmed)
+            {
+                Debug.LogWarning($"Pool {name} has already been prewarmed.");
+                return;
+            }
+
+            var V = CreateBatch(num);
+
+            Available = V;
+
+            HasBeenPrewarmed = true;
+        }
+
+        /// <summary>
+        /// Requests a <typeparamref name="T"/> from this pool.
+        /// </summary>
+        /// <returns>The requested <typeparamref name="T"/>.</returns>
+        public virtual T Request(T req)
+        {
+            return default(T);
+        }
+
+        protected virtual T GetRequestedItemFromPool(T req, U key)
+        {
+            T member;
+
+            if (Available.ContainsKey(key))
+            {
+                var stack = Available[key];
+
+                if (stack.Count <= 0)
+                {
+                    member = Create(req);
+                }
+                else
+                {
+                    member = stack.Pop();
+                }
+            }
+            else
+            {
+                member = Create(req);
+            }
+
+            return member;
+        }
+
+        /// <summary>
+        /// Returns a <typeparamref name="T"/> to the pool.
+        /// </summary>
+        /// <param name="member">The <typeparamref name="T"/> to return.</param>
+        public virtual void Return(T member)
+        {
+            if (Available.ContainsKey(member.GetInstanceID()))
+            {
+                Debug.Log("Returned to old stack");
+                Available[member.GetInstanceID()].Push(member);
+            }
+            else
+            {
+                Debug.Log("Returned to NEW stack as no ID " + member.GetInstanceID());
+                Stack<T> stack = new Stack<T>();
+                stack.Push(member);
+                Available.Add(member.GetInstanceID(), stack);
+            }
+        }
+
+        protected virtual void ReturnItemBackToPool(T member, U key)
+        {
+
+        }
+    }
+}

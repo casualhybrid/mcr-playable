@@ -1,0 +1,657 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "PlayerBasicMovementShared", menuName = "ScriptableObjects/PlayerBasicMovementShared")]
+public class PlayerBasicMovementShared : ScriptableObject
+{
+    private enum MoveDirection
+    {
+        Right, Left
+    }
+
+    // GameEvents
+    [SerializeField] private GameEvent playerHasDodged;
+
+    [SerializeField] private GameEvent playerStoppedVerticalMotionBuilding;
+    [SerializeField] private GameEvent playerStartedBuildingClimb;
+    [SerializeField] private GameEvent playerHasHitFromFront;
+    [SerializeField] private GameEvent playerHasHitFromSide;
+    [SerializeField] private GameEvent playerHasStumbled;
+    [SerializeField] private GameEvent playerCompletedWallClimbTouchedGround;
+
+    [SerializeField] private PlayerSharedData PlayerSharedData;
+    [SerializeField] private PlayerContainedData PlayerContainedData;
+
+    private Vector3 movement_vector; // vector to assing x, y ,z movement
+    private float side_way_elapsed_time;
+    private float start_pos;
+    private float x_target_val; //target to move left and right
+    private int current_lane = 0; //lane no to move obj to.
+    private int target_lane = 0;
+    private float steer_speed;
+
+    [HideInInspector]
+    public float sidewaysDistanceToCover = 0;
+
+    private RaycastHit hit, wallBuildinghit, frontHit, adjustmentHit;
+
+    [HideInInspector]
+    public float distForRayCast;
+
+    private float curvedRampTime;
+    private int lastLane;
+    private Vector3 raycastbounds;
+
+    private bool snapBackToLane;
+    private bool changingLane;
+    private MoveDirection moveDirection;
+    private HitDirection hitDirection;
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (scene, mode) => { ResetVariable(); };
+        playerHasStumbled.TheEvent.AddListener(SwitchLaneAccordingToCollision);
+    }
+
+    private void OnDisable()
+    {
+        playerHasStumbled.TheEvent.RemoveListener(SwitchLaneAccordingToCollision);
+    }
+
+    public void ResetVariable()
+    {
+        changingLane = false;
+        snapBackToLane = false;
+        current_lane = 0;
+        target_lane = 0;
+        side_way_elapsed_time = 0;
+        lastLane = 0;
+        start_pos = 0;
+        x_target_val = 0;
+        steer_speed = 0;
+        sidewaysDistanceToCover = 0;
+        PlayerSharedData.CanWallRun = false;
+    }
+
+    /// <summary>
+    ///  Lane would be changed on the basis of dir. negative value would move obj to left and positive value would move to right.
+    /// </summary>
+
+    public void change_lane(int dir)
+    {
+
+        target_lane = current_lane + dir;
+
+        lastLane = current_lane;
+        //  Debug.Log("changelanebefore"+ PlayerContainedData.PlayerData.PlayerInformation[0].totalLanes);
+
+        if (Mathf.Abs(target_lane) > PlayerContainedData.PlayerData.PlayerInformation[0].totalLanes)
+            return;
+        //   Debug.Log("changelaneafter");
+
+        changingLane = true;
+        playerHasDodged.RaiseEvent();
+
+        if (dir == -1)
+        {
+            moveDirection = MoveDirection.Left;
+        }
+        else
+        {
+            moveDirection = MoveDirection.Right;
+        }
+
+        //calculating for curved ramp working
+        if (Mathf.Abs(target_lane) == PlayerContainedData.PlayerData.PlayerInformation[0].totalLanes)
+        {
+            curvedRampTime = PlayerContainedData.PlayerData.PlayerInformation[0].CurvedRampDuration;
+        }
+        //
+
+        //   curvedRampTime = PlayerContainedData.PlayerData.PlayerInformation[0].CurvedRampDuration;
+        start_pos = PlayerSharedData.PlayerRigidBody.position.x;
+        side_way_elapsed_time = 0;
+        current_lane = current_lane + dir;
+        if (!PlayerSharedData.CanWallRun)
+            x_target_val = current_lane * (PlayerContainedData.PlayerData.PlayerInformation[0].xDistToCover);
+        else
+        {
+            //     x_target_val = current_lane * (PlayerContainedData.PlayerData.PlayerInformation[0].xDistToCover);
+
+            if ((target_lane) == -2)
+                x_target_val = (PlayerSharedData.PlayerTransform.position.x + -1.55f);
+            else if (target_lane == -1)
+                x_target_val = -1;
+            else
+                x_target_val = current_lane * (PlayerContainedData.PlayerData.PlayerInformation[0].xDistToCover);
+        }
+        //    Debug.Log("dir" + dir + "target_lane" + target_lane + "xtargetval" + x_target_val + "dist" + PlayerContainedData.PlayerData.PlayerInformation[0].xDistToCover);
+        sidewaysDistanceToCover = PlayerSharedData.PlayerRigidBody.position.x - x_target_val;
+        PlayAnimation(dir);
+    }
+
+    [HideInInspector]
+    public float ypos = 0;
+
+    [HideInInspector]
+    public float xpos = 0;
+
+    [HideInInspector]
+    public float zpos = 0;
+
+    private float zCurveRampStartPos;
+    private Vector3 pos;
+
+    public void movement()
+    {
+        PlayerSharedData.IsGrounded = Grounded();
+        //if (PlayerSharedData.CurrentStateName != "PlayerJumpState" || !PlayerSharedData.IsDash)
+        ApplyGravity();
+        if (PlayerSharedData.IsBoosting)
+            PlayerContainedData.PlayerDoubleBoostState.Boost();
+        if (PlayerSharedData.IsDash)
+            PlayerContainedData.PlayerBoostState.Dash();
+
+        if (Mathf.Abs(target_lane) == PlayerContainedData.PlayerData.PlayerInformation[0].totalLanes && PlayerSharedData.CanWallRun)
+        {
+            curvedRampTime -= Time.deltaTime;
+            if (curvedRampTime <= 0)
+            {
+                Debug.Log("finished");
+                curvedRamp();
+            }
+        }
+
+        float sideWaysTime = snapBackToLane ? PlayerSharedData.SidewaysSpeed * 0.5f : PlayerSharedData.SidewaysSpeed;
+        steer_speed = !changingLane ? MyExtensions.elapse_time(ref side_way_elapsed_time, sideWaysTime);
+
+        float step = Mathf.SmoothStep(0, 1, steer_speed);
+        xpos = Mathf.Lerp(start_pos, x_target_val, step);
+
+        Debug.Log("LerpValue " + step + " and pos " + xpos);
+
+        if (!PlayerSharedData.WallRunBuilding && !snapBackToLane)
+        {
+            zpos = PlayerSharedData.PlayerRigidBody.position.z + PlayerSharedData.ForwardSpeed;
+        }
+        else if (PlayerSharedData.WallRunBuilding)
+        {
+            pos = PlayerSharedData.PlayerRigidBody.position + (PlayerSharedData.PlayerTransform.forward * PlayerSharedData.ForwardSpeed);
+            zpos = pos.z;
+        }
+
+        if (step == 1f)
+        {
+            snapBackToLane = false;
+        }
+        if (PlayerSharedData.WallRunBuilding)
+        {
+            WallRunBuildingRaycast();
+        }
+        if ((PlayerSharedData.CurrentStateName != "PlayerJumpState") && PlayerSharedData.CurrentStateName != "PlayerThurstState" && PlayerSharedData.CurrentStateName != "PlayerAeroplaneState" && PlayerSharedData.IsGrounded)
+        {
+            PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos = hit.point.y + PlayerContainedData.PlayerData.PlayerInformation[0].HoverHeight;
+        }
+        //     Debug.Log(PlayerSharedData.WallRunBuilding);
+        if (PlayerSharedData.IsGrounded)
+        {
+            ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
+            if (PlayerSharedData.CurrentStateName != "PlayerJumpState" && PlayerSharedData.CurrentStateName != "PlayerThurstState" && PlayerSharedData.CurrentStateName != "PlayerAeroplaneState")
+            {
+                //  Debug.Log("hitttt" + hit.point.y);
+                //      adjustmentHit = hit;
+
+                adjustmentHit = AdjustHeightOfPlayer(xpos, ypos, zpos);
+                //  GroundedDebugers();
+
+                ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
+
+                float posY = adjustmentHit.point.y + (PlayerSharedData.wallslideDoing ? 0.05f : PlayerContainedData.PlayerData.PlayerInformation[0].HoverHeight);
+
+                //  Debug.Log("PosYAdjustment " + posY + "mypos"+ (adjustmentHit.point.y + PlayerContainedData.PlayerData.PlayerInformation[0].HoverHeight));
+
+                if (!CheckIfStepIsFeasible(posY) && adjustmentHit.collider.gameObject.layer == LayerMask.NameToLayer("WalkableLimited"))
+                {
+                    Debug.LogWarning($"STEP IS NOT FEASIBLE!!! {posY}");
+                    posY = PlayerSharedData.PlayerTransform.position.y;
+                }
+
+                PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos = posY;
+
+                PlayerSharedData.LastGroundedYPosition = posY;
+                ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
+                if (!PlayerSharedData.WallRunBuilding)
+                {
+                    if (adjustmentHit.collider.name.Equals("road"))
+                    {
+                        Rotation(Vector3.up, PlayerContainedData.PlayerData.PlayerInformation[0].RampRotationSpeed);
+                    }
+                    else
+                    {
+                        Rotation(adjustmentHit.normal, PlayerContainedData.PlayerData.PlayerInformation[0].RampRotationSpeed);
+                    }
+                }
+            }
+        }
+        else
+        {
+            ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
+        }
+
+        if (PlayerSharedData.wallslideDoing && !PlayerSharedData.IsGrounded)
+        {
+            adjustmentHit = AdjustHeightOfPlayer(xpos, ypos, zpos);
+            ypos = adjustmentHit.point.y + PlayerContainedData.PlayerData.PlayerInformation[0].HoverHeight;
+            Debug.Log("upwardpos" + ypos);
+        }
+
+        // Debug.Log("PlayerSharedData.wallslideDoing " + PlayerSharedData.wallslideDoing);
+
+        if (PlayerSharedData.WallRunBuilding || PlayerSharedData.RotateOnbuilding)
+        {
+            PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos = pos.y;
+            ypos = pos.y;
+        }
+        if (PlayerSharedData.WallRunBuilding && !PlayerSharedData.RotateOnbuilding)
+            Rotation(wallBuildinghit.normal, PlayerContainedData.PlayerData.PlayerInformation[0].BuildingClimbRotationSpeed);
+        else if (PlayerSharedData.RotateOnbuilding)
+            BuildingRotation();
+
+        // curvedRamp();
+        movement_vector = new Vector3(xpos, ypos, zpos);
+        PlayerSharedData.PlayerRigidBody.MovePosition(movement_vector);
+    }
+
+    private bool IsBetween(float testValue, float bound1, float bound2)
+    {
+        if (bound1 > bound2)
+            return testValue >= bound2 && testValue <= bound1;
+        return testValue >= bound1 && testValue <= bound2;
+    }
+
+    private Vector3 OffsetRayCastingPointIfInBounds(Collider other, Transform rayCastT)
+    {
+        if (other.bounds.Contains(rayCastT.position))
+        {
+            Debug.Log($"In Bounds { rayCastT.name}");
+            Vector3 pointOutsideBox = rayCastT.position - ((PlayerSharedData.PlayerRigidBody.velocity * Time.fixedDeltaTime * (Mathf.Epsilon * 1f + 1)));
+
+            if (other.bounds.Contains(pointOutsideBox))
+            {
+                Debug.LogWarning($"Still in bounds {rayCastT.name}");
+            }
+
+            #region DifferentWay
+
+            // BoxCollider boxCollider = other as BoxCollider;
+
+            // Vector3 boxSize = boxCollider.size;
+            //  Vector3 playerVelocityDir = playerRunTimeData.TheRigidBody.velocity.normalized;
+
+            //   Vector3 pointOutsideBox = rayCastT.position + (-playerVelocityDir * boxSize.magnitude * 0.5f);
+
+            //Debug.DrawRay(rayCastT.position, -playerVelocityDir * 100f, Color.green, 3f);
+            //  Debug.DrawRay(rayCastT.position, Vector3.up * 100f, Color.black, 3f);
+            //  Debug.DrawRay(pointOutsideBox, Vector3.up * 100f, Color.red, 3f);
+
+            //  Debug.DrawRay(point, Vector3.up * 100f, Color.magenta,3f);
+
+            #endregion DifferentWay
+
+            Debug.DrawRay(rayCastT.position, -PlayerSharedData.PlayerRigidBody.velocity * 100f, Color.yellow, 3f);
+            Debug.DrawRay(rayCastT.position, Vector3.right * 100f, Color.red, 3f);
+            Debug.DrawRay(pointOutsideBox, Vector3.right * 100f, Color.green, 3f);
+            Debug.DrawRay(pointOutsideBox, Vector3.right * 100f, Color.green, 3f);
+
+            return pointOutsideBox;
+        }
+        else
+        {
+            Debug.Log("Not In Bounds. " + rayCastT.name);
+            return rayCastT.position;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log($"On Trigger Entered {PlayerSharedData.PlayerTransform.position}");
+
+        //Debug.Log($"Subtracting Velocity {PlayerSharedData.PlayerTransform.position - (PlayerSharedData.PlayerRigidBody.velocity * Time.fixedDeltaTime)}");
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+        {
+            if (other.GetType() != typeof(BoxCollider))
+            {
+                Debug.LogWarning($"A Box collider is needed on obstacle! {other.gameObject.name}");
+                return;
+            }
+
+            hitDirection = HitDirection.None;
+            hitDirection = other.gameObject.CompareTag("SideColliderL") ? HitDirection.Left : other.gameObject.CompareTag("SideColliderR") ? HitDirection.Right : HitDirection.None;
+
+            // Debug.Log("Direction " + other.gameObject.tag);
+            if (hitDirection != HitDirection.None)
+            {
+                HandleResponseRespectToHitDirection(other);
+                return;
+            }
+
+            List<Transform> raycastTCollection = PlayerSharedData.RaycastT.OrderBy(x => Vector3.SqrMagnitude(other.transform.position - x.position)).ToList();
+
+            for (int i = 0; i < raycastTCollection.Count; i++)
+            {
+                Vector3 rayCastOrigin;
+                Transform rayCastT = raycastTCollection[i];
+
+                rayCastOrigin = OffsetRayCastingPointIfInBounds(other, rayCastT);
+
+                hitDirection = GetSideHit.ReturnDirection(other.transform, rayCastOrigin);
+
+                if (hitDirection != HitDirection.None)
+                {
+                    break;
+                }
+            }
+
+            if (hitDirection == HitDirection.None)
+            {
+                Debug.LogWarning("All raycasts missed for obstacle side detection");
+                return;
+            }
+
+            HandleResponseRespectToHitDirection(other);
+        }
+        if (other.gameObject.tag == ("wallrunbuilding"))
+        {
+            PlayerSharedData.WallClimbDoing = true;
+            PlayerSharedData.WallRunBuilding = true;
+            if (PlayerSharedData.IsBoosting)
+                PlayerContainedData.PlayerDoubleBoostState.StopBoost();
+            if (PlayerSharedData.IsDash)
+                PlayerContainedData.PlayerBoostState.StopDash();
+        }
+
+        if (other.gameObject.tag == ("wallrun"))
+        {
+            // Debug.Log("wallrun");
+            PlayerSharedData.CanWallRun = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == ("wallrunbuilding"))
+        {
+            //  Debug.Log("rotate");
+            PlayerSharedData.RotateOnbuilding = true;
+            playerStoppedVerticalMotionBuilding.RaiseEvent();
+        }
+        if (other.gameObject.tag == ("wallrun"))
+        {
+            Debug.Log("finishwallrun");
+            if (PlayerSharedData.CanWallRun)
+                curvedRamp();
+            PlayerSharedData.CanWallRun = false;
+        }
+    }
+
+    private void HandleResponseRespectToHitDirection(Collider other)
+    {
+        Debug.Log($"Hit Was {hitDirection}");
+
+        if (hitDirection == HitDirection.Forward)
+        {
+            BoxCollider boxCollider = other as BoxCollider;
+
+            Vector3 center = other.gameObject.transform.TransformPoint(boxCollider.center);
+
+            // Vector3 closestPointOnCollider = other.ClosestPoint(playerRunTimeData.PreviousMovementPosition);
+            Vector3 closestPointOnCollider = other.ClosestPoint(PlayerSharedData.PlayerTransform.position);
+
+            bool isLeft = (closestPointOnCollider.x < center.x) ? true : false;
+            Vector3 side = !isLeft ? center + (Vector3.right * boxCollider.size.x / 6.5f) : center - (Vector3.right * boxCollider.size.x / 6.5f);
+
+            bool isInRange = IsBetween(closestPointOnCollider.x, side.x, center.x);
+
+            // Debug.DrawRay(side, Vector3.up * 200f, Color.grey, 3f);
+            // Debug.DrawRay(center, Vector3.up * 200f, Color.cyan, 5f);
+            // Debug.DrawRay(closestPointOnCollider, Vector3.up * 200f, Color.blue, 3f);
+            // Debug.DrawRay(playerRunTimeData.TheTransform.position, Vector3.up * 200f, Color.red, 3f);
+            // Debug.DrawRay(playerRunTimeContainedData.PlayerMoveVector, Vector3.up * 200f, Color.black, 3f);
+
+            hitDirection = isInRange ? HitDirection.Forward : (isLeft) ? HitDirection.Left : HitDirection.Right;
+        }
+
+        if (hitDirection == HitDirection.Left || hitDirection == HitDirection.Right)
+        {
+            playerHasHitFromSide.RaiseEvent();
+        }
+        else if (hitDirection == HitDirection.Forward)
+        {
+            playerHasHitFromFront.RaiseEvent();
+        }
+    }
+
+    private void SwitchLaneAccordingToCollision()
+    {
+        if (hitDirection == HitDirection.None)
+        {
+            return;
+        }
+
+        // Throw Player Left
+        if (moveDirection == MoveDirection.Right && hitDirection == HitDirection.Left)
+        {
+            //    playerRunTimeData.TheAnimator.SetTrigger("sideHit");
+            change_lane(-1);
+            snapBackToLane = true;
+        }
+        // Throw Player R
+        else if (moveDirection == MoveDirection.Left && hitDirection == HitDirection.Right)
+        {
+            //    playerRunTimeData.TheAnimator.SetTrigger("sideHit");
+            change_lane(1);
+            snapBackToLane = true;
+        }
+    }
+
+    public void curvedRamp()
+    {
+        Debug.Log("curvedramp");
+        //working for curved ramp
+        if (Mathf.Abs(current_lane) == PlayerContainedData.PlayerData.PlayerInformation[0].totalLanes /*&& (PlayerSharedData.PlayerTransform.position.z > zCurveRampStartPos || !PlayerSharedData.CanWallRun)*/)
+        {
+            if (target_lane == current_lane)
+            {
+                Debug.Log("lastlane" + lastLane);
+                lastLane = -lastLane;
+                change_lane(lastLane);
+            }
+        }
+        //
+    }
+
+    public bool Grounded()
+    {
+        if (Physics.BoxCast(PlayerSharedData.RaycastOriginPosition.transform.position, PlayerSharedData.BoxColliderbounds, -PlayerSharedData.PlayerTransform.up, out hit, Quaternion.identity, PlayerContainedData.PlayerData.PlayerInformation[0].RaycastHeight, PlayerContainedData.PlayerData.PlayerInformation[0].CarLayer, QueryTriggerInteraction.Ignore))
+        {
+            if (PlayerSharedData.WallClimbDoing && !PlayerSharedData.IsGrounded && !PlayerSharedData.WallRunBuilding)
+            {
+                PlayerSharedData.WallClimbDoing = false;
+                playerCompletedWallClimbTouchedGround.RaiseEvent();
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool CheckIfStepIsFeasible(float height)
+    {
+        return (height - PlayerSharedData.PlayerTransform.position.y) <= PlayerContainedData.PlayerData.PlayerInformation[0].StepHeight;
+    }
+
+    private Vector3 origin;
+
+    private RaycastHit AdjustHeightOfPlayer(float x, float y, float z)
+    {
+        RaycastHit thehit;
+        //  if (PlayerSharedData.wallslideDoing)
+        origin = new Vector3(x, y, z) + (PlayerSharedData.PlayerTransform.up * (0.5f));
+        //else
+        //{
+        //     origin = new Vector3(x, y, z);
+        //    origin.y = PlayerSharedData.RaycastOriginPosition.transform.position.y;
+        //}
+        Debug.Log("PlayerSharedData.CanWallRun" + PlayerSharedData.CanWallRun);
+        if (Physics.BoxCast(origin, PlayerSharedData.BoxColliderbounds, -PlayerSharedData.PlayerTransform.up, out thehit, Quaternion.identity, PlayerSharedData.CanWallRun ? PlayerContainedData.PlayerData.PlayerInformation[0].RayHeightDuringWallRun : PlayerContainedData.PlayerData.PlayerInformation[0].RaycastHeight, PlayerContainedData.PlayerData.PlayerInformation[0].CarLayer, QueryTriggerInteraction.Ignore))
+        {
+            Debug.Log("Success" + PlayerSharedData.CanWallRun);
+            GroundedDebugers();
+            if (thehit.transform.tag == "curvedramp")
+                PlayerSharedData.wallslideDoing = true;
+            else if (PlayerSharedData.wallslideDoing)
+            {
+                PlayerSharedData.CanWallRun = false;
+                PlayerSharedData.wallslideDoing = false;
+            }
+            if (PlayerSharedData.CanWallRun)
+                Debug.DrawRay(origin, -PlayerSharedData.PlayerTransform.up * PlayerContainedData.PlayerData.PlayerInformation[0].RayHeightDuringWallRun, Color.green);
+            else
+                Debug.DrawRay(origin, -PlayerSharedData.PlayerTransform.up * PlayerContainedData.PlayerData.PlayerInformation[0].RaycastHeight, Color.green);
+
+            return thehit;
+        }
+        else
+        {
+            //     Debug.Log("Failure");
+            PlayerSharedData.CanWallRun = false;
+            PlayerSharedData.wallslideDoing = false;
+            Debug.DrawRay(origin, -PlayerSharedData.PlayerTransform.up * PlayerContainedData.PlayerData.PlayerInformation[0].RaycastHeight, Color.red);
+            return hit;
+        }
+    }
+
+    private bool fall = false;
+    private float speedTimeToJump;
+    private float uppos;
+    private float elaspsetime;
+
+    public void ApplyGravity()
+    {
+        if (PlayerSharedData.HalfDashCompleted && PlayerSharedData.CurrentStateName != "PlayerThurstState" && PlayerSharedData.CurrentStateName != "PlayerJumpState" && PlayerSharedData.CurrentStateName != "PlayerAeroplaneState" && !PlayerSharedData.IsGrounded && !PlayerSharedData.WallRunBuilding && !PlayerSharedData.RotateOnbuilding)
+        {
+            if (!fall)
+            {
+                uppos = PlayerSharedData.PlayerTransform.position.y;
+                elaspsetime = 0;
+                //speed time to jump should be faster form cancel speed
+                if (PlayerSharedData.CurrentStateName == "PlayerCanceljump")
+                    speedTimeToJump = PlayerContainedData.PlayerData.PlayerInformation[0].canacelJumpSpeed;
+                else
+                {
+                    //    speed time to jump should be different for each height
+                    float height = (PlayerSharedData.JumpDuration / 2) / PlayerContainedData.PlayerData.PlayerInformation[0].jump_height;
+                    //       Debug.Log("height" + height);
+                    speedTimeToJump = height * uppos;
+                    if (uppos > 5f)
+                        speedTimeToJump = (PlayerSharedData.JumpDuration / 1.1f);
+                    //   Debug.Log(speedTimeToJump );
+                }
+                fall = true;
+            }
+            //   Debug.Log("velocity"+PlayerSharedData.PlayerRigidBody.velocity.y + "height" + speedTimeToJump + "uppos" + uppos);
+            //  Debug.Log(speedTimeToJump);
+            float elapse = MyExtensions.elapse_time(ref elaspsetime, speedTimeToJump);
+            float curve = PlayerContainedData.PlayerData.PlayerInformation[0].FallCurve.Evaluate(elapse);
+            PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos = Mathf.Lerp(uppos, PlayerContainedData.PlayerData.PlayerInformation[0].PlayerStartinPosition.y, curve);
+        }
+        else
+        {
+            fall = false;
+        }
+    }
+
+    private void WallRunBuildingRaycast()
+    {
+        //   Debug.Log(PlayerContainedData.SpeedHandler.GameTimeScaleRatio);
+        if (Physics.Raycast(PlayerSharedData.WallrunbuildingRay.transform.position, PlayerSharedData.WallrunbuildingRay.transform.forward, out wallBuildinghit, PlayerContainedData.SpeedHandler.GameTimeScaleRatio > 0.6f ? 2f : 1.3f, PlayerContainedData.PlayerData.PlayerInformation[0].CarLayer))
+        {
+            playerStartedBuildingClimb.RaiseEvent();
+
+            //    Debug.Log("There is something in front of the object!"+wallbuildinghit.transform.name);
+            Debug.DrawRay(PlayerSharedData.WallrunbuildingRay.transform.position, PlayerSharedData.WallrunbuildingRay.transform.forward * (PlayerContainedData.SpeedHandler.GameTimeScaleRatio > 0.6f ? 2f : 1.3f), Color.green);
+            Debug.DrawLine(wallBuildinghit.point, wallBuildinghit.normal * 10, Color.red);
+        }
+    }
+
+    private void BuildingRotation()
+    {
+        Quaternion rotaiton = Quaternion.RotateTowards(PlayerSharedData.PlayerTransform.rotation, Quaternion.identity, Time.fixedDeltaTime * (PlayerContainedData.PlayerData.PlayerInformation[0].BuildingFallingRotationSpeed));
+        PlayerSharedData.PlayerRigidBody.MoveRotation(rotaiton);
+        if (PlayerSharedData.PlayerTransform.rotation == Quaternion.identity)
+        {
+            PlayerSharedData.WallRunBuilding = false;
+            PlayerSharedData.RotateOnbuilding = false;
+        }
+    }
+
+    private void Rotation(Vector3 rotationTarget, float rotationSpeed)
+    {
+        Quaternion rotaiton = Quaternion.FromToRotation(PlayerSharedData.PlayerTransform.up, rotationTarget);
+        rotaiton = Quaternion.RotateTowards(PlayerSharedData.PlayerTransform.rotation, PlayerSharedData.PlayerTransform.rotation * rotaiton, Time.fixedDeltaTime * rotationSpeed);
+
+        PlayerSharedData.PlayerRigidBody.MoveRotation(rotaiton);
+    }
+
+    private void GroundedDebugers()
+    {
+        Vector3 start = new Vector3(adjustmentHit.point.x, adjustmentHit.point.y + PlayerContainedData.PlayerData.PlayerInformation[0].HoverHeight, adjustmentHit.point.z);
+        Debug.DrawLine(start, start + (Vector3.one * 0.02f), Color.red, 2);
+        Debug.DrawRay(origin, Vector3.down * PlayerContainedData.PlayerData.PlayerInformation[0].RaycastHeight, Color.green);
+
+        //  Debug.Log("Hit Point " + adjustmentHit.point.y);
+
+        Debug.DrawRay(adjustmentHit.point, Vector3.up * 100f, Color.magenta);
+
+        //   Debug.Log("Ground Debugger Height " + (adjustmentHit.point.y + PlayerContainedData.PlayerData.PlayerInformation[0].HoverHeight));
+    }
+
+    private void PlayAnimation(int dir)
+    {
+        if (dir == 1)
+        {
+            if (PlayerSharedData.CurrentStateName == "PlayerSlideState")
+            {
+                PlayerContainedData.AnimationChannel.MoveRight(sidewaysDistanceToCover, PlayerSharedData.SidewaysSpeed, "slideright");
+            }
+            else if (PlayerSharedData.CurrentStateName == "PlayerJumpState" && PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos >= 0.5f)
+            {
+                PlayerContainedData.AnimationChannel.Airright();
+            }
+            else if (PlayerSharedData.CurrentStateName != "PlayerJumpState")
+            {
+                PlayerContainedData.AnimationChannel.MoveRight(sidewaysDistanceToCover, PlayerSharedData.SidewaysSpeed, "right");
+            }
+        }
+        else if (dir == -1)
+        {
+            if (PlayerSharedData.CurrentStateName == "PlayerSlideState")
+            {
+                PlayerContainedData.AnimationChannel.MoveRight(sidewaysDistanceToCover, PlayerSharedData.SidewaysSpeed, "slideleft");
+            }
+            else if (PlayerSharedData.CurrentStateName == "PlayerJumpState" && PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos >= 0.5f)
+            {
+                PlayerContainedData.AnimationChannel.AirLeft();
+            }
+            else if (PlayerSharedData.CurrentStateName != "PlayerJumpState")
+
+            {
+                PlayerContainedData.AnimationChannel.MoveRight(sidewaysDistanceToCover, PlayerSharedData.SidewaysSpeed, "left");
+            }
+        }
+    }
+}

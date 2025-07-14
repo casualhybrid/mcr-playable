@@ -1,0 +1,51 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UOP1.Factory;
+
+namespace UOP1.Pool
+{
+    public abstract class PoolVarianceSO<T> : ScriptableObject, IPool<T> where T : Component
+    {
+        protected readonly Dictionary<T, Stack<T>> Available = new Dictionary<T, Stack<T>>();
+
+
+        /// <summary>
+        /// The factory which will be used to create <typeparamref name="T"/> on demand.
+        /// </summary>
+        public abstract IFactory<KeyValuePair<T,List<T>>> Factory { get; set; }
+
+        protected bool HasBeenPrewarmed { get; set; }
+
+        protected virtual void OnEnable()
+        {
+            SceneManager.activeSceneChanged += SceneChanged;
+        }
+
+        private void SceneChanged(Scene s, Scene d)
+        {
+            Reset();
+        }
+
+        protected virtual void Reset()
+        {
+            Available.Clear();
+            HasBeenPrewarmed = false;
+        }
+
+        public void Prewarm(int num)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T Request()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Return(T member)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}

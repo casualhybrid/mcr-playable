@@ -1,0 +1,66 @@
+﻿using Cinemachine;
+using UnityEngine;
+
+[RequireComponent(typeof(CinemachineVirtualCamera))]
+public class CameraShake : MonoBehaviour
+{
+    private CinemachineVirtualCamera cam;
+    private CinemachineBasicMultiChannelPerlin channelPerlin;
+    private static float shakeTimer;
+    private bool isInitialized;
+
+    [SerializeField] private CameraShakeVariations cameraShakeVariations;
+
+    private void Awake()
+    {
+        cam = GetComponent<CinemachineVirtualCamera>();
+        cam.m_Transitions.m_OnCameraLive.AddListener(HandleCameraGoLive);
+        channelPerlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cameraShakeVariations.OnShakeTheCamera.AddListener(ShakeCamera);
+    }
+
+    private void OnDestroy()
+    {
+        cam.m_Transitions.m_OnCameraLive.RemoveListener(HandleCameraGoLive);
+        cameraShakeVariations.OnShakeTheCamera.RemoveListener(ShakeCamera);
+    }
+
+    private void HandleCameraGoLive(ICinemachineCamera can, ICinemachineCamera fromCam)
+    {
+        if(!isInitialized)
+        {
+
+        }
+
+        isInitialized = true;
+
+    }
+
+    private void ShakeCamera(CameraShakeConfig cameraShakeConfig)
+    {
+        shakeTimer = cameraShakeConfig.GetFrequenct;
+        channelPerlin.m_AmplitudeGain = cameraShakeConfig.GetAmplitude;
+        channelPerlin.m_FrequencyGain = cameraShakeConfig.GetFrequenct;
+        channelPerlin.m_NoiseProfile = cameraShakeConfig.GetNoiseSettings;
+    }
+
+    private void Update()
+    {
+        if (shakeTimer <= 0 || !CinemachineCore.Instance.IsLive(cam))
+        {
+            channelPerlin.m_FrequencyGain = 0;
+            channelPerlin.m_AmplitudeGain = 0;
+            return;
+        }
+
+        Debug.Log("Shake Timer Low " + cam.gameObject.name);
+
+        shakeTimer -= Time.deltaTime;
+
+        if (shakeTimer <= 0)
+        {
+            channelPerlin.m_FrequencyGain = 0;
+            channelPerlin.m_AmplitudeGain = 0;
+        }
+    }
+}

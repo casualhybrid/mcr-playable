@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57f685e832618a44aafa28517021ea4, type: 3}
+  m_Name: DailyGoalsManager
+  m_EditorClassIdentifier: 
+  gamePlaySessionInventory: {fileID: 11400000, guid: b0453cd499f0afc46a0fa2e861783287,
+    type: 2}
+  inventoryObj: {fileID: 11400000, guid: 464c952e62c410741ac8d7239ab5fd43, type: 2}
+  saveManager: {fileID: 11400000, guid: 0f17cfd0fe49d5c4ba92a0c19ed9bfb9, type: 2}
+  currentDay: 0
+  completedGoalStr: No of Hits 7/7
+  timeManager: {fileID: 11400000, guid: 413e9af43a62af34caa8b718889392bc, type: 2}
+  dailyGoalsObj: {fileID: 11400000, guid: 445f92528e2743f4c81bcb0f20e48ee4, type: 2}
+  wallRunEvent: {fileID: 11400000, guid: 68c65e5d561a41c45bf94378e1458cbf, type: 2}
+  dashStartedEvent: {fileID: 11400000, guid: e05e963261d579046a75e1b8d8d50d32, type: 2}
+  dashEndedEvent: {fileID: 11400000, guid: 9c83ec58a4b2ba648921bfe143d49ab0, type: 2}
+  shockWaveStartedEvent: {fileID: 11400000, guid: 0df4fddffef0f5b4d894787ba1e381ec,
+    type: 2}
+  shockwaveEndedEvent: {fileID: 11400000, guid: 46418c5a9bec9bb40a0794c6ecbcb220,
+    type: 2}
+  trafficCarDestroyEvent: {fileID: 11400000, guid: 0f276f9dac1d78740a7746e63f665c10,
+    type: 2}
+  pogoStickEvent: {fileID: 11400000, guid: f81e0ba525bcb844fb36dd5e5ec1899c, type: 2}
+  aeroplaneEvent: {fileID: 11400000, guid: 4814c429e7c0cec42bb93f1ca1544597, type: 2}
+  playerHitEvent: {fileID: 11400000, guid: 0c8b9a9a0173abe42b1b271498c2ec6f, type: 2}
+  dailyGoalCompletedEvent: {fileID: 11400000, guid: cb753ab51540f814c929b0d4045429dc,
+    type: 2}
+  gameHasStarted: {fileID: 11400000, guid: 39b10a5f97a2add4688e706e8aa85589, type: 2}
+  isDashing: 0
+  isShockwaving: 0
+  isDailyGoalsCompleted: 0

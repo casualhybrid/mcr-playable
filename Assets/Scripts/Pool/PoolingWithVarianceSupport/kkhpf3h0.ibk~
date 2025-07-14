@@ -1,0 +1,61 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UOP1.Factory;
+
+namespace UOP1.Pool
+{
+    public abstract class PoolVarianceSO<T> : ScriptableObject, IPool<T> where T : Component
+    {
+        protected readonly Dictionary<T, Stack<T>> Available = new Dictionary<T, Stack<T>>();
+
+        /// <summary>
+        /// The factory which will be used to create <typeparamref name="T"/> on demand.
+        /// </summary>
+        public abstract IFactory<KeyValuePair<T, List<T>>> Factory { get; set; }
+
+        protected bool HasBeenPrewarmed { get; set; }
+
+        protected virtual void OnEnable()
+        {
+            SceneManager.activeSceneChanged += SceneChanged;
+        }
+
+        protected virtual void Reset()
+        {
+            Available.Clear();
+            HasBeenPrewarmed = false;
+        }
+
+        private void SceneChanged(Scene s, Scene d)
+        {
+            Reset();
+        }
+
+        protected virtual T Create()
+        {
+            return Factory.Create();
+        }
+
+        /// <summary>
+        /// Prewarms the pool with a <paramref name="num"/> of <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="num">The number of members to create as a part of this pool.</param>
+        /// <remarks>NOTE: This method can be called at any time, but only once for the lifetime of the pool.</remarks>
+        public virtual void Prewarm(int num)
+        {
+            if (HasBeenPrewarmed)
+            {
+                Debug.LogWarning($"Pool {name} has already been prewarmed.");
+                return;
+            }
+            for (int i = 0; i < num; i++)
+            {
+                KeyValuePair<T, List<T>> keyValuePair = Create();
+                Available.Push(Create());
+            }
+
+            HasBeenPrewarmed = true;
+        }
+    }
+}

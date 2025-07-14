@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619ee6347fe596e4f810efc272e7c486, type: 3}
+  m_Name: PlayerSharedData
+  m_EditorClassIdentifier: 
+  CurrentStateName: PlayerNormalMovementState
+  playerCurrentEnvironment: {fileID: 11400000, guid: 449d5892099e91044be0807844f55bc5,
+    type: 2}
+  PlayerStateMachine: {fileID: 0}
+  PlayerRigidBody: {fileID: 0}
+  PlayerAnimator: {fileID: 0}
+  CharacterAnimator: {fileID: 0}
+  ChaserAnimator: {fileID: 0}
+  ChaserCharacterAnimator: {fileID: 0}
+  PlayerTransform: {fileID: 0}
+  ChaserTransform: {fileID: 0}
+  DiamondTargetPoint: {fileID: 0}
+  RaycastOriginPosition: {fileID: 0}
+  Playercollider: {fileID: 0}
+  PlayerHitCollider: {fileID: 0}
+  CarSkeleton: {fileID: 0}
+  CharacterSkeleton: {fileID: 0}
+  PivotT: {fileID: 0}
+  RaycastT:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BuildingRunPath: []
+  bezierBuildingCurve: {fileID: 0}
+  Distancecovered: 0
+  defaultHitColliderSize: {x: 2.4520707, y: 1.23313, z: 2.0359802}
+  defaultHitColliderCenter: {x: 0.004832347, y: 0.79763764, z: -1.5933735}
+  WallrunbuildingRay: {fileID: 0}
+  playerContainedData: {fileID: 11400000, guid: 5145ede1a52e30c42af224c0bd3e1f7e,
+    type: 2}
+  InAir: 0
+  IsDash: 0
+  IsBoosting: 0
+  IsGrounded: 1
+  HalfDashCompleted: 1
+  IsIdle: 1
+  CanWallRun: 0
+  WallRunBuilding: 0
+  isStumbled: 0
+  RotateOnbuilding: 0
+  WallClimbDoing: 0
+  wallslideDoing: 0
+  SpringJump: 0
+  ChaserWasHit: 0
+  IsArmour: 0
+  isCrashed: 0
+  isThursting: 0
+  isHalfThurstingCompleted: 1
+  isBeingCapturedByChaser: 0
+  isJumping: 0
+  isJumpingPhase: 0
+  isFalling: 0
+  outsideNormalLane: 1
+  AeroplaneTakingOff: 0
+  BoxColliderbounds: {x: 0.20540452, y: 0.02, z: 0.39224243}
+  ForwardSpeed: 0.22716738
+  SidewaysSpeed: 0.15847348
+  SlideSpeed: 0.42259592
+  JumpDuration: 0.95

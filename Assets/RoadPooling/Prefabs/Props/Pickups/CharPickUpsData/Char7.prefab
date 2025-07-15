@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7522218128219703183}
   - component: {fileID: 7657648967114542445}
   - component: {fileID: -9210295226775802222}
-  - component: {fileID: 1237504826106162334}
   - component: {fileID: 4229041842376589901}
   m_Layer: 0
   m_Name: Char7
@@ -178,19 +177,6 @@ MonoBehaviour:
   triggerTag: Player
   isUsingParameter: 0
   parameterName: 
---- !u!65 &1237504826106162334
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231653876193110687}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.474432, y: 1.0950153, z: 1.1045234}
-  m_Center: {x: 1.3623058, y: 0.047507644, z: -0.052264627}
 --- !u!65 &4229041842376589901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5755,7 +5741,7 @@ Transform:
   m_GameObject: {fileID: 7572291447816846361}
   m_LocalRotation: {x: -0, y: -0.43569052, z: -0, w: 0.90009654}
   m_LocalPosition: {x: -0.089, y: 0.041, z: -0.113}
-  m_LocalScale: {x: 0.07883363, y: 0.07883363, z: 0.07883363}
+  m_LocalScale: {x: 0.064200535, y: 0.064200535, z: 0.064200535}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6729140744078715634}
@@ -14090,6 +14076,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3417698897332386688, guid: 14b03717e43fa3c40997fba793650079,
         type: 3}
+      propertyPath: m_Color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3417698897332386688, guid: 14b03717e43fa3c40997fba793650079,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a79fb01bab7cc714fb57df5ed37740fc, type: 2}
@@ -14101,17 +14092,17 @@ PrefabInstance:
     - target: {fileID: 7346988308855002833, guid: 14b03717e43fa3c40997fba793650079,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.19911219
+      value: 0.15159406
       objectReference: {fileID: 0}
     - target: {fileID: 7346988308855002833, guid: 14b03717e43fa3c40997fba793650079,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.19911218
+      value: 0.15159406
       objectReference: {fileID: 0}
     - target: {fileID: 7346988308855002833, guid: 14b03717e43fa3c40997fba793650079,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.19911219
+      value: 0.15159406
       objectReference: {fileID: 0}
     - target: {fileID: 7346988308855002833, guid: 14b03717e43fa3c40997fba793650079,
         type: 3}
@@ -14162,6 +14153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786353989519486197, guid: 14b03717e43fa3c40997fba793650079,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 8786353989519486197, guid: 14b03717e43fa3c40997fba793650079,
         type: 3}

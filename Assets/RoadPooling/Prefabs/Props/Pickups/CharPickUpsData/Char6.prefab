@@ -14360,8 +14360,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8028333220588332718}
   - component: {fileID: 3374848319662097073}
-  - component: {fileID: 2481846504195917167}
   - component: {fileID: 8354097370948089193}
+  - component: {fileID: 2481846504195917167}
   - component: {fileID: 5253379196875138730}
   m_Layer: 0
   m_Name: Char6
@@ -14400,6 +14400,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4945475, y: 1.9247009, z: 8.6459055}
   m_Center: {x: 0.05588478, y: 0.666218, z: 4.9879527}
+--- !u!114 &8354097370948089193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215204396262685716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce66a99b7d0f33344adb31ee5b4e9a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeDuration: 1.547
+  adsController: {fileID: 11400000, guid: 43161c1f9a8235749aed46dbd52570b2, type: 2}
+  moveDistance: 0.22
+  duration: 0.34
+  easeType: 1
+  loopType: 1
+  rotationAmount: 5
+  rotationDuration: 0.7
+  audio: {fileID: 2481846504195917167}
+  particles: {fileID: 7446419178097251626}
+  parent: {fileID: 9085561943734233416}
+  characterID: Chimpanzini-bananininew
 --- !u!82 &2481846504195917167
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14496,29 +14520,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8354097370948089193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7215204396262685716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce66a99b7d0f33344adb31ee5b4e9a83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeDuration: 1.547
-  adsController: {fileID: 11400000, guid: 43161c1f9a8235749aed46dbd52570b2, type: 2}
-  moveDistance: 0.22
-  duration: 0.34
-  easeType: 1
-  loopType: 1
-  rotationAmount: 5
-  rotationDuration: 0.7
-  audio: {fileID: 2481846504195917167}
-  particles: {fileID: 7446419178097251626}
-  parent: {fileID: 9085561943734233416}
 --- !u!65 &5253379196875138730
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class PlayerCollision : MonoBehaviour
 
     [SerializeField] GameObject parent;
 
+    [Header("Character Counter")]
+    [SerializeField] private string characterID;
+    private int collisionCount = 0;
 
     private void Start()
     {
@@ -36,6 +39,9 @@ public class PlayerCollision : MonoBehaviour
            .SetEase(Ease.Linear)
            .SetLoops(-1, LoopType.Yoyo)
            .From(new Vector3(0, initialYRotation - rotationAmount, 0));
+
+        collisionCount = PlayerPrefs.GetInt(GetPrefsKey(), 0);
+        Debug.LogError(collisionCount + "Mohsin");
     }
     private bool hasTriggered = false; // Yeh flag lagaya hai
 
@@ -61,6 +67,13 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             hasTriggered = true; // Ab is object ka trigger ho gaya hai
+            //Character Counter
+            collisionCount++;
+            PlayerPrefs.SetInt(GetPrefsKey(), collisionCount);
+            PlayerPrefs.Save();
+
+            Debug.LogError(characterID + " has collided " + collisionCount + " times.");
+
             if (!PersistentAudioPlayer.isSoundOff)
             {
                 PersistentAudioPlayer.Instance.AudioFade(timeDuration);
@@ -72,7 +85,17 @@ public class PlayerCollision : MonoBehaviour
 
             particles.Play();
             StartCoroutine(AfterDisbale());
+
         }
+    }
+    private string GetPrefsKey()
+    {
+        return "CollisionCount_" + characterID;
+    }
+
+    public int GetCollisionCount()
+    {
+        return collisionCount;
     }
     IEnumerator Test()
     {

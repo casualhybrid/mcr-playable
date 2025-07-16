@@ -306,6 +306,7 @@ public class PlayerBasicMovementShared : ScriptableObject
 
         if (PlayerSharedData.IsGrounded)
         {
+            //Debug.LogError("PlayerOnGround");
             ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
             elaspsetime = 0;
 
@@ -375,6 +376,7 @@ public class PlayerBasicMovementShared : ScriptableObject
         // Jump input retention
         if (PlayerSharedData.isFalling)
         {
+           
             retentionJumpTimerCurrent = PlayerContainedData.PlayerData.PlayerInformation[0].NextJumpTimer;
 
             if (jumpRetentionTimerRoutine != null)
@@ -384,6 +386,8 @@ public class PlayerBasicMovementShared : ScriptableObject
 
             jumpRetentionTimerRoutine = CoroutineRunner.Instance.StartCoroutine(UpdateRetentionJumpTimerRoutine());
         }
+        
+            
     }
 
     private IEnumerator UpdateRetentionJumpTimerRoutine()

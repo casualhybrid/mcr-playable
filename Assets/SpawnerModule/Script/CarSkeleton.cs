@@ -2,6 +2,7 @@
 
 public class CarSkeleton : MonoBehaviour
 {
+   
     [SerializeField] private Animator theAnimator;
 
     [SerializeField] private Transform bodyTransform;
@@ -58,6 +59,7 @@ public class CarSkeleton : MonoBehaviour
         RequestTogglePlayerMeshChannel.OnRequestToEnableSkinnedMeshes.AddListener(EnableAllSkinnedMeshes);
 
     }
+   
 
     private void OnDestroy()
     {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3705276758455138157}
   - component: {fileID: 6341975704034517956}
   - component: {fileID: 4445442803011270528}
+  - component: {fileID: 7465933245520333597}
   m_Layer: 0
   m_Name: park3
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7465933245520333597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851237896381820831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 26.840902, y: 108.82631, z: 20.12185}
+  m_Center: {x: 0, y: 18.749107, z: 0.29309654}
 --- !u!1 &4087207714472327645
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 781082491191905083}
   distanceBeforeItCanReAppear: -1
-  instanceID: -1829736
+  instanceID: -2456584
   envCategory: {fileID: 11400000, guid: 007e54ce74cee0d498e1db4bbd1432ea, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: -0.000015258789
   DiffBWPivotAndColliderMaxBoundPoint: 17.080074

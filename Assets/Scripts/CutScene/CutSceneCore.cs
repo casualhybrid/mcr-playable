@@ -102,7 +102,7 @@ public class CutSceneCore : SerializedMonoBehaviour
         cutSceneFolderDictionary[currentCar].SetActive(true);
     }
 
-   /* private void FixedUpdate()
+    private void FixedUpdate()
     {
         if (isInitialized && !cutSceneInitialize)
         {
@@ -111,10 +111,10 @@ public class CutSceneCore : SerializedMonoBehaviour
                 Rigidbody rb = objToPool[i];
                 Vector3 pos = rb.position + (Vector3.forward * objToPoolSpeed * Time.fixedDeltaTime);
                 rb.MovePosition(pos);
-                //  objToPool[i].transform.Translate(-Vector3.forward * objToPoolSpeed * Time.fixedDeltaTime);
+                //objToPool[i].transform.Translate(-Vector3.forward * objToPoolSpeed * Time.fixedDeltaTime);
             }
         }
-    }*/
+    }
 
     public void ChangeRushPlayerAfterCutSceneState(bool status)
     {

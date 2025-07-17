@@ -28,14 +28,14 @@ public class ChaserActiveAnimation : MonoBehaviour
         }
         else
         {
-            chaserAnimation.SetActive(true);
+            //chaserAnimation.SetActive(true);
         }
     }
     public void ActiveChaser()
     {
-        originalChaser.SetActive(true);
+       /* originalChaser.SetActive(true);
         chaserAnimation.SetActive(false);
-        Debug.Log("ActiveChaser");
+        Debug.Log("ActiveChaser");*/
     }
     public void OnCamActive()
     {
@@ -52,11 +52,11 @@ public class ChaserActiveAnimation : MonoBehaviour
     IEnumerator CharacterActive(float time)
     {
         yield return new WaitForSeconds(time);
-        chaserAnimation.SetActive(true);
-        Debug.Log("characterShow");
+        /*chaserAnimation.SetActive(true);
+        Debug.Log("characterShow");*/
     }
     public void ChaserActive()
     {
-        chaserAnimation.SetActive(true);
+        //chaserAnimation.SetActive(true);
     }
 }

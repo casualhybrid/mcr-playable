@@ -8,7 +8,7 @@ public class MatchValuesOfBothCamerasLateUpdate : MonoBehaviour
     {
         if (!GameManager.DependenciesLoaded)
             return;
-
+        
         cameraData.SecondaryCamera.fieldOfView = cameraData.TheMainCamera.fieldOfView;
     }
 }

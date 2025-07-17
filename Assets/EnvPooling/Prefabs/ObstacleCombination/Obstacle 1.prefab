@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6707323174425112031}
   - component: {fileID: 6707323174425112030}
   - component: {fileID: 6707323174425112024}
+  - component: {fileID: 8583129751098037312}
   m_Layer: 0
   m_Name: Obstacle 1
   m_TagString: Untagged
@@ -28,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7954530771486519157}
   - {fileID: 7244569428370655255}
@@ -61,8 +63,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dae153266c5f2f4e9fa706a92397648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDestroyedCarThroughDash:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDestroyedCarThroughBoost:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDestroyedCarThroughLaser:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDestroyedCarThroughShockWave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDestroyedCarThroughArmour:
+    m_PersistentCalls:
+      m_Calls: []
+  destructionMoveSpeed: 0
+  destructionRotateSpeed: 300
   boxCollider: {fileID: 6707323174425112030}
   instanceID: -2204532
+  objectDestruction: {fileID: 0}
+  playerSharedData: {fileID: 0}
+  playerData: {fileID: 0}
+  speedHandler: {fileID: 0}
+  gameManager: {fileID: 0}
+  obstaclesSafeAreaIsUpdated: {fileID: 0}
+  obstaclesSafeAreaSO: {fileID: 0}
+--- !u!114 &8583129751098037312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707323174425112029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e454b0a67c68c674f8025dc3ac089632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnReset:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3854189947797506439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +171,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Car ST (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4741314529444530327, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4741314529444530327, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
+    - target: {fileID: 9059993446595020239, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 9059993446595020239, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d772a59a8b608438f0894f160c8682, type: 3}
 --- !u!4 &436229188210067386 stripped
@@ -145,6 +198,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6707323174425112031}
     m_Modifications:
+    - target: {fileID: 1909685182948125192, guid: 0c10328f27b14714f97ced0d1cbc0350,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1909685182948125192, guid: 0c10328f27b14714f97ced0d1cbc0350,
+        type: 3}
     - target: {fileID: 2696060655820428591, guid: 0c10328f27b14714f97ced0d1cbc0350,
         type: 3}
       propertyPath: m_RootOrder
@@ -220,6 +279,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6707323174425112031}
     m_Modifications:
+    - target: {fileID: 1076522544335169408, guid: c2c84bd94a81dcd4ea5c1e3f9517e814,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1076522544335169408, guid: c2c84bd94a81dcd4ea5c1e3f9517e814,
+        type: 3}
     - target: {fileID: 3663400996804150964, guid: c2c84bd94a81dcd4ea5c1e3f9517e814,
         type: 3}
       propertyPath: m_Name
@@ -355,6 +420,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Car ST
       objectReference: {fileID: 0}
+    - target: {fileID: 4741314529444530327, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4741314529444530327, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
+    - target: {fileID: 9059993446595020239, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 9059993446595020239, guid: a7d772a59a8b608438f0894f160c8682,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d772a59a8b608438f0894f160c8682, type: 3}
 --- !u!4 &7954530771486519157 stripped

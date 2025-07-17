@@ -130,18 +130,18 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
-       // if (!saveManager.MainSaveFile.TutorialHasCompleted && RemoteConfiguration.IsTutorialRemoved)
+        if (!saveManager.MainSaveFile.TutorialHasCompleted && RemoteConfiguration.IsTutorialRemoved)
         {
             AnalyticsManager.CustomData("RemovedTutorialUser");
             saveManager.MainSaveFile.TutorialHasCompleted = true;
             saveManager.SaveGame();
         }
-       // else if (!saveManager.MainSaveFile.TutorialHasCompleted && !RemoteConfiguration.IsTutorialRemoved)
+        else if (!saveManager.MainSaveFile.TutorialHasCompleted && !RemoteConfiguration.IsTutorialRemoved)
         {
             AnalyticsManager.CustomData("TutorialUser");
         }
 
-       // if (saveManager.MainSaveFile.TutorialHasCompleted || RemoteConfiguration.IsTutorialRemoved)
+        if (saveManager.MainSaveFile.TutorialHasCompleted || RemoteConfiguration.IsTutorialRemoved)
         {
             IsTutorialActive = false;
             this.gameObject.SetActive(false);

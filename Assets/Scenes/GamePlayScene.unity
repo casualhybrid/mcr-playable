@@ -2229,14 +2229,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343911398}
-  m_LocalRotation: {x: 0.25361723, y: 0.05842146, z: 0.003939906, w: 0.9655309}
+  m_LocalRotation: {x: 0.25231174, y: 0.063824385, z: -0.016680887, w: 0.9653948}
   m_LocalPosition: {x: -1.26, y: 0.7883, z: -62.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1357077176}
-  m_Father: {fileID: 1965119312}
-  m_RootOrder: 3
+  m_Father: {fileID: 970179212}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &343911400
 MonoBehaviour:
@@ -7436,9 +7436,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1876115052}
+  - {fileID: 2045904330}
+  - {fileID: 343911399}
   m_Father: {fileID: 1965119312}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &970179213
 MonoBehaviour:
@@ -11701,11 +11704,16 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -5928425245952243412, guid: b3f9a7e81d5569a4aba1c34c44a74c32, type: 2}
     value: {fileID: 963194231}
+  - key: {fileID: 2682567049782627912, guid: b3f9a7e81d5569a4aba1c34c44a74c32, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4848271376219245973, guid: b3f9a7e81d5569a4aba1c34c44a74c32, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - a917ec471a3cd354baa9236baca5248e: {fileID: 1876115051}
     - 7fd6c914119018f43bd59c6211d58e48: {fileID: 1876115051}
     - 4ddd6a7c80615a14a9ce72584c24bc59: {fileID: 1876115051}
+    - 9df66a7642f17e9419962476a2111dd9: {fileID: 1104947061}
     - 86ec09d4955ace448a826d382942a0e8: {fileID: 1876115051}
     - 52c57fd2e0c8fff4295f043514deebe1: {fileID: 1104947061}
     - 89de2812ce09e5b43b1733309b485788: {fileID: 343911401}
@@ -12410,7 +12418,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.4e-44, z: 0, w: 3.4e-44}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 1.2583247e+22}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -16735,8 +16743,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 718551490}
-  m_Father: {fileID: 1965119312}
-  m_RootOrder: 1
+  m_Father: {fileID: 970179212}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 113, z: 0}
 --- !u!114 &1876115053
 MonoBehaviour:
@@ -17389,9 +17397,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1526853556}
-  - {fileID: 1876115052}
-  - {fileID: 2045904330}
-  - {fileID: 343911399}
   - {fileID: 970179212}
   m_Father: {fileID: 1652161084}
   m_RootOrder: 0
@@ -17896,8 +17901,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 417595630}
-  m_Father: {fileID: 1965119312}
-  m_RootOrder: 2
+  m_Father: {fileID: 970179212}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2045904331
 MonoBehaviour:

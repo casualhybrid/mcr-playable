@@ -745,6 +745,7 @@ Transform:
   - {fileID: 398637271}
   - {fileID: 2660030516547643814}
   - {fileID: 5907930586507057469}
+  - {fileID: 1785475653325704943}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -775,7 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 5727785914716963954}
   distanceBeforeItCanReAppear: -1
-  instanceID: -4341166
+  instanceID: -4620878
   envCategory: {fileID: 11400000, guid: 8fbacb6aae582ab4694b864706f7e6c5, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: 0.035434723
   DiffBWPivotAndColliderMaxBoundPoint: 18.608007
@@ -1041,6 +1042,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9999988, y: 3.8078089, z: 0.721941}
   m_Center: {x: 0, y: 1.2956239, z: -0.34719566}
+--- !u!1 &4603388494556562473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1785475653325704943}
+  - component: {fileID: 4392276799166529665}
+  m_Layer: 0
+  m_Name: ExitCollider
+  m_TagString: FlyingRampExit
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1785475653325704943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603388494556562473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 113.5, z: 10.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1556567448546660522}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4392276799166529665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603388494556562473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.659728, y: 2.7641585, z: 4.28543}
+  m_Center: {x: -0.03124547, y: 1.4457544, z: 2.2177234}
 --- !u!1 &4675964639052695979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1182,7 @@ GameObject:
   - component: {fileID: 153821450333488954}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: FlyingRamp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1167,8 +1213,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.7641585, z: 4.28543}
-  m_Center: {x: 0, y: 1.4457544, z: 2.2177234}
+  m_Size: {x: 3.659728, y: 2.7641585, z: 4.28543}
+  m_Center: {x: -0.03124547, y: 1.4457544, z: 2.2177234}
 --- !u!1 &6684769210297826444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1866,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 00000000
+  idremap: 02000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0

@@ -8,6 +8,9 @@ public class WaterParkEnter : MonoBehaviour
     [SerializeField] GameObject water;
     [SerializeField] GameObject water1;
 
+    [SerializeField] GameObject mirrorBreak;
+    [SerializeField] GameObject mirrorBrea2;
+
     public static bool isEnter = false;
 
     public static WaterParkEnter Instance;
@@ -24,6 +27,13 @@ public class WaterParkEnter : MonoBehaviour
             water.SetActive(true);
             water1.SetActive(true);
         }
+        if (other.CompareTag("FlyingRamp"))
+        {
+            Debug.LogError("Flying?");
+            mirrorBreak.SetActive(true);
+            mirrorBrea2.SetActive(true);
+        }
+
     }
     /*private void Update()
     {

@@ -95,7 +95,9 @@ public class PlayerCanceljump : StateBase
             PlayerContainedData.Animator_controller.ResetTrigger(AnimatorParameters.jump);
             PlayerContainedData.Animator_controller.ResetTrigger(AnimatorParameters.left);
             PlayerContainedData.Animator_controller.ResetTrigger(AnimatorParameters.right);
+            //WaterParkEnter.Instance.WaterON();
             ExplosionDamage(PlayerSharedData.PlayerTransform.position, PlayerContainedData.PlayerData.PlayerInformation[0].ShockWaveRadius);
+
             //  if (nextJumpTimer > 0)
             //  {
             //  StateMachineEventsSender.SendStateMachineEvent(PlayerStateEvent.ToJump);
@@ -105,6 +107,7 @@ public class PlayerCanceljump : StateBase
             StateMachineEventsSender.SendStateMachineEvent(PlayerStateEvent.ToSlideState);
             //  }
         }
+       
         // nextJumpTimer -= Time.deltaTime;
     }
 

@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class WaterParkEnter : MonoBehaviour
 {
-    [SerializeField] private PlayerSharedData PlayerSharedData;
+   // [SerializeField] private PlayerSharedData PlayerSharedData;
     [SerializeField] GameObject water;
     [SerializeField] GameObject water1;
 
     public static bool isEnter = false;
 
+    public static WaterParkEnter Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Park"))
@@ -19,7 +25,7 @@ public class WaterParkEnter : MonoBehaviour
             water1.SetActive(true);
         }
     }
-    private void Update()
+    /*private void Update()
     {
         if (!isEnter)
         {
@@ -45,6 +51,25 @@ public class WaterParkEnter : MonoBehaviour
             }
         }
 
+    }*/
+    public void WaterON()
+    {
+        Debug.LogError("Ground");
+       
+        if (water && water1&&isEnter)
+        {
+            water.SetActive(true);
+            water1.SetActive(true);
+        }
+    }
+    public void WaterOFF()
+    {
+       
+        if (water && water1 && isEnter)
+        {
+            water.SetActive(false);
+            water1.SetActive(false);
+        }
     }
     /* private void OnTriggerExit(Collider other)
      {

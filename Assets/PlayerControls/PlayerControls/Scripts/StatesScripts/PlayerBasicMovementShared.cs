@@ -306,6 +306,7 @@ public class PlayerBasicMovementShared : ScriptableObject
 
         if (PlayerSharedData.IsGrounded)
         {
+            
             //Debug.LogError("PlayerOnGround");
             ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
             elaspsetime = 0;
@@ -334,11 +335,17 @@ public class PlayerBasicMovementShared : ScriptableObject
                 {
                     Rotation(adjustmentHit.normal, rotationSpeed * SpeedHandler.GameTimeScale);
                 }
+                WaterParkEnter.Instance.WaterON();
+            }
+            else
+            {
+                WaterParkEnter.Instance.WaterOFF();
             }
         }
         else
         {
             ypos = PlayerContainedData.PlayerData.PlayerInformation[0].UpwardPos;
+
         }
 
         if (PlayerSharedData.wallslideDoing && !PlayerSharedData.IsGrounded)

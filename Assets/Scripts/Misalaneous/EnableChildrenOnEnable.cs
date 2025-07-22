@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EnableChildrenOnEnable : MonoBehaviour
 {
+    [SerializeField] List<GameObject> obstacles;
     private void OnEnable()
     {
-        foreach (Transform t in transform)
+        foreach (var obstacle in obstacles) {
+            obstacle.SetActive(false);
+        }
+        obstacles[Random.Range(0, obstacles.Count)].SetActive(true);
+        /*foreach (Transform t in transform)
         {
             t.gameObject.SetActive(true);
-        }
+        }*/
+
     }
 }

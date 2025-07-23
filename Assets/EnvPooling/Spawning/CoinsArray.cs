@@ -310,7 +310,7 @@ public class CoinsArray : MonoBehaviour, IFloatingReset
     {
         foreach (var obstacle in FindObjectsOfType<Obstacle>())
         {
-            if (Vector3.Distance(obstacle.transform.position, spawnPoint) < 6) //zzzz
+            if (Vector3.Distance(obstacle.transform.position, spawnPoint) < 10) //zzzz
             {
                 obstacle.gameObject.SetActive(false);
                 Debug.LogError("name is" + obstacle.name);
@@ -321,7 +321,7 @@ public class CoinsArray : MonoBehaviour, IFloatingReset
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        //CheckObstaclesState(spawnPoint); //zzzzn
+       // CheckObstaclesState(spawnPoint); //zzzzn
     }
     public void DissolveCoinBuffer()
     {

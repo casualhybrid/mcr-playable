@@ -268,6 +268,7 @@ public class ObstaclesSpawning : MonoBehaviour, IFloatingReset
 
     private void GenerateObstalcesIfNeeded(bool forceGenerateObstacle = false)
     {
+        Debug.LogError("LogsMohsin");
         float distanceBetweenNextRowGenerationPointAndPlayer = nextRowGenerationPointZ - playerSharedData.PlayerTransform.position.z;
         float totalObstacleSpawnFogSafeDistance = RenderSettings.fogEndDistance + obstacleSpawnAdditionalFogSafeDistance;
 

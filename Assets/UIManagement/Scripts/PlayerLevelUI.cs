@@ -36,6 +36,8 @@ public class PlayerLevelUI : MonoBehaviour
     private string previousText = "";
     [SerializeField] TextMeshProUGUI profileName;
 
+    public Button changeNameButton;
+
 
 
     private void OnEnable()
@@ -46,6 +48,7 @@ public class PlayerLevelUI : MonoBehaviour
         float sliderVal = Mathf.Clamp01(playerLevelObj.GetPlayerCurrentXP() / playerLevelObj.GetXPNeededForNextLevel());
         playerLevelSlider.value = sliderVal;
         playerName.text = saveManager.MainSaveFile.leaderBoardUserName;
+        profileName.text = playerName.text;
         //Profile
         totalCoins.text = playerInventoryObj.GetIntKeyValue("AccountCoins").ToString(); ;
         totalGems.text = playerInventoryObj.GetIntKeyValue("AccountDiamonds").ToString();
@@ -66,6 +69,7 @@ public class PlayerLevelUI : MonoBehaviour
         string savedName = PlayerPrefs.GetString("PlayerName", "");
         //nameInput.text = savedName;
         playerName.text = savedName;
+        profileName.text = savedName;
         /*saveButton.interactable = false; // Button disabled at start
         nameInput.onValueChanged.AddListener(OnNameChanged);
         saveButton.onClick.AddListener(SaveName);
@@ -75,14 +79,37 @@ public class PlayerLevelUI : MonoBehaviour
         previousText = savedName;
 
         // Assign listeners
-        inputField.onSelect.AddListener(OnFieldSelected);
-        inputField.onEndEdit.AddListener(OnFieldEndEdit);
+        //inputField.onSelect.AddListener(OnFieldSelected);
+        // inputField.onEndEdit.AddListener(OnFieldEndEdit);
+
+        inputField.onValueChanged.AddListener(OnInputChanged);
+        changeNameButton.onClick.AddListener(OnChangeNameClicked);
 
 
     }
+    void OnInputChanged(string userInput)
+    {
+        // Enable the button as soon as the user types anything
+        changeNameButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+    }
+    public void OpenChangePanel()
+    {
+        changeNameButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    }
+    void OnChangeNameClicked()
+    {
+        string newName = inputField.text;
+        if (!string.IsNullOrWhiteSpace(newName))
+        {
+            //changeNameButton.GetComponent<Image>().enabled = false;
+            changeNameButton.transform.GetChild(0).gameObject.SetActive(false);
+            previousText = newName;
+            SaveInput(newName); // Call your save logic here
+        }
+    }
     void OnFieldSelected(string _)
     {
-        profileName.gameObject.SetActive(false);
+        
         inputField.text = previousText;
         //inputField.text = "";
     }
@@ -115,6 +142,7 @@ public class PlayerLevelUI : MonoBehaviour
         // Your saving logic here
         PlayerPrefs.SetString("PlayerName", input);
         playerName.text= previousText;
+        profileName.text= previousText;
     }
     /* void OnNameChanged(string input)
      {

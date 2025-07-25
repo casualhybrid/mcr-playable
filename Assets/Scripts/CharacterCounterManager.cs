@@ -13,6 +13,7 @@ public class CharacterCounter
     public Button rewardButton;
     public int currentCount;
     public int totalCount;
+    public Image counterImage;
 }
 
 
@@ -35,7 +36,8 @@ public class CharacterCounterManager : MonoBehaviour
 
             // Load current count
             counter.currentCount = PlayerPrefs.GetInt("CollisionCount_" + counter.characterID, 0);
-
+            //Debug.LogError(PlayerPrefs.GetInt("CollisionCount_" + counter.characterID, 0));
+            counter.counterImage.fillAmount = (float)PlayerPrefs.GetInt("CollisionCount_" + counter.characterID, 0) / counter.totalCount;
             // Update text
             counter.counterText.text = counter.currentCount + "/" + counter.totalCount;
 

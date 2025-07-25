@@ -20,7 +20,8 @@ public class MainMenuManager : AWindowController
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private Canvas TapToPlayFirstTimeCanvas;
     [SerializeField] private GameObject profilePanel;
-
+    [SerializeField] private GameObject leaderBoardPanel;
+    private GameObject leaderBoardRefrence;
     GameObject animator;
    /* GameObject cameraRefrence;
     GameObject cameraParent;*/
@@ -48,6 +49,16 @@ public class MainMenuManager : AWindowController
         parent = CameraManager.Instance.parent;
     }
 
+    public void OnClickLeaderBoard()
+    {
+
+         leaderBoardPanel.SetActive(true);
+
+    }
+    public void OnClickClose()
+    {
+        leaderBoardPanel.SetActive(false);
+    }
     private void OnEnable()
     {
         StartCarEngine.RaiseEvent();

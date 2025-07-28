@@ -12,8 +12,10 @@ using UnityEngine.UI;
 
 public class GamePlayHUDWindowController : AWindowController
 {
-    //[SerializeField] private GamePlaySessionInventory gamePlaySessionInventory;
+    [SerializeField] private GamePlaySessionInventory gamePlaySessionInventory;
+    [SerializeField] TextMeshProUGUI highestScore;
     [SerializeField] private GamePlaySessionData gamePlaySessionData;
+
 
     [SerializeField] private InventorySystem playerInventory;
 
@@ -216,6 +218,7 @@ public class GamePlayHUDWindowController : AWindowController
 
     private void UpdateHighScoreText()
     {
+        highestScore.text = gamePlaySessionInventory.GetPlayerHighestScore().ToString();
         highscoreText.text = saveManager.MainSaveFile.playerHighScore.ToString();
     }
 

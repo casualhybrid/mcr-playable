@@ -9763,6 +9763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 974169348799960996, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
         type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 974169348799960996, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.00000004371139
       objectReference: {fileID: 0}
@@ -9784,7 +9789,7 @@ PrefabInstance:
     - target: {fileID: 4384691492709673807, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -63.32
+      value: -63.25
       objectReference: {fileID: 0}
     - target: {fileID: 4619812294669428534, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
         type: 3}
@@ -10377,12 +10382,12 @@ MonoBehaviour:
   obstacleSpawnAdditionalFogSafeDistance: 5
   obstacleGenerationType: 1
   rowsInOneBlock: 3
-  spaceBetweenRowBlocksMultiplier: 0.5
+  spaceBetweenRowBlocksMultiplier: 1.5
   firstEncounterOffsetMultiplier: 2
-  obstacleDistanceScalingMultiplierAtMaxSpeed: 0.2
+  obstacleDistanceScalingMultiplierAtMaxSpeed: 0.55
   minProbabiltyOfSpawningTrucksWherePossible: 3
   chanceToClampDifficultyToMaxDifficultyWithoutTrucksAffectingMinAction: 0.4
-  customEncounterSpawnProbabilty: 3
+  customEncounterSpawnProbabilty: 0.2
   coinSpawnStartPoint: 0
   coinSpawnEndPoint: 0
   obstaclePoolSO: {fileID: 11400000, guid: 404f5caf71f30c44b81f7be016670db4, type: 2}
@@ -17103,7 +17108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1965119312
 Transform:
   m_ObjectHideFlags: 0
@@ -17874,7 +17879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 4627202986569129225}
   distanceBeforeItCanReAppear: -1
-  instanceID: 1282520
+  instanceID: 1481166
   envCategory: {fileID: 11400000, guid: 007e54ce74cee0d498e1db4bbd1432ea, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: 0.0000019073486
   DiffBWPivotAndColliderMaxBoundPoint: 24.314886

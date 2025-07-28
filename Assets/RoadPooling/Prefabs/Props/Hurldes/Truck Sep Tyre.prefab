@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247759844960407335}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -180,7 +180,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806768585085685042}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -263,7 +263,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919889534212975440}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -391,7 +391,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2938300867726821841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 1135824420304261708}
   - component: {fileID: 5690657073734623192}
   - component: {fileID: 5648784463050564756}
+  - component: {fileID: 1782329818036821820}
   m_Layer: 0
   m_Name: Truck Sep Tyre
   m_TagString: Untagged
@@ -1026,6 +1027,21 @@ MonoBehaviour:
   _customEncounter: {fileID: 0}
   speedHandler: {fileID: 11400000, guid: 803be8ce969fb89459f5c04079fe9eaa, type: 2}
   gameManager: {fileID: 11400000, guid: 30ff116eaf48afd46b0d718637b16ab7, type: 2}
+--- !u!114 &1782329818036821820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663400996804150964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef968dcf109ddcb4498c4b885d5dfdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsList:
+  - {fileID: 2249231755391943233}
+  - {fileID: 6406898647160259715}
 --- !u!1 &3992120810868149494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,7 +1090,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3992120810868149494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1191,7 +1207,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6934731807703358979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1340,7 +1356,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8137677272107761427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1715,6 +1731,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1813302631273486873}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6406898647160259715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4738848373866323610, guid: 6e35c828b1edc9b4989ed4d38ef8955d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1813302631273486873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2610361867791342989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1969,6 +1991,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b3503c962b771438b9d8e2a846b086, type: 3}
+--- !u!1 &2249231755391943233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5116719497620619171, guid: 79b3503c962b771438b9d8e2a846b086,
+    type: 3}
+  m_PrefabInstance: {fileID: 6355948083558727138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9148797878656429411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2793307271403032705, guid: 79b3503c962b771438b9d8e2a846b086,

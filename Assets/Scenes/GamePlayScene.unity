@@ -9764,7 +9764,7 @@ PrefabInstance:
     - target: {fileID: 974169348799960996, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 974169348799960996, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
         type: 3}
@@ -9795,6 +9795,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.0509
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662518637919292173, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5046172602118729637, guid: 2f70c5c2b0df4ab45b710d781eed56f7,
         type: 3}
@@ -10381,12 +10386,12 @@ MonoBehaviour:
   variableAdditionalSafeZoneAfterRampBuilding: 40
   obstacleSpawnAdditionalFogSafeDistance: 5
   obstacleGenerationType: 1
-  rowsInOneBlock: 3
+  rowsInOneBlock: 2
   spaceBetweenRowBlocksMultiplier: 1.5
   firstEncounterOffsetMultiplier: 2
-  obstacleDistanceScalingMultiplierAtMaxSpeed: 0.55
-  minProbabiltyOfSpawningTrucksWherePossible: 3
-  chanceToClampDifficultyToMaxDifficultyWithoutTrucksAffectingMinAction: 0.4
+  obstacleDistanceScalingMultiplierAtMaxSpeed: 0.3
+  minProbabiltyOfSpawningTrucksWherePossible: 1.5
+  chanceToClampDifficultyToMaxDifficultyWithoutTrucksAffectingMinAction: 0.8
   customEncounterSpawnProbabilty: 0.2
   coinSpawnStartPoint: 0
   coinSpawnEndPoint: 0
@@ -17879,7 +17884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 4627202986569129225}
   distanceBeforeItCanReAppear: -1
-  instanceID: 1481166
+  instanceID: 33274
   envCategory: {fileID: 11400000, guid: 007e54ce74cee0d498e1db4bbd1432ea, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: 0.0000019073486
   DiffBWPivotAndColliderMaxBoundPoint: 24.314886

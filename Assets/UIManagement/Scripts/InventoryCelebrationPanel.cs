@@ -96,6 +96,7 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         }
 
         entity.RewardImage.sprite = rewardSprites[RewardKeys.IndexOf(itemName)];
+        Debug.LogError(itemName + " mohsin "+ entity.AmountText.text);
         entity.BackgroundImage.color = colors[RewardKeys.IndexOf(itemName)];
     }
 

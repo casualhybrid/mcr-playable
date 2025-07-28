@@ -2891,7 +2891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6599352099108581395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10093,13 +10093,18 @@ MonoBehaviour:
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 0}
+    completeGO: {fileID: 0}
+    videoAdGO: {fileID: 0}
+    resetDuration: 0
   - characterID: Ballerina-cappuccinanew
     counterText: {fileID: 6029636211832186933}
     rewardButton: {fileID: 0}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 0}
-  rewardButton: {fileID: 0}
+    completeGO: {fileID: 0}
+    videoAdGO: {fileID: 0}
+    resetDuration: 0
 --- !u!1 &3715623881991371862
 GameObject:
   m_ObjectHideFlags: 0
@@ -17478,59 +17483,85 @@ MonoBehaviour:
   characterCounters:
   - characterID: char1
     counterText: {fileID: 3960742486985090845}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 3326861750246731016}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 1126741262648113095}
+    completeGO: {fileID: 7066651252978768031}
+    videoAdGO: {fileID: 811921444640294451}
+    resetDuration: 0
   - characterID: char2
     counterText: {fileID: 8203335535145982252}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 8209348848165130381}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 4502940613772376530}
+    completeGO: {fileID: 7718878749146350818}
+    videoAdGO: {fileID: 9010647985348310190}
+    resetDuration: 0
   - characterID: char3
     counterText: {fileID: 9199009042207743630}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 3065825142618518491}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 6856256616288483174}
+    completeGO: {fileID: 3538662400282111173}
+    videoAdGO: {fileID: 6493798627959756965}
+    resetDuration: 0
   - characterID: char4
     counterText: {fileID: 1378181478178621283}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 4887390784466888778}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 6493893451922599929}
+    completeGO: {fileID: 4021666927498616807}
+    videoAdGO: {fileID: 6065958419335404036}
+    resetDuration: 0
   - characterID: char5
     counterText: {fileID: 1175281474340943824}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 575122893227554291}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 3690777198624096983}
+    completeGO: {fileID: 7791443277606072136}
+    videoAdGO: {fileID: 427488671580944217}
+    resetDuration: 0
   - characterID: char6
     counterText: {fileID: 1437553826339334840}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 8951605475097368188}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 474712263181217223}
+    completeGO: {fileID: 1583696581155823647}
+    videoAdGO: {fileID: 378964215394071516}
+    resetDuration: 0
   - characterID: char7
     counterText: {fileID: 7741781122245944923}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 8123702430366910184}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 6128553272040372105}
+    completeGO: {fileID: 4344452590098771145}
+    videoAdGO: {fileID: 3312595971299177774}
+    resetDuration: 0
   - characterID: char8
     counterText: {fileID: 1536860068450302825}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 8167957024948092935}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 2626411324443122703}
+    completeGO: {fileID: 6776741818372753483}
+    videoAdGO: {fileID: 6089826104496981552}
+    resetDuration: 0
   - characterID: char9
     counterText: {fileID: 1412143289003473896}
-    rewardButton: {fileID: 0}
+    rewardButton: {fileID: 8576714486431624781}
     currentCount: 0
     totalCount: 10
     counterImage: {fileID: 7626997973052702423}
-  rewardButton: {fileID: 0}
+    completeGO: {fileID: 4913696248334209635}
+    videoAdGO: {fileID: 5590941365500626024}
+    resetDuration: 0
 --- !u!1 &5970898633139867295
 GameObject:
   m_ObjectHideFlags: 0
@@ -21055,7 +21086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8155186606773142481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24110,7 +24141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8646985141514729668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24196,6 +24227,7 @@ MonoBehaviour:
   OnForeGroundReObtained:
     m_PersistentCalls:
       m_Calls: []
+  effect: {fileID: 3675454574957924395, guid: 4b803dabcb8b48a4e89d3378edd713a0, type: 3}
   StopCarEngine: {fileID: 11400000, guid: 84fda770b14eeac41992c336534c0831, type: 2}
   StartCarEngine: {fileID: 11400000, guid: 3ad4ce3a0edcbc147be82f9064312be1, type: 2}
   adsController: {fileID: 11400000, guid: 43161c1f9a8235749aed46dbd52570b2, type: 2}

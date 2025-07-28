@@ -2,6 +2,7 @@ using deVoid.UIFramework;
 //using fbg;
 using TheKnights.SaveFileSystem;
 using Unity.Services.Analytics;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 
 public class MainMenuManager : AWindowController
 {
+    [SerializeField] GameObject effect;
     public GameEvent StopCarEngine, StartCarEngine;
     [SerializeField] private AdsController adsController;
     [SerializeField] private GameEvent cutSceneStarted;
@@ -29,8 +31,11 @@ public class MainMenuManager : AWindowController
     //private Coroutine StartCutSceneDelayRoutineRef;
     private bool cutSceneHasStarted = false;
 
+    public static MainMenuManager Instance;
+
     protected override void Awake()
     {
+        Instance = this;
         base.Awake();
     }
 
@@ -47,6 +52,7 @@ public class MainMenuManager : AWindowController
         /*cameraRefrence = CameraManager.Instance.camera;
         cameraParent = CameraManager.Instance.cameraParent;*/
         parent = CameraManager.Instance.parent;
+        GameObject gb = Instantiate(effect,transform);
     }
 
     public void OnClickLeaderBoard()

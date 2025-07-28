@@ -634,4 +634,9 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
         //UnityEngine.Console.LogError($"CarSelectionScreen_{eventName}_{carName}");
     }
+    public void CarPanelOpen(string panelName)
+    {
+        MainMenuManager.Instance.OpenTheWindow(panelName);
+
+    }
 }

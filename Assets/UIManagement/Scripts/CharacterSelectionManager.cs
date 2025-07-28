@@ -480,4 +480,9 @@ public class CharacterSelectionManager : AWindowController
     {
         AnalyticsManager.CustomData("CharacterSelectionScreen_CharacterSelect", new Dictionary<string, object> { { "CharacterName", characterName } });
     }
+    public void CarPanelOpen(string panelName)
+    {
+        MainMenuManager.Instance.OpenTheWindow(panelName);
+
+    }
 }

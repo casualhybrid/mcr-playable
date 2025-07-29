@@ -52,7 +52,7 @@ public class PanelTransformModifierBasedOnBannerAds : MonoBehaviour
         if (totalHeight == safeAreaHeight)
             return;
 
-        rectTransform.SetTop((totalHeight - (safeAreaRect.position.y + safeAreaRect.height)) / parentCanvas.scaleFactor);
+        ///rectTransform.SetTop((totalHeight - (safeAreaRect.position.y + safeAreaRect.height)) / parentCanvas.scaleFactor);
         rectTransform.SetBottom(safeAreaRect.position.y / parentCanvas.scaleFactor);
     }
 

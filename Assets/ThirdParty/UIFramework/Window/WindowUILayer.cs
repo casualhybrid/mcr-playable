@@ -220,7 +220,7 @@ namespace deVoid.UIFramework
             AddTransition(windowEntry.Screen);
 
             if (windowEntry.Screen.IsPopup) {
-                priorityParaLayer.DarkenBG();
+                //priorityParaLayer.DarkenBG();
             }
 
             CurrentWindow = windowEntry.Screen;

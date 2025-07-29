@@ -119,7 +119,8 @@ public class AdsInvoker : MonoBehaviour
     {
         if (loadingScreensCount >= 1)
         {
-            adsController.ShowSmallBannerAd("LoadingScreen");
+            //adsController.ShowSmallBannerAd("LoadingScreen");
+            adsController.HideSmallBanner();
         }
 
         loadingScreensCount++;
@@ -245,7 +246,8 @@ public class AdsInvoker : MonoBehaviour
 
     private void ShowMainMenuBannerAd(GameEvent gameEvent)
     {
-        adsController.ShowSmallBannerAd("MainMenuPanel");
+        //adsController.ShowSmallBannerAd("MainMenuPanel");
+        adsController.HideSmallBanner();
     }
 
     private void HandleUIScreensOpened(string screenID, ScreenOperation screenOperation, ScreenType screenType)

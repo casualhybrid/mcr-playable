@@ -38,6 +38,7 @@ public class MainMenuManager : AWindowController
         Instance = this;
         base.Awake();
     }
+   
 
     private void Start()
     {
@@ -53,6 +54,8 @@ public class MainMenuManager : AWindowController
         cameraParent = CameraManager.Instance.cameraParent;*/
         parent = CameraManager.Instance.parent;
         GameObject gb = Instantiate(effect,transform);
+        adsController.HideSmallBanner();
+
     }
 
     public void OnClickLeaderBoard()

@@ -21,6 +21,7 @@ public class PlayerLevelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalGems;
     [SerializeField] private TextMeshProUGUI highScore;
     [SerializeField] private TextMeshProUGUI highScorepROFILE;
+    [SerializeField] private TextMeshProUGUI highScoreMainMenu;
     [SerializeField] private TextMeshProUGUI totalEnergies;
     [SerializeField] private TextMeshProUGUI totalEnergiesRefrence;
 
@@ -47,13 +48,14 @@ public class PlayerLevelUI : MonoBehaviour
 
         float sliderVal = Mathf.Clamp01(playerLevelObj.GetPlayerCurrentXP() / playerLevelObj.GetXPNeededForNextLevel());
         playerLevelSlider.value = sliderVal;
-        playerName.text = saveManager.MainSaveFile.leaderBoardUserName;
-        profileName.text = playerName.text;
+        playerName.text = /*saveManager.MainSaveFile.leaderBoardUserName;*/PlayerPrefs.GetString("PlayerName","Your Name");
+        profileName.text = /*playerName.text;*/PlayerPrefs.GetString("PlayerName","Your Name");
         //Profile
         totalCoins.text = playerInventoryObj.GetIntKeyValue("AccountCoins").ToString(); ;
         totalGems.text = playerInventoryObj.GetIntKeyValue("AccountDiamonds").ToString();
         highScore.text = gameplayInventoryObj.GetPlayerHighestScore().ToString();
         highScorepROFILE.text = highScore.text;
+        highScoreMainMenu.text=highScore.text;
         playerLevelTxtProfile.text = "LEVEL " + playerLevelTxt.text;
         StartCoroutine(WaitForBoster());
         //Debug.Log("HighScore : "+ gameplayInventoryObj.GetPlayerHighestScore());
@@ -66,7 +68,7 @@ public class PlayerLevelUI : MonoBehaviour
     }
     void Start()
     {
-        string savedName = PlayerPrefs.GetString("PlayerName", "");
+        string savedName = PlayerPrefs.GetString("PlayerName", "Your Name");
         //nameInput.text = savedName;
         playerName.text = savedName;
         profileName.text = savedName;

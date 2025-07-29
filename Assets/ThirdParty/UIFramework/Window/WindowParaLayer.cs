@@ -10,7 +10,7 @@ namespace deVoid.UIFramework {
         [SerializeField] 
         private GameObject darkenBgObject = null;
 
-        private List<GameObject> containedScreens = new List<GameObject>();
+        public List<GameObject> containedScreens = new List<GameObject>();
         
         public void AddScreen(Transform screenRectTransform) {
             screenRectTransform.SetParent(transform, false);

@@ -499,8 +499,8 @@ public class ReviveManager : AWindowController
         if (sessionInventoryObj.GetIntKeyValue("GameMysteryBox") > 0)
         {
             panelsToProcessOnCompletionQueue.Enqueue(() => {
-                lastCompletionPanelOpened = ScreenIds.MysteryBoxPanel;
-                OpenTheWindow(ScreenIds.MysteryBoxPanel);
+                lastCompletionPanelOpened = ScreenIds.MysteryBoxPanelDailyReward;
+                OpenTheWindow(ScreenIds.MysteryBoxPanelDailyReward);
             });
         }
         if (showHighScreenScreen)

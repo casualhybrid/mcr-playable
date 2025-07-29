@@ -27,7 +27,7 @@ namespace Knights.UISystem {
 
         public const string MysteryBoxPanelShop = "MysteryBoxPanelShop";
 
-        public const string MysteryBoxPanel = "MysteryBoxPanel";
+        public const string MysteryBoxPanel = "MysteryBoxPanelDailyReward";
 
         public const string MysteryBoxPanelDailyReward = "MysteryBoxPanelDailyReward";
 

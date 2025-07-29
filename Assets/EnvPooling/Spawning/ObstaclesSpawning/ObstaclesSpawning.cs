@@ -163,7 +163,7 @@ public class ObstaclesSpawning : MonoBehaviour, IFloatingReset
         gameHasStarted.TheEvent.RemoveListener(HandleGameHasStarted);
         cutsceneStarted.TheEvent.RemoveListener(HandleCutsceneStarted);
     }
-
+    private int frameCounter = 0;
     private void Update()
     {
         if (!hasGameStarted)
@@ -174,7 +174,11 @@ public class ObstaclesSpawning : MonoBehaviour, IFloatingReset
 
         //  UnityEngine.Console.Log($"Current Diff Rating {difficultyScaleSO.currentPlayerDifficultyRating}");
         //UnityEngine.Console.Log($"Is Skill Placement {saveManager.MainSaveFile.isSkillPlacement}");
-        GenerateObstalcesIfNeeded();
+        frameCounter++;
+        if (frameCounter % 5 == 0) // Run every 10 frames (roughly every 0.17s at 60fps)
+        {
+            GenerateObstalcesIfNeeded();
+        }
     }
 
     #endregion Unity Callbacks
@@ -268,7 +272,7 @@ public class ObstaclesSpawning : MonoBehaviour, IFloatingReset
 
     private void GenerateObstalcesIfNeeded(bool forceGenerateObstacle = false)
     {
-        Debug.LogError("LogsMohsin");
+        
         float distanceBetweenNextRowGenerationPointAndPlayer = nextRowGenerationPointZ - playerSharedData.PlayerTransform.position.z;
         float totalObstacleSpawnFogSafeDistance = RenderSettings.fogEndDistance + obstacleSpawnAdditionalFogSafeDistance;
 

@@ -314,6 +314,7 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
         }
 
         MyStateMachine.OnTriggerEnter(other);
+        Debug.LogError("TrigerHere:");
     }
 
     private void OnTriggerExit(Collider other)

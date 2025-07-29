@@ -4,6 +4,8 @@ using UnityEngine;
 using deVoid.UIFramework;
 using UnityEngine.UI;
 using Knights.UISystem;
+using TMPro;
+//using Sirenix.OdinInspector.Editor;
 
 [System.Serializable]
 public class GamePlayPowerupRewardProperties : WindowProperties
@@ -16,6 +18,11 @@ public class GamePlayRewardedPowerUpScreen : AWindowController<GamePlayPowerupRe
     [SerializeField] private Image powerupImage;
     [SerializeField] private RewardedPowerUpInGameADSO powerupRewardedSO;
 
+   
+
+   
+   
+
     protected override void OnPropertiesSet()
     {
         base.OnPropertiesSet();
@@ -23,6 +30,7 @@ public class GamePlayRewardedPowerUpScreen : AWindowController<GamePlayPowerupRe
         Sprite sprite = Properties.PowerUpMetaData.Sprite;
         powerupImage.sprite = sprite;
         powerupRewardedSO.AddThisItemToMetaDisplayData(new RewardedADRewardMetaData(sprite,0));
+       // Timer();
     }
 
     public void WatchPowerupRewarded()
@@ -34,4 +42,26 @@ public class GamePlayRewardedPowerUpScreen : AWindowController<GamePlayPowerupRe
     {
         UI_Close();
     }
+   /* public void Timer()
+    {
+        Debug.Log("TimerStart");
+        StartCoroutine(StartCountdown());
+    }*/
+   /* private IEnumerator StartCountdown()
+    {
+        float timer = 10f;
+
+        while (timer > 0)
+        {
+            timeText.text = Mathf.CeilToInt(timer).ToString();
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        CloseWindow();
+
+
+
+
+
+    }*/
 }

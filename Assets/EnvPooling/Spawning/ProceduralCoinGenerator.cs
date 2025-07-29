@@ -1146,7 +1146,8 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
         // Debug.LogError ($".....................Probability of {data.GetPickupType} is........... {condition.currentProbability}");
 
         // if (distanceCoveredAfterLastPickupSpawned >= data.GetMinimumDistanceBeforeSpawn || condition.lastSpawnedZPosition == -1f)
-        if (distanceCoveredAfterLastPickupSpawned >= 190 || condition.lastSpawnedZPosition == -1f) //380
+        //if (distanceCoveredAfterLastPickupSpawned >= 190 || condition.lastSpawnedZPosition == 380f) //380
+        if (distanceCoveredAfterLastPickupSpawned >= data.GetMinimumDistanceBeforeSpawn || condition.lastSpawnedZPosition == -1f)
         {
             if (data.GetPickupType == specialPickupsEnumSO.FigurinePickup)
             {

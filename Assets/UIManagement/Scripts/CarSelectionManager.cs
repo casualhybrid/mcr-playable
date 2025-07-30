@@ -69,6 +69,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     private Tween selectButtonPunchTween;
 
     private int timesEnabled;
+    [SerializeField] GameObject profile;
 
     protected override void Awake()
     {
@@ -78,6 +79,8 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     private void OnEnable()
     {
+        if (profile)
+            profile.SetActive(false);
         timesEnabled++;
 
         selectedCarIndex = -1;

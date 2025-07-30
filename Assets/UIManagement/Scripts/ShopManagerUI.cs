@@ -14,6 +14,7 @@ using UnityEngine.UI;
 
 public class ShopManagerUI : AWindowController
 {
+    [SerializeField] GameObject profile;
     public SaveManager saveManagerObj;
     public IAPManager iAPManagerObj;
     public InventorySystem inventoryObj;
@@ -51,6 +52,8 @@ public class ShopManagerUI : AWindowController
 
     private void OnEnable()
     {
+        if (profile)
+            profile.SetActive(false);
         StartCoroutine(WaitForAFrameAndEnableScrollRect());
         SnapTo();
         //iAPManagerObj.OnIAPInitializationFailed.AddListener(() => { ChangeFeedBackText("Initialization Failed"); });

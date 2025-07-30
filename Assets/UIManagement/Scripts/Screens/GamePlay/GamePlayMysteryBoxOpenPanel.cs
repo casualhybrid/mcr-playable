@@ -104,6 +104,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
 
         openBoxBtn.onClick.AddListener(delegate ()
         {
+            Debug.LogError("Click");
             openRewardPanel.SetActive(true);
             claimPanel.SetActive(false);
             backBtn.gameObject.SetActive(false);

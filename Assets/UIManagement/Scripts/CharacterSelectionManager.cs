@@ -48,6 +48,8 @@ public class CharacterSelectionManager : AWindowController
     [SerializeField] private Animator animatorToDisable;
     private float time;
     private AsyncOperationSpawning<PlayerCharacterAssets> currentlyActiveCharacterAssetLoadingHandler;
+
+    [SerializeField] GameObject profile;
  //   private Camera uiCamera;
 
     protected override void Awake()
@@ -58,6 +60,8 @@ public class CharacterSelectionManager : AWindowController
 
     private void OnEnable()
     {
+        if (profile)
+            profile.SetActive(false);
         //PlayerPrefs.SetInt("figurinePartsCount0", 3);
         time = GetCurrentAnimatorTime(animatorToDisable);
         StartCoroutine(turnOfAnimator());

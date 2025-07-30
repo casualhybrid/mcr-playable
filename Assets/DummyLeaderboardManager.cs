@@ -14,6 +14,7 @@ public class LeaderboardRow
 
 public class DummyLeaderboardManager : MonoBehaviour
 {
+    [SerializeField] GameObject profile;
     [Header("Dependencies")]
     [SerializeField] private GamePlaySessionInventory gamePlaySessionInventory;
 
@@ -32,6 +33,7 @@ public class DummyLeaderboardManager : MonoBehaviour
     private void OnEnable()
     {
         SetupDummyLeaderboard();
+        profile.SetActive(false);
     }
 
     void SetupDummyLeaderboard()

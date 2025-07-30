@@ -15535,22 +15535,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2335361291582950506}
+  m_TargetGraphic: {fileID: 836713913763446196}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7356884273679968861}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: DORestart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 5938051291009298865}
         m_TargetAssemblyTypeName: 
         m_MethodName: OpenTheWindow
@@ -15560,7 +15548,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: CarSelectionPanel
+          m_StringArgument: GoalsPanel
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5938051291009298865}
@@ -15572,10 +15560,10 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainMenuScreen_CarSelection_Btn_Click
+          m_StringArgument: MainMenuScreen_DailyGoals_Btn_Click
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1713611246031985363}
+      - m_Target: {fileID: 3836607890904912435}
         m_TargetAssemblyTypeName: 
         m_MethodName: ShootAudioEvent
         m_Mode: 1
@@ -16476,7 +16464,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1551655295338212384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7949658800442721033}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4820104187509584161
 GameObject:
   m_ObjectHideFlags: 0
@@ -30385,30 +30385,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5938051291009298865}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OpenTheWindow
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GoalsPanel
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5938051291009298865}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SendEvents
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MainMenuScreen_DailyGoals_Btn_Click
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 3836607890904912435}
         m_TargetAssemblyTypeName: 
         m_MethodName: ShootAudioEvent
@@ -30420,6 +30396,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7949658800442721033}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &5696488770572770993
 MonoBehaviour:
@@ -34298,7 +34286,7 @@ GameObject:
   - component: {fileID: 6187906894316840752}
   - component: {fileID: 7866956978089067598}
   m_Layer: 5
-  m_Name: BGPanel
+  m_Name: DailyLogin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37453,11 +37441,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 5938051291009298865}
-    - target: {fileID: 694068463763131132, guid: 34d5f94884af3c2409a763945f3e4d7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1302223815018900041, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.Prefab

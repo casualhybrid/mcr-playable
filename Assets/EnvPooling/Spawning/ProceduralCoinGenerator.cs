@@ -144,33 +144,38 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
         float zDistanceLastObstacle = ObstaclesSpawning.coinSpawnEndPoint;
         float origin = ObstaclesSpawning.coinSpawnStartPoint;
 
-        float diffFromLastCoinSpawned = ObstaclesSpawning.coinSpawnStartPoint - lastZCoinPosition;
+        float diffFromLastCoinSpawned = origin - lastZCoinPosition;
 
         if (diffFromLastCoinSpawned < minimumDistanceBetweenBatchOfCoins && lastZCoinPosition != -1f)
         {
             float offsetOrigin = minimumDistanceBetweenBatchOfCoins - diffFromLastCoinSpawned;
-
-            offsetOrigin = origin + offsetOrigin >= ObstaclesSpawning.coinSpawnEndPoint ? 0 : offsetOrigin;
-
+            offsetOrigin = origin + offsetOrigin >= zDistanceLastObstacle ? 0 : offsetOrigin;
             origin = origin + offsetOrigin;
-
-            // UnityEngine.Console.LogError($"Added Offset {offsetOrigin} and now the origin is {origin} and LastZCoinPosition Is {lastZCoinPosition}");
         }
 
-        Debug.DrawRay(new Vector3(0, 0, origin), Vector3.up * 100f, Color.white, 5);
-        Debug.DrawRay(new Vector3(0, 0, ObstaclesSpawning.coinSpawnEndPoint), Vector3.up * 100f, Color.red, 5);
+        // Delay one frame to reduce spike if called in bursts
+        yield return null;
+
+        Debug.DrawRay(new Vector3(0, 0, origin), Vector3.up * 100f, Color.white, 5f);
+        Debug.DrawRay(new Vector3(0, 0, zDistanceLastObstacle), Vector3.up * 100f, Color.red, 5f);
+
+        // Minor delay before coin array instantiation (helps smooth frame)
+        yield return null;
 
         CoinsArray theCoinArray = InstantiateCoinsArray(new Vector3(0, 0, origin));
 
         if (waitForFixedUpdate)
-        {
             yield return new WaitForFixedUpdate();
-        }
+        else
+            yield return null;
 
+        // Delay before heavy generation
+        yield return null;
+
+        // Main coin generation (consider batching this inside the method too)
         GenerateProceduralCoins(origin, theCoinArray, zDistanceLastObstacle, justSpawnMultiRowCoins);
-
-        //  Debug.Break();
     }
+
 
     [Button("GenerateCoins")]
     public void GenerateProceduralCoins(float origin, CoinsArray theCoinArray, float zDistanceWhereLastObstacleEnded, bool justSpawnMultiRowCoins = false)

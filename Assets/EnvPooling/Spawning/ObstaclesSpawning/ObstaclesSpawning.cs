@@ -175,7 +175,7 @@ public class ObstaclesSpawning : MonoBehaviour, IFloatingReset
         //  UnityEngine.Console.Log($"Current Diff Rating {difficultyScaleSO.currentPlayerDifficultyRating}");
         //UnityEngine.Console.Log($"Is Skill Placement {saveManager.MainSaveFile.isSkillPlacement}");
         frameCounter++;
-        if (frameCounter % 5 == 0) // Run every 10 frames (roughly every 0.17s at 60fps)
+        if (frameCounter % 10 == 0) // Run every 10 frames (roughly every 0.17s at 60fps)
         {
             GenerateObstalcesIfNeeded();
         }

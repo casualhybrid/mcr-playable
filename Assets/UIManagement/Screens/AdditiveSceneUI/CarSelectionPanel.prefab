@@ -2496,8 +2496,8 @@ RectTransform:
   m_Father: {fileID: 5934064163115155020}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.66944915, y: -0.016547881}
-  m_AnchorMax: {x: 1.0095612, y: 1}
+  m_AnchorMin: {x: 0.6680394, y: -0.08049511}
+  m_AnchorMax: {x: 1.0091964, y: 1.0167047}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2716,8 +2716,6 @@ GameObject:
   - component: {fileID: 4991216437494790138}
   - component: {fileID: 8677102685146615683}
   - component: {fileID: 2346120223095729118}
-  - component: {fileID: 7121471586427308877}
-  - component: {fileID: 6726171150624498570}
   - component: {fileID: 550141313680775104}
   m_Layer: 5
   m_Name: CarSelectionPanel
@@ -2725,7 +2723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4991216437494790138
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2786,42 +2784,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7121471586427308877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299541437300826318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0ffd164e4450f439d7c219e6c88ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: 2
-  isOutAnimation: 0
-  duration: 0.1
-  doFade: 1
-  fadeDurationPercent: 0.1
-  ease: 1
---- !u!114 &6726171150624498570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299541437300826318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0ffd164e4450f439d7c219e6c88ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: 1
-  isOutAnimation: 1
-  duration: 0.25
-  doFade: 1
-  fadeDurationPercent: 0.25
-  ease: 1
 --- !u!114 &550141313680775104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2834,8 +2796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495188dede04dc54d9680ad82c536e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animIn: {fileID: 7121471586427308877}
-  animOut: {fileID: 6726171150624498570}
+  animIn: {fileID: 0}
+  animOut: {fileID: 0}
   properties:
     hideOnForegroundLost: 1
     windowQueuePriority: 0
@@ -3063,7 +3025,7 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 260, y: 204.3}
   m_Spacing: {x: 105, y: 28}
-  m_Constraint: 2
+  m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1549856778870784897
 MonoBehaviour:
@@ -3760,16 +3722,15 @@ RectTransform:
   - {fileID: 8068444177374187009}
   - {fileID: 6738192075132843675}
   - {fileID: 524770747050678870}
-  - {fileID: 7309039199887804841}
   - {fileID: 5086355275903803747}
   - {fileID: 1876573067920071915}
   m_Father: {fileID: 8930782297854671351}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.1317454}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 85.0155}
-  m_SizeDelta: {x: 0, y: -170.031}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &3235629568547529149
 Animator:
@@ -4890,7 +4851,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2820394531452331874}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3033686879454826112
 GameObject:
@@ -5137,8 +5098,8 @@ RectTransform:
   m_Father: {fileID: 5934064163115155020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: -0.010774898, y: -0.016547881}
-  m_AnchorMax: {x: 0.32933712, y: 1}
+  m_AnchorMin: {x: -0.011244811, y: -0.073763825}
+  m_AnchorMax: {x: 0.32991216, y: 1.023436}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6300,8 +6261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 49.257324}
-  m_SizeDelta: {x: 0, y: -261.4924}
+  m_AnchoredPosition: {x: 0, y: 104.5}
+  m_SizeDelta: {x: 0, y: -209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1330683644974088888
 CanvasRenderer:
@@ -6420,11 +6381,12 @@ RectTransform:
   - {fileID: 651111173072546089}
   - {fileID: 2868673870249520982}
   - {fileID: 455932289912052986}
+  - {fileID: 7309039199887804841}
   m_Father: {fileID: 3192799678350652480}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: -0.29824173}
-  m_AnchorMax: {x: 0.9882365, y: 0.0037669917}
+  m_AnchorMin: {x: -0.000000056514033, y: -0.26718926}
+  m_AnchorMax: {x: 0.9852095, y: 0.018458936}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6462,8 +6424,8 @@ RectTransform:
   m_Father: {fileID: 5934064163115155020}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.32933712, y: -0.016547881}
-  m_AnchorMax: {x: 0.66944915, y: 1}
+  m_AnchorMin: {x: 0.32792738, y: -0.07712947}
+  m_AnchorMax: {x: 0.6690843, y: 1.013339}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6549,6 +6511,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 550141313680775104}
+        m_TargetAssemblyTypeName: deVoid.UIFramework.AWindowController`1[[CarAvailableProperties,
+          Assembly-CSharp
+        m_MethodName: UI_Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 550141313680775104}
         m_TargetAssemblyTypeName: CarSelectionManager, Assembly-CSharp
         m_MethodName: CarPanelOpen
@@ -6865,13 +6840,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7700472978029601649}
-  m_Father: {fileID: 2820394531452331874}
-  m_RootOrder: 4
+  m_Father: {fileID: 5934064163115155020}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.47333333, y: 0.0058147507}
-  m_AnchorMax: {x: 0.47333333, y: 0.0058147507}
-  m_AnchoredPosition: {x: 0, y: 45}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0.44444445, y: 0.008753199}
+  m_AnchorMax: {x: 0.5555556, y: 0.07732584}
+  m_AnchoredPosition: {x: -3.2228394, y: -92.016235}
+  m_SizeDelta: {x: 1.9720459, y: 108.40457}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6667108314895057677
 CanvasRenderer:
@@ -8468,7 +8443,7 @@ RectTransform:
   m_Children:
   - {fileID: 521346021261956063}
   m_Father: {fileID: 2820394531452331874}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9583,10 +9558,10 @@ RectTransform:
   m_Father: {fileID: 8540878004452133357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.64200044}
-  m_AnchorMax: {x: 1, y: 1.0000024}
-  m_AnchoredPosition: {x: 0, y: -86.07153}
-  m_SizeDelta: {x: 0, y: 92.1431}
+  m_AnchorMin: {x: 0, y: 0.4723182}
+  m_AnchorMax: {x: 1, y: 0.9725719}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7936935230232863901
 CanvasRenderer:
@@ -11070,6 +11045,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1876573067920071915}
     m_Modifications:
+    - target: {fileID: 6194376917100786879, guid: 921833ea53bdf594c8fbc1242641f704,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6194376917100786879, guid: 921833ea53bdf594c8fbc1242641f704,
         type: 3}
       propertyPath: m_Materials.Array.size

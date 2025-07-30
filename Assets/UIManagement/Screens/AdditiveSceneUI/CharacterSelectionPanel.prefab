@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -671,10 +671,10 @@ RectTransform:
   m_Father: {fileID: 4845290121680749458}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.66944915, y: -0.016547881}
-  m_AnchorMax: {x: 1.0095612, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 900, y: -81.5}
+  m_SizeDelta: {x: 363, y: 163}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8010857816597450890
 CanvasRenderer:
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 264, y: 388}
+  m_CellSize: {x: 274, y: 398}
   m_Spacing: {x: 108, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -2274,8 +2274,6 @@ GameObject:
   - component: {fileID: 6953237948661001492}
   - component: {fileID: 6724370260486739309}
   - component: {fileID: 411399994163654960}
-  - component: {fileID: -5515085545937138792}
-  - component: {fileID: 7419034843439943732}
   - component: {fileID: 242027250729240790}
   m_Layer: 5
   m_Name: CharacterSelectionPanel
@@ -2344,42 +2342,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-5515085545937138792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2383159212840630816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0ffd164e4450f439d7c219e6c88ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: 2
-  isOutAnimation: 0
-  duration: 0.1
-  doFade: 1
-  fadeDurationPercent: 0.1
-  ease: 1
---- !u!114 &7419034843439943732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2383159212840630816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0ffd164e4450f439d7c219e6c88ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: 1
-  isOutAnimation: 1
-  duration: 0.25
-  doFade: 1
-  fadeDurationPercent: 0.25
-  ease: 1
 --- !u!114 &242027250729240790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2392,8 +2354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03af6ada25f4634c9a632a7ed2deb98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animIn: {fileID: -5515085545937138792}
-  animOut: {fileID: 7419034843439943732}
+  animIn: {fileID: 0}
+  animOut: {fileID: 0}
   properties:
     hideOnForegroundLost: 1
     windowQueuePriority: 0
@@ -2709,7 +2671,6 @@ RectTransform:
   - {fileID: 166669830613654824}
   - {fileID: 7522944101328837189}
   - {fileID: 4741075326509115684}
-  - {fileID: 6846348279388074608}
   - {fileID: 8140671658026921633}
   - {fileID: 8939017581915781222}
   m_Father: {fileID: 6962130044151081069}
@@ -3191,7 +3152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -3323,10 +3284,10 @@ RectTransform:
   m_Father: {fileID: 4845290121680749458}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: -0.010774898, y: -0.016547881}
-  m_AnchorMax: {x: 0.32933712, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 173.5, y: -81}
+  m_SizeDelta: {x: 364, y: 162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4101560433727110487
 CanvasRenderer:
@@ -3410,6 +3371,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 242027250729240790}
+        m_TargetAssemblyTypeName: deVoid.UIFramework.AWindowController`1[[deVoid.UIFramework.WindowProperties,
+          Assembly-CSharp
+        m_MethodName: UI_Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 242027250729240790}
         m_TargetAssemblyTypeName: CharacterSelectionManager, Assembly-CSharp
         m_MethodName: CarPanelOpen
@@ -4324,12 +4298,13 @@ RectTransform:
   - {fileID: 1208113330165736501}
   - {fileID: 3223570116751962193}
   - {fileID: 461581215388353714}
+  - {fileID: 6846348279388074608}
   m_Father: {fileID: 5542447190673109556}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.009259259, y: -0.10812888}
-  m_AnchorMax: {x: 0.9974958, y: 0.0056048096}
-  m_AnchoredPosition: {x: 0, y: 11}
+  m_AnchorMin: {x: 0.000013337312, y: -0.100067005}
+  m_AnchorMax: {x: 0.99723554, y: 0.025936516}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5206124567524523683
@@ -5018,7 +4993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -6109,10 +6084,10 @@ RectTransform:
   m_Father: {fileID: 4845290121680749458}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.32933712, y: -0.016547881}
-  m_AnchorMax: {x: 0.66944915, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 537, y: -81}
+  m_SizeDelta: {x: 363, y: 162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4951517079494591425
 CanvasRenderer:
@@ -6356,7 +6331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -6825,7 +6800,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2763116201085713386}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6998,7 +6973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -7276,7 +7251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -7499,13 +7474,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1810821643016492356}
-  m_Father: {fileID: 2763116201085713386}
-  m_RootOrder: 4
+  m_Father: {fileID: 4845290121680749458}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -60, y: 60}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0.44036543, y: -0.7909341}
+  m_AnchorMax: {x: 0.55279917, y: -0.042555362}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_SizeDelta: {x: 0, y: -0.000061035156}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7416200026778515668
 CanvasRenderer:
@@ -7638,7 +7613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -7760,7 +7735,7 @@ RectTransform:
   m_Children:
   - {fileID: 4042950385626224380}
   m_Father: {fileID: 2763116201085713386}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8444,11 +8419,12 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1302223815018900041, guid: 34d5f94884af3c2409a763945f3e4d7a,
+        type: 3}
     - target: {fileID: 1302223815018900041, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.SerializedFormat
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1401835321438445794, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
@@ -8564,11 +8540,12 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2768650016614399214, guid: 34d5f94884af3c2409a763945f3e4d7a,
+        type: 3}
     - target: {fileID: 2768650016614399214, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.SerializedFormat
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2818151698140343858, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
@@ -8594,11 +8571,12 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4291709032172740483, guid: 34d5f94884af3c2409a763945f3e4d7a,
+        type: 3}
     - target: {fileID: 4291709032172740483, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.SerializedFormat
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5248430623494096070, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
@@ -8619,11 +8597,12 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6191041679249954958, guid: 34d5f94884af3c2409a763945f3e4d7a,
+        type: 3}
     - target: {fileID: 6191041679249954958, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.SerializedFormat
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6397595300833782292, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
@@ -8674,11 +8653,12 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7784365086412235312, guid: 34d5f94884af3c2409a763945f3e4d7a,
+        type: 3}
     - target: {fileID: 7784365086412235312, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.SerializedFormat
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7946514555625920251, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}

@@ -10,6 +10,8 @@ public class WaterParkExit : MonoBehaviour
 
     [SerializeField] GameObject mirrorBreak;
     [SerializeField] GameObject mirrorBrea2;
+
+    [SerializeField] AudioSource audioSound;
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("ParkExit"))
@@ -22,6 +24,7 @@ public class WaterParkExit : MonoBehaviour
         {
             mirrorBreak.SetActive(false);
             mirrorBrea2.SetActive(false);
+            other.gameObject.GetComponent<AudioSource>().Play();
         }
     }
 

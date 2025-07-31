@@ -19,6 +19,13 @@ public class WaterParkEnter : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        //Debug.LogError("FalseDone");
+        isEnter = false;
+        water.SetActive(false);
+        water1.SetActive(false);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Park"))

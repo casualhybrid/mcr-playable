@@ -55,6 +55,10 @@ public class MainMenuManager : AWindowController
         parent = CameraManager.Instance.parent;
         GameObject gb = Instantiate(effect,transform);
         adsController.HideSmallBanner();
+        if(gameObject.transform.GetChild(2))
+        {
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        }
 
     }
 

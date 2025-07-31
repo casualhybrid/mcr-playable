@@ -68,6 +68,14 @@ public class MainMenuManager : AWindowController
          leaderBoardPanel.SetActive(true);
 
     }
+    public void OnClickCounterClick()
+    {
+        adsController.ShowSmallBannerAd("MainMenuPanel");
+    }
+    public void CloseCounterClick()
+    {
+        adsController.HideSmallBanner();
+    }
     public void OnClickClose()
     {
         leaderBoardPanel.SetActive(false);

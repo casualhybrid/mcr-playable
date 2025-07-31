@@ -116,5 +116,6 @@ namespace Knights.UISystem {
         public const string InformationPanelScreen = "InformationPanelScreen";
 
         public const string TutorialTextHintPanel = "TutorialTextHintPanel";
+        //public const string Profile = "Profile";
     }
 }

@@ -70,6 +70,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     private int timesEnabled;
     [SerializeField] GameObject profile;
+    //[SerializeField] AdsController adsController;
 
     protected override void Awake()
     {
@@ -95,6 +96,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         SubscribeToEvents();
 
         SetCarAvailableSpriteIfAnyCarIsAvailable();
+       // adsController.ShowSmallBannerAd("CarSelectionPanel");
 
        // OpenUnlockAllCarsPopupIfPossible();
     }

@@ -300,6 +300,11 @@ public class AdsInvoker : MonoBehaviour
                 ShowPauseInterstitial();
              
                 break;
+            case ScreenIds.ShopPanel:
+
+                adsController.ShowSmallBannerAd(ScreenIds.ShopPanel);
+                break;
+
         }
     }
 }

@@ -591,6 +591,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5515473667033036415}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4110491742613462730
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6818576771791220586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1094,7 +1106,7 @@ GameObject:
   - component: {fileID: 206892972559598882}
   m_Layer: 5
   m_Name: InventoryCelebrationPanel
-  m_TagString: Untagged
+  m_TagString: Test
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1247,17 +1259,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  crossButton: {fileID: 0}
   inventorySystem: {fileID: 11400000, guid: 464c952e62c410741ac8d7239ab5fd43, type: 2}
   doubleButton: {fileID: 49647152269429211}
   doubleRewardAdComplete: {fileID: 11400000, guid: d70b4a14b2a9cde42a470c7c936e057d,
     type: 2}
   rewardSprites:
   - {fileID: -3984761210772169627, guid: 882e930e6d8b45140bc7f780c5ad7d2f, type: 3}
-  - {fileID: -3187590417916589641, guid: 882e930e6d8b45140bc7f780c5ad7d2f, type: 3}
-  - {fileID: 1286377094, guid: 882e930e6d8b45140bc7f780c5ad7d2f, type: 3}
-  - {fileID: 6470576480726837386, guid: 32bc8e65e7e159b4494850409394aedc, type: 3}
-  - {fileID: 1316108451078717707, guid: 882e930e6d8b45140bc7f780c5ad7d2f, type: 3}
-  - {fileID: 2786612091330688402, guid: 882e930e6d8b45140bc7f780c5ad7d2f, type: 3}
+  - {fileID: 1310749693, guid: 9fcf979f83695c645a74c64b23569962, type: 3}
+  - {fileID: 2090260131, guid: 1192ca52bfed640459ee91b457752bdf, type: 3}
+  - {fileID: 1260726805, guid: 1192ca52bfed640459ee91b457752bdf, type: 3}
+  - {fileID: 181444292, guid: a28fcb896bac0184fa6df5a08d676ec1, type: 3}
+  - {fileID: -2078042209, guid: a28fcb896bac0184fa6df5a08d676ec1, type: 3}
   RewardKeys:
   - No Ads Package
   - GameMysteryBox
@@ -1899,6 +1912,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1951066708143687860, guid: 00b04a0bef5fceb4884888a8abe7b12b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2038628527792355339, guid: 00b04a0bef5fceb4884888a8abe7b12b,
         type: 3}
       propertyPath: m_IsActive
@@ -2100,7 +2118,7 @@ PrefabInstance:
     - target: {fileID: 7180700532564987456, guid: 00b04a0bef5fceb4884888a8abe7b12b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8103416518974121210, guid: 00b04a0bef5fceb4884888a8abe7b12b,
         type: 3}

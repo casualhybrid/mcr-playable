@@ -68,6 +68,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
     private string headStartInventoryKey = "GameHeadStart";
 
     private List<InventoryItem<int>> pendingItemsToReward;
+    private GameObject test;
 
     private enum State
     {
@@ -87,13 +88,17 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         UpdateUI();
         updateObxNumTxt();
         //mysteryBoxEvent.TheEvent.AddListener(mysteryBoxPanelClose);
+      
     }
 
     private void OnDisable()
     {
+
         UIScreenEvents.OnScreenOperationEventAfterAnimation.RemoveListener(FinishClaimingPartIfInventoryPanelClosed);
         //mysteryBoxEvent.TheEvent.RemoveListener(mysteryBoxPanelClose);
+     
         claimPanel.SetActive(true);
+
     }
 
     private void Start()
@@ -104,12 +109,14 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
 
         openBoxBtn.onClick.AddListener(delegate ()
         {
-            Debug.LogError("Click");
+            
             openRewardPanel.SetActive(true);
             claimPanel.SetActive(false);
             backBtn.gameObject.SetActive(false);
             OpenMysteryBox();
             animator.SetBool("AwardClaimed", false);
+           
+        
         });
 
         closeBtn.onClick.AddListener(delegate ()
@@ -118,7 +125,20 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
             UIScreenEvents.OnScreenOperationEventAfterAnimation.AddListener(FinishClaimingPartIfInventoryPanelClosed);
             closeBtn.gameObject.SetActive(false);
             RewardPendingItems();
+            GameObject test = GameObject.FindWithTag("Test");
+
+           // if (test.transform.GetChild(1).gameObject.name == "InventoryCelebrationPanel(Clone)")
+            
+                Debug.LogError(test.transform.GetChild(0).GetChild(0).gameObject);
+                Debug.LogError(test.transform.GetChild(1).GetChild(0).gameObject);
+                test.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+                test.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+
         });
+    }
+    public void CLose()
+    {
+        
     }
 
     private void FinishClaimingPartIfInventoryPanelClosed(string panel, ScreenOperation operation, ScreenType type)
@@ -135,6 +155,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
 
     private void FinishClaimPart()
     {
+       
         StartCoroutine(WaitAndExecute(() =>
         {
             openRewardPanel.SetActive(false);
@@ -405,7 +426,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
 
         // UnityEngine.Console.Log("Random Number Generated : " + randomItemNumber);
 
-        //    UnityEngine.Console.Log($"MYstery Box Item IS {currentItem}");
+            UnityEngine.Console.Log($"MYstery Box Item IS {currentItem}");
         if (currentItem.Equals(coinKey))
         {
             amount = 250;

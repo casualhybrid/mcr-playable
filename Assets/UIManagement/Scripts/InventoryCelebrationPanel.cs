@@ -23,6 +23,7 @@ public class ACelebrationWindow : AWindowController<CelebrationBatchProperties>
 
 public class InventoryCelebrationPanel : ACelebrationWindow
 {
+    [SerializeField] GameObject crossButton;
     [SerializeField] private InventorySystem inventorySystem;
 
     [SerializeField] private GameObject doubleButton;
@@ -41,18 +42,27 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         if (Properties.isDoubleRewardPossible)
         {
             doubleRewardAdComplete.TheEvent.AddListener(AddDoubleReward);
-            doubleButton.SetActive(true);
+
+            //doubleButton.SetActive(true);
+
         }
         else
         {
             doubleButton.SetActive(false);
+            crossButton.SetActive(false);
         }
+    }
+    public void Close()
+    {
+        crossButton.SetActive(false);
     }
 
     private void OnDisable()
     {
         isDoubled = false;
         doubleRewardAdComplete.TheEvent.RemoveListener(AddDoubleReward);
+        doubleButton.SetActive(false);
+        crossButton.SetActive(false);
     }
 
     protected override void OnPropertiesSet()

@@ -7,7 +7,7 @@ public class UIEffectsHandler : MonoBehaviour
     [SerializeField] private ItemAddEffect itemAddEffect;
     [SerializeField] private Camera cam;
     [SerializeField] private InventoryUpdateEvent updateCelebrationEvent;
-
+    public static Vector2 newPosition;
     private readonly List<ItemAddEffect> itemAddEffectsPooled = new List<ItemAddEffect>();
 
     private void Start()
@@ -43,6 +43,7 @@ public class UIEffectsHandler : MonoBehaviour
     private void UIEffectsChannelOnItemAddEffectRequest(Vector2 initialScreenPos, Vector2 targetScreenPos, string itemName, int noOfItems = -1, bool useHighGradientAlpha = false)
     {
         Vector2 startingLocalPoint, endingLocalPoint;
+        //(-28.- 321, 0);
         ItemAddEffect addEffect;
 
         if (itemAddEffectsPooled.Count == 0)
@@ -65,9 +66,13 @@ public class UIEffectsHandler : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rt, initialScreenPos, cam, out startingLocalPoint);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rt, targetScreenPos, cam, out endingLocalPoint);
 
-      //  UnityEngine.Console.Log($"Starting Is {startingLocalPoint} and ending {endingLocalPoint}");
+        //startingLocalPoint = new Vector2(232f, 585f); 
+        startingLocalPoint = newPosition;
 
+        UnityEngine.Console.Log($"Starting Is {startingLocalPoint} and ending {endingLocalPoint}");
+        
         addEffect.Initialzie(startingLocalPoint, endingLocalPoint, itemName, noOfItems, useHighGradientAlpha);
+        newPosition = new Vector2(0, 0);
     }
 
 

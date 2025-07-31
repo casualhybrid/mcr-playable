@@ -61,7 +61,10 @@ public class MainMenuManager : AWindowController
         }
 
     }
-
+    public void RewardCoinPosition()
+    {
+        UIEffectsHandler.newPosition = new Vector2(232f,585f);
+    }
     public void OnClickLeaderBoard()
     {
 

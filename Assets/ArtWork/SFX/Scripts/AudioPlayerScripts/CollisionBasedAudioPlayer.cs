@@ -15,6 +15,8 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
     [SerializeField] private string triggerTag;
     [SerializeField] private bool isUsingParameter;
     [ShowIf("isUsingParameter")] [SerializeField] private string parameterName;
+    /*[SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;*/
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -22,6 +24,8 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(triggerTag))
             {
+                /*Debug.LogError("AudioTrigger");
+                audioSource.PlayOneShot(audioClip);*/
                 ShootAudioEvent();
             }
         }
@@ -33,6 +37,7 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(triggerTag))
             {
+                //audioSource.PlayOneShot(audioClip);
                 ShootAudioEvent();
             }
         }
@@ -44,6 +49,7 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(triggerTag))
             {
+                //audioSource.PlayOneShot(audioClip);
                 ShootAudioEvent();
             }
         }
@@ -55,6 +61,8 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
         {
             if (other.gameObject.CompareTag(triggerTag))
             {
+                //audioSource.PlayOneShot(audioClip);
+                //audioSource.PlayOneShot(audioClip);
                 ShootAudioEvent();
             }
         }
@@ -67,6 +75,7 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
         {
             if (other.gameObject.CompareTag(triggerTag))
             {
+                //audioSource.PlayOneShot(audioClip);
                 ShootAudioEvent();
             }
         }
@@ -78,6 +87,8 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
         {
             if (other.gameObject.CompareTag(triggerTag))
             {
+                //audioSource.PlayOneShot(audioClip);
+                //audioSource.PlayOneShot(audioClip);
                 ShootAudioEvent();
             }
         }

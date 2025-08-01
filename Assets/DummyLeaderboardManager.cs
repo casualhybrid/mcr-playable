@@ -34,6 +34,7 @@ public class DummyLeaderboardManager : MonoBehaviour
     {
         SetupDummyLeaderboard();
         profile.SetActive(false);
+       // PersistentAudioPlayer.Instance.PanelSounds();
     }
 
     void SetupDummyLeaderboard()

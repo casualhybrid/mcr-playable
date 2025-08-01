@@ -67,6 +67,7 @@ public class GameOverUIManager : AWindowController
         SendGameOverScreenAppearedEvent();
 
         highScoreRibbon.SetActive(GamePlaySessionCompleted.IsHighScoreMadeLastSession);
+        PersistentAudioPlayer.Instance.LevelFailedAudio();
     }
 
     private IEnumerator Start()

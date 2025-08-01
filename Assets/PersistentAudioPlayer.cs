@@ -1,10 +1,11 @@
 using System.Collections;
+//using UnityEditor.Scripting;
 using UnityEngine;
 
 public class PersistentAudioPlayer : MonoBehaviour
 {
     [SerializeField] AdsController adsController;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public float fadeDuration = 1f; // total time for fade
     public float targetVolume = 0.6f; // final volume after fade
     public float restoreDelay = 3f;
@@ -13,14 +14,20 @@ public class PersistentAudioPlayer : MonoBehaviour
     public AudioSource gameplayAudio;
     public GameObject tumTumSound;
     private AudioSource tungTungAudio;
+
     public bool StopMusic = false;
     private AudioSource currentlyPlayingAudio = null;
 
     [SerializeField] GameObject carHitSound;
     private AudioSource carHitAudio;
+
     [Header("CoinSound")]
     [SerializeField] AudioSource audioSourceCoinSFX;
     [SerializeField] AudioClip clip;
+
+    [SerializeField] AudioSource technologiaSound;
+    [SerializeField] AudioSource panelsSounds;
+    [SerializeField] AudioSource rewardSound;
     public static bool isSoundOff;
     // [SerializeField] SettingsManager settingsManager;
     void Awake()
@@ -55,7 +62,7 @@ public class PersistentAudioPlayer : MonoBehaviour
     }
     public void Start()
     {
-        PlayAudio();
+        //PlayAudio();
         CheckMusicStatus();
         //settingsManager.CheckSound();
     }
@@ -103,8 +110,19 @@ public class PersistentAudioPlayer : MonoBehaviour
             audioSource.enabled = true;
         }
     }
+    public void PlayTechnologia()
+    {
+        if (!isSoundOff)
+        {
+            technologiaSound.Play();
+            AudioFade(1.5f);
+        }
+            
+    }
     public void PlayAudio()
     {
+        panelsSounds.Stop();
+        gameplayAudio.Stop();
         if (audioSource != null)
         {
             gameplayAudio.Stop();
@@ -116,6 +134,7 @@ public class PersistentAudioPlayer : MonoBehaviour
                 audioSource.Play();
 
             currentlyPlayingAudio = audioSource;
+           
             //Debug.LogError("Null Audio..........");
         }
 
@@ -258,5 +277,32 @@ public class PersistentAudioPlayer : MonoBehaviour
         audioSourceCoinSFX.volume = 1f;
         adsController.ResumeFMODMaster();
         Debug.Log("Audio volume restored to " + gameplayAudio.volume);
+    }
+
+    public void LevelFailedAudio()
+    {
+        gameplayAudio.Stop();
+        PlayAudio();
+    }
+    public void PanelSounds()
+    {
+        if (!isSoundOff)
+        {
+            StopMainMenuAudio();
+            panelsSounds.Play();
+        }
+
+    }
+    public void StopMainMenuAudio()
+    {
+        audioSource.Stop();
+    }
+    public void RewardSound()
+    {
+        if (!isSoundOff)
+        {
+            rewardSound.Play();
+            AudioFade(1.5f);
+        }
     }
 }

@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class GamePlayMysteryBoxOpenPanel : AWindowController
 {
+    
     public GameObject claimPanel;
     public GameObject openRewardPanel;
     public GameObject GenericRewardHolder;
@@ -59,6 +60,8 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
     private string HeadStartKey = "Head Starts";
     private string CharacerFigurineKey = "CharacerFigurine";
     private string boostKey = "Boosts";
+    private string meganetKey = "Magnet";
+
     private bool firstTime = true;
     private int amount = 0;
 
@@ -66,9 +69,13 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
     private string boostInventoryKey = "GameBoost";
     private string diamondInventoryKey = "AccountDiamonds";
     private string headStartInventoryKey = "GameHeadStart";
+    private string magnetInventoryKey = "Magnet";
+
 
     private List<InventoryItem<int>> pendingItemsToReward;
     private GameObject test;
+    public static bool isDailyReward = false;
+    public static int currentReward = 0;
 
     private enum State
     {
@@ -87,6 +94,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         openRewardPanel.SetActive(false);
         UpdateUI();
         updateObxNumTxt();
+      
         //mysteryBoxEvent.TheEvent.AddListener(mysteryBoxPanelClose);
       
     }
@@ -109,7 +117,9 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
 
         openBoxBtn.onClick.AddListener(delegate ()
         {
-            
+            PersistentAudioPlayer.Instance.RewardSound();
+            PersistentAudioPlayer.Instance.gameplayAudio.volume = .1f;
+            PersistentAudioPlayer.Instance.audioSource.volume = .1f;
             openRewardPanel.SetActive(true);
             claimPanel.SetActive(false);
             backBtn.gameObject.SetActive(false);
@@ -165,6 +175,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
             backBtn.interactable = true;
             mysteryBoxPanelClose();
             PersistentAudioPlayer.Instance.gameplayAudio.volume = .5f;
+            PersistentAudioPlayer.Instance.audioSource.volume = .5f;
 
         }));
     }
@@ -259,7 +270,11 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         mysterBox.SetActive(false);
         mysteryBoxLid.SetActive(false);
 
-        MysteryBoxDetails();
+         ForDailyReward(4);
+      /*  if (isDailyReward)
+            ForDailyReward(currentReward);
+        else
+            MysteryBoxDetails();*/
 
         updateObxNumTxt();
     }
@@ -340,6 +355,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         float randomItemNumber = UnityEngine.Random.Range(1f, 100);
         if (firstTime)
         {
+            Debug.Log("FirstTime?");
             if (randomItemNumber >= 1 && randomItemNumber < probabilities[diamondKey])
             {
                 currentItem = diamondKey;
@@ -374,6 +390,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         }
         else
         {
+            Debug.Log("secondTime");
             Dictionary<string, float> awakeProbabilities = new Dictionary<string, float>();
             List<string> awakeKeys = new List<string>();
             foreach (KeyValuePair<string, float> p in updatedProbabilities)
@@ -470,6 +487,76 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
             popReward(rewardSprites[RewardKeys.IndexOf(HeadStartKey)], HeadStartKey, amount);
             inventoryObj.LastMysteryBoxReward = new KeyValuePair<string, int>(headStartInventoryKey, amount);
         }
+        else if (currentItem.Equals(HeadStartKey))
+        {
+            amount = 3;
+
+            // inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>(headStartInventoryKey, amount, false/*true*/) });
+            AddRewardToPending(new List<InventoryItem<int>>() { new InventoryItem<int>(headStartInventoryKey, amount, true) });
+
+            popReward(rewardSprites[RewardKeys.IndexOf(HeadStartKey)], HeadStartKey, amount);
+            inventoryObj.LastMysteryBoxReward = new KeyValuePair<string, int>(headStartInventoryKey, amount);
+        }
+       
+    }
+
+    public void ForDailyReward(int rewardIndex)
+    {
+        if (rewardIndex < 0 || rewardIndex >= RewardKeys.Count)
+        {
+            Debug.LogWarning("Invalid reward index");
+            return;
+        }
+
+        string selectedRewardKey = RewardKeys[rewardIndex];
+        Sprite selectedSprite = rewardSprites[rewardIndex];
+        int amount = 0;
+        string inventoryKey = "";
+
+        switch (selectedRewardKey)
+        {
+            case "Coins":
+                amount = 250;
+                inventoryKey = coinInventoryKey;
+                break;
+
+            case "Diamond":
+                amount = 1;
+                inventoryKey = diamondInventoryKey;
+                break;
+
+            case "Boosts":
+                amount = 3;
+                inventoryKey = boostInventoryKey;
+                break;
+
+            case "Head Starts":
+                amount = 3;
+                inventoryKey = headStartInventoryKey;
+                break;
+           /* case "Magnet":
+                amount = 3;
+                inventoryKey = magnetInventoryKey;
+                break;*/
+
+            default:
+                Debug.LogError("Unhandled reward type: " + selectedRewardKey);
+                return;
+        }
+
+        AddRewardToPending(new List<InventoryItem<int>>()
+    {
+        new InventoryItem<int>(inventoryKey, amount, true)
+    });
+
+        inventoryObj.LastMysteryBoxReward = new KeyValuePair<string, int>(inventoryKey, amount);
+
+        GenericRewardHolder.SetActive(true);
+        rewardImg.sprite = selectedSprite;
+        rewardTxt.text = amount.ToString() + " " + selectedRewardKey;
+
+        animator.SetTrigger("Reward");
+        closeBtn.interactable = true;
     }
 
     private void AddRewardToPending(List<InventoryItem<int>> pendingItems)

@@ -34,8 +34,8 @@ public class MysteryBoxTriggerAnimation : MonoBehaviour
     public void PlayAnimation()
     {
         PlayTriggerParticles();
-        StartCoroutine(RotateToTargetRotation());
-        StartCoroutine(MoveToTargetPosition());
+       /* StartCoroutine(RotateToTargetRotation());
+        StartCoroutine(MoveToTargetPosition());*/
         StartCoroutine(ScaleOut());
     }
     #endregion

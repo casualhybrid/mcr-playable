@@ -34,6 +34,7 @@ public class CharacterCounterManager : MonoBehaviour
     private void OnEnable()
     {
         SetCharacter();
+        PersistentAudioPlayer.Instance.PanelSounds();
     }
 
     void SetCharacter()

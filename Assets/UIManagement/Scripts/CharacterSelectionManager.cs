@@ -62,6 +62,7 @@ public class CharacterSelectionManager : AWindowController
     {
         if (profile)
             profile.SetActive(false);
+        PersistentAudioPlayer.Instance.PanelSounds();
         //PlayerPrefs.SetInt("figurinePartsCount0", 3);
         time = GetCurrentAnimatorTime(animatorToDisable);
         StartCoroutine(turnOfAnimator());
@@ -77,7 +78,10 @@ public class CharacterSelectionManager : AWindowController
         UnSubsribeInputEvents();
         animatorToDisable.enabled = true;
     }
-
+    public void OnClickClose()
+    {
+        PersistentAudioPlayer.Instance.PlayAudio();
+    }
     private bool IsTheTouchOverScrollRect()
     {
         //if (Input.touchCount == 0)

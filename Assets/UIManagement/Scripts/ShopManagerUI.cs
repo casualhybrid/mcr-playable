@@ -54,6 +54,7 @@ public class ShopManagerUI : AWindowController
     {
         if (profile)
             profile.SetActive(false);
+        PersistentAudioPlayer.Instance.PanelSounds();
         StartCoroutine(WaitForAFrameAndEnableScrollRect());
         SnapTo();
         //iAPManagerObj.OnIAPInitializationFailed.AddListener(() => { ChangeFeedBackText("Initialization Failed"); });
@@ -312,6 +313,7 @@ public class ShopManagerUI : AWindowController
 
     public void CloseShopPanel()
     {
+        PersistentAudioPlayer.Instance.PlayAudio();
         //  saveManagerObj.SaveGame(0, false);
         this.UI_Close();
     }

@@ -74,13 +74,20 @@ public class MainMenuManager : AWindowController
     public void OnClickCounterClick()
     {
         adsController.ShowSmallBannerAd("MainMenuPanel");
+        PersistentAudioPlayer.Instance.PanelSounds();
     }
     public void CloseCounterClick()
     {
         adsController.HideSmallBanner();
+        PersistentAudioPlayer.Instance.PlayAudio();
     }
+   /* public void OnClickDailyReward()
+    {
+        PersistentAudioPlayer.Instance.PanelSounds();
+    }*/
     public void OnClickClose()
     {
+        PersistentAudioPlayer.Instance.PlayAudio();
         leaderBoardPanel.SetActive(false);
     }
     private void OnEnable()

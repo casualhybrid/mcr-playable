@@ -82,6 +82,8 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     {
         if (profile)
             profile.SetActive(false);
+
+        PersistentAudioPlayer.Instance.PanelSounds();
         timesEnabled++;
 
         selectedCarIndex = -1;
@@ -107,7 +109,10 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
         carToSnapToData = Properties.CarConfigData;
     }
-
+    public void CloseSound()
+    {
+        PersistentAudioPlayer.Instance.PlayAudio();
+    }
     private void OnDisable()
     {
         Properties.CarConfigData.isValid = false;

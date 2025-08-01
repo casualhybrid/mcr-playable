@@ -74,7 +74,7 @@ public class CutSceneTimeLineManager : MonoBehaviour
 
     private void SetCharacterCarBindings(GameEvent gameEvent)
     {
-        /*  PlayableBinding playableBinding = bindings.ElementAt(2);
+          PlayableBinding playableBinding = bindings.ElementAt(2);
 
           playableDirector.SetGenericBinding(playableBinding.sourceObject, playerSharedData.CharacterAnimator);
 
@@ -86,7 +86,7 @@ public class CutSceneTimeLineManager : MonoBehaviour
 
           AnimationPlayableAsset animationPlayableAsset = clips[0].asset as AnimationPlayableAsset;
           animationPlayableAsset.position = playerSharedData.CharacterAnimator.transform.localPosition;
-  */
+  
         isPlayerCharacterBindingsSet = true;
 
         ReBuildDirectorIfBindingsSet();

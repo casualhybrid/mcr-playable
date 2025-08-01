@@ -49,7 +49,10 @@ public class CharacterSelectionManager : AWindowController
     private float time;
     private AsyncOperationSpawning<PlayerCharacterAssets> currentlyActiveCharacterAssetLoadingHandler;
 
+    [SerializeField] Sprite[] icons;
+    [SerializeField] Image Icon;
     [SerializeField] GameObject profile;
+    [SerializeField] TextMeshProUGUI costText;
  //   private Camera uiCamera;
 
     protected override void Awake()
@@ -260,8 +263,18 @@ public class CharacterSelectionManager : AWindowController
     public void ShowCharacter(int val)
     {
         pressedCharacterNumber = val;
+        if(pressedCharacterNumber==1)
+        {
+            costText.text = "15000";
+            Icon.sprite = icons[0];
+        }
+        else
+        {
+            costText.text = "300";
+            Icon.sprite = icons[1];
+        }
 
-        FigrineName.text = charactersDataBase.GetCharacterConfigurationData(val).GetName;
+            FigrineName.text = charactersDataBase.GetCharacterConfigurationData(val).GetName;
         abilityIcon.sprite = charAbility[val];
         abilityName.text = abilities[val];
         SnapInstance(val);
@@ -447,35 +460,75 @@ public class CharacterSelectionManager : AWindowController
 
     public void UnlockCharacterFigurineWithDiamonds()
     {
+      
         List<string> thingsGot = new List<string>();//z
         List<int> amountsGot = new List<int>();//z
-
-        if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= 10)
+        if (pressedCharacterNumber == 2)
         {
-            int requiredFig = charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).FigurinesToUnlock;
-            inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", -10) });
-            int updatedFig = inventoryObj.UpdateCharacterFigurine(pressedCharacterNumber, 1);
-            FigrineBodyPartText.text = updatedFig + " / " + requiredFig;
-
-            fillImage.fillAmount = (float)updatedFig / (float)requiredFig;
-
-            if (updatedFig >= requiredFig)
+            costText.text = "300";
+            Icon.sprite = icons[1];
+            if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= 300)
             {
-                SendCharacterBuyAnalytic(charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).GetName);
-                InitilizeUI(pressedCharacterNumber);
-                ShowCharacter(pressedCharacterNumber);
+                int requiredFig = charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).FigurinesToUnlock;
+                inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", -300) });
+                int updatedFig = inventoryObj.UpdateCharacterFigurine(pressedCharacterNumber, 1);
+                FigrineBodyPartText.text = updatedFig + " / " + requiredFig;
+
+                fillImage.fillAmount = (float)updatedFig / (float)requiredFig;
+
+                if (updatedFig >= requiredFig)
+                {
+                    SendCharacterBuyAnalytic(charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).GetName);
+                    InitilizeUI(pressedCharacterNumber);
+                    ShowCharacter(pressedCharacterNumber);
+                }
+
+                thingsGot.Add("Character Figurine");
+                amountsGot.Add(1);
+
             }
 
-            thingsGot.Add("Character Figurine");
-            amountsGot.Add(1);
+            else
+            {
+                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            }
 
+
+            purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds", 300, amountsGot);
         }
-        else
+        else if(pressedCharacterNumber == 1)
         {
-            OpenTheWindow(ScreenIds.ResourcesNotAvailable);
-        }
+            costText.text = "1500";
+            Icon.sprite = icons[0];
+            if (inventoryObj.GetIntKeyValue("AccountCoins") >= 1500)
+            {
+                int requiredFig = charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).FigurinesToUnlock;
+                inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", -1500) });
+                int updatedFig = inventoryObj.UpdateCharacterFigurine(pressedCharacterNumber, 1);
+                FigrineBodyPartText.text = updatedFig + " / " + requiredFig;
 
-       purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds", 10, amountsGot);
+                fillImage.fillAmount = (float)updatedFig / (float)requiredFig;
+
+                if (updatedFig >= requiredFig)
+                {
+                    SendCharacterBuyAnalytic(charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).GetName);
+                    InitilizeUI(pressedCharacterNumber);
+                    ShowCharacter(pressedCharacterNumber);
+                }
+
+                thingsGot.Add("Character Figurine");
+                amountsGot.Add(1);
+
+            }
+
+            else
+            {
+                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            }
+
+
+            purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", 1500, amountsGot);
+        }
     }
 
     private void SendCharacterBuyAnalytic(string characterName)

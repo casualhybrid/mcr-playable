@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class DailyLoginRewardManager : MonoBehaviour
         public Button rewardButton;
         public Image buttonImage;
         public GameObject claimObject;
+        public int amount;
     }
 
     public enum RewardIntervalType
@@ -24,7 +26,7 @@ public class DailyLoginRewardManager : MonoBehaviour
     public Sprite blueSprite, yellowSprite;
 
     [Header("Timing Control")]
-    public RewardIntervalType rewardIntervalType = RewardIntervalType.SevenDays;
+    public RewardIntervalType rewardIntervalType = RewardIntervalType.OneMinute;
 
     private int currentDayIndex = 0;
     private DateTime nextRewardTime;
@@ -94,8 +96,11 @@ public class DailyLoginRewardManager : MonoBehaviour
         }
     }
 
-    private void ClaimReward(int index)
+    public void ClaimReward(int index)
     {
+        GamePlayMysteryBoxOpenPanel.currentIndex = index;
+        GamePlayMysteryBoxOpenPanel.isDailyReward = true;
+        GamePlayMysteryBoxOpenPanel.amountReward=dailyButtons[index].amount;
         Debug.Log($"Reward claimed for Day {index + 1}");
 
         dailyButtons[index].rewardButton.interactable = false;
@@ -116,5 +121,11 @@ public class DailyLoginRewardManager : MonoBehaviour
         PlayerPrefs.Save();
 
         DisableAllButtons(); // prevent spamming
+    }
+
+    public void Close()
+    {
+      
+        GamePlayMysteryBoxOpenPanel.isDailyReward = false;
     }
 }

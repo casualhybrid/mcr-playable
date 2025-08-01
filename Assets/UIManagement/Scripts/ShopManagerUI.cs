@@ -139,10 +139,10 @@ public class ShopManagerUI : AWindowController
 
         List<string> thingsGot = new List<string>();//z
         List<int> amountsGot = new List<int>();//z
-        if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= 150)
+        if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= 100)
         {
             inventoryObj.saveManagerObj.MainSaveFile.isAdsPurchased = true;
-            inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", -150) }, false);
+            inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", -100) }, false);
             playerBoughtAdFree.RaiseEvent();
 
             thingsGot.Add("No Ads Package");
@@ -279,6 +279,14 @@ public class ShopManagerUI : AWindowController
 
     }
 
+    public void StandardPack(GeneralIAPItem itemObj)
+    {
+        iAPManagerObj.BuyTheProduct(itemObj.ProductID);
+        inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", 2000) });
+        inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", 300) });
+        iAPManagerObj.BuyTheProduct(itemObj.ProductID);
+    }
+
     private void PurchaseSuccessful()
     {
         if (pendingPurchasedItemResult == null)
@@ -330,6 +338,7 @@ public class ShopManagerUI : AWindowController
 
     }
 
+
     public void SendEvents(string theEvent)
     {
         AnalyticsManager.CustomData(theEvent);
@@ -337,16 +346,16 @@ public class ShopManagerUI : AWindowController
 
     public void OpenUnlockAllCarsScreenIAP()
     {
-       // OpenTheWindow(ScreenIds.UnlockCars_IAP_Popup);
+        OpenTheWindow(ScreenIds.UnlockCars_IAP_Popup);
     }
 
     public void OpenUnlockAllCharactersScreenIAP()
     {
-       // OpenTheWindow(ScreenIds.UnlockCharacters_IAP_Popup);
+        OpenTheWindow(ScreenIds.UnlockCharacters_IAP_Popup);
     }
 
     public void OpenUnlockAllCharactersAndCarsScreenIAP()
     {
-        //OpenTheWindow(ScreenIds.UnlockCarsAndCharacters);
+        OpenTheWindow(ScreenIds.UnlockCarsAndCharacters);
     }
 }

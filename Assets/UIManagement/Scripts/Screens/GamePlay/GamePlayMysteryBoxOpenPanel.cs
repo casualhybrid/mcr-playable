@@ -75,7 +75,8 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
     private List<InventoryItem<int>> pendingItemsToReward;
     private GameObject test;
     public static bool isDailyReward = false;
-    public static int currentReward = 0;
+    public static int currentIndex = 0;
+    public static int amountReward;
 
     private enum State
     {
@@ -270,11 +271,11 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         mysterBox.SetActive(false);
         mysteryBoxLid.SetActive(false);
 
-         ForDailyReward(4);
-      /*  if (isDailyReward)
-            ForDailyReward(currentReward);
+         //ForDailyReward(4);
+        if (isDailyReward)
+            ForDailyReward(currentIndex);
         else
-            MysteryBoxDetails();*/
+            MysteryBoxDetails();
 
         updateObxNumTxt();
     }
@@ -516,22 +517,22 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         switch (selectedRewardKey)
         {
             case "Coins":
-                amount = 250;
+                amount = amountReward;
                 inventoryKey = coinInventoryKey;
                 break;
 
             case "Diamond":
-                amount = 1;
+                amount = amountReward;
                 inventoryKey = diamondInventoryKey;
                 break;
 
             case "Boosts":
-                amount = 3;
+                amount = amountReward;
                 inventoryKey = boostInventoryKey;
                 break;
 
             case "Head Starts":
-                amount = 3;
+                amount = amountReward;
                 inventoryKey = headStartInventoryKey;
                 break;
            /* case "Magnet":

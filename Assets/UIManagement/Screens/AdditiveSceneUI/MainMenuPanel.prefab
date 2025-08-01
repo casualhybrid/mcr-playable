@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 300
+  m_text: 150
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab69e1d7f36d3514d86ed78448a3517f, type: 2}
   m_sharedMaterial: {fileID: -2165146271797698000, guid: ab69e1d7f36d3514d86ed78448a3517f,
@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X1
+  m_text: 300
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab69e1d7f36d3514d86ed78448a3517f, type: 2}
   m_sharedMaterial: {fileID: -2165146271797698000, guid: ab69e1d7f36d3514d86ed78448a3517f,
@@ -2622,7 +2622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -3886,7 +3886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -7268,8 +7268,8 @@ RectTransform:
   m_Father: {fileID: 5371411429792842897}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25742576, y: 0.29282868}
-  m_AnchorMax: {x: 0.7178218, y: 0.74701196}
+  m_AnchorMin: {x: 0.13366339, y: 0.3266932}
+  m_AnchorMax: {x: 0.9158416, y: 0.78486055}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7301,7 +7301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1469180033, guid: 1192ca52bfed640459ee91b457752bdf, type: 3}
+  m_Sprite: {fileID: -921385051, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7876,10 +7876,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7101844415188017938}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2562046722029802580
 GameObject:
   m_ObjectHideFlags: 0
@@ -8272,10 +8320,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3480435419400480690}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2682256833108912585
 GameObject:
   m_ObjectHideFlags: 0
@@ -8806,7 +8902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -9104,7 +9200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -9554,7 +9650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -10104,10 +10200,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3639057694295634363}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3357302499825750396
 GameObject:
   m_ObjectHideFlags: 0
@@ -10444,7 +10588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -921385051, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
+  m_Sprite: {fileID: 51250075, guid: 1192ca52bfed640459ee91b457752bdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11316,7 +11460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -12051,7 +12195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -13264,10 +13408,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2690957110324652093}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4142498778700597812
 GameObject:
   m_ObjectHideFlags: 0
@@ -15028,7 +15220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -15489,7 +15681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -15969,7 +16161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1395621512, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
+  m_Sprite: {fileID: 1260726805, guid: 1192ca52bfed640459ee91b457752bdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -16581,6 +16773,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5938051291009298865}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: CloseCounterClick
@@ -24571,18 +24775,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4904179529435681402}
-  m_LocalRotation: {x: -0, y: -0, z: -0.1772959, w: 0.9841576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2404465550865291152}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20.425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.27376238, y: 0.31872508}
-  m_AnchorMax: {x: 0.71930695, y: 0.7450199}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.0000038146973, y: 0}
+  m_AnchorMax: {x: 0.27376238, y: 0.31872508}
+  m_AnchoredPosition: {x: 48, y: 67}
+  m_SizeDelta: {x: 138, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &882689609514872890
 CanvasRenderer:
@@ -24612,7 +24816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1107062018, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
+  m_Sprite: {fileID: 1395621512, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -25407,7 +25611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -27130,7 +27334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -30453,10 +30657,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7292713793049328645}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6638023051485025511
 GameObject:
   m_ObjectHideFlags: 0
@@ -30645,7 +30897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -31726,7 +31978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -32206,7 +32458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 350
+  m_text: X1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab69e1d7f36d3514d86ed78448a3517f, type: 2}
   m_sharedMaterial: {fileID: -2165146271797698000, guid: ab69e1d7f36d3514d86ed78448a3517f,
@@ -32892,10 +33144,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6087878275635274177}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7341669495284049675
 GameObject:
   m_ObjectHideFlags: 0
@@ -32962,7 +33262,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1466104323, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
+  m_Sprite: {fileID: -921385051, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -33242,7 +33542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -33620,10 +33920,58 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7867457191597219420}
+  m_TargetGraphic: {fileID: 7410237971377121455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447505281316772}
+        m_TargetAssemblyTypeName: DailyRewardScript, Assembly-CSharp
+        m_MethodName: OpenMysteryBoxPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MysteryBoxPopUp
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4823883140761796068}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ShootAudioEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5938051291009298865}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SendEvents
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuScreen_Bonus_Btn_Click
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942031097640632421}
+        m_TargetAssemblyTypeName: DailyLoginRewardManager, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7623068418988730003
 GameObject:
   m_ObjectHideFlags: 0
@@ -34494,7 +34842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8057518420843940624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34582,24 +34930,34 @@ MonoBehaviour:
   - rewardButton: {fileID: 7835476026003674002}
     buttonImage: {fileID: 2690957110324652093}
     claimObject: {fileID: 2027049615264901430}
+    amount: 1
   - rewardButton: {fileID: 4625295054879544256}
     buttonImage: {fileID: 7292713793049328645}
     claimObject: {fileID: 5638909454222377484}
+    amount: 150
   - rewardButton: {fileID: 3625437847323141144}
     buttonImage: {fileID: 7101844415188017938}
     claimObject: {fileID: 3878468247505157483}
+    amount: 1
   - rewardButton: {fileID: 5101337335387071757}
     buttonImage: {fileID: 3480435419400480690}
     claimObject: {fileID: 8934739850860002138}
+    amount: 1
   - rewardButton: {fileID: 8676295558381477094}
     buttonImage: {fileID: 6087878275635274177}
     claimObject: {fileID: 7237365998255648754}
+    amount: 300
+  - rewardButton: {fileID: 8776194586029460227}
+    buttonImage: {fileID: 3639057694295634363}
+    claimObject: {fileID: 7237365998255648754}
+    amount: 2
   - rewardButton: {fileID: 8109734395183330604}
     buttonImage: {fileID: 7867457191597219420}
     claimObject: {fileID: 5081840450007278461}
+    amount: 3
   blueSprite: {fileID: 372994548, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
   yellowSprite: {fileID: -711972448, guid: ad266195bb304c5438c5706c99441e3e, type: 3}
-  currentDayIndex: 0
+  rewardIntervalType: 0
 --- !u!1 &7978598431087043825
 GameObject:
   m_ObjectHideFlags: 0
@@ -36011,7 +36369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8646985141514729668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36055,7 +36413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -36704,7 +37062,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X1
+  m_text: X3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab69e1d7f36d3514d86ed78448a3517f, type: 2}
   m_sharedMaterial: {fileID: -2165146271797698000, guid: ab69e1d7f36d3514d86ed78448a3517f,
@@ -37706,8 +38064,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 1302223815018900041, guid: 34d5f94884af3c2409a763945f3e4d7a,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1401835321438445794, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: m_Name
@@ -37822,14 +38179,12 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 2768650016614399214, guid: 34d5f94884af3c2409a763945f3e4d7a,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4291709032172740483, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 4291709032172740483, guid: 34d5f94884af3c2409a763945f3e4d7a,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5664936605083408642, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -37924,8 +38279,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 6191041679249954958, guid: 34d5f94884af3c2409a763945f3e4d7a,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6655157604682320573, guid: 34d5f94884af3c2409a763945f3e4d7a,
         type: 3}
       propertyPath: windowControllerObj
@@ -37940,8 +38294,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 7784365086412235312, guid: 34d5f94884af3c2409a763945f3e4d7a,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34d5f94884af3c2409a763945f3e4d7a, type: 3}
 --- !u!114 &1697203365191766506 stripped

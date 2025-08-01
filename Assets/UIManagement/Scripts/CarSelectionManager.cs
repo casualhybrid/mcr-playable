@@ -70,6 +70,8 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     private int timesEnabled;
     [SerializeField] GameObject profile;
+    [SerializeField] Sprite[] icons;
+    [SerializeField] Image Icon;
     //[SerializeField] AdsController adsController;
 
     protected override void Awake()
@@ -367,7 +369,16 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     {
         if (selectedCarIndex == val)
             return;
-
+        if (selectedCarIndex == 1 || selectedCarIndex == 2)
+        {
+            CostTextToShow.text= carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice.ToString();
+            Icon.sprite = icons[0];
+        }
+        else if(selectedCarIndex == 3 || selectedCarIndex == 4)
+        {
+            CostTextToShow.text = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice.ToString();
+            Icon.sprite = icons[1];
+        }
         onChangeVisibleCar.Invoke();
 
         carName.text = carsDataBase.GetCarConfigurationData(val).GetName.ToUpper();
@@ -607,32 +618,66 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     public void UnlockCarWithCoins()
     {
+        
         List<string> thingsGot = new List<string>();//z
         List<int> amountsGot = new List<int>();//z
-
-        int price = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice;
-
-        if (inventoryObj.GetIntKeyValue("AccountCoins") >= price)
+        if (selectedCarIndex == 1 || selectedCarIndex == 2)
         {
-            inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", -price) });
+            int price = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice;
+            Icon.sprite = icons[0];
+            if (inventoryObj.GetIntKeyValue("AccountCoins") >= price)
+            {
+                inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", -price) });
 
-            inventoryObj.UnlockCar(selectedCarIndex);
+                inventoryObj.UnlockCar(selectedCarIndex);
 
-            thingsGot.Add("Car");
-            amountsGot.Add(1);
+                thingsGot.Add("Car");
+                amountsGot.Add(1);
 
-            InitilizeUI(selectedCarIndex);
+                InitilizeUI(selectedCarIndex);
 
-            CarConfigurationData carConfigurationData = carsDataBase.GetCarConfigurationData(selectedCarIndex);
-            SendCarEvent("CarBuyWithCoin", carConfigurationData.GetName);
+                CarConfigurationData carConfigurationData = carsDataBase.GetCarConfigurationData(selectedCarIndex);
+                SendCarEvent("CarBuyWithCoin", carConfigurationData.GetName);
 
-           // OpenTheWindow(ScreenIds.CarUnlockedScreen, new CarAvailableProperties() { CarConfigData = new PlayableObjectDataWithIndex(carConfigurationData, selectedCarIndex) });
+                // OpenTheWindow(ScreenIds.CarUnlockedScreen, new CarAvailableProperties() { CarConfigData = new PlayableObjectDataWithIndex(carConfigurationData, selectedCarIndex) });
+            }
+            else
+            {
+                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            }
+            purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", price, amountsGot);
         }
-        else
+        else if(selectedCarIndex == 3 || selectedCarIndex == 4)
         {
-            OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            Icon.sprite = icons[1];
+            int price = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice;
+
+            if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= price)
+            {
+                inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", -price) });
+
+                inventoryObj.UnlockCar(selectedCarIndex);
+
+                thingsGot.Add("Car");
+                amountsGot.Add(1);
+
+                InitilizeUI(selectedCarIndex);
+
+                CarConfigurationData carConfigurationData = carsDataBase.GetCarConfigurationData(selectedCarIndex);
+                SendCarEvent("CarBuyWithGems", carConfigurationData.GetName);
+
+                // OpenTheWindow(ScreenIds.CarUnlockedScreen, new CarAvailableProperties() { CarConfigData = new PlayableObjectDataWithIndex(carConfigurationData, selectedCarIndex) });
+            }
+            else
+            {
+                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            }
         }
-        purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", price, amountsGot);
+      
+
+
+
+
     }
 
     private void SendCarEvent(string eventName, string carName)

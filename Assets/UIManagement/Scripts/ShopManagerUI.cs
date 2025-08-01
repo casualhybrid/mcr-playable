@@ -159,7 +159,7 @@ public class ShopManagerUI : AWindowController
 
             OpenTheWindow(ScreenIds.ResourcesNotAvailable);
         }
-        purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds",  150, amountsGot);
+        purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds",  100, amountsGot);
     }
 
     public void SnapTo(/*RectTransform target*/)
@@ -278,13 +278,24 @@ public class ShopManagerUI : AWindowController
 
 
     }
+    public void StandardPAck(GeneralIAPItem itemObj)
+    {
+        iAPManagerObj.BuyTheProduct(itemObj.ProductID);
+        inventoryObj.saveManagerObj.MainSaveFile.isAdsPurchased = true;
+
+    }
+
 
     public void StandardPack(GeneralIAPItem itemObj)
     {
         iAPManagerObj.BuyTheProduct(itemObj.ProductID);
         inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", 2000) });
         inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", 300) });
-        iAPManagerObj.BuyTheProduct(itemObj.ProductID);
+        inventoryObj.saveManagerObj.MainSaveFile.isAdsPurchased = true;
+
+        playerBoughtAdFree.RaiseEvent();
+        OpenTheWindow(ScreenIds.PurchaseSuccess);
+        BuyAdFreePanel.SetActive(false);
     }
 
     private void PurchaseSuccessful()

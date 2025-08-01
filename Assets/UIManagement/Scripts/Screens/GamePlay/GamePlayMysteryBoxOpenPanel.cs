@@ -519,21 +519,25 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
             case "Coins":
                 amount = amountReward;
                 inventoryKey = coinInventoryKey;
+                Debug.LogError(selectedRewardKey + "Moso");
                 break;
 
             case "Diamond":
                 amount = amountReward;
                 inventoryKey = diamondInventoryKey;
+                Debug.LogError(selectedRewardKey + "Moso");
                 break;
 
             case "Boosts":
                 amount = amountReward;
                 inventoryKey = boostInventoryKey;
+                Debug.LogError(selectedRewardKey + "Moso");
                 break;
 
             case "Head Starts":
                 amount = amountReward;
                 inventoryKey = headStartInventoryKey;
+                Debug.LogError(selectedRewardKey + "Moso");
                 break;
            /* case "Magnet":
                 amount = 3;

@@ -9,6 +9,8 @@ using Unity.Services.Analytics;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
+using Random = UnityEngine.Random;
 
 public class ReviveManager : AWindowController
 {
@@ -84,6 +86,9 @@ public class ReviveManager : AWindowController
 
     private readonly Queue<Action> panelsToProcessOnCompletionQueue = new Queue<Action>();
     private string lastCompletionPanelOpened;
+    [SerializeField] TextMeshProUGUI scoreText;
+
+    public int minScore, maxScore;
 
     #region ProgressionVariables
 
@@ -124,6 +129,17 @@ public class ReviveManager : AWindowController
         #endregion progression
     }
 
+    private void UpdateScoreDisplay()
+    {
+        int score = GetScoreBetweenMinMax();
+        scoreText.text = "Only "+score.ToString()+ " points left \nto beat your next opponent";
+    }
+
+    private int GetScoreBetweenMinMax()
+    {
+        // You can replace this logic with your own logic
+        return Random.Range(minScore, maxScore + 1);
+    }
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -133,6 +149,7 @@ public class ReviveManager : AWindowController
     private void OnEnable()
     {
         //  reviveAdHasStarted = false;
+      
         newCoinText.text = sessionInventory.GetSessionIntKeyData("AccountCoins").ToString();
         isBackgroundPanelPressed = false;
         isReviveSkipTapAnalyticsEventSent = false;
@@ -197,6 +214,7 @@ public class ReviveManager : AWindowController
         }
 
         adsController.OnRewardedFramingWindowEnded.AddListener(EnableFreeReviveButton);
+        UpdateScoreDisplay();
 
         #region progression
 
@@ -303,6 +321,7 @@ public class ReviveManager : AWindowController
         return totalDiamonds >= deductionValue;
     }
 
+    
     public void ReviveWithDiamonds()
     {
         int inventoryDiamonds = playerInventoryObj.GetIntKeyValue("AccountDiamonds");

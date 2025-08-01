@@ -13,4 +13,5 @@ public const string com_minicarrush_unlockallcars="com_minicarrush_unlockallcars
 public const string bundle_1="bundle_1";
 public const string bundle_2="bundle_2";
 public const string bundle_3="bundle_3";
+public const string standard_pack="standard_pack";
 }

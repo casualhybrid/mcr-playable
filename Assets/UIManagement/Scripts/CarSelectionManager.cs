@@ -367,25 +367,37 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     public void ShowCar(int val)
     {
-        if (selectedCarIndex == val)
-            return;
         if (selectedCarIndex == 1 || selectedCarIndex == 2)
         {
-            CostTextToShow.text= carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice.ToString();
-            Icon.sprite = icons[0];
+            CostTextToShow.text = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice.ToString();
+            /*Icon.sprite = icons[0];
+            Debug.LogError("Coins");*/
         }
-        else if(selectedCarIndex == 3 || selectedCarIndex == 4)
+        else if (selectedCarIndex == 3 || selectedCarIndex == 4)
         {
             CostTextToShow.text = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice.ToString();
-            Icon.sprite = icons[1];
+          /*  Icon.sprite = icons[1];
+            Debug.LogError("Diamonds");*/
         }
+        if (selectedCarIndex == val)
+        {
+            
+            return;
+        }
+
+
+
+            
+        
         onChangeVisibleCar.Invoke();
+
+       
 
         carName.text = carsDataBase.GetCarConfigurationData(val).GetName.ToUpper();
         PopulateCarStats(saveManager.MainSaveFile.currentlySelectedCar, val);
         SnapInstance(val);
         KillSelectButtonAnimAndRewind();
-
+       
         for (int i = 0; i < CarList.Length; i++)
         {
             var temp = CarList[i].GetComponent<CarInstance>();
@@ -624,7 +636,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         if (selectedCarIndex == 1 || selectedCarIndex == 2)
         {
             int price = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice;
-            Icon.sprite = icons[0];
+            //Icon.sprite = icons[0];
             if (inventoryObj.GetIntKeyValue("AccountCoins") >= price)
             {
                 inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", -price) });
@@ -649,7 +661,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         }
         else if(selectedCarIndex == 3 || selectedCarIndex == 4)
         {
-            Icon.sprite = icons[1];
+           // Icon.sprite = icons[1];
             int price = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice;
 
             if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= price)

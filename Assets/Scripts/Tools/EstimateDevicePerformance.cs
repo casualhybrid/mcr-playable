@@ -1,6 +1,5 @@
 ﻿using Firebase.Crashlytics;
 using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 

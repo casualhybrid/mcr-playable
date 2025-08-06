@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using TheKnights.SaveFileSystem;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameManager", menuName = "ScriptableObjects/GameManager")]

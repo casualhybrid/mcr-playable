@@ -7,7 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TheKnights.SaveFileSystem;
 using TMPro;
-using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using TheKnights.FaceBook;
 using TheKnights.SaveFileSystem;
 using TMPro;
-using Unity.Services.Analytics;
 using UnityEngine;
 using TheKnights.LeaderBoardSystem;
 using UnityEngine.Events;

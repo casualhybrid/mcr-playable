@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerDoubleBoostState", menuName = "ScriptableObjects/PlayerDoubleBoostState")]

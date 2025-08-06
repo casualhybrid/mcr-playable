@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Services.Analytics;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
@@ -97,21 +96,21 @@ public static class UnityGameServicesManager
 
     private static async void CheckForAnalyticServiceConsents()
     {
-        try
-        {
-            List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        //try
+        //{
+        //    List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
 
-            UnityEngine.Console.Log("Checked for required analytics consents");
+        //    UnityEngine.Console.Log("Checked for required analytics consents");
 
-            foreach (var item in consentIdentifiers)
-            {
-                UnityEngine.Console.Log("Analytics Consent " + item);
-            }
-        }
-        catch (ConsentCheckException e)
-        {
-            // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
-            UnityEngine.Console.LogError("Exception Occurred " + e);
-        }
+        //    foreach (var item in consentIdentifiers)
+        //    {
+        //        UnityEngine.Console.Log("Analytics Consent " + item);
+        //    }
+        //}
+        //catch (ConsentCheckException e)
+        //{
+        //    // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        //    UnityEngine.Console.LogError("Exception Occurred " + e);
+        //}
     }
 }

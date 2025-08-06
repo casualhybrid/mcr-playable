@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TheKnights.SaveFileSystem;
-using Unity.Services.Analytics;
 
 [CreateAssetMenu(fileName = "DifficultyScaleSO", menuName = "ScriptableObjects/Encounters/DifficultyScaleSO")]
 public class DifficultyScaleSO : ScriptableObject

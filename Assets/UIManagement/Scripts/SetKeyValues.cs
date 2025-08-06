@@ -1,5 +1,4 @@
-﻿using Unity.Services.Analytics;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class SetKeyValues : MonoBehaviour

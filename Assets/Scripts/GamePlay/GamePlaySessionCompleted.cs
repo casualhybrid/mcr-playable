@@ -1,7 +1,6 @@
 //using TheKnights.FaceBook;
 //using TheKnights.FaceBook.LeaderBoard;
 using TheKnights.SaveFileSystem;
-using Unity.Services.Analytics;
 using UnityEngine;
 using TheKnights.LeaderBoardSystem.FaceBook;
 

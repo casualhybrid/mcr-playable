@@ -1,6 +1,5 @@
 ﻿using deVoid.UIFramework;
 using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 #if UNITY_IOS

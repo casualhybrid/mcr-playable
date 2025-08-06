@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Unity.Services.Analytics;
 
 public class ZadeDashLaser : MonoBehaviour
 {

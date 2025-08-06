@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Services.Analytics;
 using Firebase.Analytics;
 
 public static class AnalyticsManager 

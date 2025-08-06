@@ -11,7 +11,6 @@ using TheKnights.PlayServicesSystem;
 using TheKnights.Purchasing;
 using TheKnights.SaveFileSystem;
 using TheKnights.SceneLoadingSystem;
-using Unity.Services.Analytics;
 
 using UnityEngine;
 

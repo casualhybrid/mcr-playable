@@ -2,7 +2,6 @@ using deVoid.UIFramework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Services.Analytics;
 using TMPro;
 
 public class RewardedAdIsLoadingScreen : AWindowController

@@ -3,7 +3,6 @@ using UnityEngine;
 using DG.Tweening;
 using TheKnights.SaveFileSystem;
 using System.Collections;
-using Unity.Services.Analytics;
 
 [CreateAssetMenu(fileName = PlayerState.PlayerBoostState, menuName = "ScriptableObjects/PlayerBoostState")]
 public class PlayerBoostState : StateBase

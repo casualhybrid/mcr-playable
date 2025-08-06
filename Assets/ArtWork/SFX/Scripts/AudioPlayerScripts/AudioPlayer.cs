@@ -1,5 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,7 +1,6 @@
 ﻿using FSM;
 using TheKnights.SaveFileSystem;
 using UnityEngine;
-using Unity.Services.Analytics;
 
 [CreateAssetMenu(fileName = PlayerState.PlayerJumpState, menuName = "ScriptableObjects/PlayerJumpState")]
 public class PlayerJumpState : StateBase

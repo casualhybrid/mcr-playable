@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using TheKnights.Purchasing;
 using TheKnights.SaveFileSystem;
 using TMPro;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 using UnityEngine.Purchasing;

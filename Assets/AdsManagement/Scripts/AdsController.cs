@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TheKnights.AdsSystem;
 using TheKnights.SaveFileSystem;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 using UnityEngine.Events;

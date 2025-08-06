@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TheKnights.AdsSystem;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameOverDoubleRewardedADSO", menuName = "ScriptableObjects/Ads/RewardedAds/GameOverDoubleRewardedADSO")]

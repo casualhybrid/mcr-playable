@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 public class UserSpecificAnalyticEvents : MonoBehaviour

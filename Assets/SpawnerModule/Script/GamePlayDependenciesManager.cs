@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TheKnights.SceneLoadingSystem;
-using Unity.Services.Analytics;
 using UnityEngine;
 
 

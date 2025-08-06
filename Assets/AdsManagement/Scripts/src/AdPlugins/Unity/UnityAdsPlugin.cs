@@ -5,7 +5,7 @@ using UnityEngine.Advertisements;
 namespace TheKnights.AdsSystem
 {
     [CreateAssetMenu(fileName = "UnityAdsPlugin", menuName = "ScriptableObjects/UnityAdsPlugin", order = 2)]
-    public class UnityAdsPlugin : AdPlugin, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+    public class UnityAdsPlugin : AdPlugin //, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
     {
         [SerializeField] protected string gameID;
 
@@ -35,26 +35,26 @@ namespace TheKnights.AdsSystem
 
         public override void InitializeAds()
         {
-            if (isInitializedPluginSpecific || isInitialized)
-            {
-                isInitializationOperationDone = true;
-                return;
-            }
+            //if (isInitializedPluginSpecific || isInitialized)
+            //{
+            //    isInitializationOperationDone = true;
+            //    return;
+            //}
             
 
-            if (!Advertisement.isSupported)
-            {
-                if (isDebug)
-                    UnityEngine.Console.LogWarning("Unity Ads are not supported on this platform");
+            //if (!Advertisement.isSupported)
+            //{
+            //    if (isDebug)
+            //        UnityEngine.Console.LogWarning("Unity Ads are not supported on this platform");
 
-                isInitializationOperationDone = true;
+            //    isInitializationOperationDone = true;
 
-                return;
-            }
+            //    return;
+            //}
 
-            isInitializationOperationDone = false;
-            Advertisement.Initialize(gameID, testMode,/* enablePerPlacementLoad,*/ this);
-            isInitializationOperationDone = true;
+            //isInitializationOperationDone = false;
+            //Advertisement.Initialize(gameID, testMode,/* enablePerPlacementLoad,*/ this);
+            //isInitializationOperationDone = true;
         }
 
         public override bool CheckIfInterstitialAdIsAvailable(object additionalInfo = null)
@@ -122,23 +122,23 @@ namespace TheKnights.AdsSystem
 
         public override void ShowInterstitialAdIfAvailable(Action<Status, ADMeta> completionCalLBack, object additionalInfo = null)
         {
-            pendingInterstitialListener = completionCalLBack;
+            //pendingInterstitialListener = completionCalLBack;
 
-            if (!CheckIfInterstitialAdIsAvailable())
-            {
-                AdManager.InterstitialAdHasFailedToShow();
-                ProcessPendingCallBack(AdType.Interstital, Status.Failed);
-                return;
-            }
+            //if (!CheckIfInterstitialAdIsAvailable())
+            //{
+            //    AdManager.InterstitialAdHasFailedToShow();
+            //    ProcessPendingCallBack(AdType.Interstital, Status.Failed);
+            //    return;
+            //}
 
-            // Note that if the ad content wasn't previously loaded, this method will fail
+            //// Note that if the ad content wasn't previously loaded, this method will fail
 
-            if (isDebug)
-                UnityEngine.Console.Log("Showing Ad: " + interstitialID);
+            //if (isDebug)
+            //    UnityEngine.Console.Log("Showing Ad: " + interstitialID);
 
-            AdManager.InterstitialADRightBeforeShow();
+            //AdManager.InterstitialADRightBeforeShow();
 
-            CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { Advertisement.Show(interstitialID, this); });
+            //CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { Advertisement.Show(interstitialID, this); });
           
         }
 
@@ -146,30 +146,30 @@ namespace TheKnights.AdsSystem
         {
             // IMPORTANT! Only load content AFTER initialization
 
-            if (!isInitialized || isLoadingInterstitial || isInterstitialReady /*|| !enablePerPlacementLoad*/)
-                return;
+            //if (!isInitialized || isLoadingInterstitial || isInterstitialReady /*|| !enablePerPlacementLoad*/)
+            //    return;
 
-            isLoadingInterstitial = true;
+            //isLoadingInterstitial = true;
 
-            if (isDebug)
-                UnityEngine.Console.Log("Loading Ad: " + interstitialID);
+            //if (isDebug)
+            //    UnityEngine.Console.Log("Loading Ad: " + interstitialID);
 
-            Advertisement.Load(interstitialID, this);
+            //Advertisement.Load(interstitialID, this);
         }
 
         public override void LoadRewardedAd()
         {
             // IMPORTANT! Only load content AFTER initialization
 
-            if (!isInitialized || isLoadingRewarded || isRewardedReady /*|| !enablePerPlacementLoad*/)
-                return;
+            //if (!isInitialized || isLoadingRewarded || isRewardedReady /*|| !enablePerPlacementLoad*/)
+            //    return;
 
-            isLoadingRewarded = true;
+            //isLoadingRewarded = true;
 
-            if (isDebug)
-                UnityEngine.Console.Log("Loading Ad: " + rewardedID);
+            //if (isDebug)
+            //    UnityEngine.Console.Log("Loading Ad: " + rewardedID);
 
-            Advertisement.Load(rewardedID, this);
+            //Advertisement.Load(rewardedID, this);
         }
 
         public override void DestroyAllAds()
@@ -178,26 +178,26 @@ namespace TheKnights.AdsSystem
 
         public override void ShowRewardedAdIfAvailable(Action<Status, ADMeta> completionCalLBack)
         {
-            pendingRewardedListener = completionCalLBack;
+            //pendingRewardedListener = completionCalLBack;
 
-            if (!CheckIfRewardedAdIsAvailable())
-            {
-                LoadRewardedAd();
-                AdManager.RewardedAdHasFailedToShow();
-                ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
-                return;
-            }
+            //if (!CheckIfRewardedAdIsAvailable())
+            //{
+            //    LoadRewardedAd();
+            //    AdManager.RewardedAdHasFailedToShow();
+            //    ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
+            //    return;
+            //}
 
-            // Note that if the ad content wasn't previously loaded, this method will fail
+            //// Note that if the ad content wasn't previously loaded, this method will fail
 
-            if (isDebug)
-            {
-                UnityEngine.Console.Log("Showing Ad: " + rewardedID);
-            }
+            //if (isDebug)
+            //{
+            //    UnityEngine.Console.Log("Showing Ad: " + rewardedID);
+            //}
 
-            AdManager.RewardedADRightBeforeShow();
+            //AdManager.RewardedADRightBeforeShow();
 
-            CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { Advertisement.Show(rewardedID, this); });
+            //CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { Advertisement.Show(rewardedID, this); });
 
           
         }
@@ -214,36 +214,36 @@ namespace TheKnights.AdsSystem
             PreLoadAds();
         }
 
-        public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-        {
-            if (isDebug)
-                UnityEngine.Console.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+        //public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+        //{
+        //    if (isDebug)
+        //        UnityEngine.Console.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
 
-            isInitializationOperationDone = true;
+        //    isInitializationOperationDone = true;
 
-        }
+        //}
 
-        public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
-        {
-            UnityMainThreadDispatcher.Instance().Enqueue(() =>
-            {
-                if (isDebug)
-                    UnityEngine.Console.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
+        //public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
+        //{
+        //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        //    {
+        //        if (isDebug)
+        //            UnityEngine.Console.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
 
-                if (placementId == rewardedID)
-                {
-                    isRewardedReady = false;
-                    AdManager.RewardedAdHasFailedToShow();
-                    ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
-                }
-                else if (placementId == interstitialID)
-                {
-                    isInterstitialReady = false;
-                    AdManager.InterstitialAdHasFailedToShow();
-                    ProcessPendingCallBack(AdType.Interstital, Status.Failed);
-                }
-            });
-        }
+        //        if (placementId == rewardedID)
+        //        {
+        //            isRewardedReady = false;
+        //            AdManager.RewardedAdHasFailedToShow();
+        //            ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
+        //        }
+        //        else if (placementId == interstitialID)
+        //        {
+        //            isInterstitialReady = false;
+        //            AdManager.InterstitialAdHasFailedToShow();
+        //            ProcessPendingCallBack(AdType.Interstital, Status.Failed);
+        //        }
+        //    });
+        //}
 
         public void OnUnityAdsShowStart(string placementId)
         {
@@ -273,52 +273,52 @@ namespace TheKnights.AdsSystem
         {
         }
 
-        public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
-        {
-            UnityMainThreadDispatcher.Instance().Enqueue(() =>
-            {
-                // What about other statuses
+        //public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
+        //{
+        //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        //    {
+        //        // What about other statuses
 
-                if(placementId == rewardedID)
-                {
-                    isRewardedReady = false;
-                }
+        //        if(placementId == rewardedID)
+        //        {
+        //            isRewardedReady = false;
+        //        }
 
-                if (placementId == rewardedID && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
-                {
-                    if (isDebug)
-                        UnityEngine.Console.Log("Unity Ads Rewarded Ad Completed");
+        //        if (placementId == rewardedID && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        //        {
+        //            if (isDebug)
+        //                UnityEngine.Console.Log("Unity Ads Rewarded Ad Completed");
 
-                    // Grant a reward.
-                    AdManager.RewardedAdHasCompleted();
-                    ProcessPendingCallBack(AdType.Rewarded, Status.Succeded);
+        //            // Grant a reward.
+        //            AdManager.RewardedAdHasCompleted();
+        //            ProcessPendingCallBack(AdType.Rewarded, Status.Succeded);
 
-                    // Load another ad:
-                    LoadRewardedAd();
-                }
-                else if (placementId == rewardedID && !showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
-                {
-                    if (isDebug)
-                        UnityEngine.Console.Log($"Unity Ads Rewarded Ad Ended With Status {showCompletionState}");
+        //            // Load another ad:
+        //            LoadRewardedAd();
+        //        }
+        //        else if (placementId == rewardedID && !showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        //        {
+        //            if (isDebug)
+        //                UnityEngine.Console.Log($"Unity Ads Rewarded Ad Ended With Status {showCompletionState}");
 
-                    AdManager.RewardedAdHasFailedToShow(); // change
-                    Status status = showCompletionState == UnityAdsShowCompletionState.SKIPPED ? Status.Skipped : Status.Unknown;
-                    ProcessPendingCallBack(AdType.Rewarded, status);
+        //            AdManager.RewardedAdHasFailedToShow(); // change
+        //            Status status = showCompletionState == UnityAdsShowCompletionState.SKIPPED ? Status.Skipped : Status.Unknown;
+        //            ProcessPendingCallBack(AdType.Rewarded, status);
       
-                }
-                else if (placementId == interstitialID /*&& showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED)*/)
-                {
-                    if (isDebug)
-                        UnityEngine.Console.Log("Unity Interstitial Ad Completed");
+        //        }
+        //        else if (placementId == interstitialID /*&& showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED)*/)
+        //        {
+        //            if (isDebug)
+        //                UnityEngine.Console.Log("Unity Interstitial Ad Completed");
 
-                    isInterstitialReady = false;
-                    AdManager.InterstitialAdHasCompleted();
-                    ProcessPendingCallBack(AdType.Interstital, Status.Succeded);
+        //            isInterstitialReady = false;
+        //            AdManager.InterstitialAdHasCompleted();
+        //            ProcessPendingCallBack(AdType.Interstital, Status.Succeded);
 
-                    LoadInterstitialAd();
-                }
-            });
-        }
+        //            LoadInterstitialAd();
+        //        }
+        //    });
+        //}
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
@@ -342,25 +342,25 @@ namespace TheKnights.AdsSystem
             });
         }
 
-        public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
-        {
-            UnityMainThreadDispatcher.Instance().Enqueue(() =>
-            {
-                if (isDebug)
-                    UnityEngine.Console.Log($"Error loading Ad Unit: {placementId} - {error.ToString()} - {message}");
+        //public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
+        //{
+        //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        //    {
+        //        if (isDebug)
+        //            UnityEngine.Console.Log($"Error loading Ad Unit: {placementId} - {error.ToString()} - {message}");
 
-                if (placementId == rewardedID)
-                {
-                    isRewardedReady = false;
-                    isLoadingRewarded = false;
-                }
-                else if (placementId == interstitialID)
-                {
-                    isInterstitialReady = false;
-                    isLoadingInterstitial = false;
-                }
-            });
-        }
+        //        if (placementId == rewardedID)
+        //        {
+        //            isRewardedReady = false;
+        //            isLoadingRewarded = false;
+        //        }
+        //        else if (placementId == interstitialID)
+        //        {
+        //            isInterstitialReady = false;
+        //            isLoadingInterstitial = false;
+        //        }
+        //    });
+        //}
 
         public override void HideSmallBanner()
         {

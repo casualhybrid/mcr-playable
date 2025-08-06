@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TheKnights.AdsSystem;
-using Unity.Services.Analytics;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;

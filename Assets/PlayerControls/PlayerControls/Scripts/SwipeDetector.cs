@@ -1,6 +1,5 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;

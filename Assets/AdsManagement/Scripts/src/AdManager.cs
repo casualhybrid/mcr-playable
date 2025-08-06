@@ -173,32 +173,32 @@ namespace TheKnights.AdsSystem
         /// </summary>
         public void LoadInterstitialAd(AdPlugin adPlugin, string adType = null)
         {
-            if (!_enableADS)
-            {
-                if (isDebug)
-                    UnityEngine.Console.Log("Not loading Interstitial Ads as Ads are disabled");
+            //if (!_enableADS)
+            //{
+            //    if (isDebug)
+            //        UnityEngine.Console.Log("Not loading Interstitial Ads as Ads are disabled");
 
-                return;
-            }
+            //    return;
+            //}
 
-            // Load interstitial AD for all plugins
-            if (adPlugin == null)
-            {
-                foreach (var plugin in AdPluginsAll)
-                {
-                    plugin.LoadInterstitialAd(adType);
-                }
+            //// Load interstitial AD for all plugins
+            //if (adPlugin == null)
+            //{
+            //    foreach (var plugin in AdPluginsAll)
+            //    {
+            //        plugin.LoadInterstitialAd(adType);
+            //    }
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (!AdPluginsAll.Contains(adPlugin))
-            {
-                UnityEngine.Console.LogWarning($"Attempting to load interstitial AD for plugin which is not present in adPluginsALL {adPlugin.name}");
-                return;
-            }
+            //if (!AdPluginsAll.Contains(adPlugin))
+            //{
+            //    UnityEngine.Console.LogWarning($"Attempting to load interstitial AD for plugin which is not present in adPluginsALL {adPlugin.name}");
+            //    return;
+            //}
 
-            adPlugin.LoadInterstitialAd(adType);
+            //adPlugin.LoadInterstitialAd(adType);
         }
 
         /// <summary>
@@ -206,41 +206,41 @@ namespace TheKnights.AdsSystem
         /// </summary>
         public void LoadRewardedAd(AdPlugin adPlugin)
         {
-            if (!_enableADS)
-            {
-                if (isDebug)
-                    UnityEngine.Console.Log("Not loading rewarded Ads as Ads are disabled");
+            //if (!_enableADS)
+            //{
+            //    if (isDebug)
+            //        UnityEngine.Console.Log("Not loading rewarded Ads as Ads are disabled");
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (!AdPluginsAll.Contains(adPlugin))
-            {
-                UnityEngine.Console.LogWarning($"Attempting to load rewarded AD for plugin which is not present in adPluginsALL {adPlugin.name}");
-                return;
-            }
+            //if (!AdPluginsAll.Contains(adPlugin))
+            //{
+            //    UnityEngine.Console.LogWarning($"Attempting to load rewarded AD for plugin which is not present in adPluginsALL {adPlugin.name}");
+            //    return;
+            //}
 
-            adPlugin.LoadRewardedAd();
+            //adPlugin.LoadRewardedAd();
         }
 
         public void PreLoadTheAds(AdPlugin adPlugin)
         {
-            Debug.Log("Ads: ");
-            if (!_enableADS)
-            {
-                if (isDebug)
-                    UnityEngine.Console.Log("Not Preloading Ads as Ads are disabled");
+            //Debug.Log("Ads: ");
+            //if (!_enableADS)
+            //{
+            //    if (isDebug)
+            //        UnityEngine.Console.Log("Not Preloading Ads as Ads are disabled");
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (!AdPluginsAll.Contains(adPlugin))
-            {
-                UnityEngine.Console.LogWarning($"Attempting to Preload AD plugin which is not present in adPluginsALL {adPlugin.name}");
-                return;
-            }
+            //if (!AdPluginsAll.Contains(adPlugin))
+            //{
+            //    UnityEngine.Console.LogWarning($"Attempting to Preload AD plugin which is not present in adPluginsALL {adPlugin.name}");
+            //    return;
+            //}
 
-            adPlugin.PreLoadAds();
+            //adPlugin.PreLoadAds();
         }
 
         /// <summary>
@@ -307,14 +307,14 @@ namespace TheKnights.AdsSystem
         /// </summary>
         public void HideBanner(BannerType bannerType = BannerType.SmallBanner)
         {
-            if (bannerType == BannerType.SmallBanner)
-            {
-                AdPluginNonPriortizedSmallBanner.HideSmallBanner();
-            }
-            else if (bannerType == BannerType.LargeBanner)
-            {
-                AdPluginNonPriortizedSmallBanner.HideLargeBanner();
-            }
+            //if (bannerType == BannerType.SmallBanner)
+            //{
+            //    AdPluginNonPriortizedSmallBanner.HideSmallBanner();
+            //}
+            //else if (bannerType == BannerType.LargeBanner)
+            //{
+            //    AdPluginNonPriortizedSmallBanner.HideLargeBanner();
+            //}
         }
 
         /// <summary>
@@ -322,43 +322,43 @@ namespace TheKnights.AdsSystem
         /// </summary>
         public void DestroyAllAds()
         {
-            foreach (var V in AdPluginsAll)
-            {
-                V.DestroyAllAds();
-            }
+            //foreach (var V in AdPluginsAll)
+            //{
+            //    V.DestroyAllAds();
+            //}
         }
 
         public void ShowInterstitialAd(Action<Status, ADMeta> completionCalLBack, string adType = null)
         {
-            if (!_enableADS)
-            {
-                if (isDebug)
-                    UnityEngine.Console.Log("Not Showing Interstitial Ads as global ads are disabled");
+            //if (!_enableADS)
+            //{
+            //    if (isDebug)
+            //        UnityEngine.Console.Log("Not Showing Interstitial Ads as global ads are disabled");
 
-                InterstitialAdHasFailedToShow();
+            //    InterstitialAdHasFailedToShow();
 
-                completionCalLBack?.Invoke(Status.Failed, new ADMeta());
-                return;
-            }
+            //    completionCalLBack?.Invoke(Status.Failed, new ADMeta());
+            //    return;
+            //}
 
-            if (isInterstitalPriority)
-            {
-                AdPlugin adPlugin = GetAdPluginBasedOnPriority(AdType.Interstital, adType);
+            //if (isInterstitalPriority)
+            //{
+            //    AdPlugin adPlugin = GetAdPluginBasedOnPriority(AdType.Interstital, adType);
 
-                if (adPlugin != null)
-                {
-                    adPlugin.ShowInterstitialAdIfAvailable(completionCalLBack, adType);
-                }
-                else
-                {
-                    InterstitialAdHasFailedToShow();
-                    completionCalLBack?.Invoke(Status.Failed, new ADMeta());
-                }
-            }
-            else
-            {
-                AdPluginNonPriortizedForInterstitial.ShowInterstitialAdIfAvailable(completionCalLBack, adType);
-            }
+            //    if (adPlugin != null)
+            //    {
+            //        adPlugin.ShowInterstitialAdIfAvailable(completionCalLBack, adType);
+            //    }
+            //    else
+            //    {
+            //        InterstitialAdHasFailedToShow();
+            //        completionCalLBack?.Invoke(Status.Failed, new ADMeta());
+            //    }
+            //}
+            //else
+            //{
+            //    AdPluginNonPriortizedForInterstitial.ShowInterstitialAdIfAvailable(completionCalLBack, adType);
+            //}
         }
 
         public bool CheckIfInterstitialADIsAvailable(string adType = null)

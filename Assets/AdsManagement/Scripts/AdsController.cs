@@ -225,22 +225,22 @@ public class AdsController : ScriptableObject
 
     private void InterstitialADHasLoadedCallBack(ADMeta adMeta)
     {
-        AnalyticsManager.CustomData("InterstitialADHasLoaded", new Dictionary<string, object> { { "mediationAdapterName", adMeta.AdapterName } });
+        //AnalyticsManager.CustomData("InterstitialADHasLoaded", new Dictionary<string, object> { { "mediationAdapterName", adMeta.AdapterName } });
     }
 
     private void AdInterstitialAboutToShowCallBack()
     {
-        AnalyticsManager.CustomData("InterstitialOpened", new Dictionary<string, object> { { "Screen", lastInterstitialPanel } });
+      //  AnalyticsManager.CustomData("InterstitialOpened", new Dictionary<string, object> { { "Screen", lastInterstitialPanel } });
         OnInterstitialAdAboutToShow.Invoke();
     }
 
     private void GetCurrentSmallBannerStateAndHideIt()
     {
-        currentBannerState = adManager.GetCurrentSmallBannerState();
+        //currentBannerState = adManager.GetCurrentSmallBannerState();
 
-        //   UnityEngine.Console.Log($"Current Small Banner Status Saved As {currentBannerState.isActive}");
+        ////   UnityEngine.Console.Log($"Current Small Banner Status Saved As {currentBannerState.isActive}");
 
-        adManager.HideBanner(BannerType.SmallBanner);
+        //adManager.HideBanner(BannerType.SmallBanner);
     }
 
     private void RestoreSmallBannerToStateBeforeInterstitial()
@@ -256,27 +256,27 @@ public class AdsController : ScriptableObject
 
     private void InterstitialAdFailedToShowCallBack()
     {
-        RestoreSmallBannerToStateBeforeInterstitial();
+       // RestoreSmallBannerToStateBeforeInterstitial();
         ResumeFMODMaster(); OnInterstitialAdFailedToShow.Invoke();
     }
 
     private void IntersitialAdCompletedCallBack(ADMeta adMeta)
     {
-        RestoreSmallBannerToStateBeforeInterstitial();
+       // RestoreSmallBannerToStateBeforeInterstitial();
 
         ResumeFMODMaster();
 
-        AnalyticsManager.CustomData("InterstitialAdCompleted", new Dictionary<string, object> { { "Screen", lastInterstitialPanel }, { "mediationAdapterName", adMeta.AdapterName } });
+       // AnalyticsManager.CustomData("InterstitialAdCompleted", new Dictionary<string, object> { { "Screen", lastInterstitialPanel }, { "mediationAdapterName", adMeta.AdapterName } });
 
         OnInterstitialAdCompleted.Invoke();
     }
 
     private void RewardedADAboutToShowCallBack()
     {
-        if (Debug.isDebugBuild)
-        {
-            UnityEngine.Console.Log($"Rewarded ad about to show");
-        }
+        //if (Debug.isDebugBuild)
+        //{
+        //    UnityEngine.Console.Log($"Rewarded ad about to show");
+        //}
 
         OnRewardedAdAboutToShow.Invoke();
     }
@@ -307,24 +307,24 @@ public class AdsController : ScriptableObject
 
     private void RewardedADLoadedCalLBack(bool isPriority, ADMeta adMeta)
     {
-        AnalyticsManager.CustomData("RewardedADLoaded", new Dictionary<string, object> { { "mediationAdapterName", adMeta.AdapterName } });
+        //AnalyticsManager.CustomData("RewardedADLoaded", new Dictionary<string, object> { { "mediationAdapterName", adMeta.AdapterName } });
 
-        if (showRewardedAdAsSoonAsItsLoaded && isPriority)
-        {
-            showRewardedAdAsSoonAsItsLoaded = false;
+        //if (showRewardedAdAsSoonAsItsLoaded && isPriority)
+        //{
+        //    showRewardedAdAsSoonAsItsLoaded = false;
 
-            // UnityEngine.Console.Log("Showing AD That WAS QUEUED");
+        //    // UnityEngine.Console.Log("Showing AD That WAS QUEUED");
 
-            // Show pending rewarded Ads here
-            pendingShowRewardedADCommand?.Invoke();
+        //    // Show pending rewarded Ads here
+        //    pendingShowRewardedADCommand?.Invoke();
 
-            if (pendingShowRewardedADCommand == null)
-            {
-                UnityEngine.Console.LogWarning("Show reward as soon as its loaded was requested but there was no pending request");
-            }
+        //    if (pendingShowRewardedADCommand == null)
+        //    {
+        //        UnityEngine.Console.LogWarning("Show reward as soon as its loaded was requested but there was no pending request");
+        //    }
 
-            pendingShowRewardedADCommand = null;
-        }
+        //    pendingShowRewardedADCommand = null;
+        //}
 
         OnRewardedAdLoaded.Invoke();
     }
@@ -418,14 +418,14 @@ public class AdsController : ScriptableObject
 
     private void LoadAds(GameEvent gameEvent)
     {
-        Debug.Log("LoadAds():");
+        //Debug.Log("LoadAds():");
 
-        if (initializeRequiredAdsOnce)
-            return;
+        //if (initializeRequiredAdsOnce)
+        //    return;
 
-        initializeRequiredAdsOnce = true;
+        //initializeRequiredAdsOnce = true;
 
-        CoroutineRunner.Instance.StartCoroutine(WaitAndLoadAds());
+        //CoroutineRunner.Instance.StartCoroutine(WaitAndLoadAds());
     }
 
     private IEnumerator WaitAndLoadAds()
@@ -540,12 +540,12 @@ public class AdsController : ScriptableObject
 
     private void RepositionTheBanner()
     {
-        CurrentBannerState state = adManager.GetCurrentSmallBannerState();
+        //CurrentBannerState state = adManager.GetCurrentSmallBannerState();
 
-        if (!state.isActive)
-            return;
+        //if (!state.isActive)
+        //    return;
 
-        adManager.ShowBannerAd(BannerType.SmallBanner, /*bannerPosition*/ BannerPosition.Bottom);
+        //adManager.ShowBannerAd(BannerType.SmallBanner, /*bannerPosition*/ BannerPosition.Bottom);
     }
 
     public void ShowSmallBannerAd(string panelName)
@@ -713,7 +713,7 @@ public class AdsController : ScriptableObject
 
     private void RewardedFrameWindowStarted(GameEvent gameEvent)
     {
-        GetCurrentSmallBannerStateAndHideIt();
+       // GetCurrentSmallBannerStateAndHideIt();
         // UnityEngine.Console.Log("Rewarded Window Started");
         isRewardedFramingWindowActive = true;
     }

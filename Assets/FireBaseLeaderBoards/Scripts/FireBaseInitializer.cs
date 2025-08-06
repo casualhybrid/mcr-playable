@@ -46,7 +46,8 @@ public static class FireBaseInitializer
 
                 OnFireBaseInitialized?.Invoke();
 
-                UnityEngine.Console.Log("FireBase Successfully Initialized");
+
+            Debug.LogError("FireBase Successfully Initialized");
             }
             else
             {

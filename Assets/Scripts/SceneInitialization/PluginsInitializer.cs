@@ -48,7 +48,7 @@ public class PluginsInitializer : MonoBehaviour
         // int refreshRate = Screen.currentResolution.refreshRate;
         //  Application.targetFrameRate = Mathf.Clamp(refreshRate, 60, 120);
         //   UnityEngine.Console.Log("Screen refresh rate: " + Screen.currentResolution.refreshRate);
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
         //** Do not enable as this will cause non fatal exceptions not to appear in crashlytics
        // Debug.unityLogger.logEnabled = false;
 

@@ -43,6 +43,7 @@ namespace UnityStandardAssets.ImageEffects
             if(averageFPS < 55)
             {
                 UnityEngine.Console.Log("Disabling post processing as average fps are less than 55");
+                Debug.LogError("Fps <55");
                 DisablePostProcessing();
             }
         }

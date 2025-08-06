@@ -171,25 +171,25 @@ public class AdsController : ScriptableObject
 
     private void SubscribeADManagerEvents()
     {
-        adManager.OnInterstitialADLoaded.AddListener(InterstitialADHasLoadedCallBack);
+        //adManager.OnInterstitialADLoaded.AddListener(InterstitialADHasLoadedCallBack);
 
-        adManager.OnInterstitialADAboutToShow.AddListener(AdInterstitialAboutToShowCallBack);
+        //adManager.OnInterstitialADAboutToShow.AddListener(AdInterstitialAboutToShowCallBack);
 
-        adManager.OnInterstitialAdFailedToShow.AddListener(InterstitialAdFailedToShowCallBack);
+        //adManager.OnInterstitialAdFailedToShow.AddListener(InterstitialAdFailedToShowCallBack);
 
-        adManager.OnInterstitialAdCompleted.AddListener(IntersitialAdCompletedCallBack);
+        //adManager.OnInterstitialAdCompleted.AddListener(IntersitialAdCompletedCallBack);
 
-        adManager.OnRewardedADAboutToShow.AddListener(RewardedADAboutToShowCallBack);
+        //adManager.OnRewardedADAboutToShow.AddListener(RewardedADAboutToShowCallBack);
 
-        adManager.OnRewardedAdCompleted.AddListener(RewardedADCompletedCallBack);
+        //adManager.OnRewardedAdCompleted.AddListener(RewardedADCompletedCallBack);
 
-        adManager.OnRewardedAdFailedToShow.AddListener(RewardedADFailedToShowCallBack);
+        //adManager.OnRewardedAdFailedToShow.AddListener(RewardedADFailedToShowCallBack);
 
-        adManager.OnRewardedAdLoaded.AddListener(RewardedADLoadedCalLBack);
+        //adManager.OnRewardedAdLoaded.AddListener(RewardedADLoadedCalLBack);
 
-        adManager.OnRewardedAdHasBeenSkipped.AddListener(RewardedADSkippedCallBack);
+        //adManager.OnRewardedAdHasBeenSkipped.AddListener(RewardedADSkippedCallBack);
 
-        adManager.OnRewardedAdHasBeenClosed.AddListener(RewardedADClosedCallBack);
+        //adManager.OnRewardedAdHasBeenClosed.AddListener(RewardedADClosedCallBack);
 
         //  adManager.OnInterstitialADRightBeforeShow.AddListener(GetCurrentSmallBannerStateAndHideIt);
 

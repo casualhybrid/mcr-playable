@@ -798,7 +798,7 @@ namespace FMODUnity
         private void Start()
         {
 #if !UNITY_EDITOR
-            AppStateEventNotifier.AppStateChanged += HandleAppStateChanged;
+          //  AppStateEventNotifier.AppStateChanged += HandleAppStateChanged;
             Task.Factory.StartNew(PauseDetectorTask, TaskCreationOptions.LongRunning);
 #endif
         }

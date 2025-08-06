@@ -1,5 +1,4 @@
 ﻿using System;
-using Unity.Services.RemoteConfig;
 using UnityEngine;
 
 public class RemoteConfiguration : MonoBehaviour
@@ -54,13 +53,13 @@ public class RemoteConfiguration : MonoBehaviour
         //CurrentRemoteAdConfiguration.LargeBannerRemoteAdConfig = LargeBannerRemoteAdConfigDefault;
 
          // Add a listener to apply settings when successfully retrieved:
-        RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
+       // RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
 
         // Set the user’s unique ID:
         // ConfigManager.SetCustomUserID("some-user-id");
 
         // Set the environment ID:
-        RemoteConfigService.Instance.SetEnvironmentID("dab3ddc3-2c17-4263-9f28-f61bbfc54552");
+       // RemoteConfigService.Instance.SetEnvironmentID("dab3ddc3-2c17-4263-9f28-f61bbfc54552");
 
 
         UnityGameServicesManager.OnUserSignedInToAuthenticationService += InitializeRemoteConfig;
@@ -86,39 +85,39 @@ public class RemoteConfiguration : MonoBehaviour
             return;
 
         // Fetch configuration setting from the remote service:
-        RemoteConfigService.Instance.FetchConfigsAsync(new userAttributes(), new appAttributes());
+       // RemoteConfigService.Instance.FetchConfigsAsync(new userAttributes(), new appAttributes());
     }
 
-    private void ApplyRemoteSettings(ConfigResponse configResponse)
-    {
-        UnityEngine.Console.Log("Applying Remote Settings with response" + configResponse);
+    //private void ApplyRemoteSettings(ConfigResponse configResponse)
+    //{
+    //    UnityEngine.Console.Log("Applying Remote Settings with response" + configResponse);
 
-        // Conditionally update settings, depending on the response's origin:
-        switch (configResponse.requestOrigin)
-        {
-            case ConfigOrigin.Default:
-                UnityEngine.Console.Log("No settings loaded this session; using default values.");
-                break;
+    //    // Conditionally update settings, depending on the response's origin:
+    //    switch (configResponse.requestOrigin)
+    //    {
+    //        case ConfigOrigin.Default:
+    //            UnityEngine.Console.Log("No settings loaded this session; using default values.");
+    //            break;
 
-            case ConfigOrigin.Cached:
-                UnityEngine.Console.Log("No settings loaded this session; using cached values from a previous session.");
-                ManageRemoteAD_Data();
-                break;
+    //        case ConfigOrigin.Cached:
+    //            UnityEngine.Console.Log("No settings loaded this session; using cached values from a previous session.");
+    //            ManageRemoteAD_Data();
+    //            break;
 
-            case ConfigOrigin.Remote:
-                UnityEngine.Console.Log("New settings loaded this session; update values accordingly.");
-                ManageRemoteAD_Data();
+    //        case ConfigOrigin.Remote:
+    //            UnityEngine.Console.Log("New settings loaded this session; update values accordingly.");
+    //            ManageRemoteAD_Data();
 
-                break;
-        }
-    }
+    //            break;
+    //    }
+    //}
 
     private void ManageRemoteAD_Data()
     {
      //   TutorialType = RemoteConfigService.Instance.appConfig.GetInt("TutorialType");
        // IsTutorialRemoved = RemoteConfigService.Instance.appConfig.GetBool("IsTutorialRemoved");
-        IsAdsAllowedOnLowEndRam = RemoteConfigService.Instance.appConfig.GetBool("IsAdsAllowedOnLowEndRam");
-        LatestAppVersion = RemoteConfigService.Instance.appConfig.GetString("LatestAppVersion");
+      //  IsAdsAllowedOnLowEndRam = RemoteConfigService.Instance.appConfig.GetBool("IsAdsAllowedOnLowEndRam");
+      //  LatestAppVersion = RemoteConfigService.Instance.appConfig.GetString("LatestAppVersion");
 
         //InterstitialRemoteAdConfig.ResetData();
         //SmallBannerRemoteAdConfig.ResetData();
@@ -145,6 +144,6 @@ public class RemoteConfiguration : MonoBehaviour
 
       //  BlackListChipsetJson = RemoteConfigService.Instance.appConfig.GetJson("BlackListedChipset");
 
-        RemoteConfigurationDataFetched?.Invoke();
+        //RemoteConfigurationDataFetched?.Invoke();
     }
 }

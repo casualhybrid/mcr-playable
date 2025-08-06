@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
 
@@ -67,31 +66,31 @@ public static class UnityGameServicesManager
 
     private static async void SignInTheUserToGamingService()
     {
-        bool isError = false;
+        //bool isError = false;
 
-        try
-        {
-            if (!AuthenticationService.Instance.IsSignedIn)
-            {
-                await AuthenticationService.Instance.SignInAnonymouslyAsync();
-                UnityEngine.Console.Log("Signed in to authentication service");
-            }
-        }
-        catch
-        {
-            isError = true;
-        }
-        finally
-        {
-            if (!isError && AuthenticationService.Instance.IsSignedIn)
-            {
-                OnUserSignedInToAuthenticationService?.Invoke();
-            }
-            else
-            {
-                OnUserFailedToSignInToGamingService?.Invoke();
-            }
-        }
+        //try
+        //{
+        //    if (!AuthenticationService.Instance.IsSignedIn)
+        //    {
+        //        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        //        UnityEngine.Console.Log("Signed in to authentication service");
+        //    }
+        //}
+        //catch
+        //{
+        //    isError = true;
+        //}
+        //finally
+        //{
+        //    if (!isError && AuthenticationService.Instance.IsSignedIn)
+        //    {
+        //        OnUserSignedInToAuthenticationService?.Invoke();
+        //    }
+        //    else
+        //    {
+        //        OnUserFailedToSignInToGamingService?.Invoke();
+        //    }
+        //}
     }
 
     private static async void CheckForAnalyticServiceConsents()

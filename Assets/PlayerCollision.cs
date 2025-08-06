@@ -41,7 +41,7 @@ public class PlayerCollision : MonoBehaviour
            .From(new Vector3(0, initialYRotation - rotationAmount, 0));
 
         collisionCount = PlayerPrefs.GetInt(GetPrefsKey(), 0);
-        Debug.LogError(collisionCount + "Mohsin");
+       // Debug.LogError(collisionCount + "Mohsin");
     }
     private bool hasTriggered = false; // Yeh flag lagaya hai
 

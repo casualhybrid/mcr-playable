@@ -108,11 +108,11 @@ namespace TheKnights.AdsSystem
             //throw new NotImplementedException();
         }
 
-        public override T GetRelativeBannerPositionForCurrentPlugin<T>(BannerPosition bannerPosition)
-        {
-            //  throw new NotImplementedException();
-            return default(T);
-        }
+        //public override T GetRelativeBannerPositionForCurrentPlugin<T>(BannerPosition bannerPosition)
+        //{
+        //    //  throw new NotImplementedException();
+        //    return default(T);
+        //}
 
         // Pending Interstitial Listeners
         private Action<Status, ADMeta> pendingInterstitialListener;

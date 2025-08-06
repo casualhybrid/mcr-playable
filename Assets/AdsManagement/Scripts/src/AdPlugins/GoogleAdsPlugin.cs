@@ -1,4 +1,4 @@
-﻿using GoogleMobileAds.Api;
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,10 +38,10 @@ namespace TheKnights.AdsSystem
         [HideInInspector] public UnityEvent LargeBannerHide;
 
         //Reference to AdUnits
-        private BannerView smallbanner;
+       // private BannerView smallbanner;
 
-        private BannerView largebanner;
-        private RewardedAd rewardedAd;
+       // private BannerView largebanner;
+       // private RewardedAd rewardedAd;
 
         private bool rewardEarned;
 
@@ -101,11 +101,11 @@ namespace TheKnights.AdsSystem
 
         private IEnumerator InitializeTheAdsRoutine()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
-            WebviewWarmer.PreWarming();
+//#if UNITY_ANDROID && !UNITY_EDITOR
+//            WebviewWarmer.PreWarming();
 
-            yield return new WaitUntil(() => WebviewWarmer.IsOpertaionCompleted);
-#endif
+//            yield return new WaitUntil(() => WebviewWarmer.IsOpertaionCompleted);
+//#endif
             yield return null;
 
             //// *** REMOVE ON RELEASE
@@ -119,69 +119,69 @@ namespace TheKnights.AdsSystem
 
             //MobileAds.SetRequestConfiguration(requestConfiguration);
 
-            MobileAds.Initialize((init) =>
-            {
-                isInitializationOperationDone = true;
-                isInitialized = true;
-                isInitializedPluginSpecific = true;
+            //MobileAds.Initialize((init) =>
+            //{
+            //    isInitializationOperationDone = true;
+            //    isInitialized = true;
+            //    isInitializedPluginSpecific = true;
 
-                Dictionary<string, AdapterStatus> map = init.getAdapterStatusMap();
-                foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
-                {
-                    string className = keyValuePair.Key;
-                    AdapterStatus status = keyValuePair.Value;
-                    switch (status.InitializationState)
-                    {
-                        case AdapterState.NotReady:
-                            // The adapter initialization did not complete.
-                            UnityEngine.Console.Log("Adapter: " + className + " not ready." + status.Description);
-                            break;
+            //    Dictionary<string, AdapterStatus> map = init.getAdapterStatusMap();
+            //    foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
+            //    {
+            //        string className = keyValuePair.Key;
+            //        AdapterStatus status = keyValuePair.Value;
+            //        switch (status.InitializationState)
+            //        {
+            //            case AdapterState.NotReady:
+            //                // The adapter initialization did not complete.
+            //                UnityEngine.Console.Log("Adapter: " + className + " not ready." + status.Description);
+            //                break;
 
-                        case AdapterState.Ready:
-                            // The adapter was successfully initialized.
-                            UnityEngine.Console.Log("Adapter: " + className + " is initialized.");
-                            break;
-                    }
-                }
+            //            case AdapterState.Ready:
+            //                // The adapter was successfully initialized.
+            //                UnityEngine.Console.Log("Adapter: " + className + " is initialized.");
+            //                break;
+            //        }
+            //    }
 
-             //   PreLoadAds();
+            // //   PreLoadAds();
 
-                if (isDebug)
-                    UnityEngine.Console.Log("Google Ads Initialized");
-            });
+            //    if (isDebug)
+            //        UnityEngine.Console.Log("Google Ads Initialized");
+            //});
         }
 
         public override void PreLoadAds()
         {
-            if (preLoadADS)
-            {
-                for (int i = 0; i < adsToPreLoad.Count; i++)
-                {
-                    AdType ad = adsToPreLoad[i];
+            //if (preLoadADS)
+            //{
+            //    for (int i = 0; i < adsToPreLoad.Count; i++)
+            //    {
+            //        AdType ad = adsToPreLoad[i];
 
-                    switch (ad)
-                    {
-                        case AdType.Banner:
-                            RequestSmallBanner(AdPosition.Bottom);
-                            HideSmallBanner();
-                            break;
+            //        switch (ad)
+            //        {
+            //            case AdType.Banner:
+            //                RequestSmallBanner(AdPosition.Bottom);
+            //                HideSmallBanner();
+            //                break;
 
-                        case AdType.Rewarded:
-                            LoadRewardedAd();
-                            break;
+            //            case AdType.Rewarded:
+            //                LoadRewardedAd();
+            //                break;
 
-                        case AdType.Interstital:
-                            foreach (var item in googleInterstitialsUnique)
-                            {
-                                if (!item.Value.isPreLoadAD)
-                                    continue;
+            //            case AdType.Interstital:
+            //                foreach (var item in googleInterstitialsUnique)
+            //                {
+            //                    if (!item.Value.isPreLoadAD)
+            //                        continue;
 
-                                item.Value.LoadInterstitial();
-                            }
-                            break;
-                    }
-                }
-            }
+            //                    item.Value.LoadInterstitial();
+            //                }
+            //                break;
+            //        }
+            //    }
+            //}
         }
 
         //public void RemoveInterstitialListeners()
@@ -220,58 +220,58 @@ namespace TheKnights.AdsSystem
             interstitial.ShowInterstitialAdIfAvailable(completionCalLBack);
         }
 
-        private void RequestSmallBanner(AdPosition position)
-        {
-            DestroySmallBanner(false);
+//        private void RequestSmallBanner(AdPosition position)
+//        {
+//            DestroySmallBanner(false);
 
-            if (!isInitialized)
-                return;
+//            if (!isInitialized)
+//                return;
 
-            // float deviceScale = MobileAds.Utils.GetDeviceScale();
-            // UnityEngine.Console.Log("Device Scale is " + deviceScale);
-            //  float adWidth = Screen.width * 0.68376f;
-            // adWidth /= deviceScale;
-            AdSize adaptiveSize = AdSize.GetPortraitAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);   /*AdSize.GetPortraitAnchoredAdaptiveBannerAdSizeWithWidth((int)adWidth)*/;
+//            // float deviceScale = MobileAds.Utils.GetDeviceScale();
+//            // UnityEngine.Console.Log("Device Scale is " + deviceScale);
+//            //  float adWidth = Screen.width * 0.68376f;
+//            // adWidth /= deviceScale;
+//            AdSize adaptiveSize = AdSize.GetPortraitAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);   /*AdSize.GetPortraitAnchoredAdaptiveBannerAdSizeWithWidth((int)adWidth)*/;
 
-            this.smallbanner = new BannerView(_bannerID, adaptiveSize, position);
+//            this.smallbanner = new BannerView(_bannerID, adaptiveSize, position);
 
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
 
-            int bannerHeight = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetHeightInPixels());
-            int bannerWidth = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetWidthInPixels());
+//            int bannerHeight = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetHeightInPixels());
+//            int bannerWidth = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetWidthInPixels());
 
-             int xDP = DensityIndependentPixels(((int)Screen.safeArea.position.x + ((int)Screen.safeArea.width / 2)) - (bannerWidth / 2));
-            int yDP = DensityIndependentPixels((Display.main.renderingHeight - (int)Screen.safeArea.position.y) - bannerHeight);
-            //  UnityEngine.Console.Log($"Main Height {Display.main.systemHeight} and Height {Screen.height} and safe area height is { (int)Screen.safeArea.height}");
+//             int xDP = DensityIndependentPixels(((int)Screen.safeArea.position.x + ((int)Screen.safeArea.width / 2)) - (bannerWidth / 2));
+//            int yDP = DensityIndependentPixels((Display.main.renderingHeight - (int)Screen.safeArea.position.y) - bannerHeight);
+//            //  UnityEngine.Console.Log($"Main Height {Display.main.systemHeight} and Height {Screen.height} and safe area height is { (int)Screen.safeArea.height}");
 
-            // Create a 320x50 banner at the top of the screen.
-            this.smallbanner.SetPosition(xDP, yDP);
-#endif
+//            // Create a 320x50 banner at the top of the screen.
+//            this.smallbanner.SetPosition(xDP, yDP);
+//#endif
 
-            //SubscribeToEvents
-            SubscribeSmallBannerCallbacks();
-            // Create an empty ad request.
-            AdRequest request = new AdRequest.Builder().Build();
-            // Load the banner with the request.
-            this.smallbanner.LoadAd(request);
-        }
+//            //SubscribeToEvents
+//            SubscribeSmallBannerCallbacks();
+//            // Create an empty ad request.
+//            AdRequest request = new AdRequest.Builder().Build();
+//            // Load the banner with the request.
+//            this.smallbanner.LoadAd(request);
+//        }
 
-        private void RequestLargeBanner(AdPosition position)
-        {
-            DestroyLargeBanner();
+//        private void RequestLargeBanner(AdPosition position)
+//        {
+//            DestroyLargeBanner();
 
-            if (!isInitialized)
-                return;
+//            if (!isInitialized)
+//                return;
 
-            // Create a 320x50 banner at the top of the screen.
-            this.largebanner = new BannerView(_bannerID, AdSize.MediumRectangle, position);
-            //SubscribeToEvents
-            SubscribeLargeBannerCallbacks();
-            // Create an empty ad request.
-            AdRequest request = new AdRequest.Builder().Build();
-            // Load the banner with the request.
-            this.largebanner.LoadAd(request);
-        }
+//            // Create a 320x50 banner at the top of the screen.
+//            this.largebanner = new BannerView(_bannerID, AdSize.MediumRectangle, position);
+//            //SubscribeToEvents
+//            SubscribeLargeBannerCallbacks();
+//            // Create an empty ad request.
+//            AdRequest request = new AdRequest.Builder().Build();
+//            // Load the banner with the request.
+//            this.largebanner.LoadAd(request);
+//        }
 
         #endregion ShowAdsMethods
 
@@ -282,11 +282,11 @@ namespace TheKnights.AdsSystem
             // Called when an ad request has successfully loaded.
             // this.smallbanner.OnAdLoaded += this.HandleOnAdLoaded;
             // Called when an ad request failed to load.
-            this.smallbanner.OnAdFailedToLoad += (sender, args) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                { DestroySmallBanner(false); });
-            };
+            //this.smallbanner.OnAdFailedToLoad += (sender, args) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    { DestroySmallBanner(false); });
+            //};
 
             //this.smallbanner.OnAdLoaded += (sender, args) =>
             //{
@@ -299,18 +299,18 @@ namespace TheKnights.AdsSystem
             // Called when an ad request has successfully loaded.
             // this.largebanner.OnAdLoaded += this.HandleOnAdLoaded;
             // Called when an ad request failed to load.
-            this.largebanner.OnAdFailedToLoad += (sender, args) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                { DestroyLargeBanner(); });
-            };
-            this.largebanner.OnAdLoaded += (sender, args) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    isLargeBannerShowing = true; LargeBannerShown.Invoke();
-                });
-            };
+            //this.largebanner.OnAdFailedToLoad += (sender, args) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    { DestroyLargeBanner(); });
+            //};
+            //this.largebanner.OnAdLoaded += (sender, args) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    {
+            //        isLargeBannerShowing = true; LargeBannerShown.Invoke();
+            //    });
+            //};
         }
 
         #endregion EventsSubscription
@@ -321,28 +321,28 @@ namespace TheKnights.AdsSystem
 
         public void DestroySmallBanner(bool recordState = true)
         {
-            if (recordState)
-            {
-                CurrentSmallBannerState = new CurrentBannerState(false, CurrentSmallBannerState.CurrentBannerPos);
-            }
+            //if (recordState)
+            //{
+            //    CurrentSmallBannerState = new CurrentBannerState(false, CurrentSmallBannerState.CurrentBannerPos);
+            //}
 
-            if (this.smallbanner != null)
-            {
-                this.smallbanner.Destroy();
-                this.smallbanner = null;
-            }
+            //if (this.smallbanner != null)
+            //{
+            //    this.smallbanner.Destroy();
+            //    this.smallbanner = null;
+            //}
         }
 
         public void DestroyLargeBanner()
         {
-            if (this.largebanner != null)
-            {
-                this.largebanner.Destroy();
-                this.largebanner = null;
+            //if (this.largebanner != null)
+            //{
+            //    this.largebanner.Destroy();
+            //    this.largebanner = null;
 
-                isLargeBannerShowing = false;
-                LargeBannerHide.Invoke();
-            }
+            //    isLargeBannerShowing = false;
+            //    LargeBannerHide.Invoke();
+            //}
         }
 
         public void DestroyInterstiaial(object additionalInfo = null)
@@ -377,22 +377,22 @@ namespace TheKnights.AdsSystem
 
         public override void HideSmallBanner()
         {
-            CurrentSmallBannerState = new CurrentBannerState(false, CurrentSmallBannerState.CurrentBannerPos);
+            //CurrentSmallBannerState = new CurrentBannerState(false, CurrentSmallBannerState.CurrentBannerPos);
 
-            if (smallbanner != null)
-            {
-                smallbanner.Hide();
-            }
+            //if (smallbanner != null)
+            //{
+            //    smallbanner.Hide();
+            //}
         }
 
         public override void HideLargeBanner()
         {
-            if (largebanner != null)
-            {
-                largebanner.Hide();
-                isLargeBannerShowing = false;
-                LargeBannerHide.Invoke();
-            }
+            //if (largebanner != null)
+            //{
+            //    largebanner.Hide();
+            //    isLargeBannerShowing = false;
+            //    LargeBannerHide.Invoke();
+            //}
         }
 
         public void HideAllBanners()
@@ -405,19 +405,19 @@ namespace TheKnights.AdsSystem
 
         #region ShowBannners
 
-        private int DensityIndependentPixels(int pixel)
-        {
-            float resScale = (float)Display.main.renderingHeight / (float)Display.main.systemHeight;
-            float deviceScale = MobileAds.Utils.GetDeviceScale() * resScale;
-            return (int)(pixel / deviceScale);
-        }
+        //private int DensityIndependentPixels(int pixel)
+        //{
+        //    float resScale = (float)Display.main.renderingHeight / (float)Display.main.systemHeight;
+        //    float deviceScale = MobileAds.Utils.GetDeviceScale() * resScale;
+        //    return (int)(pixel / deviceScale);
+        //}
 
-        private float ScreenPixels(float pixel)
-        {
-            float pix = pixel;
-            float deviceScale = MobileAds.Utils.GetDeviceScale();
-            return (int)(pixel * deviceScale);
-        }
+        //private float ScreenPixels(float pixel)
+        //{
+        //    float pix = pixel;
+        //    float deviceScale = MobileAds.Utils.GetDeviceScale();
+        //    return (int)(pixel * deviceScale);
+        //}
 
         private int ScaleThePixelsAccordingToDownScaleRatio(float pixel)
         {
@@ -427,70 +427,70 @@ namespace TheKnights.AdsSystem
 
         public override void ShowSmallBanner(BannerPosition bannerPosition)
         {
-            AdPosition adPosition = GetRelativeBannerPositionForCurrentPlugin<AdPosition>(bannerPosition);
+            //AdPosition adPosition = GetRelativeBannerPositionForCurrentPlugin<AdPosition>(bannerPosition);
 
-            // Save the position as current
-            CurrentSmallBannerState = new CurrentBannerState(true, bannerPosition);
+            //// Save the position as current
+            //CurrentSmallBannerState = new CurrentBannerState(true, bannerPosition);
 
-            SetSmallBannerPosition(adPosition);
+            //SetSmallBannerPosition(adPosition);
         }
 
         public override void ShowLargeBanner(BannerPosition bannerPosition)
         {
-            AdPosition adPosition = GetRelativeBannerPositionForCurrentPlugin<AdPosition>(bannerPosition);
-            SetLargeBannerPosition(adPosition);
+           // AdPosition adPosition = GetRelativeBannerPositionForCurrentPlugin<AdPosition>(bannerPosition);
+           // SetLargeBannerPosition(adPosition);
         }
 
-        private void SetSmallBannerPosition(AdPosition position)
-        {
-            if (this.smallbanner != null)
-            {
-                this.smallbanner.Show();
+//        private void SetSmallBannerPosition(AdPosition position)
+//        {
+//            if (this.smallbanner != null)
+//            {
+//                this.smallbanner.Show();
 
-#if UNITY_EDITOR
-                this.smallbanner.SetPosition(position);
+//#if UNITY_EDITOR
+//                this.smallbanner.SetPosition(position);
 
-#else
-                int bannerHeight = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetHeightInPixels());
-                int bannerWidth = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetWidthInPixels());
+//#else
+//                int bannerHeight = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetHeightInPixels());
+//                int bannerWidth = ScaleThePixelsAccordingToDownScaleRatio(this.smallbanner.GetWidthInPixels());
 
-                int xDP = DensityIndependentPixels(((int)Screen.safeArea.position.x + ((int)Screen.safeArea.width / 2)) - (bannerWidth / 2));
+//                int xDP = DensityIndependentPixels(((int)Screen.safeArea.position.x + ((int)Screen.safeArea.width / 2)) - (bannerWidth / 2));
 
-                int yDP = DensityIndependentPixels((Display.main.renderingHeight - (int)Screen.safeArea.position.y) - bannerHeight);
-                //  UnityEngine.Console.Log($"Main Height {Display.main.systemHeight} and Height {Screen.height} and safe area height is { (int)Screen.safeArea.height}");
-                this.smallbanner.SetPosition(xDP, yDP);
-#endif
-            }
-            else
-            {
-                RequestSmallBanner(position);
-            }
-        }
+//                int yDP = DensityIndependentPixels((Display.main.renderingHeight - (int)Screen.safeArea.position.y) - bannerHeight);
+//                //  UnityEngine.Console.Log($"Main Height {Display.main.systemHeight} and Height {Screen.height} and safe area height is { (int)Screen.safeArea.height}");
+//                this.smallbanner.SetPosition(xDP, yDP);
+//#endif
+//            }
+//            else
+//            {
+//                RequestSmallBanner(position);
+//            }
+//        }
 
-        private void SetLargeBannerPosition(AdPosition position)
-        {
-            if (this.largebanner != null)
-            {
-                largebanner.Show();
-                this.largebanner.SetPosition(position);
-                isLargeBannerShowing = true;
-                LargeBannerShown.Invoke();
-            }
-            else
-            {
-                RequestLargeBanner(position);
-            }
-        }
+        //private void SetLargeBannerPosition(AdPosition position)
+        //{
+        //    if (this.largebanner != null)
+        //    {
+        //        largebanner.Show();
+        //        this.largebanner.SetPosition(position);
+        //        isLargeBannerShowing = true;
+        //        LargeBannerShown.Invoke();
+        //    }
+        //    else
+        //    {
+        //        RequestLargeBanner(position);
+        //    }
+        //}
 
-        public override T GetRelativeBannerPositionForCurrentPlugin<T>(BannerPosition bannerPosition)
-        {
-            AdPosition adPosition = bannerPosition == BannerPosition.Bottom ? AdPosition.Bottom : bannerPosition == BannerPosition.BottomLeft ? AdPosition.BottomLeft : bannerPosition == BannerPosition.BottomRight ? AdPosition.BottomRight
-                : bannerPosition == BannerPosition.Center ? AdPosition.Center : bannerPosition == BannerPosition.Top ? AdPosition.Top : bannerPosition == BannerPosition.TopLeft ? AdPosition.TopLeft : bannerPosition == BannerPosition.TopRight ? AdPosition.TopRight : AdPosition.Bottom;
+        //public override T GetRelativeBannerPositionForCurrentPlugin<T>(BannerPosition bannerPosition)
+        //{
+        //    AdPosition adPosition = bannerPosition == BannerPosition.Bottom ? AdPosition.Bottom : bannerPosition == BannerPosition.BottomLeft ? AdPosition.BottomLeft : bannerPosition == BannerPosition.BottomRight ? AdPosition.BottomRight
+        //        : bannerPosition == BannerPosition.Center ? AdPosition.Center : bannerPosition == BannerPosition.Top ? AdPosition.Top : bannerPosition == BannerPosition.TopLeft ? AdPosition.TopLeft : bannerPosition == BannerPosition.TopRight ? AdPosition.TopRight : AdPosition.Bottom;
 
-            T result = (T)Convert.ChangeType(adPosition, typeof(T));
+        //    T result = (T)Convert.ChangeType(adPosition, typeof(T));
 
-            return result;
-        }
+        //    return result;
+        //}
 
         #endregion ShowBannners
 
@@ -541,16 +541,16 @@ namespace TheKnights.AdsSystem
                 return;
             }
 
-            this.rewardedAd = new RewardedAd(_rewardedID);
+            //this.rewardedAd = new RewardedAd(_rewardedID);
 
-            //Subscribe to events
-            SubscribeRewardedCallbacks();
-            // Create an empty ad request.
-            AdRequest request = new AdRequest.Builder().Build();
+            ////Subscribe to events
+            //SubscribeRewardedCallbacks();
+            //// Create an empty ad request.
+            //AdRequest request = new AdRequest.Builder().Build();
 
-            isLoadingRewarded = true;
-            // Load the rewarded ad with the request.
-            this.rewardedAd.LoadAd(request);
+            //isLoadingRewarded = true;
+            //// Load the rewarded ad with the request.
+            //this.rewardedAd.LoadAd(request);
         }
 
         public override void ShowRewardedAdIfAvailable(Action<Status, ADMeta> completionCalLBack)
@@ -585,132 +585,133 @@ namespace TheKnights.AdsSystem
             }
 
             // Normal rewarded
-            if (this.rewardedAd != null && this.rewardedAd.IsLoaded())
-            {
-                AdManager.RewardedADRightBeforeShow();
+            //if (this.rewardedAd != null && this.rewardedAd.IsLoaded())
+            //{
+            //    AdManager.RewardedADRightBeforeShow();
 
-                CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { this.rewardedAd.Show(); });
-            }
-            else
-            {
-                AdManager.RewardedAdHasFailedToShow();
-                ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
-                LoadRewardedAd();
-            }
+            //    CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { this.rewardedAd.Show(); });
+            //}
+            //else
+            //{
+            //    AdManager.RewardedAdHasFailedToShow();
+            //    ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
+            //    LoadRewardedAd();
+            //}
         }
 
         private void SubscribeRewardedCallbacks()
         {
             // Called when an ad request has successfully loaded.
-            this.rewardedAd.OnAdLoaded += (ob, s) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    if (isDebug)
-                    {
-                        UnityEngine.Console.Log("Rewarded AD Loaded Admob");
-                    }
+            //this.rewardedAd.OnAdLoaded += (ob, s) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    {
+            //        if (isDebug)
+            //        {
+            //            UnityEngine.Console.Log("Rewarded AD Loaded Admob");
+            //        }
 
-                    isLoadingRewarded = false;
+            //        isLoadingRewarded = false;
 
-                    string adapterName = null;
-                    if (this.rewardedAd != null)
-                    {
-                        var responseInfo = this.rewardedAd.GetResponseInfo();
-                        if (responseInfo != null)
-                        {
-                            adapterName = responseInfo.GetMediationAdapterClassName();
-                        }
-                    }
+            //        string adapterName = null;
+            //        if (this.rewardedAd != null)
+            //        {
+            //            var responseInfo = this.rewardedAd.GetResponseInfo();
+            //            if (responseInfo != null)
+            //            {
+            //                adapterName = responseInfo.GetMediationAdapterClassName();
+            //            }
+            //        }
 
-                    AdManager.RewardedAdHasLoaded(this, new ADMeta(adapterName));
-                });
-            };
+            //        AdManager.RewardedAdHasLoaded(this, new ADMeta(adapterName));
+            //    });
+            //};
             // Called when an ad request failed to load.
-            this.rewardedAd.OnAdFailedToLoad += (sender, e) => { isLoadingRewarded = false; };
+           // this.rewardedAd.OnAdFailedToLoad += (sender, e) => { isLoadingRewarded = false; };
             // Called when an ad is shown.
             //   this.rewardedAd.OnAdOpening += HandleRewardedAdOpening;
             // Called when an ad request failed to show.
-            this.rewardedAd.OnAdFailedToShow += (o, sender) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    //    OnGoogleRewardedFailed.Invoke();
-                    AdManager.RewardedAdHasFailedToShow();
-                    ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
-                });
-            };
+            //this.rewardedAd.OnAdFailedToShow += (o, sender) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    {
+            //        //    OnGoogleRewardedFailed.Invoke();
+            //        AdManager.RewardedAdHasFailedToShow();
+            //        ProcessPendingCallBack(AdType.Rewarded, Status.Failed);
+            //    });
+            //};
             // Called when the user should be rewarded for interacting with the ad.
-            this.rewardedAd.OnUserEarnedReward += (s, reward) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    rewardEarned = true;
-                    //   OnGoogleRewardedCompleted.Invoke();
+            //this.rewardedAd.OnUserEarnedReward += (s, reward) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    {
+            //        rewardEarned = true;
+            //        //   OnGoogleRewardedCompleted.Invoke();
 
-                    string adapterName = null;
-                    if (this.rewardedAd != null)
-                    {
-                        var responseInfo = this.rewardedAd.GetResponseInfo();
-                        if (responseInfo != null)
-                        {
-                            adapterName = responseInfo.GetMediationAdapterClassName();
-                        }
-                    }
+            //        string adapterName = null;
+            //        if (this.rewardedAd != null)
+            //        {
+            //            var responseInfo = this.rewardedAd.GetResponseInfo();
+            //            if (responseInfo != null)
+            //            {
+            //                adapterName = responseInfo.GetMediationAdapterClassName();
+            //            }
+            //        }
 
-                    AdManager.RewardedAdHasCompleted(new ADMeta(adapterName));
-                    ProcessPendingCallBack(AdType.Rewarded, Status.Succeded, new ADMeta(adapterName));
-                });
-            };
+            //        AdManager.RewardedAdHasCompleted(new ADMeta(adapterName));
+            //        ProcessPendingCallBack(AdType.Rewarded, Status.Succeded, new ADMeta(adapterName));
+            //    });
+            //};
 
 
-            // Called when the ad is closed.
-            this.rewardedAd.OnAdClosed += (o, s) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    // Closeed before completion
-                    if (!rewardEarned)
-                    {
-                        //  OnGoogleRewardedFailed.Invoke();
-                        AdManager.RewardedAdHasSkipped();
-                        ProcessPendingCallBack(AdType.Rewarded, Status.Skipped);
-                    }
+            //// Called when the ad is closed.
+            //this.rewardedAd.OnAdClosed += (o, s) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    {
+            //        // Closeed before completion
+            //        if (!rewardEarned)
+            //        {
+            //            //  OnGoogleRewardedFailed.Invoke();
+            //            AdManager.RewardedAdHasSkipped();
+            //            ProcessPendingCallBack(AdType.Rewarded, Status.Skipped);
+            //        }
 
-                    rewardEarned = false;
-                    LoadRewardedAd();
-                    AdManager.RewardedAdHasBeenClosed();
-                });
-            };
+            //        rewardEarned = false;
+            //        LoadRewardedAd();
+            //        AdManager.RewardedAdHasBeenClosed();
+            //    });
+            //};
 
-            this.rewardedAd.OnAdOpening += (o, s) =>
-            {
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    AdManager.RewardedAdHasOpened();
-                });
-            };
+            //this.rewardedAd.OnAdOpening += (o, s) =>
+            //{
+            //    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //    {
+            //        AdManager.RewardedAdHasOpened();
+            //    });
+            //};
         }
 
         public override bool CheckIfRewardedAdIsAvailable()
         {
-            // If we are using static interstitial as rewarded
-            if (useInterstitialAsRewardedAD)
-            {
-                GoogleInterstitial rewardedStaticInterstitial = GetStaticRewardedInterstital();
-
-                return rewardedStaticInterstitial.isLoaded;
-            }
-
-            // Normal rewarded AD
-
-            bool isLoaded = this.rewardedAd != null && this.rewardedAd.IsLoaded();
-            //if (!isLoaded)
+            //// If we are using static interstitial as rewarded
+            //if (useInterstitialAsRewardedAD)
             //{
-            //    LoadRewardedAd();
+            //    GoogleInterstitial rewardedStaticInterstitial = GetStaticRewardedInterstital();
+
+            //    return rewardedStaticInterstitial.isLoaded;
             //}
 
-            return (this.rewardedAd != null && isLoaded);
+            //// Normal rewarded AD
+
+            //bool isLoaded = this.rewardedAd != null && this.rewardedAd.IsLoaded();
+            ////if (!isLoaded)
+            ////{
+            ////    LoadRewardedAd();
+            ////}
+
+            //return (this.rewardedAd != null && isLoaded);
+            return false;
         }
 
         public void SendRewardedADHasLoaded(ADMeta aDMeta)

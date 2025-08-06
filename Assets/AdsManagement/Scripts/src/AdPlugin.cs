@@ -77,7 +77,7 @@ namespace TheKnights.AdsSystem
 
         public abstract void LoadRewardedAd();
 
-        public abstract T GetRelativeBannerPositionForCurrentPlugin<T>(BannerPosition bannerPosition);
+       // public abstract T GetRelativeBannerPositionForCurrentPlugin<T>(BannerPosition bannerPosition);
 
         public abstract void PreLoadAds();
 

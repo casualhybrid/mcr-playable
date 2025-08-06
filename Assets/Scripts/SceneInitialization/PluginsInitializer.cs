@@ -1,4 +1,5 @@
-﻿//using TheKnights.AdsSystem;
+﻿
+//using TheKnights.AdsSystem;
 using Firebase.Crashlytics;
 using FMODUnity;
 using System.Collections;
@@ -133,21 +134,21 @@ public class PluginsInitializer : MonoBehaviour
         }
 
         FakeLoadToSpecifiedValue(MaxPluginInitLoadingVal, 4f);
-
+        Debug.LogError("Sceneloader1");
 
 
         // ADD GDPR Wait
         yield return gdprHandler.InitializeGDPR();
-
+        Debug.LogError("Sceneloader2");
         yield return null;
 
-        yield return adManagerChosen.InitializeAds();
-
+      //  yield return adManagerChosen.InitializeAds();
+        Debug.LogError("Sceneloader3");
         if (FireBaseInitializer.isInitialized)
         {
             Crashlytics.Log("Ads Initialized");
         }
-
+        Debug.LogError("Sceneloader4");
         StopFakeLoadRoutine();
         UpdateLoadingProgress(MaxPluginInitLoadingVal);
 
@@ -161,7 +162,7 @@ public class PluginsInitializer : MonoBehaviour
         //   UnityEngine.Console.Log("Step Set IN APP");
         iAPManager.InitializeOnGameServicesInitComplete = true;
         iAPManager.Initialize();
-
+        Debug.LogError("Sceneloader5");
         if (FireBaseInitializer.isInitialized)
         {
             Crashlytics.Log("In App Initalized");
@@ -175,7 +176,7 @@ public class PluginsInitializer : MonoBehaviour
         yield return null;
 
         // UnityEngine.Console.Log("Step Load GamePlay");
-        
+        Debug.LogError("Sceneloader6");
         LoadGamePlayLevel();
     }
 

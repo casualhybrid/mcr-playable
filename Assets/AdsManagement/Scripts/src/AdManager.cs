@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace TheKnights.AdsSystem
 {
-    public struct ADMeta
+    public struct ADMeta 
     {
         private string _adapterName;
 

@@ -1171,7 +1171,7 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
             {
                 return false;
             }
-            Debug.LogError("Yahhhhhh true.....................");
+           // Debug.LogError("Yahhhhhh true.....................");
             return true;
         }
 
@@ -1198,7 +1198,7 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
                 }
             }
         }
-        Debug.LogError("CheckfroPossiblespawn.........");
+      //  Debug.LogError("CheckfroPossiblespawn.........");
         PickupSpawnData[] pickupSpawnData = pickupGenerationData.GetPickupSpawnData.Values.ToArray();
         //zzz...............................................mainh...........................................................
         //List<ProportionValue<InventoryItemSO>> possibleSpawn = new List<ProportionValue<InventoryItemSO>>();
@@ -1253,7 +1253,7 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
                 continue;
 
             bool isSafe = isThisPickupSafeToSpawn(data.GetPickupType, theCoinArray, pickupsToExclude);
-            Debug.LogError("Bool value safe is............." + isSafe);
+          //  Debug.LogError("Bool value safe is............." + isSafe);
             if (isSafe)
             {
                 double spawnProb = data.GetSpawnProbability;
@@ -1261,11 +1261,11 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
                 if (spawnProb > 0f)
                 {
                     possibleSpawn.Add(ProportionValue.Create(spawnProb, pickupType));
-                    Debug.LogError($"[SAFE] Added '{pickupType.name}' with custom weight: {spawnProb}");
+                  //  Debug.LogError($"[SAFE] Added '{pickupType.name}' with custom weight: {spawnProb}");
                 }
                 else
                 {
-                    Debug.LogError($"[SKIP] '{pickupType.name}' has 0 spawn probability. Not adding to spawn list.");
+                   // Debug.LogError($"[SKIP] '{pickupType.name}' has 0 spawn probability. Not adding to spawn list.");
                 }
             }
         }
@@ -1278,11 +1278,11 @@ public class ProceduralCoinGenerator : MonoBehaviour, IFloatingReset
             foreach (var item in possibleSpawn)
             {
                 item.Proportion /= totalWeight;
-                Debug.LogError($" → {item.Value.name} normalized weight: {item.Proportion:F2}");
+               // Debug.LogError($" → {item.Value.name} normalized weight: {item.Proportion:F2}");
             }
 
             InventoryItemSO pickupToSpawn = possibleSpawn.ChooseByRandom();
-            Debug.LogError($"[SELECTED] '{pickupToSpawn.name}' was randomly selected.");
+            //Debug.LogError($"[SELECTED] '{pickupToSpawn.name}' was randomly selected.");
 
             return pickupToSpawn;
         }

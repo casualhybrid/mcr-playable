@@ -257,7 +257,7 @@ public class DifficultyScaleSO : ScriptableObject
 
     public float GetRandomPointOnCurrentDifficultyRange()
     {
-        Debug.LogError("Current : "+currentPlayerDifficultyRating);
+       // Debug.LogError("Current : "+currentPlayerDifficultyRating);
         if (currentPlayerDifficultyRating < rangeLengthForObstacleSpawning)
         {
             return UnityEngine.Random.Range(0f, rangeLengthForObstacleSpawning);

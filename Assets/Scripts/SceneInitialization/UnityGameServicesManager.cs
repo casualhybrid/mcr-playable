@@ -66,6 +66,8 @@ public static class UnityGameServicesManager
 
     private static async void SignInTheUserToGamingService()
     {
+       // yield return new WaitForSeconds(0.2f)
+        OnUserSignedInToAuthenticationService?.Invoke();
         //bool isError = false;
 
         //try

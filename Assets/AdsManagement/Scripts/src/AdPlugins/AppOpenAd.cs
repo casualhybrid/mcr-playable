@@ -1,5 +1,4 @@
 using System;
-using GoogleMobileAds.Api;
 using UnityEngine;
 public class AppOpenAd : MonoBehaviour
 {

@@ -7,8 +7,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 using FMOD.Studio;
-using GoogleMobileAds.Api;
-using GoogleMobileAds.Common;
 using System.Threading;
 using System.Threading.Tasks;
 #if UNITY_ADDRESSABLES_EXIST
@@ -82,7 +80,7 @@ namespace FMODUnity
         public static List<StudioListener> Listeners = new List<StudioListener>();
         private static int numListeners = 0;
 
-        private readonly Stack<AppState> pendingStackedPauseOperations = new Stack<AppState>();
+       // private readonly Stack<AppState> pendingStackedPauseOperations = new Stack<AppState>();
         private readonly ManualResetEvent _pauseEvent = new ManualResetEvent(true);
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1); // Allow 1 concurrent accesses
 
@@ -242,43 +240,43 @@ namespace FMODUnity
             }
         }
 
-        private async void HandleAppStateChanged(AppState obj)
-        {
-           // Debug.Log("App state chaned to " + obj);
+        //private async void HandleAppStateChanged(AppState obj)
+        //{
+        //   // Debug.Log("App state chaned to " + obj);
 
-            await semaphore.WaitAsync(); // Acquire the semaphore
+        //    await semaphore.WaitAsync(); // Acquire the semaphore
 
-            pendingStackedPauseOperations.Push(obj);
+        //    pendingStackedPauseOperations.Push(obj);
 
-            if (obj == AppState.Foreground)
-            {
-                // Resume
-                _pauseEvent.Set();
-            }
+        //    if (obj == AppState.Foreground)
+        //    {
+        //        // Resume
+        //        _pauseEvent.Set();
+        //    }
 
-            semaphore.Release();
-        }
+        //    semaphore.Release();
+        //}
 
-        private void PerformPendingPauseOperation(AppState appState)
-        {
-            bool pauseStatus = appState == AppState.Background;
+        //private void PerformPendingPauseOperation(AppState appState)
+        //{
+        //    bool pauseStatus = appState == AppState.Background;
 
-            print($"Game Pause Status Google {pauseStatus} and is the thread main? ");
+        //    print($"Game Pause Status Google {pauseStatus} and is the thread main? ");
 
-            if (studioSystem.isValid())
-            {
-                PauseAllEvents(pauseStatus);
+        //    if (studioSystem.isValid())
+        //    {
+        //        PauseAllEvents(pauseStatus);
 
-                if (pauseStatus)
-                {
-                    coreSystem.mixerSuspend();
-                }
-                else
-                {
-                    coreSystem.mixerResume();
-                }
-            }
-        }
+        //        if (pauseStatus)
+        //        {
+        //            coreSystem.mixerSuspend();
+        //        }
+        //        else
+        //        {
+        //            coreSystem.mixerResume();
+        //        }
+        //    }
+        //}
 
         public static FMOD.Studio.System StudioSystem
         {
@@ -813,38 +811,38 @@ namespace FMODUnity
 
             try
             {
-                while (true)
-                {
-                    _pauseEvent.WaitOne(Timeout.Infinite);
+                //while (true)
+                //{
+                //    _pauseEvent.WaitOne(Timeout.Infinite);
 
-                   // Thread.Sleep(100);
+                //   // Thread.Sleep(100);
 
-                    if (pendingStackedPauseOperations.Count == 0)
-                    {
-                        continue;
-                    }
+                //    if (pendingStackedPauseOperations.Count == 0)
+                //    {
+                //        continue;
+                //    }
 
-                    AppState appState;
+                //    AppState appState;
 
-                    semaphore.Wait();
-                    lockIsBeingHeld = true;
+                //    semaphore.Wait();
+                //    lockIsBeingHeld = true;
 
-                    appState = pendingStackedPauseOperations.Pop();
-                    pendingStackedPauseOperations.Clear();
+                //    appState = pendingStackedPauseOperations.Pop();
+                //    pendingStackedPauseOperations.Clear();
 
-                 //   print("Performing Pause Operation with state " + appState);
+                // //   print("Performing Pause Operation with state " + appState);
 
-                    PerformPendingPauseOperation(appState);
+                //    PerformPendingPauseOperation(appState);
 
-                    if (appState == AppState.Background && (pendingStackedPauseOperations.Count == 0 || pendingStackedPauseOperations.Peek() == AppState.Background))
-                    {
-                        // Pause
-                        _pauseEvent.Reset();
-                    }
+                //    if (appState == AppState.Background && (pendingStackedPauseOperations.Count == 0 || pendingStackedPauseOperations.Peek() == AppState.Background))
+                //    {
+                //        // Pause
+                //        _pauseEvent.Reset();
+                //    }
 
-                    semaphore.Release();
-                    lockIsBeingHeld = false;
-                }
+                //    semaphore.Release();
+                //    lockIsBeingHeld = false;
+                //}
             }
             catch (Exception e)
             {

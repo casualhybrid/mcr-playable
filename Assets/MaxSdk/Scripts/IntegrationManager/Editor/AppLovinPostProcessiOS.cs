@@ -74,7 +74,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         /// 1. Downloads the Quality Service ruby script.
         /// 2. Runs the script using Ruby which integrates AppLovin Quality Service to the project.
         /// </summary>
-        [PostProcessBuild(AppLovinPreProcess.CallbackOrder)] // We want to run Quality Service script last.
+        [PostProcessBuild(int.MaxValue)] // We want to run Quality Service script last.
         public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath)
         {
             if (!AppLovinSettings.Instance.QualityServiceEnabled) return;
@@ -477,14 +477,14 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
             }
         }
 
-        [PostProcessBuild(AppLovinPreProcess.CallbackOrder)]
+        [PostProcessBuild(int.MaxValue)]
         public static void MaxPostProcessPlist(BuildTarget buildTarget, string path)
         {
             var plistPath = Path.Combine(path, "Info.plist");
             var plist = new PlistDocument();
             plist.ReadFromFile(plistPath);
 
-            RemoveAttributionReportEndpointIfNeeded(plist);
+            SetAttributionReportEndpointIfNeeded(plist);
 
             EnableVerboseLoggingIfNeeded(plist);
             AddGoogleApplicationIdIfNeeded(plist);
@@ -496,16 +496,23 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
             plist.WriteToFile(plistPath);
         }
 
-        private static void RemoveAttributionReportEndpointIfNeeded(PlistDocument plist)
+        private static void SetAttributionReportEndpointIfNeeded(PlistDocument plist)
         {
-            PlistElement attributionReportEndPoint;
-            plist.root.values.TryGetValue("NSAdvertisingAttributionReportEndpoint", out attributionReportEndPoint);
+            if (AppLovinSettings.Instance.SetAttributionReportEndpoint)
+            {
+                plist.root.SetString("NSAdvertisingAttributionReportEndpoint", AppLovinAdvertisingAttributionEndpoint);
+            }
+            else
+            {
+                PlistElement attributionReportEndPoint;
+                plist.root.values.TryGetValue("NSAdvertisingAttributionReportEndpoint", out attributionReportEndPoint);
 
-            // We no longer support this feature. Check if we had previously set the attribution endpoint and un-set it.
-            if (attributionReportEndPoint == null || !AppLovinAdvertisingAttributionEndpoint.Equals(attributionReportEndPoint.AsString())) return;
-
-            MaxSdkLogger.UserWarning("Global SKAdNetwork postback forwarding is no longer supported by AppLovin. Removing AppLovin Advertising Attribution Endpoint from Info.plist.");
-            plist.root.values.Remove("NSAdvertisingAttributionReportEndpoint");
+                // Check if we had previously set the attribution endpoint and un-set it.
+                if (attributionReportEndPoint != null && AppLovinAdvertisingAttributionEndpoint.Equals(attributionReportEndPoint.AsString()))
+                {
+                    plist.root.values.Remove("NSAdvertisingAttributionReportEndpoint");
+                }
+            }
         }
 
         private static void EnableVerboseLoggingIfNeeded(PlistDocument plist)

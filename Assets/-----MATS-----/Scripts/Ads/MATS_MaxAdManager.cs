@@ -4,6 +4,7 @@ using static MaxSdkBase;
 
 public class MATS_MaxAdManager : MonoBehaviour
 {
+    public static MATS_MaxAdManager instsance;
     private bool isBannerShowing;
     private bool isMRecShowing;
 
@@ -18,7 +19,18 @@ public class MATS_MaxAdManager : MonoBehaviour
     public static event Action OnRewardedAdCompleted;
 
     #region Unity Lifecycle
-
+    public void Awake()
+    {
+        if (instsance == null)
+        {
+            instsance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         InitAds();
@@ -45,8 +57,8 @@ public class MATS_MaxAdManager : MonoBehaviour
             InitializeInterstitialAds();
             InitializeRewardedAds();
             InitializeBannerAds();
-            InitializeMRecAds();
-            InitializeAppOpenAds();
+          //  InitializeMRecAds();
+           // InitializeAppOpenAds();
         };
 
         MaxSdk.SetSdkKey(MATS_AdKeys.MaxSdkKey);
@@ -116,8 +128,35 @@ public class MATS_MaxAdManager : MonoBehaviour
     private void OnInterstitialRevenuePaidEvent(string adUnitId, AdInfo adInfo)
     {
         Debug.Log($"[MAX Ads] Interstitial revenue paid: ${adInfo.Revenue}");
-    }
+        if (adInfo.Revenue > 0)
+        {
+            Debug.Log("[MAX SDK] ::: In Interstitial Ad Clicked CallBack");
+            Firebase.Analytics.Parameter[] adParameters =
+            {
+                    new("ad_platform", "applovin_max"),
+                    new("ad_source", adInfo.NetworkName),
+                    new("ad_unit_name", adInfo.AdUnitIdentifier),
+                    new("ad_format", adInfo.AdFormat),
+                    new("currency", "USD"),
+                    new("value", (adInfo.Revenue)),
+                };
 
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", adParameters);
+        }
+        else
+        {
+            Debug.LogError("Failed to parse valid revenue value from ad info or revenue is not greater than 0");
+        }
+    
+
+           //AppsFlyerAdRevenue.logAdRevenue("applovin",
+           //AppsFlyerAdRevenueMediationNetworkType.AppsFlyerAdRevenueMediationNetworkTypeIronSource,
+           //adInfo.Revenue, "USD",
+           //parameters);
+    
+
+    }
+   
     #endregion
 
     #region Rewarded Ads

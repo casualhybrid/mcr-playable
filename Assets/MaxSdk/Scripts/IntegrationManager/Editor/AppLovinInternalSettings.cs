@@ -20,21 +20,20 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
     /// </summary>
     public class AppLovinInternalSettings : ScriptableObject
     {
-        private static AppLovinInternalSettings _instance;
+        private static AppLovinInternalSettings instance;
 
-        private const string DefaultUserTrackingDescriptionEn = "This uses device info for more personalized ads and content";
-        private const string DefaultUserTrackingDescriptionDe = "Dies benutzt Gerätinformationen für relevantere Werbeinhalte";
-        private const string DefaultUserTrackingDescriptionEs = "Esto utiliza la información del dispositivo para anuncios y contenido más personalizados";
-        private const string DefaultUserTrackingDescriptionFr = "Cela permet d'utiliser les informations du téléphone pour afficher des contenus publicitaires plus pertinents.";
-        private const string DefaultUserTrackingDescriptionJa = "これはユーザーデータをもとに、より関連性の高い広告コンテンツをお客様に提供します";
-        private const string DefaultUserTrackingDescriptionKo = "보다 개인화된 광고 및 콘텐츠를 위해 기기 정보를 사용합니다.";
-        private const string DefaultUserTrackingDescriptionZhHans = "我们使用设备信息来提供个性化的广告和内容。";
-        private const string DefaultUserTrackingDescriptionZhHant = "我們使用設備信息來提供個性化的廣告和內容。";
+        public const string DefaultUserTrackingDescriptionEn = "This uses device info for more personalized ads and content";
+        public const string DefaultUserTrackingDescriptionDe = "Dies benutzt Gerätinformationen für relevantere Werbeinhalte";
+        public const string DefaultUserTrackingDescriptionEs = "Esto utiliza la información del dispositivo para anuncios y contenido más personalizados";
+        public const string DefaultUserTrackingDescriptionFr = "Cela permet d'utiliser les informations du téléphone pour afficher des contenus publicitaires plus pertinents.";
+        public const string DefaultUserTrackingDescriptionJa = "これはユーザーデータをもとに、より関連性の高い広告コンテンツをお客様に提供します";
+        public const string DefaultUserTrackingDescriptionKo = "보다 개인화된 광고 및 콘텐츠를 위해 기기 정보를 사용합니다.";
+        public const string DefaultUserTrackingDescriptionZhHans = "我们使用设备信息来提供个性化的广告和内容。";
+        public const string DefaultUserTrackingDescriptionZhHant = "我們使用設備信息來提供個性化的廣告和內容。";
 
         [SerializeField] private bool consentFlowEnabled;
         [SerializeField] private string consentFlowPrivacyPolicyUrl = string.Empty;
         [SerializeField] private string consentFlowTermsOfServiceUrl = string.Empty;
-        [SerializeField] private bool shouldShowTermsAndPrivacyPolicyAlertInGDPR;
         [SerializeField] private bool overrideDefaultUserTrackingUsageDescriptions;
         [SerializeField] private MaxSdkBase.ConsentFlowUserGeography debugUserGeography;
         [SerializeField] private string userTrackingUsageDescriptionEn = string.Empty;
@@ -53,33 +52,33 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         {
             get
             {
-                if (_instance != null) return _instance;
+                if (instance != null) return instance;
 
-                _instance = CreateInstance<AppLovinInternalSettings>();
+                instance = CreateInstance<AppLovinInternalSettings>();
 
                 var projectRootPath = Path.GetDirectoryName(Application.dataPath);
                 var settingsFilePath = Path.Combine(projectRootPath, SettingsFilePath);
                 if (!File.Exists(settingsFilePath))
                 {
-                    _instance.Save();
-                    return _instance;
+                    instance.Save();
+                    return instance;
                 }
 
                 var settingsJson = File.ReadAllText(settingsFilePath);
                 if (string.IsNullOrEmpty(settingsJson))
                 {
-                    _instance.Save();
-                    return _instance;
+                    instance.Save();
+                    return instance;
                 }
 
-                JsonUtility.FromJsonOverwrite(settingsJson, _instance);
-                return _instance;
+                JsonUtility.FromJsonOverwrite(settingsJson, instance);
+                return instance;
             }
         }
 
         public void Save()
         {
-            var settingsJson = JsonUtility.ToJson(_instance);
+            var settingsJson = JsonUtility.ToJson(instance);
             try
             {
                 var projectRootPath = Path.GetDirectoryName(Application.dataPath);
@@ -142,17 +141,8 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         }
 
         /// <summary>
-        /// Whether or not to show the Terms and Privacy Policy alert in GDPR regions prior to presenting the CMP prompt.
-        /// </summary>
-        public bool ShouldShowTermsAndPrivacyPolicyAlertInGDPR
-        {
-            get { return shouldShowTermsAndPrivacyPolicyAlertInGDPR; }
-            set { shouldShowTermsAndPrivacyPolicyAlertInGDPR = value; }
-        }
-
-        /// <summary>
         /// A User Tracking Usage Description in English to be shown to users when requesting permission to use data for tracking.
-        /// For more information see <see href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionEn
         {
@@ -195,7 +185,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// Whether or not to localize User Tracking Usage Description.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public bool UserTrackingUsageLocalizationEnabled
         {
@@ -236,7 +226,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in German to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionDe
         {
@@ -246,7 +236,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in Spanish to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionEs
         {
@@ -256,7 +246,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in French to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionFr
         {
@@ -266,7 +256,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in Japanese to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionJa
         {
@@ -276,7 +266,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in Korean to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionKo
         {
@@ -286,7 +276,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in Chinese (Simplified) to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionZhHans
         {
@@ -296,7 +286,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// A User Tracking Usage Description in Chinese (Traditional) to be shown to users when requesting permission to use data for tracking.
-        /// For more information see Apple's documentation: https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription
+        /// For more information see <see cref="https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription">Apple's documentation</see>.
         /// </summary>
         public string UserTrackingUsageDescriptionZhHant
         {

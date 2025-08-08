@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace AppLovinMax.Scripts.IntegrationManager.Editor
 {
-    public static class AppLovinMenuItems
+    public class AppLovinMenuItems
     {
         /**
          * The special characters at the end represent a shortcut for this action.
@@ -31,7 +31,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         [MenuItem("AppLovin/Documentation")]
         private static void Documentation()
         {
-            Application.OpenURL("https://developers.applovin.com/en/unity/overview/integration");
+            Application.OpenURL("https://dash.applovin.com/documentation/mediation/unity/getting-started");
         }
 
         [MenuItem("AppLovin/Contact Us")]

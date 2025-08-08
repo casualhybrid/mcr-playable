@@ -22,7 +22,6 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
     [Serializable]
     public class AppLovinQualityServiceData
     {
-        // ReSharper disable once InconsistentNaming - Need to keep name for response data
         public string api_key;
     }
 
@@ -38,9 +37,11 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         private static readonly Regex TokenApiKey = new Regex(".*apiKey.*");
         private static readonly Regex TokenAppLovinPlugin = new Regex(".*apply plugin:.+?(?=applovin-quality-service).*");
 
+#if UNITY_2022_2_OR_NEWER
         private const string PluginsMatcher = "plugins";
         private const string PluginManagementMatcher = "pluginManagement";
         private const string QualityServicePluginRoot = "    id 'com.applovin.quality' version '+' apply false // NOTE: Requires version 4.8.3+ for Gradle version 7.2+";
+#endif
 
         private const string BuildScriptMatcher = "buildscript";
         private const string QualityServiceMavenRepo = "maven { url 'https://artifacts.applovin.com/android'; content { includeGroupByRegex 'com.applovin.*' } }";
@@ -57,37 +58,6 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         private const string SafeDkLegacyPlugin = "safedk {";
         private const string SafeDkLegacyMavenRepo = "http://download.safedk.com";
         private const string SafeDkLegacyDependencyClassPath = "com.safedk:SafeDKGradlePlugin:";
-
-        /// <summary>
-        /// Determines whether the AppLovin Quality Service plugin should be added to the 
-        /// dependencies block in the root build.gradle file or to the plugins block.
-        ///
-        /// Gradle's required structure for including plugins varies by version:
-        /// - Older versions of Gradle require the plugin to be added to the dependencies block.
-        ///    Example:
-        ///        dependencies {
-        ///            classpath 'com.android.tools.build:gradle:4.0.1'
-        ///            classpath 'com.applovin.quality:AppLovinQualityServiceGradlePlugin:+'
-        ///        }
-        ///
-        /// - Newer versions of gradle require the plugin to be added to the plugins block.
-        ///    Example:
-        ///        plugins {
-        ///            id 'com.android.application' version '7.4.2' apply false
-        ///            id 'com.android.library' version '7.4.2' apply false
-        ///            id 'com.applovin.quality' version '+' apply false
-        ///        }
-        ///
-        /// Since Unity projects may use custom Gradle versions depending on the Unity version or 
-        /// user modifications, this check ensures proper integration of the AppLovin plugin.
-        /// </summary>
-        /// <param name="rootGradleBuildFile">The path to project's root build.gradle file.</param>
-        /// <returns><c>true</c> if the file contains a `dependencies` block, indicating an older Gradle version</returns>
-        protected static bool ShouldAddQualityServiceToDependencies(string rootGradleBuildFile)
-        {
-            var lines = File.ReadAllLines(rootGradleBuildFile).ToList();
-            return lines.Any(line => TokenBuildScriptDependencies.IsMatch(line));
-        }
 
         /// <summary>
         /// Updates the provided Gradle script to add Quality Service plugin.
@@ -138,26 +108,16 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
                 Console.WriteLine(exception);
             }
         }
-
+#if UNITY_2022_2_OR_NEWER
         /// <summary>
-        /// Adds AppLovin Quality Service plugin DSL element to the project's root build.gradle file.
-        /// Sample build.gradle file after adding quality service:
-        /// plugins {
-        ///     id 'com.android.application' version '7.4.2' apply false
-        ///     id 'com.android.library' version '7.4.2' apply false
-        ///     id 'com.applovin.quality' version '+' apply false
-        /// }
-        /// tasks.register('clean', Delete) {
-        ///     delete rootProject.layout.buildDirectory
-        /// }
-        ///
+        /// Adds AppLovin Quality Service plugin DSL element to the project's root build.gradle file. 
         /// </summary>
         /// <param name="rootGradleBuildFile">The path to project's root build.gradle file.</param>
         /// <returns><c>true</c> when the plugin was added successfully.</returns>
         protected bool AddPluginToRootGradleBuildFile(string rootGradleBuildFile)
         {
             var lines = File.ReadAllLines(rootGradleBuildFile).ToList();
-
+            
             // Check if the plugin is already added to the file.
             var pluginAdded = lines.Any(line => line.Contains(QualityServicePluginRoot));
             if (pluginAdded) return true;
@@ -181,7 +141,11 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
                 outputLines.Add(line);
             }
 
-            if (!pluginAdded) return false;
+            if (!pluginAdded)
+            {
+                MaxSdkLogger.UserError("Failed to add AppLovin Quality Service plugin to root gradle file.");
+                return false;
+            }
 
             try
             {
@@ -199,18 +163,6 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         /// <summary>
         /// Adds the AppLovin maven repository to the project's settings.gradle file.
-        /// Sample settings.gradle file after adding AppLovin Repository:
-        /// pluginManagement {
-        ///     repositories {
-        ///         maven { url 'https://artifacts.applovin.com/android'; content { includeGroupByRegex 'com.applovin.*' } }
-        ///
-        ///         gradlePluginPortal()
-        ///         google()
-        ///         mavenCentral()
-        ///     }
-        /// }
-        /// ...
-        ///
         /// </summary>
         /// <param name="settingsGradleFile">The path to the project's settings.gradle file.</param>
         /// <returns><c>true</c> if the repository was added successfully.</returns>
@@ -260,7 +212,11 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
                 }
             }
 
-            if (!mavenRepoAdded) return false;
+            if (!mavenRepoAdded)
+            {
+                MaxSdkLogger.UserError("Failed to add AppLovin Quality Service plugin maven repo to settings gradle file.");
+                return false;
+            }
 
             try
             {
@@ -275,25 +231,11 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
             return true;
         }
+#endif
 
 #if UNITY_2019_3_OR_NEWER
         /// <summary>
         /// Adds the necessary AppLovin Quality Service dependency and maven repo lines to the provided root build.gradle file.
-        /// Sample build.gradle file after adding quality service:
-        /// allprojects {
-        ///     buildscript {
-        ///         repositories {
-        ///             maven { url 'https://artifacts.applovin.com/android'; content { includeGroupByRegex 'com.applovin.*' } }
-        ///             google()
-        ///             jcenter()
-        ///         }
-        ///
-        ///         dependencies {
-        ///             classpath 'com.android.tools.build:gradle:4.0.1'
-        ///             classpath 'com.applovin.quality:AppLovinQualityServiceGradlePlugin:+'
-        ///         }
-        ///     ...
-        ///
         /// </summary>
         /// <param name="rootGradleBuildFile">The root build.gradle file path</param>
         /// <returns><c>true</c> if the build script lines were applied correctly.</returns>
@@ -445,7 +387,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         private static List<string> GenerateUpdatedBuildFileLines(List<string> lines, string apiKey, bool addBuildScriptLines)
         {
-            var addPlugin = MaxSdkUtils.IsValidString(apiKey);
+            var addPlugin = !string.IsNullOrEmpty(apiKey);
             // A sample of the template file.
             // ...
             // allprojects {
@@ -594,6 +536,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
                 if ((addBuildScriptLines && (!qualityServiceRepositoryAdded || !qualityServiceDependencyClassPathAdded)) || (addPlugin && !qualityServicePluginAdded))
                 {
+                    MaxSdkLogger.UserError("Failed to add AppLovin Quality Service plugin. Quality Service Plugin Added?: " + qualityServicePluginAdded + ", Quality Service Repo added?: " + qualityServiceRepositoryAdded + ", Quality Service dependency added?: " + qualityServiceDependencyClassPathAdded);
                     return null;
                 }
             }

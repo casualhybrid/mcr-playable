@@ -7,17 +7,18 @@
 //
 
 #if UNITY_ANDROID
+using AppLovinMax.Scripts.IntegrationManager.Editor;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using AppLovinMax.ThirdParty.MiniJson;
 using UnityEditor;
 using UnityEditor.Android;
+using UnityEngine;
 
-namespace AppLovinMax.Scripts.IntegrationManager.Editor
+namespace AppLovinMax.Scripts.Editor
 {
     /// <summary>
     /// A post processor used to update the Android project once it is generated.
@@ -32,6 +33,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         private const string PropertyDexingArtifactTransform = "android.enableDexingArtifactTransform";
         private const string DisableProperty = "=false";
 
+        private const string KeyMetaDataAppLovinSdkKey = "applovin.sdk.key";
         private const string KeyMetaDataAppLovinVerboseLoggingOn = "applovin.sdk.verbose_logging";
         private const string KeyMetaDataGoogleApplicationId = "com.google.android.gms.ads.APPLICATION_ID";
         private const string KeyMetaDataGoogleOptimizeInitialization = "com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION";
@@ -39,20 +41,6 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         private const string KeyMetaDataMobileFuseAutoInit = "com.mobilefuse.sdk.disable_auto_init";
         private const string KeyMetaDataMyTargetAutoInit = "com.my.target.autoInitMode";
-
-        private const string KeyMetaDataAppLovinSdkKey = "applovin.sdk.key";
-
-        private const string AppLovinSettingsFileName = "applovin_settings.json";
-
-        private const string KeySdkKey = "sdk_key";
-        private const string KeyConsentFlowSettings = "consent_flow_settings";
-        private const string KeyConsentFlowEnabled = "consent_flow_enabled";
-        private const string KeyConsentFlowTermsOfService = "consent_flow_terms_of_service";
-        private const string KeyConsentFlowPrivacyPolicy = "consent_flow_privacy_policy";
-        private const string KeyConsentFlowShowTermsAndPrivacyPolicyAlertInGDPR = "consent_flow_show_terms_and_privacy_policy_alert_in_gdpr";
-        private const string KeyConsentFlowDebugUserGeography = "consent_flow_debug_user_geography";
-
-        private const string KeyRenderOutsideSafeArea = "render_outside_safe_area";
 
 #if UNITY_2022_3_OR_NEWER
         // To match "'com.android.library' version '7.3.1'" line in build.gradle
@@ -67,6 +55,15 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         private static readonly Regex TokenDistributionUrl = new Regex(".*distributionUrl.*");
 
         private static readonly XNamespace AndroidNamespace = "http://schemas.android.com/apk/res/android";
+
+        private static string PluginMediationDirectory
+        {
+            get
+            {
+                var pluginParentDir = AppLovinIntegrationManager.MediationSpecificPluginParentDirectory;
+                return Path.Combine(pluginParentDir, "MaxSdk/Mediation/");
+            }
+        }
 
         public void OnPostGenerateGradleAndroidProject(string path)
         {
@@ -103,12 +100,8 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
             gradlePropertiesUpdated.Add(PropertyAndroidX + EnableProperty);
             gradlePropertiesUpdated.Add(PropertyJetifier + EnableProperty);
 #endif
-
-            // `DexingArtifactTransform` has been removed in Gradle 8+ which is the default Gradle version for Unity 6.
-#if !UNITY_6000_0_OR_NEWER
             // Disable dexing using artifact transform (it causes issues for ExoPlayer with Gradle plugin 3.5.0+)
             gradlePropertiesUpdated.Add(PropertyDexingArtifactTransform + DisableProperty);
-#endif
 
             try
             {
@@ -121,7 +114,16 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
             }
 
             ProcessAndroidManifest(path);
-            AddSdkSettings(path);
+
+            var rawResourceDirectory = Path.Combine(path, "src/main/res/raw");
+            if (AppLovinInternalSettings.Instance.ConsentFlowEnabled)
+            {
+                AppLovinPreProcessAndroid.EnableConsentFlowIfNeeded(rawResourceDirectory);
+            }
+            else
+            {
+                AppLovinPreProcessAndroid.EnableTermsFlowIfNeeded(rawResourceDirectory);
+            }
         }
 
         public int callbackOrder
@@ -162,14 +164,39 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
             var metaDataElements = elementApplication.Descendants().Where(element => element.Name.LocalName.Equals("meta-data"));
 
+            AddSdkKeyIfNeeded(elementApplication);
             EnableVerboseLoggingIfNeeded(elementApplication);
             AddGoogleApplicationIdIfNeeded(elementApplication, metaDataElements);
             AddGoogleOptimizationFlagsIfNeeded(elementApplication, metaDataElements);
             DisableAutoInitIfNeeded(elementApplication, metaDataElements);
-            RemoveSdkKeyIfNeeded(metaDataElements);
 
             // Save the updated manifest file.
             manifest.Save(manifestPath);
+        }
+
+        private static void AddSdkKeyIfNeeded(XElement elementApplication)
+        {
+            var sdkKey = AppLovinSettings.Instance.SdkKey;
+            if (string.IsNullOrEmpty(sdkKey)) return;
+
+            var descendants = elementApplication.Descendants();
+            var sdkKeyMetaData = descendants.FirstOrDefault(descendant => descendant.FirstAttribute != null &&
+                                                                          descendant.FirstAttribute.Name.LocalName.Equals("name") &&
+                                                                          descendant.FirstAttribute.Value.Equals(KeyMetaDataAppLovinSdkKey) &&
+                                                                          descendant.LastAttribute != null &&
+                                                                          descendant.LastAttribute.Name.LocalName.Equals("value"));
+
+            // check if applovin.sdk.key meta data exists.
+            if (sdkKeyMetaData != null)
+            {
+                sdkKeyMetaData.LastAttribute.Value = sdkKey;
+            }
+            else
+            {
+                // add applovin.sdk.key meta data if it does not exist.
+                var metaData = CreateMetaDataElement(KeyMetaDataAppLovinSdkKey, sdkKey);
+                elementApplication.Add(metaData);
+            }
         }
 
         private static void EnableVerboseLoggingIfNeeded(XElement elementApplication)
@@ -210,7 +237,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         private static void AddGoogleApplicationIdIfNeeded(XElement elementApplication, IEnumerable<XElement> metaDataElements)
         {
-            if (!AppLovinPackageManager.IsAdapterInstalled("Google") && !AppLovinPackageManager.IsAdapterInstalled("GoogleAdManager")) return;
+            if (!AppLovinIntegrationManager.IsAdapterInstalled("Google") && !AppLovinIntegrationManager.IsAdapterInstalled("GoogleAdManager")) return;
 
             var googleApplicationIdMetaData = GetMetaDataElement(metaDataElements, KeyMetaDataGoogleApplicationId);
             var appId = AppLovinSettings.Instance.AdMobAndroidAppId;
@@ -235,7 +262,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         private static void AddGoogleOptimizationFlagsIfNeeded(XElement elementApplication, IEnumerable<XElement> metaDataElements)
         {
-            if (!AppLovinPackageManager.IsAdapterInstalled("Google") && !AppLovinPackageManager.IsAdapterInstalled("GoogleAdManager")) return;
+            if (!AppLovinIntegrationManager.IsAdapterInstalled("Google") && !AppLovinIntegrationManager.IsAdapterInstalled("GoogleAdManager")) return;
 
             var googleOptimizeInitializationMetaData = GetMetaDataElement(metaDataElements, KeyMetaDataGoogleOptimizeInitialization);
             // If meta data doesn't exist, add it
@@ -254,7 +281,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 
         private static void DisableAutoInitIfNeeded(XElement elementApplication, IEnumerable<XElement> metaDataElements)
         {
-            if (AppLovinPackageManager.IsAdapterInstalled("MobileFuse"))
+            if (AppLovinIntegrationManager.IsAdapterInstalled("MobileFuse"))
             {
                 var mobileFuseMetaData = GetMetaDataElement(metaDataElements, KeyMetaDataMobileFuseAutoInit);
                 // If MobileFuse meta data doesn't exist, add it
@@ -264,7 +291,7 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
                 }
             }
 
-            if (AppLovinPackageManager.IsAdapterInstalled("MyTarget"))
+            if (AppLovinIntegrationManager.IsAdapterInstalled("MyTarget"))
             {
                 var myTargetMetaData = GetMetaDataElement(metaDataElements, KeyMetaDataMyTargetAutoInit);
                 // If MyTarget meta data doesn't exist, add it
@@ -273,14 +300,6 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
                     elementApplication.Add(CreateMetaDataElement(KeyMetaDataMyTargetAutoInit, 0));
                 }
             }
-        }
-
-        private static void RemoveSdkKeyIfNeeded(IEnumerable<XElement> metaDataElements)
-        {
-            var sdkKeyMetaData = GetMetaDataElement(metaDataElements, KeyMetaDataAppLovinSdkKey);
-            if (sdkKeyMetaData == null) return;
-
-            sdkKeyMetaData.Remove();
         }
 
         private static void UpdateGradleVersionsIfNeeded(string gradleWrapperPropertiesPath, string rootGradleBuildFilePath)
@@ -334,106 +353,6 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
                     MaxSdkLogger.E("Failed to set gradle plugin version");
                 }
             }
-        }
-
-        private static void AddSdkSettings(string path)
-        {
-            var appLovinSdkSettings = new Dictionary<string, object>();
-            var rawResourceDirectory = Path.Combine(path, "src/main/res/raw");
-
-            // Add the SDK key to the SDK settings.
-            appLovinSdkSettings[KeySdkKey] = AppLovinSettings.Instance.SdkKey;
-            appLovinSdkSettings[KeyRenderOutsideSafeArea] = PlayerSettings.Android.renderOutsideSafeArea;
-
-            // Add the Terms and Privacy Policy flow settings if needed.
-            EnableConsentFlowIfNeeded(rawResourceDirectory, appLovinSdkSettings);
-
-            WriteAppLovinSettings(rawResourceDirectory, appLovinSdkSettings);
-        }
-
-        private static void EnableConsentFlowIfNeeded(string rawResourceDirectory, Dictionary<string, object> applovinSdkSettings)
-        {
-            // Check if consent flow is enabled. No need to create the applovin_consent_flow_settings.json if consent flow is disabled.
-            var consentFlowEnabled = AppLovinInternalSettings.Instance.ConsentFlowEnabled;
-            if (!consentFlowEnabled)
-            {
-                RemoveAppLovinSettingsRawResourceFileIfNeeded(rawResourceDirectory);
-                return;
-            }
-
-            var privacyPolicyUrl = AppLovinInternalSettings.Instance.ConsentFlowPrivacyPolicyUrl;
-            if (string.IsNullOrEmpty(privacyPolicyUrl))
-            {
-                AppLovinIntegrationManager.ShowBuildFailureDialog("You cannot use the AppLovin SDK's consent flow without defining a Privacy Policy URL in the AppLovin Integration Manager.");
-
-                // No need to update the applovin_consent_flow_settings.json here. Default consent flow state will be determined on the SDK side.
-                return;
-            }
-
-            var consentFlowSettings = new Dictionary<string, object>();
-            consentFlowSettings[KeyConsentFlowEnabled] = consentFlowEnabled;
-            consentFlowSettings[KeyConsentFlowPrivacyPolicy] = privacyPolicyUrl;
-
-            var termsOfServiceUrl = AppLovinInternalSettings.Instance.ConsentFlowTermsOfServiceUrl;
-            if (MaxSdkUtils.IsValidString(termsOfServiceUrl))
-            {
-                consentFlowSettings[KeyConsentFlowTermsOfService] = termsOfServiceUrl;
-            }
-            
-            consentFlowSettings[KeyConsentFlowShowTermsAndPrivacyPolicyAlertInGDPR] = AppLovinInternalSettings.Instance.ShouldShowTermsAndPrivacyPolicyAlertInGDPR;
-
-            var debugUserGeography = AppLovinInternalSettings.Instance.DebugUserGeography;
-            if (debugUserGeography == MaxSdkBase.ConsentFlowUserGeography.Gdpr)
-            {
-                consentFlowSettings[KeyConsentFlowDebugUserGeography] = "gdpr";
-            }
-
-            applovinSdkSettings[KeyConsentFlowSettings] = consentFlowSettings;
-        }
-
-        private static void WriteAppLovinSettingsRawResourceFile(string applovinSdkSettingsJson, string rawResourceDirectory)
-        {
-            if (!Directory.Exists(rawResourceDirectory))
-            {
-                Directory.CreateDirectory(rawResourceDirectory);
-            }
-
-            var consentFlowSettingsFilePath = Path.Combine(rawResourceDirectory, AppLovinSettingsFileName);
-            try
-            {
-                File.WriteAllText(consentFlowSettingsFilePath, applovinSdkSettingsJson + "\n");
-            }
-            catch (Exception exception)
-            {
-                MaxSdkLogger.UserError("applovin_settings.json file write failed due to: " + exception.Message);
-                Console.WriteLine(exception);
-            }
-        }
-
-        /// <summary>
-        /// Removes the applovin_settings json file from the build if it exists.
-        /// </summary>
-        /// <param name="rawResourceDirectory">The raw resource directory that holds the json file</param>
-        private static void RemoveAppLovinSettingsRawResourceFileIfNeeded(string rawResourceDirectory)
-        {
-            var consentFlowSettingsFilePath = Path.Combine(rawResourceDirectory, AppLovinSettingsFileName);
-            if (!File.Exists(consentFlowSettingsFilePath)) return;
-
-            try
-            {
-                File.Delete(consentFlowSettingsFilePath);
-            }
-            catch (Exception exception)
-            {
-                MaxSdkLogger.UserError("Deleting applovin_settings.json failed due to: " + exception.Message);
-                Console.WriteLine(exception);
-            }
-        }
-
-        private static void WriteAppLovinSettings(string rawResourceDirectory, Dictionary<string, object> applovinSdkSettings)
-        {
-            var applovinSdkSettingsJson = Json.Serialize(applovinSdkSettings);
-            WriteAppLovinSettingsRawResourceFile(applovinSdkSettingsJson, rawResourceDirectory);
         }
 
         /// <summary>

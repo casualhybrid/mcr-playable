@@ -25,7 +25,7 @@ public class MaxCmpService
 
     private MaxCmpService() { }
 
-    private static Action<MaxCmpError> _onCompletedAction;
+    private static Action<MaxCmpError> OnCompletedAction;
 
 #if UNITY_EDITOR
 #elif UNITY_ANDROID
@@ -50,7 +50,7 @@ public class MaxCmpService
     /// <param name="onCompletedAction">Called when the CMP flow finishes showing.</param>
     public void ShowCmpForExistingUser(Action<MaxCmpError> onCompletedAction)
     {
-        _onCompletedAction = onCompletedAction;
+        OnCompletedAction = onCompletedAction;
 
 #if UNITY_EDITOR
         var errorProps = new Dictionary<string, object>
@@ -88,10 +88,10 @@ public class MaxCmpService
 
     internal static void NotifyCompletedIfNeeded(Dictionary<string, object> errorProps)
     {
-        if (_onCompletedAction == null) return;
+        if (OnCompletedAction == null) return;
 
         var error = (errorProps == null) ? null : MaxCmpError.Create(errorProps);
-        _onCompletedAction(error);
+        OnCompletedAction(error);
     }
 }
 

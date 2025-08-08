@@ -6,6 +6,9 @@
             url "https://maven.google.com"
         }
         maven {
+            url "https://verve.jfrog.io/artifactory/verve-gradle-release" // Assets/MaxSdk/Mediation/Verve/Editor/Dependencies.xml:7
+        }
+        maven {
             url (unityProjectPath + "/Assets/GeneratedLocalRepo/Firebase/m2repository") // Assets/Firebase/Editor/AnalyticsDependencies.xml:18, Assets/Firebase/Editor/AppDependencies.xml:22, Assets/Firebase/Editor/AuthDependencies.xml:20, Assets/Firebase/Editor/CrashlyticsDependencies.xml:20, Assets/Firebase/Editor/FirestoreDependencies.xml:20, Assets/Firebase/Editor/RemoteConfigDependencies.xml:20
         }
         maven {
@@ -46,6 +49,7 @@ dependencies {
     implementation 'com.applovin.mediation:ogury-presage-adapter:6.1.0.1' // Assets/MaxSdk/Mediation/OguryPresage/Editor/Dependencies.xml:8
     implementation 'com.applovin.mediation:pubmatic-adapter:4.8.0.0' // Assets/MaxSdk/Mediation/PubMatic/Editor/Dependencies.xml:8
     implementation 'com.applovin.mediation:unityads-adapter:4.16.0.0' // Assets/UnityAds/Editor/Dependencies.xml:4
+    implementation 'com.applovin.mediation:verve-adapter:3.2.1.1' // Assets/MaxSdk/Mediation/Verve/Editor/Dependencies.xml:4
     implementation 'com.applovin.mediation:vungle-adapter:7.5.0.3' // Assets/MaxSdk/Mediation/Vungle/Editor/Dependencies.xml:4
     implementation 'com.applovin:applovin-sdk:12.4.0' // Assets/MaxSdk/AppLovin/Editor/Dependencies.xml:4
     implementation 'com.facebook.android:facebook-applinks:18.1.3' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:6

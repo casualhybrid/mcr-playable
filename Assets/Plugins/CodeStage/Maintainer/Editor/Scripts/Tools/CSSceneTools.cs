@@ -122,7 +122,7 @@ namespace CodeStage.Maintainer.Tools
 				return false;
 			}
 
-			return (lastOpenSceneResult.sceneWasLoaded || forceClose) && EditorSceneManager.loadedSceneCount > 1;
+			return (lastOpenSceneResult.sceneWasLoaded || forceClose) && SceneManager.loadedSceneCount > 1;
 		}
 
 		public static void CloseOpenedSceneIfNeeded(OpenSceneResult lastOpenSceneResult, string nextScenePath = null, bool forceClose = false)
@@ -141,7 +141,7 @@ namespace CodeStage.Maintainer.Tools
 		public static bool SaveCurrentModifiedScenes(bool skipUntitled)
 		{
 			var scenesToSave = new List<Scene>();
-			for (var i = 0; i < EditorSceneManager.loadedSceneCount; i++)
+			for (var i = 0; i < SceneManager.loadedSceneCount; i++)
 			{
 				var scene = SceneManager.GetSceneAt(i);
 				if (IsSceneUntitled(scene) && skipUntitled)
@@ -265,7 +265,7 @@ namespace CodeStage.Maintainer.Tools
 
 		public static void CloseUntitledSceneIfNotDirty()
 		{
-			for (var i = 0; i < EditorSceneManager.loadedSceneCount; i++)
+			for (var i = 0; i < SceneManager.loadedSceneCount; i++)
 			{
 				var scene = SceneManager.GetSceneAt(i);
 				if (IsSceneUntitled(scene) && !scene.isDirty)
@@ -277,7 +277,7 @@ namespace CodeStage.Maintainer.Tools
 		
 		public static Scene GetUntitledScene()
 		{
-			for (var i = 0; i < EditorSceneManager.loadedSceneCount; i++)
+			for (var i = 0; i < SceneManager.loadedSceneCount; i++)
 			{
 				var scene = SceneManager.GetSceneAt(i);
 				if (IsSceneUntitled(scene))

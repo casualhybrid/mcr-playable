@@ -142,22 +142,23 @@ public class MainMenuManager : AWindowController
         /*adsController.OnInterstitialAdAboutToShow.AddListener(ContinueWithCutScene);
         adsController.OnInterstitialAdFailedToShow.AddListener(ContinueWithCutScene);
         adsController.OnInterstitialAdCompleted.AddListener(ContinueWithCutScene);*/
+        ContinueWithCutScene();
         PersistentAudioPlayer.Instance.PlayGameplayAudio();
         PersistentAudioPlayer.Instance.CheckMusicStatus();
         PersistentAudioPlayer.Instance.PlayTumTumSound();
-        if (animator)
+        /*if (animator)
         {
             animator.GetComponent<Animator>().SetBool("Jump", true);
-            /* animator.transform.parent.gameObject.GetComponent<Animator>().enabled = true;*/
-        }
+            *//* animator.transform.parent.gameObject.GetComponent<Animator>().enabled = true;*//*
+        }*/
 
       /*  if (cameraParent)
             cameraParent.GetComponent<Animator>().enabled = true;
         if (cameraRefrence)
             cameraRefrence.GetComponent<Animator>().enabled = true;*/
-        if (parent)
-            parent.GetComponent<Animator>().enabled = true;
-        ContinueWithCutScene();
+        /*if (parent)
+            parent.GetComponent<Animator>().enabled = true;*/
+        
         OnTapToPlay.RaiseEvent();
 
         //   StartCutSceneDelayRoutineRef = StartCoroutine(StartCutSceneAfterDelay());

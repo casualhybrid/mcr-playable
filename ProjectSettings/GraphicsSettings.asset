@@ -3,7 +3,7 @@
 --- !u!30 &1
 GraphicsSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 14
+  serializedVersion: 15
   m_Deferred:
     m_Mode: 0
     m_Shader: {fileID: 0}
@@ -11,9 +11,6 @@ GraphicsSettings:
     m_Mode: 0
     m_Shader: {fileID: 0}
   m_ScreenSpaceShadows:
-    m_Mode: 0
-    m_Shader: {fileID: 0}
-  m_LegacyDeferred:
     m_Mode: 0
     m_Shader: {fileID: 0}
   m_DepthNormals:
@@ -53,7 +50,7 @@ GraphicsSettings:
     m_Settings:
       standardShaderQuality: 0
       renderingPath: 1
-      hdrMode: 2
+      hdrMode: 1
       realtimeGICPUUsage: 25
       useReflectionProbeBoxProjection: 0
       useReflectionProbeBlending: 0
@@ -70,7 +67,7 @@ GraphicsSettings:
     m_Settings:
       standardShaderQuality: 1
       renderingPath: 1
-      hdrMode: 2
+      hdrMode: 1
       realtimeGICPUUsage: 25
       useReflectionProbeBoxProjection: 0
       useReflectionProbeBlending: 0
@@ -87,7 +84,7 @@ GraphicsSettings:
     m_Settings:
       standardShaderQuality: 1
       renderingPath: 1
-      hdrMode: 2
+      hdrMode: 1
       realtimeGICPUUsage: 25
       useReflectionProbeBoxProjection: 0
       useReflectionProbeBlending: 0
@@ -101,6 +98,7 @@ GraphicsSettings:
   m_LightmapStripping: 0
   m_FogStripping: 0
   m_InstancingStripping: 0
+  m_BrgStripping: 0
   m_LightmapKeepPlain: 1
   m_LightmapKeepDirCombined: 1
   m_LightmapKeepDynamicPlain: 1
@@ -116,5 +114,6 @@ GraphicsSettings:
   m_DefaultRenderingLayerMask: 1
   m_LogWhenShaderIsCompiled: 0
   m_SRPDefaultSettings: {}
+  m_LightProbeOutsideHullStrategy: 0
   m_CameraRelativeLightCulling: 0
   m_CameraRelativeShadowCulling: 0

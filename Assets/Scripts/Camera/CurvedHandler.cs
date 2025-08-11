@@ -16,7 +16,7 @@ public class CurvedHandler : MonoBehaviour
     [SerializeField] private EnvironmentChannel environmentChannel;
     [SerializeField] private GameEvent onCutSceneStarted;
 
-    private CurvedWorld_Controller controller;
+    public  CurvedWorld_Controller controller;
 
     private Sequence curveSequence;
 

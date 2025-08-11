@@ -8,7 +8,7 @@ public class StartingScript : MonoBehaviour
 
     private void Awake()
     {
-       // Debug.unityLogger.logEnabled = false;
+        //Debug.unityLogger.logEnabled = false;
         sceneLoader.LoadTheScene(new TheScene[] { initializationScene }, null, true, true);
     }
 

@@ -150,8 +150,8 @@ public class GameOverUIManager : AWindowController
 
         #region progression
 
-        mapProgression.SetActive(!mapData.AllEnvironmentsCompleted);
-        generalProgression.SetActive(mapData.AllEnvironmentsCompleted);
+       // mapProgression.SetActive(!mapData.AllEnvironmentsCompleted);
+       // generalProgression.SetActive(mapData.AllEnvironmentsCompleted);
 
         #endregion progression
 

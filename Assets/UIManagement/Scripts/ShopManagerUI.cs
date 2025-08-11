@@ -284,7 +284,11 @@ public class ShopManagerUI : AWindowController
 
     }
 
-
+    public void RewardCoinPosition(RectTransform target)
+    {
+        // UI element ki anchored position le lo (UI ke liye yeh exact hota hai)
+        UIEffectsHandler.newPosition = target.anchoredPosition;
+    }
     public void StandardPack(GeneralIAPItem itemObj)
     {
         iAPManagerObj.BuyTheProduct(itemObj.ProductID);

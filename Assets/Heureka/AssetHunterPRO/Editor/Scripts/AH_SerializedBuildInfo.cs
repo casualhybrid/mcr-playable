@@ -150,7 +150,7 @@ namespace HeurekaGames.AssetHunterPRO
         internal void ProcessBuildReport(BuildReport report)
         {
             TotalSize = report.summary.totalSize;
-            foreach (var file in report.files)
+            foreach (var file in report.GetFiles())
             {
                 BuildReportInfoList.Add(new AH_BuildReportFileInfo(file));
             }

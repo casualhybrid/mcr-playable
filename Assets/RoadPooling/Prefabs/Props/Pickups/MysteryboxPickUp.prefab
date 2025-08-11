@@ -30,6 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613909562766773714}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3005, y: 1.3005, z: 1.3005}
@@ -37,7 +38,6 @@ Transform:
   m_Children:
   - {fileID: 5038684187000711561}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2723156353863279974
 BoxCollider:
@@ -47,9 +47,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613909562766773714}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.3, y: 0.45, z: 0.2}
   m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &1003288247673452181
@@ -132,8 +140,6 @@ MonoBehaviour:
   triggerTag: Player
   isUsingParameter: 1
   parameterName: Character
-  audioSource: {fileID: -5770902570783798106}
-  audioClip: {fileID: 8300000, guid: d7a1c8e399d8b5143b59238da68e5d8f, type: 3}
 --- !u!114 &1426967284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3810847647963389730}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -277,7 +284,6 @@ Transform:
   - {fileID: 2869426836533677519}
   - {fileID: 6500233657878152169}
   m_Father: {fileID: 4186963478198151249}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4129573425129073474
 GameObject:
@@ -303,13 +309,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4129573425129073474}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.010876839, z: -0.08868808}
   m_LocalScale: {x: 0.07217846, y: 0.07217846, z: 0.07217846}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2869426836533677519}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3620732081722932635
 SpriteRenderer:
@@ -387,13 +393,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4168622151487184505}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5038684187000711561}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &12649928806900577
 MonoBehaviour:
@@ -415,6 +421,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5038684187000711561}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0e18f735437a92a4fa34ce92892ea5f9,
@@ -553,6 +560,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e18f735437a92a4fa34ce92892ea5f9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4335266459381594096}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e18f735437a92a4fa34ce92892ea5f9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8024031398909758851}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e18f735437a92a4fa34ce92892ea5f9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3755000966478935493}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e18f735437a92a4fa34ce92892ea5f9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6580828428362067768}
   m_SourcePrefab: {fileID: 100100000, guid: 0e18f735437a92a4fa34ce92892ea5f9, type: 3}
 --- !u!4 &2869426836533677519 stripped
 Transform:
@@ -609,6 +635,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2869426836533677519}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b5285150ed967a6409df1ae88b0e2af6,
@@ -682,12 +709,22 @@ PrefabInstance:
       value: mysterybox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5285150ed967a6409df1ae88b0e2af6, type: 3}
+--- !u!4 &8024031398909758851 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5285150ed967a6409df1ae88b0e2af6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7553010972225809000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7753986219878240436
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2869426836533677519}
     m_Modifications:
     - target: {fileID: 6319188552603473989, guid: adba64b77f6fe214c9b029d47c0405fb,
@@ -801,7 +838,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adba64b77f6fe214c9b029d47c0405fb, type: 3}
+--- !u!4 &4335266459381594096 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6319188553683642180, guid: adba64b77f6fe214c9b029d47c0405fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 7753986219878240436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4335266459381594099 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6319188553683642183, guid: adba64b77f6fe214c9b029d47c0405fb,

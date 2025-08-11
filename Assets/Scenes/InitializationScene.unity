@@ -566,7 +566,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3238316297313169676, guid: a5f2ad4cecb5bb94f974e2511619cabe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a5f2ad4cecb5bb94f974e2511619cabe, type: 3}
 --- !u!1 &919398908
 GameObject:
@@ -1087,6 +1088,29 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7510047963037713630, guid: e2c056a823cbb754e85dde6b070253cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2c056a823cbb754e85dde6b070253cc, type: 3}
+--- !u!1 &1524674651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7510047963037713631, guid: e2c056a823cbb754e85dde6b070253cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1524674650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1524674652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524674651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7476ae30421d742479764d85fe499e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowRAMThreshold: 2
+  mediumRAMThreshold: 4
+  lowRAMScale: 0.55
+  mediumRAMScale: 0.7
+  highRAMScale: 0.75
 --- !u!850595691 &1654815530
 LightingSettings:
   m_ObjectHideFlags: 0

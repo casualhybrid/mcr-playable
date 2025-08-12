@@ -21,9 +21,13 @@ public class UMPManager : MonoBehaviour
     private Action _pauseFunc;
     private Action _resumeFunc;
 
+
+  
+
     private void Awake()
     {
         Instance = this;
+        Init();
 
         DontDestroyOnLoad(this);
     }

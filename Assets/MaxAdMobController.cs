@@ -44,8 +44,9 @@ public class MaxAdMobController : MonoBehaviour
     bool AdsCompability => SystemInfo.systemMemorySize > 1500;
     public bool LowMemoryDevice => SystemInfo.systemMemorySize <= 1500;
     public int Option { get; internal set; }
-  
-    public void Awake()
+   
+
+public void Awake()
     {
         if (Instance == null)
         {
@@ -60,7 +61,7 @@ public class MaxAdMobController : MonoBehaviour
         MaxSdk.SetHasUserConsent(true);
         MaxSdk.SetDoNotSell(false);
 
-        Invoke(nameof(Init), 0.32f);
+        Invoke(nameof(Init), 0.52f);
     }
     public bool IsInternetConnection()
     {

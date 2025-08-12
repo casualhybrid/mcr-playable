@@ -177,7 +177,7 @@ public class PluginsInitializer : MonoBehaviour
 
         // UnityEngine.Console.Log("Step Load GamePlay");
         Debug.LogError("Sceneloader6");
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(7);
         LoadGamePlayLevel();
     }
 

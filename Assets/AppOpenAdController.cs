@@ -23,6 +23,7 @@ public class AppOpenAdController : MonoBehaviour
     private DateTime _expireTime;
     private AppOpenAd _appOpenAd;
 
+    
     public void Awake()
     {
         instance = this;
@@ -31,7 +32,7 @@ public class AppOpenAdController : MonoBehaviour
     }
     public void Start()
     {
-        Invoke(nameof(InitSdk), 0.1f);
+        Invoke(nameof(InitSdk), 0.3f);
     }
     public void InitSdk()
     {
@@ -57,7 +58,7 @@ public class AppOpenAdController : MonoBehaviour
     }
     public IEnumerator InitializeFullScreenAds()
     {
-        yield return new WaitForSeconds(0.13f);
+        yield return new WaitForSeconds(0.1f);
         LoadAd();
         yield return new WaitForSeconds(6);
         ShowAd();

@@ -88,8 +88,8 @@ public class CurvedHandler : MonoBehaviour
         }
         catch
         {
-            throw new System.Exception($"Last known active state for curved world is empty!" +
-                $". Failed to restore curved world state");
+            /*throw new System.Exception($"Last known active state for curved world is empty!" +
+                $". Failed to restore curved world state");*/
         }
     }
 }

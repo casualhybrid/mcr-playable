@@ -120,7 +120,7 @@ public class EnvironmentChanger : MonoBehaviour
         nextEnvIndex = nextEnvIndex >= environmentSwitchingOrder.EnvironmentToLoopThrough.Length ? 0 : nextEnvIndex;
         return environmentSwitchingOrder.EnvironmentToLoopThrough[nextEnvIndex];
     }
-
+    int currentRampndex=0;
     private IEnumerator CheckAndGenerateSafeZone_MergePatchRoutine(EnviornmentSO loadedEnvironment)
     {
         // envFactorySO.AddEnvironmentForWarmup(loadedEnvironment);
@@ -160,7 +160,13 @@ public class EnvironmentChanger : MonoBehaviour
         }
         else
         {
-            environmentSpawner.ChangeActiveEnv(switchEnvGeneral); // Ramp Building
+            if (currentRampndex == 0)
+            {
+                environmentSpawner.ChangeActiveEnv(switchEnvGeneral); // Ramp Building
+            }
+            currentRampndex++;
+            if (currentRampndex == 3)
+                currentRampndex = 0;
             environmentSpawner.ChangeEnvCategory(envChangeCategory);
             environmentSpawner.SpawnOnePatchOnly(true);
         }

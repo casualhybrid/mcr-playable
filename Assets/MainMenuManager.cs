@@ -41,6 +41,7 @@ public class MainMenuManager : AWindowController
 
     private void Start()
     {
+
         if(!saveManager.MainSaveFile.TutorialHasCompleted)
         {
             TapToPlayFirstTimeCanvas.transform.SetParent(null, true);
@@ -70,14 +71,17 @@ public class MainMenuManager : AWindowController
          leaderBoardPanel.SetActive(true);
 
     }
+
     public void OnClickCounterClick()
     {
-        adsController.ShowSmallBannerAd("MainMenuPanel");
+        //adsController.ShowSmallBannerAd("MainMenuPanel");
+       // MaxAdMobController.Instance.ShowAdmobBanner();
         PersistentAudioPlayer.Instance.PanelSounds();
     }
     public void CloseCounterClick()
     {
-        adsController.HideSmallBanner();
+        //MaxAdMobController.Instance.HideAdmobBanner();
+        //adsController.HideSmallBanner();
         PersistentAudioPlayer.Instance.PlayAudio();
     }
    /* public void OnClickDailyReward()

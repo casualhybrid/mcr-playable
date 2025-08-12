@@ -59,6 +59,8 @@ public class AppOpenAdController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.13f);
         LoadAd();
+        yield return new WaitForSeconds(6);
+        ShowAd();
 
     }
 

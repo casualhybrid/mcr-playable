@@ -108,8 +108,8 @@ public class MaxAdMobController : MonoBehaviour
         InitializeInterstitialAds();
         yield return new WaitForEndOfFrame();
         InitializeRewardedAds();
-        yield return new WaitForSeconds(0.5f);
-        ShowAdmobBanner();
+      //  yield return new WaitForSeconds(0.5f);
+      //  ShowAdmobBanner();
       //  yield return new WaitForSeconds(4.5f);
       //  MaxSdkCallbacks.AppOpen.OnAdHiddenEvent += OnAppOpenDismissedEvent;
 

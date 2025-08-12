@@ -334,10 +334,12 @@ public class PlayerBasicMovementShared : ScriptableObject
                 {
                     Rotation(adjustmentHit.normal, rotationSpeed * SpeedHandler.GameTimeScale);
                 }
+
                 WaterParkEnter.Instance.WaterON();
             }
             else
             {
+                
                 WaterParkEnter.Instance.WaterOFF();
             }
         }

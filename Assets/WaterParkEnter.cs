@@ -12,6 +12,7 @@ public class WaterParkEnter : MonoBehaviour
     [SerializeField] GameObject mirrorBrea2;
 
     public static bool isEnter = false;
+    public static bool isFlying = true;
 
     public static WaterParkEnter Instance;
 
@@ -73,7 +74,7 @@ public class WaterParkEnter : MonoBehaviour
     {
         Debug.LogError("Ground");
        
-        if (water && water1&&isEnter)
+        if (water && water1&&isEnter&&isFlying)
         {
             water.SetActive(true);
             water1.SetActive(true);

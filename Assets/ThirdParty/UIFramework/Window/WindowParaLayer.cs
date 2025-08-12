@@ -14,7 +14,7 @@ namespace deVoid.UIFramework {
         
         public void AddScreen(Transform screenRectTransform) {
             screenRectTransform.SetParent(transform, false);
-            containedScreens.Add(screenRectTransform.gameObject);
+            //containedScreens.Add(screenRectTransform.gameObject);
             Debug.LogError($"Screen added: {screenRectTransform.gameObject.name}");
         }
 

@@ -51,6 +51,7 @@ public class ShopManagerUI : AWindowController
 
     private void OnEnable()
     {
+        
         if (profile)
             profile.SetActive(false);
         PersistentAudioPlayer.Instance.PanelSounds();

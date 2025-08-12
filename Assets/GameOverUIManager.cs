@@ -100,10 +100,10 @@ public class GameOverUIManager : AWindowController
     {
         bool isRewardedADAvailable = adControl.IsRewardedADAvailable();
 
-        if (!isRewardedADAvailable)
+        /*if (!isRewardedADAvailable)
         {
             DisableDoubleRewardedAndReAlignButtons();
-        }
+        }*/
     }
 
     public void DisableDoubleRewardedAndReAlignButtons()

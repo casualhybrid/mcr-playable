@@ -41,7 +41,11 @@ public class ShopManagerUI : AWindowController
     private Action pendingPurchasedItemResult;
 
     private static int timesOpened;
+    [SerializeField] private InventoryCelebrationPanel celebrationPanel;
 
+    [SerializeField] GameObject inventory;
+
+   
     protected override void Awake()
     {
         base.Awake();
@@ -77,6 +81,7 @@ public class ShopManagerUI : AWindowController
         BtnSelect(1);
 
         timesOpened++;
+        inventory = WindowParaLayer.instance.Get();
        // OpenRemoveADSPopupIfPossible();
     }
 
@@ -215,7 +220,7 @@ public class ShopManagerUI : AWindowController
             inventoryItems.Add(new InventoryItem<int>("AccountDiamonds", -itemObj.inventoryItemsPrice[0].GetAmount));
 
 
-            inventoryObj.UpdateKeyValues(inventoryItems,true,true,null,false);
+            //inventoryObj.UpdateKeyValues(inventoryItems,true,true,null,false);
 
             SendCoinPackageClickeAnalyticsEvent(itemObj.name, true);
         }
@@ -348,12 +353,26 @@ public class ShopManagerUI : AWindowController
     {
         print("IAP Status = " + /*text*/"Initialization Failed");
     }
+    
 
+    public void OnSomethingHappened()
+    {
+      
+    }
     public void CloseShopPanel()
     {
         PersistentAudioPlayer.Instance.PlayAudio();
-        //  saveManagerObj.SaveGame(0, false);
+
+        //celebrationPanel.CloseCelebrationPanel();
+        inventory = WindowParaLayer.instance.Get();
+        if (inventory)
+            inventory.SetActive(false);
         this.UI_Close();
+    }
+
+    public void ForButton()
+    {
+        inventory = WindowParaLayer.instance.Get();
     }
 
     private void OnDisable()

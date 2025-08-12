@@ -9,6 +9,7 @@ namespace deVoid.UIFramework
     /// </summary>
     public abstract class AWindowController : AWindowController<WindowProperties> {
 
+
       
     }
 

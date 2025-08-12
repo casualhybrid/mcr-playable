@@ -497,12 +497,12 @@ public class CharacterSelectionManager : AWindowController
         }
         else if(pressedCharacterNumber == 1)
         {
-            costText.text = "1500";
+            costText.text = "15000";
             Icon.sprite = icons[0];
-            if (inventoryObj.GetIntKeyValue("AccountCoins") >= 1500)
+            if (inventoryObj.GetIntKeyValue("AccountCoins") >= 15000)
             {
                 int requiredFig = charactersDataBase.GetCharacterConfigurationData(pressedCharacterNumber).FigurinesToUnlock;
-                inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", -1500) });
+                inventoryObj.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", -15000) });
                 int updatedFig = inventoryObj.UpdateCharacterFigurine(pressedCharacterNumber, 1);
                 FigrineBodyPartText.text = updatedFig + " / " + requiredFig;
 
@@ -526,7 +526,7 @@ public class CharacterSelectionManager : AWindowController
             }
 
 
-            purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", 1500, amountsGot);
+            purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", 15000, amountsGot);
         }
     }
 

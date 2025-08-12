@@ -21,28 +21,28 @@ public class PanelTransformModifierBasedOnBannerAds : MonoBehaviour
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        parentCanvas = GetComponentInParent<Canvas>();
+        /*rectTransform = GetComponent<RectTransform>();
+        parentCanvas = GetComponentInParent<Canvas>();*/
     }
 
     private void OnEnable()
     {
-        ScreenSafeAreaMonitor.OnSafeAreaChanged += LowerTheMainPanelTakingSafeAreaInAccount;
+       /* ScreenSafeAreaMonitor.OnSafeAreaChanged += LowerTheMainPanelTakingSafeAreaInAccount;
         playerBoughtADFree.TheEvent.AddListener(DisableTouchBlockerAndRepositionMainPanelIfNoAds);
 
         LowerTheMainPanelTakingSafeAreaInAccount();
-        DisableTouchBlockerAndRepositionMainPanelIfNoAds();
+        DisableTouchBlockerAndRepositionMainPanelIfNoAds();*/
     }
 
     private void OnDisable()
     {
-        playerBoughtADFree.TheEvent.RemoveListener(DisableTouchBlockerAndRepositionMainPanelIfNoAds);
-        ScreenSafeAreaMonitor.OnSafeAreaChanged -= LowerTheMainPanelTakingSafeAreaInAccount;
+        /*playerBoughtADFree.TheEvent.RemoveListener(DisableTouchBlockerAndRepositionMainPanelIfNoAds);
+        ScreenSafeAreaMonitor.OnSafeAreaChanged -= LowerTheMainPanelTakingSafeAreaInAccount;*/
     }
 
     private void LowerTheMainPanelTakingSafeAreaInAccount()
     {
-        Rect safeAreaRect = Screen.safeArea;
+       /* Rect safeAreaRect = Screen.safeArea;
 
         int totalHeight = Display.main.renderingHeight;
         int safeAreaHeight = (int)safeAreaRect.height;
@@ -50,15 +50,15 @@ public class PanelTransformModifierBasedOnBannerAds : MonoBehaviour
         //UnityEngine.Console.Log($"totalheight {totalHeight} and safeareaheight {safeAreaHeight}");
 
         if (totalHeight == safeAreaHeight)
-            return;
+            return;*/
 
         ///rectTransform.SetTop((totalHeight - (safeAreaRect.position.y + safeAreaRect.height)) / parentCanvas.scaleFactor);
-        rectTransform.SetBottom(safeAreaRect.position.y / parentCanvas.scaleFactor);
+       // rectTransform.SetBottom(safeAreaRect.position.y / parentCanvas.scaleFactor);
     }
 
     private void DisableTouchBlockerAndRepositionMainPanelIfNoAds(GameEvent gameEvent = null)
     {
-        if (saveManager == null)
+      /*  if (saveManager == null)
             return;
 
         if (saveManager.MainSaveFile == null)
@@ -77,6 +77,6 @@ public class PanelTransformModifierBasedOnBannerAds : MonoBehaviour
             {
                 mainPanel.SetBottom(0);
             }
-        }
+        }*/
     }
 }

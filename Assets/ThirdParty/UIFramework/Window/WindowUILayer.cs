@@ -101,7 +101,7 @@ namespace deVoid.UIFramework
                 screen.Hide();
             }
             else {
-
+                
                 string msg = string.Format(
                         "[WindowUILayer] Hide requested on WindowId {0} but that's not the currently open one ({1})! Ignoring request.",
                         screen.ScreenId, CurrentWindow != null ? CurrentWindow.ScreenId : "current is null");

@@ -16,7 +16,7 @@ public class CurvedHandler : MonoBehaviour
     [SerializeField] private EnvironmentChannel environmentChannel;
     [SerializeField] private GameEvent onCutSceneStarted;
 
-    private CurvedWorld_Controller controller;
+    public  CurvedWorld_Controller controller;
 
     private Sequence curveSequence;
 
@@ -88,8 +88,8 @@ public class CurvedHandler : MonoBehaviour
         }
         catch
         {
-            throw new System.Exception($"Last known active state for curved world is empty!" +
-                $". Failed to restore curved world state");
+            /*throw new System.Exception($"Last known active state for curved world is empty!" +
+                $". Failed to restore curved world state");*/
         }
     }
 }

@@ -34,6 +34,7 @@ public class ItemAddEffect : SerializedMonoBehaviour
     private InventoryItemAnimData animData;
    // private Vector2 trailInitialAnchoredPos;
     private Sprite itemSpriteToUse;
+    
 
     //private void Awake()
     //{

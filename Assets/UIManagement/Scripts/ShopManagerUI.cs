@@ -284,7 +284,26 @@ public class ShopManagerUI : AWindowController
 
     }
 
+    public void RewardCoinPosition(RectTransform target)
+    {
+        Vector2 globalPos = target.position; // World position
+        Vector2 localPoint;
+        RectTransform canvasRect = target.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
 
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            RectTransformUtility.WorldToScreenPoint(null, globalPos),
+            null,
+            out localPoint
+        );
+
+        UIEffectsHandler.newPosition = localPoint;
+
+        // UIEffectsHandler.newPosition = target.position; // World position as Vector2
+        Debug.Log("Position : " + target.position + localPoint);
+
+        //UIEffectsHandler.newPosition = new Vector2(232f, 585f);
+    }
     public void StandardPack(GeneralIAPItem itemObj)
     {
         iAPManagerObj.BuyTheProduct(itemObj.ProductID);

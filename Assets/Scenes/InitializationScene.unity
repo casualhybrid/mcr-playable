@@ -1015,6 +1015,77 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
+--- !u!1 &2080088294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080088296}
+  - component: {fileID: 2080088295}
+  m_Layer: 0
+  m_Name: MaxAdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2080088295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080088294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd91bc624d749747a9ade4086dbbec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxSdkKey: ENTER_MAX_SDK_KEY_HERE
+  InterstitialAdUnitId: ENTER_INTERSTITIAL_AD_UNIT_ID_HERE
+  RewardedAdUnitId: ENTER_REWARD_AD_UNIT_ID_HERE
+  RewardedInterstitialAdUnitId: ENTER_REWARD_INTER_AD_UNIT_ID_HERE
+  BannerAdUnitId: ENTER_BANNER_AD_UNIT_ID_HERE
+  MRecAdUnitId: ENTER_MREC_AD_UNIT_ID_HERE
+  AppOpenAdUnitId: "\xABAndroid-ad-unit-ID\xBB"
+  firebaseReady: 0
+  isComPauseAds: 0
+  isComMainMenuAd: 0
+  isSurPauseAds: 0
+  isSurMainMenuAd: 0
+  isMultiPauseAds: 0
+  isMultiMainMenuAd: 0
+  isOption: 0
+  isbacktoModeSelection: 0
+  isBacktoWeapontoMainmenu: 0
+  DailyRewardScreen: 0
+  OnUserEarnedRewardEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  MedCount: 0
+  RandomLevel: 0
+  InAppsCount: 0
+  Backfromhome: 0
+  modesads: 0
+  loadingmain: {fileID: 0}
+--- !u!4 &2080088296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080088294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.036246777, y: 61.925007, z: -1867.604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2138851936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,3 +1148,4 @@ SceneRoots:
   - {fileID: 1481247092}
   - {fileID: 1000336017}
   - {fileID: 1013233148}
+  - {fileID: 2080088296}

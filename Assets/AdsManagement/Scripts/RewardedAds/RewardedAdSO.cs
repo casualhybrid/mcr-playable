@@ -56,21 +56,23 @@ public abstract class RewardedAdSO : ScriptableObject
 
     public virtual void ShowRewardedAD()
     {
-        rewardedADOpenedCondition = RewardedADOpenedCondition.PriorityWasLoadedAlready;
+        //rewardedADOpenedCondition = RewardedADOpenedCondition.PriorityWasLoadedAlready;
 
-        hasPriorityRewardedFailedOnce = false;
+        //hasPriorityRewardedFailedOnce = false;
 
-        AdsController.OnRewardedAdAboutToShow.AddListener(RewardedAdAboutToShow);
-        rewardedAdFailedToShow_NotLoaded.RaiseEvent();
-        AdsController.SetTheRewardedADPanelMetaData(rewardedADRewardMetaDatas);
+        //AdsController.OnRewardedAdAboutToShow.AddListener(RewardedAdAboutToShow);
+        //rewardedAdFailedToShow_NotLoaded.RaiseEvent();
+        //AdsController.SetTheRewardedADPanelMetaData(rewardedADRewardMetaDatas);
 
-        // if rewarded is not ready load ads here to save that 2 seconds
-        if (!AdsController.IsPriorityRewardedADAvailalbe())
-        {
-            AdsController.LoadAllRewardedAds();
-        }
+        //// if rewarded is not ready load ads here to save that 2 seconds
+        //if (!AdsController.IsPriorityRewardedADAvailalbe())
+        //{
+        //    AdsController.LoadAllRewardedAds();
+        //}
 
-        CoroutineRunner.Instance.StartCoroutine(ShowPriortiyRewardedADAfterDelay());
+        //CoroutineRunner.Instance.StartCoroutine(ShowPriortiyRewardedADAfterDelay());
+
+        MaxAdMobController.Instance.ShowRewardedVideoAd(this);
     }
 
     protected IEnumerator ShowPriortiyRewardedADAfterDelay()

@@ -705,7 +705,7 @@ public class PlayerBasicMovementShared : ScriptableObject
         }
         PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;
         PlayerSharedData.PlayerTransform.position = adjustedPos;
-        PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;
+       // PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate; //zzzn
     }
 
     private void AdjustPlayerXPositionAfterCrash()
@@ -716,7 +716,7 @@ public class PlayerBasicMovementShared : ScriptableObject
 
         PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;
         PlayerSharedData.PlayerTransform.position = adjustedPos;
-        PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;
+        // PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
     }
 
     //   private void HandleDestructibleDestroyed(GameEvent gameEvent)

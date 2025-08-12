@@ -1,5 +1,7 @@
+using AppsFlyerSDK;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TheKnights.AdsSystem;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -129,13 +131,13 @@ public class MaxAdMobController : MonoBehaviour
         MaxSdk.LoadAppOpenAd(AppOpenAdUnitId);
     }
 
-    private void OnApplicationPause(bool pauseStatus)
-    {
-        if (!pauseStatus)
-        {
-            ShowAdIfReady();
-        }
-    }
+    //private void OnApplicationPause(bool pauseStatus)
+    //{
+    //    if (!pauseStatus)
+    //    {
+    //        ShowAdIfReady();
+    //    }
+    //}
 
     #region Interstitial Ad Methods
 
@@ -233,6 +235,56 @@ public class MaxAdMobController : MonoBehaviour
         string adUnitIdentifier = adInfo.AdUnitIdentifier; // The MAX Ad Unit ID
         string placement = adInfo.Placement; // The placement this ad's postbacks are tied to
 
+
+
+  var parameters = new Dictionary<string, string>()
+  {
+    { "ad_platform", "applovin_max" },
+    { "ad_source", adInfo.NetworkName },
+    { "ad_unit_name", adInfo.AdUnitIdentifier },
+    { "ad_format", adInfo.AdFormat },
+    { "currency", "USD" },
+    { "value", adInfo.Revenue.ToString(System.Globalization.CultureInfo.InvariantCulture) } // Convert double to string with "." decimal
+  };
+        var logRevenue = new AFAdRevenueData("applovin", MediationNetwork.IronSource, "USD", revenue);
+        AppsFlyer.logAdRevenue(logRevenue, parameters);
+
+        Debug.Log(
+       $"[AppsFlyer] logAdRevenue Called\n" +
+       $"Monetization Network: {logRevenue.monetizationNetwork}\n" +
+       $"Mediation Network: {logRevenue.mediationNetwork}\n" +
+       $"Currency: {logRevenue.currencyIso4217Code} | Revenue: {logRevenue.eventRevenue}\n" +
+       $"ad_platform: {parameters["ad_platform"]}\n" +
+       $"ad_source: {parameters["ad_source"]}\n" +
+       $"ad_unit_name: {parameters["ad_unit_name"]}\n" +
+       $"ad_format: {parameters["ad_format"]}\n" +
+       $"currency: {parameters["currency"]}\n" +
+       $"value: {parameters["value"]}"
+   );
+
+       
+        var impressionParameters = new[] {
+  new Firebase.Analytics.Parameter("ad_platform", "AppLovin"),
+  new Firebase.Analytics.Parameter("ad_source", adInfo.NetworkName),
+  new Firebase.Analytics.Parameter("ad_unit_name", adInfo.AdUnitIdentifier),
+  new Firebase.Analytics.Parameter("ad_format", adInfo.AdFormat),
+  new Firebase.Analytics.Parameter("value", revenue),
+  new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
+};
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
+
+
+        var eventValues = new Dictionary<string, string>()
+    {
+        { "ad_platform", "applovin_max" },
+        { "ad_source", adInfo.NetworkName },
+        { "ad_unit_name", adInfo.AdUnitIdentifier },
+        { "ad_format", adInfo.AdFormat },
+        { "placement", adInfo.Placement }
+    };
+
+        // Send AppsFlyer event
+        AppsFlyer.sendEvent("af_inters_displayed", eventValues);
     }
 
     #endregion
@@ -355,9 +407,59 @@ public class MaxAdMobController : MonoBehaviour
         string networkName = adInfo.NetworkName; // Display name of the network that showed the ad (e.g. "AdColony")
         string adUnitIdentifier = adInfo.AdUnitIdentifier; // The MAX Ad Unit ID
         string placement = adInfo.Placement; // The placement this ad's postbacks are tied to
+        var parameters = new Dictionary<string, string>()
+  {
+    { "ad_platform", "applovin_max" },
+    { "ad_source", adInfo.NetworkName },
+    { "ad_unit_name", adInfo.AdUnitIdentifier },
+    { "ad_format", adInfo.AdFormat },
+    { "currency", "USD" },
+    { "value", adInfo.Revenue.ToString(System.Globalization.CultureInfo.InvariantCulture) } // Convert double to string with "." decimal
+  };
+        var logRevenue = new AFAdRevenueData("applovin", MediationNetwork.IronSource, "USD", revenue);
+        AppsFlyer.logAdRevenue(logRevenue, parameters);
 
-    
+        Debug.Log(
+       $"[AppsFlyer] logAdRevenue Called\n" +
+       $"Monetization Network: {logRevenue.monetizationNetwork}\n" +
+       $"Mediation Network: {logRevenue.mediationNetwork}\n" +
+       $"Currency: {logRevenue.currencyIso4217Code} | Revenue: {logRevenue.eventRevenue}\n" +
+       $"ad_platform: {parameters["ad_platform"]}\n" +
+       $"ad_source: {parameters["ad_source"]}\n" +
+       $"ad_unit_name: {parameters["ad_unit_name"]}\n" +
+       $"ad_format: {parameters["ad_format"]}\n" +
+       $"currency: {parameters["currency"]}\n" +
+       $"value: {parameters["value"]}"
+   );
+
+
+
+        var impressionParameters = new[] {
+  new Firebase.Analytics.Parameter("ad_platform", "AppLovin"),
+  new Firebase.Analytics.Parameter("ad_source", adInfo.NetworkName),
+  new Firebase.Analytics.Parameter("ad_unit_name", adInfo.AdUnitIdentifier),
+  new Firebase.Analytics.Parameter("ad_format", adInfo.AdFormat),
+  new Firebase.Analytics.Parameter("value", revenue),
+  new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
+};
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
+
+
+        var eventValues = new Dictionary<string, string>()
+    {
+        { "ad_platform", "applovin_max" },
+        { "ad_source", adInfo.NetworkName },
+        { "ad_unit_name", adInfo.AdUnitIdentifier },
+        { "ad_format", adInfo.AdFormat },
+        { "placement", adInfo.Placement }
+    };
+
+        // Send AppsFlyer event
+        AppsFlyer.sendEvent("af_rewarded_ad_displayed", eventValues);
+
     }
+
+
 
     #endregion
 
@@ -377,9 +479,9 @@ public class MaxAdMobController : MonoBehaviour
 
         // Banners are automatically sized to 320x50 on phones and 728x90 on tablets.
         // You may use the utility method `MaxSdkUtils.isTablet()` to help with view sizing adjustments.
-        var adViewConfiguration = new MaxSdk.AdViewConfiguration(MaxSdk.AdViewPosition.TopRight);
-       // MaxSdk.CreateBanner(BannerAdUnitId, adViewConfiguration);
-        MaxSdk.SetBannerExtraParameter(BannerAdUnitId, "adaptive_banner", "false");
+        var adViewConfiguration = new MaxSdk.AdViewConfiguration(MaxSdk.AdViewPosition.BottomCenter);
+        MaxSdk.CreateBanner(BannerAdUnitId, adViewConfiguration);
+       // MaxSdk.SetBannerExtraParameter(BannerAdUnitId, "adaptive_banner", "false");
         MaxSdkUtils.IsTablet();
         // Set background or background color for banners to be fully functional.
       //  MaxSdk.SetBannerBackgroundColor(BannerAdUnitId, Color.black);
@@ -452,7 +554,32 @@ public class MaxAdMobController : MonoBehaviour
         string adUnitIdentifier = adInfo.AdUnitIdentifier; // The MAX Ad Unit ID
         string placement = adInfo.Placement; // The placement this ad's postbacks are tied to
 
-       
+
+        var parameters = new Dictionary<string, string>()
+  {
+    { "ad_platform", "applovin_max" },
+    { "ad_source", adInfo.NetworkName },
+    { "ad_unit_name", adInfo.AdUnitIdentifier },
+    { "ad_format", adInfo.AdFormat },
+    { "currency", "USD" },
+    { "value", adInfo.Revenue.ToString(System.Globalization.CultureInfo.InvariantCulture) } // Convert double to string with "." decimal
+  };
+        var logRevenue = new AFAdRevenueData("applovin", MediationNetwork.IronSource, "USD", revenue);
+        AppsFlyer.logAdRevenue(logRevenue, parameters);
+
+        Debug.Log(
+       $"[AppsFlyer] logAdRevenue Called\n" +
+       $"Monetization Network: {logRevenue.monetizationNetwork}\n" +
+       $"Mediation Network: {logRevenue.mediationNetwork}\n" +
+       $"Currency: {logRevenue.currencyIso4217Code} | Revenue: {logRevenue.eventRevenue}\n" +
+       $"ad_platform: {parameters["ad_platform"]}\n" +
+       $"ad_source: {parameters["ad_source"]}\n" +
+       $"ad_unit_name: {parameters["ad_unit_name"]}\n" +
+       $"ad_format: {parameters["ad_format"]}\n" +
+       $"currency: {parameters["currency"]}\n" +
+       $"value: {parameters["value"]}"
+   );
+
     }
 
     #endregion

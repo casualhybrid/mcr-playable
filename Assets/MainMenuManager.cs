@@ -144,7 +144,7 @@ public class MainMenuManager : AWindowController
         adsController.OnInterstitialAdCompleted.AddListener(ContinueWithCutScene);*/
         OnTapToPlay.RaiseEvent();
         ContinueWithCutScene();
-        PersistentAudioPlayer.Instance.PlayGameplayAudio();
+      PersistentAudioPlayer.Instance.PlayGameplayAudio();
         PersistentAudioPlayer.Instance.CheckMusicStatus();
         PersistentAudioPlayer.Instance.PlayTumTumSound();
         /*if (animator)
@@ -164,6 +164,7 @@ public class MainMenuManager : AWindowController
 
         //   StartCutSceneDelayRoutineRef = StartCoroutine(StartCutSceneAfterDelay());
         //    OpenTheWindow("AdIsLoadingBeforeCutScene");
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("start_level");
     }
 
     private void ContinueWithCutScene()

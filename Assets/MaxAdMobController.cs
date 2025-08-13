@@ -92,11 +92,11 @@ public void Awake()
             Debug.LogError("An error occurred during SDK Init : " + ex.Message);
         }
 
-        //MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) =>
-        //{
-        //    // Show Mediation Debugger
-        //    MaxSdk.ShowMediationDebugger();
-        //};
+        MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) =>
+        {
+            // Show Mediation Debugger
+            MaxSdk.ShowMediationDebugger();
+        };
     }
     public IEnumerator InitializeFullScreenAds()
     {

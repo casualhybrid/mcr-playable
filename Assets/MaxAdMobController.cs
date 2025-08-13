@@ -38,8 +38,8 @@ public class MaxAdMobController : MonoBehaviour
     public int InAppsCount;
     public bool Backfromhome, modesads;
     private RewardedAdSO _currentRequester;
-    // [SerializeField] UserEarnedReward OnUserEarnedReward;
     string RewardInfo = "";
+    private float lastInterstitialTime = -999f;
 
     bool AdsCompability => SystemInfo.systemMemorySize > 1500;
     public bool LowMemoryDevice => SystemInfo.systemMemorySize <= 1500;
@@ -81,7 +81,6 @@ public void Awake()
         {
             StartCoroutine(InitializeFullScreenAds());
             Debug.LogError("MaxSdkInit....................................");
-           // MaxSdkCallbacks.AppOpen.OnAdHiddenEvent += OnAppOpenDismissedEvent;
 
         };
         try
@@ -103,16 +102,10 @@ public void Awake()
     {
         yield return new WaitForSeconds(0.3f);
         RequestBannerAd();
-      //  yield return new WaitForEndOfFrame();
-       // InitializeMRecAds();
         yield return new WaitForEndOfFrame();
         InitializeInterstitialAds();
         yield return new WaitForEndOfFrame();
         InitializeRewardedAds();
-      //  yield return new WaitForSeconds(0.5f);
-      //  ShowAdmobBanner();
-      //  yield return new WaitForSeconds(4.5f);
-      //  MaxSdkCallbacks.AppOpen.OnAdHiddenEvent += OnAppOpenDismissedEvent;
 
     }
     
@@ -127,18 +120,6 @@ public void Awake()
             MaxSdk.LoadAppOpenAd(AppOpenAdUnitId);
         }
     }
-    public void OnAppOpenDismissedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
-    {
-        MaxSdk.LoadAppOpenAd(AppOpenAdUnitId);
-    }
-
-    //private void OnApplicationPause(bool pauseStatus)
-    //{
-    //    if (!pauseStatus)
-    //    {
-    //        ShowAdIfReady();
-    //    }
-    //}
 
     #region Interstitial Ad Methods
 
@@ -172,17 +153,30 @@ public void Awake()
 
     public void ShowInterstitialAd()
     {
-        if (PlayerPrefs.GetInt("IsAdsRemoved") == 1)
+       if (PlayerPrefs.GetInt("IsAdsRemoved") == 1 || RemoteConfigManager.HienQc == false)
+       {
+                return;
+       }
+
+        // Check cooldown using Remote Config value
+        float interval = RemoteConfigManager.AdsInterval; // default 25 from remote config
+        if (Time.time - lastInterstitialTime < interval)
         {
+            float waitTime = interval - (Time.time - lastInterstitialTime);
+            Debug.Log($"[Interstitial] Cooldown active. Wait {waitTime:F1} seconds before showing next ad.");
             return;
         }
-       
+
+        // Show if ready
         if (MaxSdk.IsInterstitialReady(InterstitialAdUnitId))
         {
             MaxSdk.ShowInterstitial(InterstitialAdUnitId);
+            lastInterstitialTime = Time.time; // mark the time ad was shown
+            Debug.Log($"[Interstitial] Ad shown. Next ad allowed after {interval} seconds.");
         }
         else
         {
+            Debug.Log("[Interstitial] Ad not ready, loading new one...");
             LoadInterstitial();
         }
     }
@@ -489,7 +483,7 @@ public void Awake()
     }
     public void ShowAdmobBanner()
     {
-        if (PlayerPrefs.GetInt("IsAdsRemoved") == 1)
+        if (PlayerPrefs.GetInt("IsAdsRemoved") == 1 || RemoteConfigManager.HienQc == false)
         {
             return;
         }

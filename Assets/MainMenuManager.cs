@@ -38,7 +38,10 @@ public class MainMenuManager : AWindowController
         base.Awake();
     }
    
-
+    public void InterTest()
+    {
+        MaxAdMobController.Instance.ShowInterstitialAd();
+    }
     private void Start()
     {
 

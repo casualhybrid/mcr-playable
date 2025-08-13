@@ -61,8 +61,16 @@ public class AppOpenAdController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         LoadAd();
         yield return new WaitForSeconds(6);
-        ShowAd();
+        CheckAppopenStatus();
 
+    }
+    public void CheckAppopenStatus()
+    {
+        if (RemoteConfigManager.ShowOpenAds == false)
+        {
+            return;
+        }
+        ShowAd();
     }
 
     public void LoadAd()
@@ -101,15 +109,37 @@ public class AppOpenAdController : MonoBehaviour
     int index = 0;
     public void ShowAd()
     {
-        
+        bool isFirstOpen = !PlayerPrefs.HasKey("first_open_done");
+
+        if (isFirstOpen)
+        {
+            PlayerPrefs.SetInt("first_open_done", 1); // Mark that we've opened the app at least once
+            PlayerPrefs.Save();
+
+            if (!RemoteConfigManager.ShowOpenAdsFirstOpen)
+            {
+                Debug.Log("[AppOpenAd] Skipping ad on first open (per Remote Config).");
+                return;
+            }
+            else
+            {
+                Debug.Log("[AppOpenAd] Showing ad on first open (per Remote Config).");
+            }
+        }
+        else
+        {
+            Debug.Log("[AppOpenAd] Not first open — always show.");
+        }
+
+        // Show ad if ready
         if (_appOpenAd != null && _appOpenAd.CanShowAd())
         {
-            Debug.Log("Showing app open ad.");
+            Debug.Log("[AppOpenAd] Showing app open ad.");
             _appOpenAd.Show();
         }
         else
         {
-            Debug.LogError("App open ad is not ready yet.");
+            Debug.LogWarning("[AppOpenAd] Ad is not ready yet.");
         }
 
     }

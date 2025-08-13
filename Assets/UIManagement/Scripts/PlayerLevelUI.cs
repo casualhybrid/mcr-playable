@@ -49,8 +49,10 @@ public class PlayerLevelUI : MonoBehaviour
         float sliderVal = Mathf.Clamp01(playerLevelObj.GetPlayerCurrentXP() / playerLevelObj.GetXPNeededForNextLevel());
         playerLevelSlider.value = sliderVal;
         playerName.text = /*saveManager.MainSaveFile.leaderBoardUserName;*/PlayerPrefs.GetString("PlayerName","Your Name");
-        profileName.text = /*playerName.text;*/PlayerPrefs.GetString("PlayerName","Your Name");
+        if(profileName)
+            profileName.text = /*playerName.text;*/PlayerPrefs.GetString("PlayerName","Your Name");
         //Profile
+
         totalCoins.text = playerInventoryObj.GetIntKeyValue("AccountCoins").ToString(); ;
         totalGems.text = playerInventoryObj.GetIntKeyValue("AccountDiamonds").ToString();
         highScore.text = gameplayInventoryObj.GetPlayerHighestScore().ToString();

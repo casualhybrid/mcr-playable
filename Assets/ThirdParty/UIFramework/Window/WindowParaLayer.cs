@@ -40,7 +40,7 @@ namespace deVoid.UIFramework {
 
         public GameObject Get()
         {
-            if(containedScreens.Count!=null)
+            if (containedScreens != null && containedScreens.Count > 0)
                 return containedScreens[0];
             else
                 return null;

@@ -54,6 +54,7 @@ public class ShopManagerUI : AWindowController
     {
         if (profile)
             profile.SetActive(false);
+        InventoryCelebrationPanel.isShop = true;
         PersistentAudioPlayer.Instance.PanelSounds();
         StartCoroutine(WaitForAFrameAndEnableScrollRect());
         SnapTo();
@@ -353,9 +354,11 @@ public class ShopManagerUI : AWindowController
     public void CloseShopPanel()
     {
         PersistentAudioPlayer.Instance.PlayAudio();
-        /*inventoryPanel = WindowParaLayer.instance.Get();
-        if(inventoryPanel != null)
-            inventoryPanel.SetActive(false);*/
+        InventoryCelebrationPanel.isShop = false;
+        inventoryPanel = WindowParaLayer.instance.Get();
+        //Debug.LogError(inventoryPanel.name);
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(false);
         //  saveManagerObj.SaveGame(0, false);
         this.UI_Close();
     }

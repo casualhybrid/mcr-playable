@@ -35,7 +35,7 @@ public class InventoryCelebrationPanel : ACelebrationWindow
 
     private readonly Stack<InventoryCelebrationItemInstanceUI> availableCelebrationInventoryInstances = new Stack<InventoryCelebrationItemInstanceUI>();
     private bool isDoubled;
-
+    public static bool isShop;
     private void OnEnable()
     {
         if (Properties.isDoubleRewardPossible)
@@ -43,15 +43,19 @@ public class InventoryCelebrationPanel : ACelebrationWindow
             doubleRewardAdComplete.TheEvent.AddListener(AddDoubleReward);
 
             //doubleButton.SetActive(true);
-
+            Debug.LogError("CloseCall?");
         }
         else
         {
           
             doubleButton.SetActive(false);
-            crossButton.SetActive(false);
+            if(crossButton)
+                crossButton.SetActive(false);
+            Debug.LogError("CloseCall?");
             UI_Close();
         }
+        if(isShop)
+            UI_Close();
     }
     public void Close()
     {

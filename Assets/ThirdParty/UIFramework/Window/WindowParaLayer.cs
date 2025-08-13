@@ -7,8 +7,15 @@ namespace deVoid.UIFramework {
     /// By default, it contains any window tagged as a Popup. It is controlled by the WindowUILayer.
     /// </summary>
     public class WindowParaLayer : MonoBehaviour {
+        public static WindowParaLayer instance;
+
+        private void Awake()
+        {
+            instance = this;
+        }
         [SerializeField] 
         private GameObject darkenBgObject = null;
+
 
         public List<GameObject> containedScreens = new List<GameObject>();
         
@@ -31,6 +38,13 @@ namespace deVoid.UIFramework {
             darkenBgObject.SetActive(false);
         }
 
+        public GameObject Get()
+        {
+            if(containedScreens.Count!=null)
+                return containedScreens[0];
+            else
+                return null;
+        }
         public void DarkenBG() {
             darkenBgObject.SetActive(true);
             darkenBgObject.transform.SetAsLastSibling();

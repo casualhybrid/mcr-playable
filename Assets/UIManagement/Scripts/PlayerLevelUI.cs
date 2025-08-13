@@ -52,8 +52,8 @@ public class PlayerLevelUI : MonoBehaviour
         if(profileName)
             profileName.text = /*playerName.text;*/PlayerPrefs.GetString("PlayerName","Your Name");
         //Profile
-
-        totalCoins.text = playerInventoryObj.GetIntKeyValue("AccountCoins").ToString(); ;
+        if(totalCoins)
+            totalCoins.text = playerInventoryObj.GetIntKeyValue("AccountCoins").ToString(); ;
         totalGems.text = playerInventoryObj.GetIntKeyValue("AccountDiamonds").ToString();
         highScore.text = gameplayInventoryObj.GetPlayerHighestScore().ToString();
         highScorepROFILE.text = highScore.text;

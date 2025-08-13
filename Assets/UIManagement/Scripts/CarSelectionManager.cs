@@ -112,7 +112,8 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     }
     public void CloseSound()
     {
-        PersistentAudioPlayer.Instance.PlayAudio();
+        if(PersistentAudioPlayer.Instance)
+            PersistentAudioPlayer.Instance.PlayAudio();
     }
     private void OnDisable()
     {

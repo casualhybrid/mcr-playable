@@ -270,9 +270,10 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
         mysterBox.SetActive(false);
         mysteryBoxLid.SetActive(false);
 
-         //ForDailyReward(4);
+        //ForDailyReward(4);
+        Debug.LogError(DailyLoginRewardManager.newCurrentIndex);
         if (isDailyReward)
-            ForDailyReward(currentIndex);
+            ForDailyReward(DailyLoginRewardManager.newCurrentIndex);
         else
             MysteryBoxDetails();
 
@@ -507,8 +508,12 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
             Debug.LogWarning("Invalid reward index");
             return;
         }
-        Debug.LogError(currentIndex);
+        Debug.LogError(DailyLoginRewardManager.newCurrentIndex);
         Debug.LogError(rewardIndex);
+        if(rewardIndex==0)
+        {
+            rewardIndex = 1;
+        }
 
         string selectedRewardKey = RewardKeys[rewardIndex];
         

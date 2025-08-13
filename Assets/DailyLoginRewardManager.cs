@@ -95,11 +95,11 @@ public class DailyLoginRewardManager : MonoBehaviour
             btn.buttonImage.sprite = blueSprite;
         }
     }
-
+    public static int newCurrentIndex;
     public void ClaimReward(int index)
     {
         GamePlayMysteryBoxOpenPanel.currentIndex = index;
-        
+        newCurrentIndex = index;
         GamePlayMysteryBoxOpenPanel.isDailyReward = true;
         GamePlayMysteryBoxOpenPanel.amountReward=dailyButtons[index].amount;
         Debug.Log($"Reward claimed for Day {index + 1}");

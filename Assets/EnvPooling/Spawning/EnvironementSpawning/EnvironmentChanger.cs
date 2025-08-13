@@ -62,14 +62,14 @@ public class EnvironmentChanger : MonoBehaviour
     private void PauseSafeZoneGenerationAndOverrideUnPauseBehaviour(GameEvent gameEvent)
     {
         Debug.LogError("PlayerFlying");
-        WaterParkEnter.isFlying = true;
+        WaterParkEnter.isFlying = false;
         PauseSafeZoneGeneration();
     }
 
     private void CheckAndUnPauseSafeZoneGeneration(GameEvent gameEvent)
     {
         Debug.LogError("PlayerNotFlying");
-        WaterParkEnter.isFlying = false;
+        WaterParkEnter.isFlying = true;
         UnPauseSafeZoneGeneration();
     }
 

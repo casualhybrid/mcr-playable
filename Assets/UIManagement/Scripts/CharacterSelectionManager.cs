@@ -82,7 +82,8 @@ public class CharacterSelectionManager : AWindowController
     }
     public void OnClickClose()
     {
-        PersistentAudioPlayer.Instance.PlayAudio();
+        if(PersistentAudioPlayer.Instance)
+            PersistentAudioPlayer.Instance.PlayAudio();
     }
     private bool IsTheTouchOverScrollRect()
     {

@@ -362,6 +362,13 @@ public class ShopManagerUI : AWindowController
         //  saveManagerObj.SaveGame(0, false);
         this.UI_Close();
     }
+    public void CheckCLosePanel()
+    {
+        inventoryPanel = WindowParaLayer.instance.Get();
+        //Debug.LogError(inventoryPanel.name);
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(false);
+    }
 
     private void OnDisable()
     {

@@ -23,7 +23,7 @@ public class Settings : MonoBehaviour
 
     public void Terms()
     {
-        Application.OpenURL("https://frolicsfreegames.com/privacy-policy.html");
+        Application.OpenURL("https://kindwavegames.apexieg.com/privacy-policy.html");
     }
 
     public void SendEmail()

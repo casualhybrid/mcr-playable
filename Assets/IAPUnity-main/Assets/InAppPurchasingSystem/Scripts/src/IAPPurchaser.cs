@@ -121,38 +121,38 @@ namespace TheKnights.Purchasing
         // Apple currently requires explicit purchase restoration for IAP, conditionally displaying a password prompt.
         public void RestorePurchases()
         {
-            // If Purchasing has not yet been set up ...
-            if (!IsInitialized())
-            {
-                // ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
-                UnityEngine.Console.Log("RestorePurchases FAIL. Not initialized.");
-                return;
-            }
+            //// If Purchasing has not yet been set up ...
+            //if (!IsInitialized())
+            //{
+            //    // ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
+            //    UnityEngine.Console.Log("RestorePurchases FAIL. Not initialized.");
+            //    return;
+            //}
 
-            // If we are running on an Apple device ...
-            if (Application.platform == RuntimePlatform.IPhonePlayer ||
-                Application.platform == RuntimePlatform.OSXPlayer)
-            {
-                // ... begin restoring purchases
-                UnityEngine.Console.Log("RestorePurchases started ...");
+            //// If we are running on an Apple device ...
+            //if (Application.platform == RuntimePlatform.IPhonePlayer ||
+            //    Application.platform == RuntimePlatform.OSXPlayer)
+            //{
+            //    // ... begin restoring purchases
+            //    UnityEngine.Console.Log("RestorePurchases started ...");
 
-                // Fetch the Apple store-specific subsystem.
-                var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
-                // Begin the asynchronous process of restoring purchases. Expect a confirmation response in
-                // the Action<bool> below, and ProcessPurchase if there are previously purchased products to restore.
-                apple.RestoreTransactions((result) =>
-                {
-                    // The first phase of restoration. If no more responses are received on ProcessPurchase then
-                    // no purchases are available to be restored.
-                    UnityEngine.Console.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
-                });
-            }
-            // Otherwise ...
-            else
-            {
-                // We are not running on an Apple device. No work is necessary to restore purchases.
-                UnityEngine.Console.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
-            }
+            //    // Fetch the Apple store-specific subsystem.
+            //    var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
+            //    // Begin the asynchronous process of restoring purchases. Expect a confirmation response in
+            //    // the Action<bool> below, and ProcessPurchase if there are previously purchased products to restore.
+            //    apple.RestoreTransactions((result) =>
+            //    {
+            //        // The first phase of restoration. If no more responses are received on ProcessPurchase then
+            //        // no purchases are available to be restored.
+            //        UnityEngine.Console.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
+            //    });
+            //}
+            //// Otherwise ...
+            //else
+            //{
+            //    // We are not running on an Apple device. No work is necessary to restore purchases.
+            //    UnityEngine.Console.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
+            //}
         }
 
         //

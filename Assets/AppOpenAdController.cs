@@ -12,7 +12,7 @@ public class AppOpenAdController : MonoBehaviour
     public static AppOpenAdController instance;
     public  Action AdmobSdkInit;
 #if UNITY_ANDROID
-    private string _adUnitId = "ca-app-pub-1919652342336147/5359299507";
+    private string _adUnitId = "ca-app-pub-3940256099942544/9257395921";  //ca-app-pub-1919652342336147/5359299507
 #elif UNITY_IPHONE
         private const string _adUnitId = "ca-app-pub-3940256099942544/5575463023";
 #else

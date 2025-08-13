@@ -12,6 +12,8 @@ public class WaterParkExit : MonoBehaviour
     [SerializeField] GameObject mirrorBrea2;
 
     [SerializeField] AudioSource audioSound;
+    //[SerializeField] private PlayerSharedData PlayerSharedData;
+    [SerializeField] private Rigidbody MyRigidbody;
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("ParkExit"))
@@ -25,6 +27,27 @@ public class WaterParkExit : MonoBehaviour
             mirrorBreak.SetActive(false);
             mirrorBrea2.SetActive(false);
             PersistentAudioPlayer.Instance.PlayTechnologia();
+            StartCoroutine(Delay(true));
+
+        }
+    }
+    IEnumerator Delay(bool isBefore)
+    {
+        if (isBefore)
+        {
+            MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;  //zzzn
+            yield return new WaitForSecondsRealtime(3);
+            MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        }
+        else
+        {
+            MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            yield return new WaitForSecondsRealtime(3);
+            MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;  //zzzn
         }
     }
 

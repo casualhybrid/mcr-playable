@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TheKnights.SaveFileSystem;
+using System.Collections;
 
 public static class PlayerState
 {
@@ -341,11 +342,34 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
 
     public void OnFloatingPointReset(float movedOffset)
     {
-        //MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+
+        StartCoroutine(Delay(false));
     }
 
     public void OnBeforeFloatingPointReset()
     {
-        //  MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+        // MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+        StartCoroutine(Delay(true));
+    }
+
+
+    IEnumerator Delay(bool isBefore)
+    {
+        if (isBefore)
+        {
+            MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete ;  //zzzn
+            yield return new WaitForSecondsRealtime(3);
+            MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        }
+        else
+        {
+            MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            yield return new WaitForSecondsRealtime(3);
+            MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;  //zzzn
+        }
     }
 }

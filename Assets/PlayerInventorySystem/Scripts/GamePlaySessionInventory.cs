@@ -249,7 +249,7 @@ public class GamePlaySessionInventory : ScriptableObject
         {
             IntegerValueItem integerValueItem = intKeyItems[i];
 
-            if(integerValueItem.itemName == "AccountCoins" || integerValueItem.itemName == "AccountDiamonds")
+            if(integerValueItem.itemName == "AccountCoins" /*|| integerValueItem.itemName == "AccountDiamonds"*/)
             {
                 //integerValueItem.isCelebrationAddition = true;
                 doubleRewards.Add(integerValueItem);

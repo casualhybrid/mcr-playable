@@ -1,8 +1,10 @@
 ﻿using FSM;
+using Klak.Wiring;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 
 
 [CreateAssetMenu(fileName = "PlayerBasicMovementShared", menuName = "ScriptableObjects/PlayerBasicMovementShared")]
@@ -705,10 +707,30 @@ public class PlayerBasicMovementShared : ScriptableObject
             adjustedPlayerZPosAfterCrash = colliderPlayerCrashedInto.bounds.min.z - (PlayerSharedData.Playercollider.bounds.extents.z);
             adjustedPos = new Vector3(PlayerSharedData.PlayerTransform.position.x, PlayerSharedData.PlayerTransform.position.y, adjustedPlayerZPosAfterCrash);
         }
-        PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;
+        //   PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;
+       // StartCoroutine(Delay(true));
         PlayerSharedData.PlayerTransform.position = adjustedPos;
+       // Delay(false);
        // PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate; //zzzn
     }
+
+
+    IEnumerator Delay(bool isBefore)
+    {
+        if (isBefore)
+        {
+            PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;  //zzzn
+            yield return new WaitForSecondsRealtime(3);
+            PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+        }
+        else
+        {
+            PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+            yield return new WaitForSecondsRealtime(3);
+            PlayerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;  //zzzn
+        }
+    }
+
 
     private void AdjustPlayerXPositionAfterCrash()
     {

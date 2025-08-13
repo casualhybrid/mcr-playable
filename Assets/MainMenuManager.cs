@@ -38,9 +38,13 @@ public class MainMenuManager : AWindowController
         base.Awake();
     }
    
-
+    public void InterTest()
+    {
+        MaxAdMobController.Instance.ShowInterstitialAd();
+    }
     private void Start()
     {
+
         if(!saveManager.MainSaveFile.TutorialHasCompleted)
         {
             TapToPlayFirstTimeCanvas.transform.SetParent(null, true);
@@ -70,14 +74,17 @@ public class MainMenuManager : AWindowController
          leaderBoardPanel.SetActive(true);
 
     }
+
     public void OnClickCounterClick()
     {
-        adsController.ShowSmallBannerAd("MainMenuPanel");
+        //adsController.ShowSmallBannerAd("MainMenuPanel");
+       // MaxAdMobController.Instance.ShowAdmobBanner();
         PersistentAudioPlayer.Instance.PanelSounds();
     }
     public void CloseCounterClick()
     {
-        adsController.HideSmallBanner();
+        //MaxAdMobController.Instance.HideAdmobBanner();
+        //adsController.HideSmallBanner();
         PersistentAudioPlayer.Instance.PlayAudio();
     }
    /* public void OnClickDailyReward()
@@ -144,7 +151,7 @@ public class MainMenuManager : AWindowController
         adsController.OnInterstitialAdCompleted.AddListener(ContinueWithCutScene);*/
         OnTapToPlay.RaiseEvent();
         ContinueWithCutScene();
-        PersistentAudioPlayer.Instance.PlayGameplayAudio();
+      PersistentAudioPlayer.Instance.PlayGameplayAudio();
         PersistentAudioPlayer.Instance.CheckMusicStatus();
         PersistentAudioPlayer.Instance.PlayTumTumSound();
         /*if (animator)
@@ -164,6 +171,7 @@ public class MainMenuManager : AWindowController
 
         //   StartCutSceneDelayRoutineRef = StartCoroutine(StartCutSceneAfterDelay());
         //    OpenTheWindow("AdIsLoadingBeforeCutScene");
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("start_level");
     }
 
     private void ContinueWithCutScene()

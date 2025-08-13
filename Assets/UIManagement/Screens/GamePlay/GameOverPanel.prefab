@@ -1254,8 +1254,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08875039, y: 0.15152296}
   m_AnchorMax: {x: 0.615242, y: 0.84419364}
-  m_AnchoredPosition: {x: -22.9078, y: 0}
-  m_SizeDelta: {x: -34.4199, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1561773652128917298
 CanvasRenderer:
@@ -3294,6 +3294,7 @@ GameObject:
   - component: {fileID: -2636679785374535519}
   - component: {fileID: 7143988151368179843}
   - component: {fileID: 206843424509507213}
+  - component: {fileID: -3571799580372481052}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -3521,6 +3522,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &-3571799580372481052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8865666000064084394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89395d6cd264ca24aaf7f98093e4641b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8915465895735606364
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,10 +3722,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2987464072814882919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.52833873, y: 0.20902707}
-  m_AnchorMax: {x: 0.66003644, y: 0.7290184}
+  m_AnchorMin: {x: 0.61667174, y: 0.22828321}
+  m_AnchorMax: {x: 0.74028987, y: 0.7482745}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.0000009536743, y: -0.00000166893}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6090891235023493498
 CanvasRenderer:
@@ -5805,7 +5818,7 @@ PrefabInstance:
     - target: {fileID: 4771589809425509153, guid: 00b04a0bef5fceb4884888a8abe7b12b,
         type: 3}
       propertyPath: m_Interactable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5613451239386711180, guid: 00b04a0bef5fceb4884888a8abe7b12b,
         type: 3}

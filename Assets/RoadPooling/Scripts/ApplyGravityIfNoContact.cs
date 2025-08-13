@@ -103,9 +103,9 @@ public class ApplyGravityIfNoContact : MonoBehaviour
 
             rigidBody.interpolation = RigidbodyInterpolation.None;
             rootT.position = adjustedPos;
-            rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
+            //  rigidBody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
 
-         //   UnityEngine.Console.Log($"Adjusted Positions Are {rootT.localPosition.y} GameObject {this.name}",this.gameObject);
+            //   UnityEngine.Console.Log($"Adjusted Positions Are {rootT.localPosition.y} GameObject {this.name}",this.gameObject);
 
             //   UnityEngine.Console.Log("Bounds Position After Adjustement " + boxCollider.bounds);
 

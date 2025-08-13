@@ -18,7 +18,7 @@ using UnityEngine;
 public class PluginsInitializer : MonoBehaviour
 {
     public static bool IsPluginInitCompleted { get; private set; }
-    public const float MaxPluginInitLoadingVal = 0.8f;
+    public const float MaxPluginInitLoadingVal = 0.2f; //0.8
 
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private AdsController adsController;
@@ -133,12 +133,12 @@ public class PluginsInitializer : MonoBehaviour
             adManagerChosen.DisableADSGlobally();
         }
 
-        FakeLoadToSpecifiedValue(MaxPluginInitLoadingVal, 4f);
+        FakeLoadToSpecifiedValue(MaxPluginInitLoadingVal, 9f); //4
         Debug.LogError("Sceneloader1");
 
 
         // ADD GDPR Wait
-        yield return gdprHandler.InitializeGDPR();
+      //  yield return gdprHandler.InitializeGDPR();
         Debug.LogError("Sceneloader2");
         yield return null;
 
@@ -177,6 +177,7 @@ public class PluginsInitializer : MonoBehaviour
 
         // UnityEngine.Console.Log("Step Load GamePlay");
         Debug.LogError("Sceneloader6");
+        yield return new WaitForSeconds(7);
         LoadGamePlayLevel();
     }
 

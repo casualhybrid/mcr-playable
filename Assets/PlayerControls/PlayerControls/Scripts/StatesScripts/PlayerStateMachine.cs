@@ -341,11 +341,11 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
 
     public void OnFloatingPointReset(float movedOffset)
     {
-        MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        //MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
     }
 
     public void OnBeforeFloatingPointReset()
     {
-        MyRigidbody.interpolation = RigidbodyInterpolation.None;
+        //  MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
     }
 }

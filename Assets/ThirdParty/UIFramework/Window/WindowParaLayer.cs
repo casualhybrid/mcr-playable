@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace deVoid.UIFramework
-{
+namespace deVoid.UIFramework {
     /// <summary>
     /// This is a "helper" layer so Windows with higher priority can be displayed.
     /// By default, it contains any window tagged as a Popup. It is controlled by the WindowUILayer.
@@ -12,12 +11,7 @@ namespace deVoid.UIFramework
         private GameObject darkenBgObject = null;
 
         public List<GameObject> containedScreens = new List<GameObject>();
-
-        public static WindowParaLayer instance;
-        private void Awake()
-        {
-            instance = this;
-        }
+        
         public void AddScreen(Transform screenRectTransform) {
             screenRectTransform.SetParent(transform, false);
             containedScreens.Add(screenRectTransform.gameObject);
@@ -36,10 +30,7 @@ namespace deVoid.UIFramework
 
             darkenBgObject.SetActive(false);
         }
-        public GameObject Get()
-    {
-        return containedScreens[0];
-    }
+
         public void DarkenBG() {
             darkenBgObject.SetActive(true);
             darkenBgObject.transform.SetAsLastSibling();

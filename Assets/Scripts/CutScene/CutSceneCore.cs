@@ -200,12 +200,12 @@ public class CutSceneCore : SerializedMonoBehaviour
 
         float diffBWPivotAndCollider = objectToPoolRB.GetComponent<Collider>().bounds.max.z - objectToPoolRB.position.z;
         objectToPoolTransform.position = new Vector3(objectToPoolTransform.position.x, objectToPoolTransform.position.y, targetZ - diffBWPivotAndCollider);
-        objectToPoolRB.interpolation = RigidbodyInterpolation.Interpolate;
+        //  objectToPoolRB.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
 
         Vector3 lastPatchPos = lastPatchRb.transform.position;
         lastPatchRb.interpolation = RigidbodyInterpolation.None;
         lastPatchRb.transform.position = lastPatchPos;
-        lastPatchRb.interpolation = RigidbodyInterpolation.Interpolate;
+        //  lastPatchRb.interpolation = RigidbodyInterpolation.Interpolate;   //zzzn
 
         Physics.SyncTransforms();
 

@@ -28,7 +28,7 @@ public class UIEffectsHandler : MonoBehaviour
     {
         Vector2 startingPos = new Vector2(Screen.width / 2f, Screen.height / 2f);
         InventoryItemAnimData animData = InventoryPositions.GetAnimDataForItem(itemName);
-       // Debug.LogError("IsWorking");
+        Debug.LogError("IsWorking");
         if (!animData.isValid)
         {
             // throw new System.Exception($"Invalid item animation data for item named {itemName}");

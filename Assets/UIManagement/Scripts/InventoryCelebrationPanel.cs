@@ -1,7 +1,6 @@
 ﻿using deVoid.UIFramework;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Device;
 using UnityEngine.Scripting;
 
 [System.Serializable]
@@ -19,7 +18,6 @@ public class ACelebrationWindow : AWindowController<CelebrationBatchProperties>
     public ACelebrationWindow()
     {
     }
-    
 }
 
 public class InventoryCelebrationPanel : ACelebrationWindow
@@ -33,43 +31,25 @@ public class InventoryCelebrationPanel : ACelebrationWindow
     [SerializeField] private List<string> RewardKeys;
     [SerializeField] private List<Color> colors;
     [SerializeField] private InventoryCelebrationItemInstanceUI instance;
-   
     [SerializeField] private Transform instancesParentT;
 
     private readonly Stack<InventoryCelebrationItemInstanceUI> availableCelebrationInventoryInstances = new Stack<InventoryCelebrationItemInstanceUI>();
     private bool isDoubled;
 
-   
     private void OnEnable()
     {
         if (Properties.isDoubleRewardPossible)
         {
             doubleRewardAdComplete.TheEvent.AddListener(AddDoubleReward);
-            Debug.LogError("OpenPanel");
+
             //doubleButton.SetActive(true);
 
         }
         else
         {
-            Debug.LogError("ClosePanel");
-           
             doubleButton.SetActive(false);
-            if(crossButton)
-                crossButton.SetActive(false);
-            UI_Close();
+            crossButton.SetActive(false);
         }
-    }
-    public void CloseCelebrationPanel()
-    {
-        //this.UI_Close();
-       // AWindowController controller = this as AWindowController;
-        AWindowController controller =  this.GetComponent<AWindowController>();
-        controller.gameObject.SetActive(false);
-        /*WindowUILayer.*/
-    }
-    private void Start()
-    {
-        
     }
     public void Close()
     {
@@ -81,9 +61,7 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         isDoubled = false;
         doubleRewardAdComplete.TheEvent.RemoveListener(AddDoubleReward);
         doubleButton.SetActive(false);
-        if(crossButton)
-            crossButton.SetActive(false);
-        UI_Close();
+        crossButton.SetActive(false);
     }
 
     protected override void OnPropertiesSet()

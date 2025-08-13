@@ -5,10 +5,10 @@ public class StartingScript : MonoBehaviour
 {
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private TheScene initializationScene;
-
+    public bool LogEnable;
     private void Awake()
     {
-        Debug.unityLogger.logEnabled = true;
+        Debug.unityLogger.logEnabled = LogEnable;
         sceneLoader.LoadTheScene(new TheScene[] { initializationScene }, null, true, true);
     }
 

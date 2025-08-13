@@ -23,7 +23,7 @@ public class Settings : MonoBehaviour
 
     public void Terms()
     {
-        Application.OpenURL("https://cuptie.co/privacy-policy");
+        Application.OpenURL("https://kindwavegames.apexieg.com/privacy-policy.html");
     }
 
     public void SendEmail()

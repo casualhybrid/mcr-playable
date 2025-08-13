@@ -78,12 +78,12 @@ public class MainMenuManager : AWindowController
     public void OnClickCounterClick()
     {
         //adsController.ShowSmallBannerAd("MainMenuPanel");
-       // MaxAdMobController.Instance.ShowAdmobBanner();
+        MaxAdMobController.Instance.ShowAdmobBanner();
         PersistentAudioPlayer.Instance.PanelSounds();
     }
     public void CloseCounterClick()
     {
-        //MaxAdMobController.Instance.HideAdmobBanner();
+        MaxAdMobController.Instance.HideAdmobBanner();
         //adsController.HideSmallBanner();
         PersistentAudioPlayer.Instance.PlayAudio();
     }

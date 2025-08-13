@@ -74,7 +74,7 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
     private List<InventoryItem<int>> pendingItemsToReward;
     private GameObject test;
     public static bool isDailyReward = false;
-    public static int currentIndex = 0;
+    public static int currentIndex;
     public static int amountReward;
 
     private enum State
@@ -507,8 +507,11 @@ public class GamePlayMysteryBoxOpenPanel : AWindowController
             Debug.LogWarning("Invalid reward index");
             return;
         }
+        Debug.LogError(currentIndex);
+        Debug.LogError(rewardIndex);
 
         string selectedRewardKey = RewardKeys[rewardIndex];
+        
         Sprite selectedSprite = rewardSprites[rewardIndex];
         int amount = 0;
         string inventoryKey = "";

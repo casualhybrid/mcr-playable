@@ -99,6 +99,7 @@ public class DailyLoginRewardManager : MonoBehaviour
     public void ClaimReward(int index)
     {
         GamePlayMysteryBoxOpenPanel.currentIndex = index;
+        
         GamePlayMysteryBoxOpenPanel.isDailyReward = true;
         GamePlayMysteryBoxOpenPanel.amountReward=dailyButtons[index].amount;
         Debug.Log($"Reward claimed for Day {index + 1}");

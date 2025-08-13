@@ -359,7 +359,7 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
         {
             MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
             MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete ;  //zzzn
-            yield return new WaitForSecondsRealtime(3);
+            yield return new WaitForSecondsRealtime(20);
             MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
             MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         }

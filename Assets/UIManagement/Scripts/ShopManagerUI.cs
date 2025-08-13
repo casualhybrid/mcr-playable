@@ -42,6 +42,7 @@ public class ShopManagerUI : AWindowController
 
     private static int timesOpened;
 
+    [SerializeField] GameObject inventoryPanel;
     protected override void Awake()
     {
         base.Awake();
@@ -76,6 +77,7 @@ public class ShopManagerUI : AWindowController
         BtnSelect(1);
 
         timesOpened++;
+        inventoryPanel = WindowParaLayer.instance.Get();
        // OpenRemoveADSPopupIfPossible();
     }
 
@@ -351,6 +353,9 @@ public class ShopManagerUI : AWindowController
     public void CloseShopPanel()
     {
         PersistentAudioPlayer.Instance.PlayAudio();
+        /*inventoryPanel = WindowParaLayer.instance.Get();
+        if(inventoryPanel != null)
+            inventoryPanel.SetActive(false);*/
         //  saveManagerObj.SaveGame(0, false);
         this.UI_Close();
     }

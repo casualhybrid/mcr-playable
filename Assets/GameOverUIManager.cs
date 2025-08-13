@@ -98,12 +98,12 @@ public class GameOverUIManager : AWindowController
 
     private void SetLowerButtonPositionsAccordingToRewardedADAvailability()
     {
-        bool isRewardedADAvailable = adControl.IsRewardedADAvailable();
+       /* bool isRewardedADAvailable = adControl.IsRewardedADAvailable();
 
         if (!isRewardedADAvailable)
         {
             DisableDoubleRewardedAndReAlignButtons();
-        }
+        }*/
     }
 
     public void DisableDoubleRewardedAndReAlignButtons()

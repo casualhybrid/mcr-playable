@@ -47,8 +47,10 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         }
         else
         {
+          
             doubleButton.SetActive(false);
             crossButton.SetActive(false);
+            UI_Close();
         }
     }
     public void Close()
@@ -61,7 +63,8 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         isDoubled = false;
         doubleRewardAdComplete.TheEvent.RemoveListener(AddDoubleReward);
         doubleButton.SetActive(false);
-        crossButton.SetActive(false);
+        if(crossButton != null)
+            crossButton.SetActive(false);
     }
 
     protected override void OnPropertiesSet()

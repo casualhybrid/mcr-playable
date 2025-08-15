@@ -1,4 +1,6 @@
 using Cinemachine;
+using Klak.Wiring;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -56,7 +58,7 @@ public class FloatingPointReset : MonoBehaviour
         for (int i = 0; i < objectsToReset.Length; i++)
         {
             IFloatingReset objectToRest = objectsToReset[i] as IFloatingReset;
-
+            StartCoroutine(Delay(true));
             objectToRest.OnBeforeFloatingPointReset();
 
             MonoBehaviour objectToResetBehaviour = objectToRest as MonoBehaviour;
@@ -74,6 +76,23 @@ public class FloatingPointReset : MonoBehaviour
 
             objectToRest.OnFloatingPointReset(offsetToSubract);
         }
+    }
+
+
+
+    IEnumerator Delay(bool isBefore)
+    {
+        if (isBefore)
+        {
+
+            playerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;  //zzzn
+            playerSharedData.PlayerRigidBody.collisionDetectionMode = CollisionDetectionMode.Discrete;  //zzzn
+            yield return new WaitForSecondsRealtime(5);
+            playerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
+            playerSharedData.PlayerRigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+        }
+        
     }
 
 }

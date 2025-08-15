@@ -74,12 +74,12 @@ public class CharacterSelectionManager : AWindowController
         selectedCharacterIndex = saveManager.MainSaveFile.currentlySelectedCharacter;
 
         arrowHandler();
-        SubsribeInputEvents();
+        //SubsribeInputEvents();
     }
 
     private void OnDisable()
     {
-        UnSubsribeInputEvents();
+        //UnSubsribeInputEvents();
         animatorToDisable.enabled = true;
     }
     public void OnClickClose()

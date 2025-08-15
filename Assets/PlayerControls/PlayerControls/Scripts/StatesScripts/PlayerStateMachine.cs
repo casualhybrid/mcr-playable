@@ -315,7 +315,7 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
             {
             Debug.LogError("Challa hai");
                 isOneTime = false;
-                StartCoroutine(Delay(true));
+                //StartCoroutine(Delay(true));
 
                
             }

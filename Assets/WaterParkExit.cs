@@ -35,9 +35,9 @@ public class WaterParkExit : MonoBehaviour
             PersistentAudioPlayer.Instance.PlayTechnologia();
 
 
-           /* MyRigidbody = gameObject.transform.root.GetComponent<Rigidbody>();  
+            MyRigidbody = gameObject.transform.root.GetComponent<Rigidbody>();
 
-            StartCoroutine(Delay(true));*/
+            //StartCoroutine(Delay(true));
 
         }
     }

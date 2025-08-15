@@ -72,7 +72,7 @@ public class WaterParkEnter : MonoBehaviour
     }*/
     public void WaterON()
     {
-        Debug.LogError("Ground");
+        //Debug.LogError("Ground");
        
         if (water && water1&&isEnter&&isFlying)
         {

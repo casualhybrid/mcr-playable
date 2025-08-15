@@ -201,7 +201,7 @@ public class SpeedHandler : ScriptableObject
         // Player slide speed
         PlayerSharedData.SlideSpeed = PlayerContainedData.PlayerData.PlayerInformation[0].SlideInitialSpeed / (Mathf.Pow(GameTimeScale, .42f) * PlayerContainedData.PlayerData.PlayerInformation[0].SlideMultiplier) ;
 
-        Debug.Log(GameTimeScale);
+       // Debug.Log(GameTimeScale);
 
     }
 

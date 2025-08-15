@@ -28,12 +28,15 @@ public class SpecialPickup : Pickup, IFloatingReset
     private void Start()
     {
         specialPickupSpawnPosition = transform.position;
+      
     }
 
     public void RaiseSpecialPickupSpawnedEvent()
     {
+       
         specialPickupIsSpawned.RaiseEvent();
     }
+  
 
     public override void MarkPickupAsFinished()
     {

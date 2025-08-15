@@ -35,7 +35,7 @@ public class SettingsManager : AWindowController
 
     private void Start()
     {
-       
+        SoundSpriteHandle();
     }
     public void CheckSound()
     {
@@ -89,6 +89,14 @@ public class SettingsManager : AWindowController
         PlayerPrefs.SetFloat("haptic", hapticsBool ? 1:0);
 
         hapticsSlider.value = hapticsBool ? 1f : 0f;
+        if (PlayerPrefs.GetFloat("haptic") == 0)
+        {
+            hapticsSlider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            hapticsSlider.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
     public void MusicButton()
@@ -99,8 +107,44 @@ public class SettingsManager : AWindowController
         PlayerPrefs.SetFloat("music", musicBool ? 1 : 0);
         PersistentAudioPlayer.Instance.StopMusic = musicBool;
         musicslider.value = musicBool ? 1f : 0f;
+        Debug.Log(PlayerPrefs.GetFloat("music"));
+        if(PlayerPrefs.GetFloat("music")==0)
+        {
+            musicslider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            musicslider.transform.GetChild(0).gameObject.SetActive(false);
+        }
         OnMusicSettingsChanged.RaiseEvent(musicslider.value == 0 ? false : true);
         PersistentAudioPlayer.Instance.CheckMusicStatus();
+    }
+    void SoundSpriteHandle()
+    {
+        if (PlayerPrefs.GetFloat("music") == 0)
+        {
+            musicslider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            musicslider.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        if (PlayerPrefs.GetFloat("sound") == 0)
+        {
+            soundslider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            soundslider.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        if (PlayerPrefs.GetFloat("haptic") == 0)
+        {
+            hapticsSlider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            hapticsSlider.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
    /* public void FadeMusicEffect()
     {
@@ -146,6 +190,14 @@ public class SettingsManager : AWindowController
         PersistentAudioPlayer.isSoundOff=soundslider.value == 0 ? false : true;
         PlayerPrefs.SetFloat("sound", soundBool ? 1 : 0);
         soundslider.value = soundBool ? 1f : 0f;
+        if (PlayerPrefs.GetFloat("sound") == 0)
+        {
+            soundslider.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            soundslider.transform.GetChild(0).gameObject.SetActive(false);
+        }
         OnSoundsSettingsChanged.RaiseEvent(soundslider.value == 0 ? false : true);
 
     }

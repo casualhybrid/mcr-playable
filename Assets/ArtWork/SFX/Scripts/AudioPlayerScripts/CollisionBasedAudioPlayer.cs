@@ -1,6 +1,7 @@
 ﻿using TheKnights.SaveFileSystem;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections;
 
 
 public class CollisionBasedAudioPlayer : MonoBehaviour
@@ -120,6 +121,18 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
 
     public void SendEvent(string eventName)
     {
+        if(eventName=="GamePlayScreen_Thrust_Pickup")
+        {
+            
+            StartCoroutine(Delay());
+        }
         AnalyticsManager.CustomData(eventName);
+    }
+    IEnumerator Delay()
+    {
+        WaterParkEnter.isFlying = false;
+        yield return new WaitForSecondsRealtime(2);
+        WaterParkEnter.isFlying = true;
+        Debug.LogError("End");
     }
 }

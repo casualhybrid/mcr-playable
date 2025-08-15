@@ -12,16 +12,16 @@ public class Triggered : MonoBehaviour
     {
         if (other.gameObject.CompareTag(colliderTag))
         {
-            StartCoroutine(SetTriggeredForSeconds(3f));
+            //StartCoroutine(SetTriggeredForSeconds(3f));
             Event?.RaiseEvent();
             response.Invoke();
 
         }
     }
-    private IEnumerator SetTriggeredForSeconds(float seconds)
+   /* private IEnumerator SetTriggeredForSeconds(float seconds)
     {
-        WaterParkEnter.isFlying = true;
-        yield return new WaitForSeconds(seconds);
         WaterParkEnter.isFlying = false;
-    }
+        yield return new WaitForSeconds(seconds);
+        WaterParkEnter.isFlying = true;
+    }*/
 }

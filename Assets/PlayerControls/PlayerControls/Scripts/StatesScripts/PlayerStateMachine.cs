@@ -63,7 +63,7 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
 
     [Space(10)]
     [SerializeField] private SaveManager saveManager;
-
+    public bool isOneTime = true;
 
     public UnityEvent tempEvent;
 
@@ -295,14 +295,41 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
         {
             GameManager.gameplaySessionTimeInSeconds += Time.deltaTime;
         }
+        
     }
-
+    public float temp;
+    public bool isPlayerRest = false;
     private void FixedUpdate()
     {
         if (!isInitialized)
         {
             return;
         }
+
+        temp = gameObject.transform.position.z ;
+
+        if (temp >= 1995)
+        {
+            isPlayerRest = false;
+            if (isOneTime)
+            {
+            Debug.LogError("Challa hai");
+                isOneTime = false;
+                StartCoroutine(Delay(true));
+
+               
+            }
+        }
+       /* if (isOneTime == false)
+        {
+            if (temp >= 50 && temp <= 60 && isPlayerRest == false)
+            {
+                isOneTime = true;
+                isPlayerRest = true;
+                MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
+                MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+            }
+        }*/
 
         MyStateMachine.OnFixedLogic();
     }
@@ -352,16 +379,18 @@ public class PlayerStateMachine : MonoBehaviour, IFloatingReset
        // StartCoroutine(Delay(true));
     }
 
-
+   
     IEnumerator Delay(bool isBefore)
     {
         if (isBefore)
         {
+
             MyRigidbody.interpolation = RigidbodyInterpolation.None;  //zzzn
-            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete ;  //zzzn
-            yield return new WaitForSecondsRealtime(20);
+            MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;  //zzzn
+            yield return new WaitForSecondsRealtime(10);
             MyRigidbody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
             MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
         }
         else
         {

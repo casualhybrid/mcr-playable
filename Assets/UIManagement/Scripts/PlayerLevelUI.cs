@@ -48,9 +48,12 @@ public class PlayerLevelUI : MonoBehaviour
 
         float sliderVal = Mathf.Clamp01(playerLevelObj.GetPlayerCurrentXP() / playerLevelObj.GetXPNeededForNextLevel());
         playerLevelSlider.value = sliderVal;
-        playerName.text = /*saveManager.MainSaveFile.leaderBoardUserName;*/PlayerPrefs.GetString("PlayerName","Your Name");
-        if(profileName)
-            profileName.text = /*playerName.text;*/PlayerPrefs.GetString("PlayerName","Your Name");
+        string name = PlayerPrefs.GetString("PlayerName", "Your Name");
+        playerName.text = /*saveManager.MainSaveFile.leaderBoardUserName;*//*PlayerPrefs.GetString("PlayerName","Your Name")*/name;
+        if (name.Length > 10)
+            name = name.Substring(0, 10);
+        if (profileName)
+            profileName.text = /*playerName.text;*//*PlayerPrefs.GetString("PlayerName","Your Name")*/name;
         //Profile
         if(totalCoins)
             totalCoins.text = playerInventoryObj.GetIntKeyValue("AccountCoins").ToString(); ;

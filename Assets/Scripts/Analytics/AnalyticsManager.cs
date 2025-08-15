@@ -38,7 +38,7 @@ public static class AnalyticsManager
         }
 
         FirebaseAnalytics.LogEvent(eventName, firebaseParams.ToArray());
-        Debug.LogError($"[FirebaseAnalytics] Event Sent: {eventName} | Params: {string.Join(", ", eventParams)}");
+        //Debug.LogError($"[FirebaseAnalytics] Event Sent: {eventName} | Params: {string.Join(", ", eventParams)}");
     }
 
     public static void CustomData(string eventName)

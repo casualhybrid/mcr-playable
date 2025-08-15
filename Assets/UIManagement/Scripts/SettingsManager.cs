@@ -103,11 +103,11 @@ public class SettingsManager : AWindowController
     {
         musicBool = !musicBool;
         //musicBool = false;
-        Debug.Log("Music : " + musicBool);
+       // Debug.Log("Music : " + musicBool);
         PlayerPrefs.SetFloat("music", musicBool ? 1 : 0);
         PersistentAudioPlayer.Instance.StopMusic = musicBool;
         musicslider.value = musicBool ? 1f : 0f;
-        Debug.Log(PlayerPrefs.GetFloat("music"));
+       // Debug.Log(PlayerPrefs.GetFloat("music"));
         if(PlayerPrefs.GetFloat("music")==0)
         {
             musicslider.transform.GetChild(0).gameObject.SetActive(true);

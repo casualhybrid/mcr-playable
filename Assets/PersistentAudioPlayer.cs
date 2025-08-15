@@ -251,7 +251,7 @@ public class PersistentAudioPlayer : MonoBehaviour
         }
 
         gameplayAudio.volume = targetVolume;
-        Debug.Log("Audio faded to " + gameplayAudio.volume);
+       // Debug.Log("Audio faded to " + gameplayAudio.volume);
 
         // Wait before restoring
         yield return new WaitForSeconds(restoreDelay);

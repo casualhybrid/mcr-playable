@@ -72,7 +72,7 @@ public class PlayerCollision : MonoBehaviour
             PlayerPrefs.SetInt(GetPrefsKey(), collisionCount);
             PlayerPrefs.Save();
 
-            Debug.LogError(characterID + " has collided " + collisionCount + " times.");
+           // Debug.LogError(characterID + " has collided " + collisionCount + " times.");
 
             if (!PersistentAudioPlayer.isSoundOff)
             {

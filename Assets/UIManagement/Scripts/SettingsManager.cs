@@ -114,9 +114,18 @@ public class SettingsManager : AWindowController
         }
         else
         {
+            Debug.LogError("Yha");
+           /* PlayerPrefs.SetFloat("sound", soundBool ? 1 : 0);
+            soundslider.value = soundBool ? 1f : 0f;*/
             musicslider.transform.GetChild(0).gameObject.SetActive(false);
+            /* OnSoundsSettingsChanged.RaiseEvent(soundslider.value == 0 ? false : true);*/
+            SoundButton();
+            SoundButton();
+
         }
         OnMusicSettingsChanged.RaiseEvent(musicslider.value == 0 ? false : true);
+        Debug.Log(PlayerPrefs.GetFloat("music"));
+        Debug.Log(PlayerPrefs.GetFloat("sound"));
         PersistentAudioPlayer.Instance.CheckMusicStatus();
     }
     void SoundSpriteHandle()

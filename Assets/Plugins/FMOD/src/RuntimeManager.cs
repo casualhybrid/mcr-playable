@@ -979,24 +979,24 @@ namespace FMODUnity
             }
         }
 #else
-        // void OnApplicationPause(bool pauseStatus)
-        //  {
-        //   Debug.Log("On Application Pause Called " + pauseStatus);
+         void OnApplicationPause(bool pauseStatus)
+          {
+           Debug.Log("On Application Pause Called " + pauseStatus);
 
-        //if (studioSystem.isValid())
-        //{
-        //    PauseAllEvents(pauseStatus);
+            if (studioSystem.isValid())
+            {
+                PauseAllEvents(pauseStatus);
 
-        //    if (pauseStatus)
-        //    {
-        //        coreSystem.mixerSuspend();
-        //    }
-        //    else
-        //    {
-        //        coreSystem.mixerResume();
-        //    }
-        //}
-        //  }
+               if (pauseStatus)
+               {
+                coreSystem.mixerSuspend();
+               }
+               else
+               {
+                coreSystem.mixerResume();
+               }
+             }
+          }
 #endif
 
         private void loadedBankRegister(LoadedBank loadedBank, string bankPath, string bankName, bool loadSamples, FMOD.RESULT loadResult)

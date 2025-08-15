@@ -69,7 +69,7 @@ public class FloatingPointReset : MonoBehaviour
 
                 objectToResetTranform.position = objToRestPos;
 
-               // UnityEngine.Console.Log($"Resetting Offset of {objectToResetBehaviour.gameObject.name} to {objToRestPos.z}");
+                UnityEngine.Console.Log($"MATSSSS  Resetting Offset of {objectToResetBehaviour.gameObject.name} to {objToRestPos.z}");
             }
 
             objectToRest.OnFloatingPointReset(offsetToSubract);

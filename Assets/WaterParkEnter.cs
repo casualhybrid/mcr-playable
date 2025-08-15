@@ -76,7 +76,10 @@ public class WaterParkEnter : MonoBehaviour
        
         if (water && water1&&isEnter&&isFlying)
         {
+            water.transform.parent.gameObject.SetActive(true);
+            Debug.LogError(water.transform.parent.gameObject.name);
             water.SetActive(true);
+            water1.transform.parent.gameObject.SetActive(true);
             water1.SetActive(true);
         }
     }

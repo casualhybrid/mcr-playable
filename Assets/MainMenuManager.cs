@@ -32,6 +32,8 @@ public class MainMenuManager : AWindowController
 
     public static MainMenuManager Instance;
 
+    public InputChannel inputChannel;
+
     protected override void Awake()
     {
         Instance = this;
@@ -63,7 +65,11 @@ public class MainMenuManager : AWindowController
             gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
 
+       
+
     }
+
+    
     public void RewardCoinPosition()
     {
         UIEffectsHandler.newPosition = new Vector2(232f,585f);
@@ -101,6 +107,8 @@ public class MainMenuManager : AWindowController
         StartCarEngine.RaiseEvent();
         SetCarAvailableSpriteIfAnyCarIsAvailable();
         SubscribeToEvents();
+
+        inputChannel.EnableAllDisabledInputs();
     }
     public void OnClickProfileButton()
     {
@@ -115,6 +123,9 @@ public class MainMenuManager : AWindowController
         onCarPurchased.TheEvent.AddListener(SetCarAvailableSpriteIfAnyCarIsAvailable);
     }
 
+
+
+
     private void DeSubscribeToEvents()
     {
         onCarPurchased.TheEvent.RemoveListener(SetCarAvailableSpriteIfAnyCarIsAvailable);
@@ -125,16 +136,28 @@ public class MainMenuManager : AWindowController
         AnalyticsManager.CustomData(eventName);
     }
 
+
+
+    
+
+
     public void OpenRequiredWindow(string reqWindow)
     {
         this.UI_Close();
         OpenTheWindow(reqWindow);
     }
 
+
+
+
+
+
     private void OnDisable()
     {
         StopCarEngine.RaiseEvent();
         DeSubscribeToEvents();
+
+        inputChannel.EnableAllDisabledInputs();
     }
 
     public void TempOpenScene()

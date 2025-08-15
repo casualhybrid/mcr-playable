@@ -74,19 +74,20 @@ public class CharacterSelectionManager : AWindowController
         selectedCharacterIndex = saveManager.MainSaveFile.currentlySelectedCharacter;
 
         arrowHandler();
-        //SubsribeInputEvents();
+        SubsribeInputEvents();
+
     }
 
     private void OnDisable()
     {
-        //UnSubsribeInputEvents();
+        UnSubsribeInputEvents();
         animatorToDisable.enabled = true;
     }
     public void OnClickClose()
     {
-        inputChannel.UnPauseInputsFromUser();
         if (PersistentAudioPlayer.Instance)
             PersistentAudioPlayer.Instance.PlayAudio();
+        inputChannel.EnableAllDisabledInputs();
     }
     private bool IsTheTouchOverScrollRect()
     {

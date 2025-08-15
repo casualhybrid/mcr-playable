@@ -52,7 +52,9 @@ public class CharacterSelectionManager : AWindowController
     [SerializeField] Image Icon;
     [SerializeField] GameObject profile;
     [SerializeField] TextMeshProUGUI costText;
- //   private Camera uiCamera;
+    [SerializeField] private InputChannel inputChannel;
+
+    //   private Camera uiCamera;
 
     protected override void Awake()
     {
@@ -82,7 +84,8 @@ public class CharacterSelectionManager : AWindowController
     }
     public void OnClickClose()
     {
-        if(PersistentAudioPlayer.Instance)
+        inputChannel.UnPauseInputsFromUser();
+        if (PersistentAudioPlayer.Instance)
             PersistentAudioPlayer.Instance.PlayAudio();
     }
     private bool IsTheTouchOverScrollRect()

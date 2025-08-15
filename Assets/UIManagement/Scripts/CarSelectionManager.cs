@@ -71,6 +71,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     [SerializeField] GameObject profile;
     [SerializeField] Sprite[] icons;
     [SerializeField] Image Icon;
+    [SerializeField] private InputChannel inputChannel;
     //[SerializeField] AdsController adsController;
 
     protected override void Awake()
@@ -112,7 +113,9 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     }
     public void CloseSound()
     {
-        if(PersistentAudioPlayer.Instance)
+
+        inputChannel.UnPauseInputsFromUser();
+        if (PersistentAudioPlayer.Instance)
             PersistentAudioPlayer.Instance.PlayAudio();
     }
     private void OnDisable()

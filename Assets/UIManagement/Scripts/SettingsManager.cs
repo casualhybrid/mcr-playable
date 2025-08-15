@@ -111,6 +111,8 @@ public class SettingsManager : AWindowController
         if(PlayerPrefs.GetFloat("music")==0)
         {
             musicslider.transform.GetChild(0).gameObject.SetActive(true);
+            SoundButton();
+            SoundButton();
         }
         else
         {

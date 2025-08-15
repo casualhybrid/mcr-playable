@@ -2252,6 +2252,7 @@ GameObject:
   - component: {fileID: 6724370260486739309}
   - component: {fileID: 411399994163654960}
   - component: {fileID: 242027250729240790}
+  - component: {fileID: 1355994975366193264}
   m_Layer: 5
   m_Name: CharacterSelectionPanel
   m_TagString: Untagged
@@ -2406,6 +2407,33 @@ MonoBehaviour:
   profile: {fileID: 8595785571539166057}
   costText: {fileID: 8638622710030609102}
   inputChannel: {fileID: 11400000, guid: 33a59416319ecf54c8cf6f65158762d9, type: 2}
+--- !u!114 &1355994975366193264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383159212840630816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae7b2b48804ca741abdcd7e1dd53cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animIn: {fileID: 0}
+  animOut: {fileID: 0}
+  properties:
+    hideOnForegroundLost: 1
+    windowQueuePriority: 0
+    isPopup: 0
+  OnWhileHiding:
+    m_PersistentCalls:
+      m_Calls: []
+  OnForeGroundLost:
+    m_PersistentCalls:
+      m_Calls: []
+  OnForeGroundReObtained:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2385896198205468944
 GameObject:
   m_ObjectHideFlags: 0
@@ -7527,6 +7555,19 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1355994975366193264}
+        m_TargetAssemblyTypeName: deVoid.UIFramework.AUIScreenController`1[[deVoid.UIFramework.WindowProperties,
+          Assembly-CSharp
+        m_MethodName: OpenTheWindow
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuPanel
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 8653141470901813354}
         m_TargetAssemblyTypeName: 

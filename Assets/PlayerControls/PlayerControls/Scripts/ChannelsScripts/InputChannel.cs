@@ -5,14 +5,14 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "InputChannel", menuName = "ScriptableObjects/Channels/InputChannel")]
 public class InputChannel : ScriptableObject
 {
-    [HideInInspector]
+    //[HideInInspector]
     public UnityEvent SwipeUpOccured, SwipeDownOccured, SwipeLeftOccured, SwipeRightOccured, SingleTapOccured, DoubleTabOccured;
 
     private readonly HashSet<UnityEvent> disabledInputEvents = new HashSet<UnityEvent>();
 
-    private bool pauseInputs;
-    private bool pauseDoubleBoostInput;
-    private bool pauseDashInput;
+    public bool pauseInputs;
+    public bool pauseDoubleBoostInput;
+    public bool pauseDashInput;
 
     private void OnEnable()
     {

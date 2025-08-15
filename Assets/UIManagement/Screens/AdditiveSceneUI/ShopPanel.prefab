@@ -3424,7 +3424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.8627451}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3448,7 +3448,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406831588}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -25101,6 +25101,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 888546273966986625}
+        m_TargetAssemblyTypeName: deVoid.UIFramework.AUIScreenController`1[[deVoid.UIFramework.WindowProperties,
+          Assembly-CSharp
+        m_MethodName: OpenTheWindow
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenuPanel
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5461094041138794214}
         m_TargetAssemblyTypeName: 
         m_MethodName: ShootAudioEvent
@@ -37440,6 +37453,7 @@ GameObject:
   - component: {fileID: 600406090061400387}
   - component: {fileID: 7454172139156848433}
   - component: {fileID: 1611958156857461281}
+  - component: {fileID: 888546273966986625}
   m_Layer: 5
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -37598,6 +37612,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &888546273966986625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6200514381736030952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae7b2b48804ca741abdcd7e1dd53cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animIn: {fileID: 4375751728536525684}
+  animOut: {fileID: 4375751728536525684}
+  properties:
+    hideOnForegroundLost: 1
+    windowQueuePriority: 0
+    isPopup: 0
+  OnWhileHiding:
+    m_PersistentCalls:
+      m_Calls: []
+  OnForeGroundLost:
+    m_PersistentCalls:
+      m_Calls: []
+  OnForeGroundReObtained:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6216663822862840963
 GameObject:
   m_ObjectHideFlags: 0

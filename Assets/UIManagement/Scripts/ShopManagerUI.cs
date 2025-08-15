@@ -27,7 +27,7 @@ public class ShopManagerUI : AWindowController
     [SerializeField] private GameEvent uiCounterEvent;
 
     [SerializeField] private GameObject BuyAdFreePanel;
-   
+    [SerializeField] private InputChannel inputChannel;
 
 
     //zaid
@@ -360,6 +360,7 @@ public class ShopManagerUI : AWindowController
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
         //  saveManagerObj.SaveGame(0, false);
+        inputChannel.UnPauseInputsFromUser();
         this.UI_Close();
     }
     public void CheckCLosePanel()

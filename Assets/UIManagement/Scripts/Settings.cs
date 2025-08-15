@@ -34,7 +34,8 @@ public class Settings : MonoBehaviour
 
         string body = MyEscapeURL("");
 
-        Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
+       // Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
+        Application.OpenURL("https://kindwavegames.apexieg.com/privacy-policy.html");
     }
 
     private string MyEscapeURL(string url)

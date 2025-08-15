@@ -75,7 +75,7 @@ public class PlayerNormalMovementState : StateBase
 
     private void HandleCutSceneStarted(GameEvent gameEvent)
     {
-        UnSubsribeInputEvents();
+       // UnSubsribeInputEvents();
         SubsribeInputEvents();
     }
 

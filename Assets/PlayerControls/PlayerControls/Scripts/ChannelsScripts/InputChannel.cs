@@ -63,11 +63,16 @@ public class InputChannel : ScriptableObject
     {
         if (disabledInputEvents.Contains(SwipeLeftOccured))
         {
+            Debug.LogError("DisableInput");
             return;
         }
 
         if (pauseInputs)
+        {
+            Debug.LogError("DisableInputPause");
             return;
+        }
+            
         SwipeLeftOccured.Invoke();
     }
 

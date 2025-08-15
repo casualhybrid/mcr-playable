@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 594253074}
   - component: {fileID: 594253073}
   - component: {fileID: 594253076}
+  - component: {fileID: 594253077}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -444,6 +445,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlackListedDevices: {fileID: 11400000, guid: 3dd11e8a9ad32094586472fed0af11ff, type: 2}
+--- !u!114 &594253077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594253072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7476ae30421d742479764d85fe499e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowRAMThreshold: 2
+  mediumRAMThreshold: 4
+  lowRAMScale: 0.55
+  mediumRAMScale: 0.6
+  highRAMScale: 0.7
 --- !u!1 &623657911
 GameObject:
   m_ObjectHideFlags: 1

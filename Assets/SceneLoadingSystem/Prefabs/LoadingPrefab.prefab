@@ -167,8 +167,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4414671957641087139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2462873, y: 0.025311187}
-  m_AnchorMax: {x: 0.73973966, y: 0.080601834}
+  m_AnchorMin: {x: 0.2569616, y: 0.025311187}
+  m_AnchorMax: {x: 0.82462543, y: 0.080601834}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -877,7 +877,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1186931388953392598}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2034832106034664197, guid: 452b13e2555892f45babf4730b2edfc3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5840884729879502775}
   m_SourcePrefab: {fileID: 100100000, guid: 452b13e2555892f45babf4730b2edfc3, type: 3}
 --- !u!114 &2635027791282423416 stripped
 MonoBehaviour:
@@ -921,3 +925,32 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6100756808822145603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5230668159939400006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2034832106034664197, guid: 452b13e2555892f45babf4730b2edfc3,
+    type: 3}
+  m_PrefabInstance: {fileID: 6100756808822145603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5840884729879502775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230668159939400006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e2cf9c401b06e49b20473718bd135f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tips:
+  - "Every run can set a new high score \u2014 keep pushing!"
+  - "Don\u2019t be afraid to take risks \u2014 rewards are worth it."
+  - Watch ads to double your loot after a run.
+  - "The more you play, the more surprises you\u2019ll find!"
+  - "Rockets help you skip obstacles \u2014 but you can still grab gems up high!"
+  - "Nitro isn\u2019t just for speed \u2014 use it to boost over tricky spots."
+  - "Magnet pulls coins and gems from all lanes \u2014 grab it when you can!"
+  - "Shield protects you from crashes \u2014 great for tight spaces."
+  - "Airplane lets you soar above trouble \u2014 look for airborne coins."
+  tipText: {fileID: 8769898375930005438}

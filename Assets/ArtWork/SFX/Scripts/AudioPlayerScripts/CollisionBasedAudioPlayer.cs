@@ -27,8 +27,8 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
                 /*Debug.LogError("AudioTrigger");
                 audioSource.PlayOneShot(audioClip);*/
                 ShootAudioEvent();
-                body = collision.transform.root.gameObject.GetComponent<Rigidbody>();
-                Debug.Log(collision.transform.root.gameObject.name + "Moso");
+               /* body = collision.transform.root.gameObject.GetComponent<Rigidbody>();
+                Debug.Log(collision.transform.root.gameObject.name + "Moso");*/
             }
         }
     }
@@ -129,10 +129,10 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
             
             StartCoroutine(Delay());
         }
-        if(eventName == "GamePlayScreen_Airplane_Pickup")
+      /*  if(eventName == "GamePlayScreen_Airplane_Pickup")
         {
 
-        }
+        }*/
            AnalyticsManager.CustomData(eventName);
     }
     IEnumerator Delay()

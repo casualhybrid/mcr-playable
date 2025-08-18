@@ -13,6 +13,7 @@ public class SettingsManager : AWindowController
 
 
     bool hapticsBool,musicBool, soundBool;
+    [SerializeField] GameObject settingPanel;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -81,7 +82,16 @@ public class SettingsManager : AWindowController
         OnSoundsSettingsChanged.RaiseEvent(soundslider.value == 0 ? false : true);
 
     }
+    public void SettingClose()
+    {
+        if(PlayerPrefs.GetFloat("sound")==1)
+        {
+            SoundButton();
+            SoundButton();
 
+        }
+        settingPanel.SetActive(false);
+    }
     public void HapticsButton()
     {
         hapticsBool = !hapticsBool;

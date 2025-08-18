@@ -526,7 +526,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.25
+  m_fontSize: 49.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.8
+  m_fontSize: 58.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.6
+  m_fontSize: 49.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.1
+  m_fontSize: 59.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.5
+  m_fontSize: 49.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1680,7 +1680,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5903681316180234670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4029542697059567258}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SendEmail
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4633934175577003840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,7 +2381,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75.95
+  m_fontSize: 75.8
   m_fontSizeBase: 69.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2434,7 +2446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1617911012173113505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2754,10 +2766,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6614395940200846380}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 8545177869419057043}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: SettingClose
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2977,7 +2989,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.1
+  m_fontSize: 59.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3345,23 +3357,11 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5863722089125192743}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4029542697059567258}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SendEmail
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1001 &552471428347223033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3396,12 +3396,12 @@ PrefabInstance:
     - target: {fileID: 1521898568776953178, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1521898568776953178, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1521898568776953178, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
@@ -3588,12 +3588,12 @@ PrefabInstance:
     - target: {fileID: 2490239405621794416, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2490239405621794416, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2490239405621794416, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
@@ -3772,17 +3772,17 @@ PrefabInstance:
     - target: {fileID: 3796815459812459690, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3796815459812459690, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3796815459812459690, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4963420959646041932, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
@@ -3959,17 +3959,17 @@ PrefabInstance:
     - target: {fileID: 5882272620678995177, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5882272620678995177, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5882272620678995177, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5979599335557242524, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
@@ -4152,6 +4152,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7865603630433057378, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7955172476969699317, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_text
@@ -4217,18 +4222,23 @@ PrefabInstance:
     - target: {fileID: 8027005747006512952, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8144374135712570717, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8144374135712570717, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8159489160939361386, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
+        type: 3}
+      propertyPath: settingPanel
+      value: 
+      objectReference: {fileID: 6614395940200846380}
     - target: {fileID: 8579185046614106973, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4312,17 +4322,22 @@ PrefabInstance:
     - target: {fileID: 8598828869432838622, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8598828869432838622, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8598828869432838622, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758362698000321376, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9050929571404269908, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
         type: 3}
@@ -4350,3 +4365,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 552471428347223033}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8545177869419057043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8159489160939361386, guid: 5e662cdb4ad67a045a92ee8e02ff6374,
+    type: 3}
+  m_PrefabInstance: {fileID: 552471428347223033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30245f1ceb86f4848b68a5c6c27cd7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

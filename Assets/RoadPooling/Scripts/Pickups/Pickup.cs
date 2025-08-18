@@ -18,6 +18,10 @@ public class Pickup : MonoBehaviour
     {
         if (OnPickupFinished == null)
         {
+            if(pickupType.GetKey== "AeroPlane")
+            {
+                Debug.LogError("Pickup "+ pickupType.GetKey);
+            }
             this.gameObject.SetActive(false);
         }
 

@@ -17,7 +17,7 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
     [ShowIf("isUsingParameter")] [SerializeField] private string parameterName;
     /*[SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;*/
-
+    Rigidbody body;
     private void OnCollisionEnter(Collision collision)
     {
         if (eventType == InteractionBasedEventTypes.OnColliderEnter)
@@ -27,6 +27,8 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
                 /*Debug.LogError("AudioTrigger");
                 audioSource.PlayOneShot(audioClip);*/
                 ShootAudioEvent();
+                body = collision.transform.root.gameObject.GetComponent<Rigidbody>();
+                Debug.Log(collision.transform.root.gameObject.name + "Moso");
             }
         }
     }
@@ -51,6 +53,7 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
             {
                 //audioSource.PlayOneShot(audioClip);
                 ShootAudioEvent();
+               
             }
         }
     }
@@ -126,7 +129,11 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
             
             StartCoroutine(Delay());
         }
-        AnalyticsManager.CustomData(eventName);
+        if(eventName == "GamePlayScreen_Airplane_Pickup")
+        {
+
+        }
+           AnalyticsManager.CustomData(eventName);
     }
     IEnumerator Delay()
     {

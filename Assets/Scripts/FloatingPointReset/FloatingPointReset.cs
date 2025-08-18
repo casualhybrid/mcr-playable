@@ -87,7 +87,7 @@ public class FloatingPointReset : MonoBehaviour
 
             playerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.None;  //zzzn
             playerSharedData.PlayerRigidBody.collisionDetectionMode = CollisionDetectionMode.Discrete;  //zzzn
-            yield return new WaitForSecondsRealtime(5);
+            yield return new WaitForSecondsRealtime(3);
             playerSharedData.PlayerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;  //zzzn
             playerSharedData.PlayerRigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
 

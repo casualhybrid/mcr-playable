@@ -178,7 +178,10 @@ public class Trafficar : MonoBehaviour, IResetObject<Trafficar>
     #endregion Gizmos
 
 #endif
-
+    private void OnEnable()
+    {
+        Move();
+    }
     private void Update()
     {
         if (!StillObstacle && DoYourWork)

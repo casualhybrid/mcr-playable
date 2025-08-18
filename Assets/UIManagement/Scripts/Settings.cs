@@ -28,14 +28,14 @@ public class Settings : MonoBehaviour
 
     public void SendEmail()
     {
-        string email = "tera.bitegames.official.com";
+        string email = "support.kindwave@cuptie.co";
 
         string subject = MyEscapeURL("Mini Car Rush 2 Feedback");
 
         string body = MyEscapeURL("");
 
-       // Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
-        Application.OpenURL("https://kindwavegames.apexieg.com/privacy-policy.html");
+        Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
+        //Application.OpenURL("https://kindwavegames.apexieg.com/privacy-policy.html");
     }
 
     private string MyEscapeURL(string url)

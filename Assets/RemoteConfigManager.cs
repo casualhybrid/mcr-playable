@@ -17,7 +17,7 @@ public class RemoteConfigManager : MonoBehaviour
 
     // === Default Values ===
     private const long DEFAULT_ADS_INTERVAL = 25;
-    private const bool DEFAULT_HIEN_QC = false;
+    private const bool DEFAULT_HIEN_QC = true;
     private const bool DEFAULT_SHOW_OPEN_ADS = false;
     private const bool DEFAULT_SHOW_OPEN_ADS_FIRST_OPEN = false;
     private const bool DEFAULT_RESUME_ADS = true; // NEW

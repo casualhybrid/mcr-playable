@@ -12,55 +12,55 @@ namespace UnityEngine
         [Conditional("DEBUG")]
         public static void Log(object message)
         {
-            Debug.Log(FormatMessage(infoColor, message));
+          //  Debug.Log(FormatMessage(infoColor, message));
         }
 
         [Conditional("DEBUG")]
         public static void Log(string category, object message)
         {
-            Debug.Log(FormatMessageWithCategory(infoColor, category, message));
+          //  Debug.Log(FormatMessageWithCategory(infoColor, category, message));
         }
 
         [Conditional("DEBUG")]
         public static void LogFormat(string format, params object[] args)
         {
-            Debug.Log(FormatMessage(infoColor, string.Format(format, args)));
+         //   Debug.Log(FormatMessage(infoColor, string.Format(format, args)));
         }
 
         [Conditional("DEBUG")]
         public static void LogFormat(string category, string format, params object[] args)
         {
-            Debug.Log(FormatMessageWithCategory(infoColor, category, string.Format(format, args)));
+        //    Debug.Log(FormatMessageWithCategory(infoColor, category, string.Format(format, args)));
         }
 
         [Conditional("DEBUG")]
         public static void LogWarning(object message)
         {
-            Debug.LogWarning(FormatMessage(warningColor, message));
+          //  Debug.LogWarning(FormatMessage(warningColor, message));
         }
 
         [Conditional("DEBUG")]
         public static void LogWarning(string category, object message)
         {
-            Debug.LogWarning(FormatMessageWithCategory(warningColor, category, message));
+          //  Debug.LogWarning(FormatMessageWithCategory(warningColor, category, message));
         }
 
         [Conditional("DEBUG")]
         public static void LogWarningFormat(string format, params object[] args)
         {
-            Debug.LogWarningFormat(FormatMessage(warningColor, string.Format(format, args)));
+           // Debug.LogWarningFormat(FormatMessage(warningColor, string.Format(format, args)));
         }
 
         [Conditional("DEBUG")]
         public static void LogWarningFormat(string category, string format, params object[] args)
         {
-            Debug.LogWarningFormat(FormatMessageWithCategory(warningColor, category, string.Format(format, args)));
+         //   Debug.LogWarningFormat(FormatMessageWithCategory(warningColor, category, string.Format(format, args)));
         }
 
         [Conditional("DEBUG")]
         public static void LogError(object message)
         {
-            Debug.LogError(FormatMessage(errorColor, message));
+         //   Debug.LogError(FormatMessage(errorColor, message));
         }
 
         [Conditional("DEBUG")]
@@ -72,13 +72,13 @@ namespace UnityEngine
         [Conditional("DEBUG")]
         public static void LogErrorFormat(string format, params object[] args)
         {
-            Debug.LogErrorFormat(FormatMessage(errorColor, string.Format(format, args)));
+          //  Debug.LogErrorFormat(FormatMessage(errorColor, string.Format(format, args)));
         }
 
         [Conditional("DEBUG")]
         public static void LogErrorFormat(string category, string format, params object[] args)
         {
-            Debug.LogErrorFormat(FormatMessageWithCategory(errorColor, category, string.Format(format, args)));
+       //     Debug.LogErrorFormat(FormatMessageWithCategory(errorColor, category, string.Format(format, args)));
         }
 
         [Conditional("DEBUG")]

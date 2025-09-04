@@ -231,7 +231,7 @@ public class DailyGoalsManagerSO : ScriptableObject
         return -1;
     }
 
-    private void UpdateGoalsStatus()
+    public void UpdateGoalsStatus()
     {
         if (!isDailyGoalsCompleted)        // For real this if will help to stop code when daily goals are completed
         {

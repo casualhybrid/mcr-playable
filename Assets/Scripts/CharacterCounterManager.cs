@@ -94,26 +94,64 @@ public class CharacterCounterManager : MonoBehaviour
                 {
                     Debug.Log($"Showing rewarded ad for {counter.characterID}");
 
-                    YourCustomAdFunction(() =>
-                    {
-                        Debug.Log($"Ad finished. Rewarding {counter.characterID}");
+                    /* YourCustomAdFunction(() =>
+                     {
+                         Debug.Log($"Ad finished. Rewarding {counter.characterID}");
 
-                        PlayerPrefs.SetInt(rewardKey, 1);
-                        PlayerPrefs.SetString(timeKey, DateTime.Now.Ticks.ToString());
-                        PlayerPrefs.Save();
+                         PlayerPrefs.SetInt(rewardKey, 1);
+                         PlayerPrefs.SetString(timeKey, DateTime.Now.Ticks.ToString());
+                         PlayerPrefs.Save();
 
-                        counter.videoAdGO.SetActive(false);
-                        counter.completeGO.SetActive(true);
-                        counter.counterImage.fillAmount = 1f;
-                        counter.counterText.text = counter.totalCount + "/" + counter.totalCount;
-                    });
+                         counter.videoAdGO.SetActive(false);
+                         counter.completeGO.SetActive(true);
+                         counter.counterImage.fillAmount = 1f;
+                         counter.counterText.text = counter.totalCount + "/" + counter.totalCount;
+                     });*/
+                    ShowRewardedAd(counter);
                 });
             }
         }
     }
 
-    // 👇 Replace this method call with your actual ad function
-    void YourCustomAdFunction(Action onComplete)
+
+
+    private void ShowRewardedAd(CharacterCounter counter)
+    {
+        // Subscribe to the ad completion event with a lambda
+        // that calls a dedicated reward method, passing the counter object.
+        MaxAdMobController.OnVideoAdCompleteReward += () => RewardUser(counter);
+        MaxAdMobController.Instance.ShowRewardedVideoAd();
+    }
+
+    // This method is called when the ad is complete and the user should be rewarded
+    private void RewardUser(CharacterCounter counter)
+    {
+        // IMPORTANT: Unsubscribe immediately to prevent this from being called multiple times
+        MaxAdMobController.OnVideoAdCompleteReward -= () => RewardUser(counter);
+
+        string rewardKey = "RewardClaimed_" + counter.characterID;
+        string timeKey = "RewardTime_" + counter.characterID;
+
+        Debug.Log($"Ad finished. Rewarding {counter.characterID}");
+
+        // Perform the rewarding logic
+        PlayerPrefs.SetInt(rewardKey, 1);
+        PlayerPrefs.SetString(timeKey, DateTime.Now.Ticks.ToString());
+        PlayerPrefs.Save();
+
+        // Update the UI
+        counter.videoAdGO.SetActive(false);
+        counter.completeGO.SetActive(true);
+        counter.counterImage.fillAmount = 1f;
+        counter.counterText.text = counter.totalCount + "/" + counter.totalCount;
+
+        
+    }
+
+
+
+// 👇 Replace this method call with your actual ad function
+void YourCustomAdFunction(Action onComplete)
     {
         // Tumhari ad logic yahan aye gi
         onComplete?.Invoke();

@@ -137,6 +137,12 @@ public class GameOverUIManager : AWindowController
         //}
     }
 
+
+    public void HideBanner()
+    {
+        MaxAdMobController.Instance.HideAdmobBanner();
+    }
+
     private void PerformGameOverSteps()
     {
         adControl.ShowSmallBannerAd(ScreenIds.GameOverPanel);

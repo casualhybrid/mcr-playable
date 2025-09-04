@@ -1,4 +1,5 @@
 using AppsFlyerSDK;
+using GoogleMobileAds.Api;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,15 +45,18 @@ public class MaxAdMobController : MonoBehaviour
     bool AdsCompability => SystemInfo.systemMemorySize > 1500;
     public bool LowMemoryDevice => SystemInfo.systemMemorySize <= 1500;
     public int Option { get; internal set; }
-   
 
-public void Awake()
+
+    public static Action OnVideoAdCompleteReward;
+
+
+    public void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
-       
+
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
@@ -108,7 +112,7 @@ public void Awake()
         InitializeRewardedAds();
 
     }
-    
+
     public void ShowAdIfReady()
     {
         if (MaxSdk.IsAppOpenAdReady(AppOpenAdUnitId))
@@ -153,10 +157,10 @@ public void Awake()
 
     public void ShowInterstitialAd()
     {
-       if (PlayerPrefs.GetInt("IsAdsRemoved") == 1 || RemoteConfigManager.HienQc == false)
-       {
-                return;
-       }
+        if (PlayerPrefs.GetInt("IsAdsRemoved") == 1 || RemoteConfigManager.HienQc == false)
+        {
+            return;
+        }
 
         // Check cooldown using Remote Config value
         float interval = RemoteConfigManager.AdsInterval; // default 25 from remote config
@@ -183,7 +187,7 @@ public void Awake()
 
     private void OnInterstitialLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        
+
         Debug.Log("Interstitial loaded");
 
         // Reset retry attempt
@@ -232,7 +236,7 @@ public void Awake()
 
 
 
-  var parameters = new Dictionary<string, string>()
+        var parameters = new Dictionary<string, string>()
   {
     { "ad_platform", "applovin_max" },
     { "ad_source", adInfo.NetworkName },
@@ -257,7 +261,7 @@ public void Awake()
        $"value: {parameters["value"]}"
    );
 
-       
+
         var impressionParameters = new[] {
   new Firebase.Analytics.Parameter("ad_platform", "AppLovin"),
   new Firebase.Analytics.Parameter("ad_source", adInfo.NetworkName),
@@ -333,7 +337,28 @@ public void Awake()
             //rewardedStatusText.text = "Ad not ready";
         }
     }
-
+    public void ShowRewardedVideoAd()
+    {
+        //  RewardInfo = Info;
+        //  _currentRequester = requester;
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            return;
+        }
+        if (MaxSdk.IsRewardedAdReady(RewardedAdUnitId))
+        {
+            MaxSdk.ShowRewardedAd(RewardedAdUnitId);
+        }
+        else
+        {
+            //rewardedStatusText.text = "Ad not ready";
+        }
+    }
+    public bool IsRewardedAdAvailable()
+    {
+        // depends on your ad SDK, usually something like:
+        return MaxSdk.IsRewardedAdReady(RewardedAdUnitId);
+    }
     private void OnRewardedAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Rewarded ad is ready to be shown. MaxSdk.IsRewardedAdReady(rewardedAdUnitId) will now return 'true'
@@ -353,7 +378,7 @@ public void Awake()
         // rewardedStatusText.text = "Load failed: " + errorInfo.Code + "\nRetrying in " + retryDelay + "s...";
         Debug.Log("Rewarded ad failed to load with error code: " + errorInfo.Code);
 
-        Invoke("LoadRewardedAd", (float)retryDelay);
+        Invoke(nameof(LoadRewardedAd), (float)retryDelay);
     }
 
     private void OnRewardedAdFailedToDisplayEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo, MaxSdkBase.AdInfo adInfo)
@@ -386,6 +411,7 @@ public void Awake()
         Debug.Log("Rewarded ad received reward");
         GiveReward();
         OnUserEarnedRewardEvent.Invoke();
+        OnVideoAdCompleteReward?.Invoke();
         _currentRequester?.CompletionCallBack(Status.Succeded, new ADMeta());
     }
 
@@ -476,10 +502,10 @@ public void Awake()
         // You may use the utility method `MaxSdkUtils.isTablet()` to help with view sizing adjustments.
         var adViewConfiguration = new MaxSdk.AdViewConfiguration(MaxSdk.AdViewPosition.BottomCenter);
         MaxSdk.CreateBanner(BannerAdUnitId, adViewConfiguration);
-       // MaxSdk.SetBannerExtraParameter(BannerAdUnitId, "adaptive_banner", "false");
+        // MaxSdk.SetBannerExtraParameter(BannerAdUnitId, "adaptive_banner", "false");
         MaxSdkUtils.IsTablet();
         // Set background or background color for banners to be fully functional.
-      //  MaxSdk.SetBannerBackgroundColor(BannerAdUnitId, Color.black);
+        MaxSdk.SetBannerBackgroundColor(BannerAdUnitId, Color.black);
     }
     public void ShowAdmobBanner()
     {
@@ -487,8 +513,8 @@ public void Awake()
         {
             return;
         }
-            
-        if (Application.internetReachability == NetworkReachability.NotReachable )
+
+        if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             return;
         }
@@ -659,14 +685,14 @@ public void Awake()
         string adUnitIdentifier = adInfo.AdUnitIdentifier; // The MAX Ad Unit ID
         string placement = adInfo.Placement; // The placement this ad's postbacks are tied to
 
-      
+
     }
     public void GiveReward()
     {
         try
         {
 
-           
+
         }
         catch (System.Exception e)
         {
@@ -675,6 +701,5 @@ public void Awake()
     }
 
 }
-    #endregion
+#endregion
 
-    

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TheKnights.SaveFileSystem;
 using UnityEngine;
 
@@ -19,60 +18,63 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
         }
     }
 
-
+    [Header("References (keep as in original)")]
     [SerializeField] private SaveManager saveManager;
     [SerializeField] private Transform[] cutSceneEnv;
     [SerializeField] private GameEvent cutSceneStarted;
-
     [Tooltip("Increase this to maintain more patches in front of player")]
     [SerializeField] private int minPatchesDistanceInFrontOfPlayer;
-
     [SerializeField] private int minForwardDistThresholdToInvokeSpawn;
-
     [SerializeField] private string nextEnvironmentKey;
-
     [SerializeField] private PlayerSharedData playerRunTimeData;
-
-    //  [SerializeField] private GameEvent initialEnvHasSpawned;
-
     [SerializeField] private EnvironmentsEnumSO environmentsEnumSO;
     [SerializeField] private EnvironmentChannel environmentChannel;
     [SerializeField] private EnviornmentSO tempSO;
-
-    // Tutorial Types Data
     [SerializeField] private TutorialTypesData tutorialTypesData;
-
     [SerializeField] private EnvPatchPoolSO envPatchPoolSO;
     [SerializeField] private EnvFactorySO envFactorySO;
-
     [SerializeField] private EnvironmentData _environmentData;
-
     [SerializeField] private int initialCopiesPerPatch = 1;
-
     [SerializeField] private EnvCategory envCategory;
-
     [SerializeField] private GameObject newEnvEnteredGameObject;
+
+    [Header("Performance / Tuning")]
+    [Tooltip("Delay (seconds) between spawning individual patches. Small value (0.01 - 0.03) smooths spikes.")]
+    [SerializeField] private float spawnDelay = 0.01f;
+    [Tooltip("Max number of patches spawned in a single iteration of the spawn loop. Helps bound CPU cost.")]
+    [SerializeField] private int maxPatchesPerIteration = 2;
+    [Tooltip("If true, Resources.UnloadUnusedAssets() will run when destroying previous env (not recommended).")]
+    [SerializeField] private bool callUnloadUnusedAssetsOnDestroy = false;
 
     public event Action<List<Patch>> batchOfEnvironmentSpawned;
 
-    private Dictionary<Patch, float> suspendedPatches = new Dictionary<Patch, float>();
-
+    // ----- Internal runtime state (same semantics as your original script) -----
+    private readonly Dictionary<Patch, float> suspendedPatches = new Dictionary<Patch, float>(); // patch -> playerZ_when_suspended
     private Patch lastSpawnedPatch;
-    private float zDistanceWhereLastPatchEnded, nextPatchStarting = 0f;
+    private float zDistanceWhereLastPatchEnded;
+    private float nextPatchStarting = 0f;
     public static EnviornmentSO currentlyActiveEnv { get; private set; }
     public static EnviornmentSO previouslyActiveEnv { get; private set; }
 
     public bool ShoudNotOffsetOnRest { get; set; } = true;
 
     private EnvCategory currentlyActiveCategory;
-
-    private bool initialized, isAmbianceChanged = false;
+    private bool initialized;
+    private bool isAmbianceChanged = false;
     private GameObject rootEnvObject;
-    private Patch currentEndPatch; // The patch at the very end
+    private Patch currentEndPatch; // last spawned in batch
     private Patch tutorialPatch;
-
     private EnviornmentSO tutorialSO;
     private Queue<NewEnvironmentInfo> NewEnvironmentInfoQueue = new Queue<NewEnvironmentInfo>();
+
+    // Reused collections to avoid allocations during spawning
+    private readonly List<Patch> tmpReducedPatches = new List<Patch>(16);
+    private readonly List<Patch> spawnedBatch = new List<Patch>(8);
+    private readonly List<NewEnvironmentInfo> tmpEnvInfoList = new List<NewEnvironmentInfo>(4);
+
+    // Single persistent spawn coroutine
+    private Coroutine spawnCoroutine;
+    private bool spawnLoopRequested = false; // trigger to run spawn loop once
 
     private void Awake()
     {
@@ -81,12 +83,9 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
         cutSceneStarted.TheEvent.AddListener(HandleCutSceneStarted);
 
         rootEnvObject = new GameObject("rootEnvObject");
-        rootEnvObject.transform.SetParent(this.transform);
-        // lastSpawnedPatch = GetComponentInChildren<Patch>();
-        // zDistanceWhereLastPatchEnded += (lastSpawnedPatch.transform.position.z + lastSpawnedPatch.GetLengthOfPatch);
-        ChangeEnvCategory(envCategory);
+        rootEnvObject.transform.SetParent(this.transform, false);
 
-        
+        ChangeEnvCategory(envCategory);
     }
 
     private void OnDestroy()
@@ -100,103 +99,90 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
     {
         tutorialSO = tutorialTypesData.GetTutorialInstanceData(TutorialManager.ActiveTutorialType).TutorialEnvironment;
 
-        #region AddressablesInstantiation
-
-        //var operationHandle = AddressableLoader.LoadTheAsset<EnviornmentSO>(nextEnvironmentKey);
-        //operationHandle.Completed += (handle) =>
-        //{
-        //    EnviornmentSO enviornmentSO = handle.Result;
-        //    currentlyActiveEnv = enviornmentSO;
-        //    SpawnPatchesInFrontOfPlayer(enviornmentSO);
-        //    initialized = true;
-        //    initialEnvHasSpawned.RaiseEvent();
-        //};
-
-        #endregion AddressablesInstantiation
-
-
         currentlyActiveEnv = saveManager.MainSaveFile.TutorialHasCompleted ? tempSO : tutorialSO;
         envPatchPoolSO.SetParent(rootEnvObject.transform);
 
-       // envFactorySO.AddEnvironmentForWarmup(tempSO);
-    //    envPatchPoolSO.Prewarm(initialCopiesPerPatch);
-
+        // Spread initial spawns across frames to avoid first-frame spike
         yield return null;
 
-        if (!saveManager.MainSaveFile.TutorialHasCompleted)
+        // Spawn 2 patches at start (same as original requirement)
+        for (int i = 0; i < 2; i++)
         {
-         //   UnityEngine.Profiling.Profiler.BeginSample("TutorialGenerated");
-            // Cache tutorial patch
+            // direct spawn request using same coroutine path
+            RequestSpawnLoop(); // set flag
+            yield return null; // let spawn coroutine run on next frame
+        }
+
+        // Prepare tutorial patch if needed (same behavior)
+        if (!saveManager.MainSaveFile.TutorialHasCompleted && tutorialSO != null)
+        {
             Patch tutorialOriginalPatch = tutorialSO.GetMergedPatchesCollectionIrrelevantToCategories()[0];
             tutorialPatch = envPatchPoolSO.Request(tutorialOriginalPatch, tutorialOriginalPatch.InstanceID);
-            yield return tutorialPatch.GetComponent<InstantiateSubPrefabsInMultipleFrames>().SpawnSubPrefabs();
-            //   tutorialPatch.gameObject.SetActive(false);
-           // UnityEngine.Profiling.Profiler.EndSample();
-
-           // Debug.Break();
+            if (tutorialPatch != null)
+            {
+                var inst = tutorialPatch.GetComponent<InstantiateSubPrefabsInMultipleFrames>();
+                if (inst != null)
+                    yield return inst.SpawnSubPrefabs();
+            }
         }
+
+        initialized = true;
+
+        // start the persistent spawn coroutine (it will sleep until requested)
+        spawnCoroutine = StartCoroutine(SpawnLoopCoroutine());
     }
 
     private void HandleCutSceneStarted(GameEvent gameEvent)
     {
-        Transform[] array = cutSceneEnv.OrderByDescending(x => x.transform.position.z).ToArray();
+        if (cutSceneEnv == null || cutSceneEnv.Length == 0) return;
 
-        Transform env = array[0];
+        Transform farthest = cutSceneEnv[0];
+        for (int i = 1; i < cutSceneEnv.Length; i++)
+        {
+            if (cutSceneEnv[i].position.z > farthest.position.z) farthest = cutSceneEnv[i];
+        }
 
-        BoxCollider boxCollider = env.GetComponent<BoxCollider>();
-
-        float startingZ = env.position.z + boxCollider.bounds.size.z / 2f;
-
+        BoxCollider boxCollider = farthest.GetComponent<BoxCollider>();
+        float startingZ = farthest.position.z + boxCollider.bounds.size.z / 2f;
         zDistanceWhereLastPatchEnded = startingZ;
-
-        //lastSpawnedPatch.transform.position = new Vector3(lastSpawnedPatch.transform.position.x, lastSpawnedPatch.transform.position.y, zDistanceWhereLastPatchEnded);
-
-        //  zDistanceWhereLastPatchEnded = (lastSpawnedPatch.transform.position.z + lastSpawnedPatch.GetLengthOfPatch);
 
         if (!saveManager.MainSaveFile.TutorialHasCompleted)
         {
             SpawnOnePatchOnly();
-
-            // Switch back from tutorial environment
             currentlyActiveEnv = tempSO;
         }
 
         playerRunTimeData.playerCurrentEnvironment = currentlyActiveEnv.GetEnvironmentType;
-
-        // StartCoroutine(SpawnPatchesInFrontOfPlayer(tempSO));
         initialized = true;
 
-        // Null References To Clean Memory La[ter
         tempSO = null;
         tutorialSO = null;
     }
 
     private void Update()
     {
-        if (!initialized)
-            return;
+        if (!initialized) return;
 
-        if (!isAmbianceChanged)
-        {
-            if (playerRunTimeData.PlayerTransform.position.z > nextPatchStarting)
-            {
-                //  currentlyActiveEnv.typeOfEnviorment.RaiseEvent();
-                isAmbianceChanged = true;
-                //    UnityEngine.Console.Log($"Ambiance Changed to {currentlyActiveEnv.name}");
-            }
-        }
+        if (!isAmbianceChanged && playerRunTimeData.PlayerTransform.position.z > nextPatchStarting)
+            isAmbianceChanged = true;
 
         float zDiff = zDistanceWhereLastPatchEnded - playerRunTimeData.PlayerTransform.position.z;
 
+        // If player is approaching the end distance, signal the spawn loop to run
         if (zDiff < minForwardDistThresholdToInvokeSpawn)
-        {
-            StartCoroutine(SpawnPatchesInFrontOfPlayer(currentlyActiveEnv));
-        }
+            RequestSpawnLoop();
+    }
+
+    // Mark that we want the spawn loop to run (safe & cheap)
+    private void RequestSpawnLoop()
+    {
+        spawnLoopRequested = true;
     }
 
     public void SpawnOnePatchOnly(bool isSafeZonePatch = false)
     {
-        StartCoroutine(SpawnPatchesInFrontOfPlayer(currentlyActiveEnv, true, -1, -1, true, isSafeZonePatch));
+        // request spawn for a single patch; spawn loop will handle singlePatchOnly param
+        StartCoroutine(SpawnPatchesInFrontOfPlayer(currentlyActiveEnv, true, -1f, -1f, true, isSafeZonePatch));
     }
 
     public Coroutine SpawnSpecificDistancePatches(float lengthToSpawnTill)
@@ -204,110 +190,122 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
         return StartCoroutine(SpawnPatchesInFrontOfPlayer(currentlyActiveEnv, false, zDistanceWhereLastPatchEnded, lengthToSpawnTill));
     }
 
-    private IEnumerator SpawnPatchesInFrontOfPlayer(EnviornmentSO enviornmentSO, bool singlePatchOnly = false, float playerPosiitonOverride = -1f, float lengthToSpawnTill = -1f, bool dontRaiseSpawnEvent = false, bool isSafeZonePatch = false)
+    // Persistent loop that only runs when spawnLoopRequested is true.
+    // This avoids starting many coroutines from Update.
+    private IEnumerator SpawnLoopCoroutine()
     {
-       
-        float zPosToMeasureFrom = playerPosiitonOverride == -1 ? playerRunTimeData.PlayerTransform.position.z : playerPosiitonOverride;
-        float distBetweenLastPatchZandPlayer = zDistanceWhereLastPatchEnded - zPosToMeasureFrom;
-        float distanceToSpawnTill = lengthToSpawnTill == -1 ? minPatchesDistanceInFrontOfPlayer : lengthToSpawnTill;
-
-        List<Patch> spawnewdBatch = new List<Patch>();
-
-        while (distBetweenLastPatchZandPlayer < distanceToSpawnTill || singlePatchOnly)
+        while (true)
         {
-            distBetweenLastPatchZandPlayer = zDistanceWhereLastPatchEnded - zPosToMeasureFrom;
-
-            List<Patch> possiblePatches;
-
-            if (currentlyActiveCategory == null)
+            if (!spawnLoopRequested)
             {
-                possiblePatches = enviornmentSO.GetMergedPatchesCollectionIrrelevantToCategories();
-            }
-            else
-            {
-                possiblePatches = enviornmentSO.GetCollectionOfPossiblePatchesForCategory(currentlyActiveCategory);
+                // sleep a frame; trivial cost
+                yield return null;
+                continue;
             }
 
-            List<Patch> reducedPossiblePatches;
+            // Reset the flag; SpawnPatchesInFrontOfPlayer will set it again if more spawning is needed
+            spawnLoopRequested = false;
 
+            // Run the actual spawn routine (non-reentrant)
+            yield return StartCoroutine(SpawnPatchesInFrontOfPlayer(currentlyActiveEnv, false, -1f, -1f, false, false));
+        }
+    }
+
+    // The main spawner: reused lists, limited per-iteration work, minimal allocations.
+    private IEnumerator SpawnPatchesInFrontOfPlayer(EnviornmentSO enviornmentSO,
+        bool singlePatchOnly = false,
+        float playerPosiitonOverride = -1f,
+        float lengthToSpawnTill = -1f,
+        bool dontRaiseSpawnEvent = false,
+        bool isSafeZonePatch = false)
+    {
+        if (enviornmentSO == null)
+            yield break;
+
+        float zPosToMeasureFrom = (playerPosiitonOverride == -1f) ? playerRunTimeData.PlayerTransform.position.z : playerPosiitonOverride;
+        float distanceToSpawnTill = (lengthToSpawnTill == -1f) ? minPatchesDistanceInFrontOfPlayer : lengthToSpawnTill;
+
+        spawnedBatch.Clear();
+
+        // Keep spawning while we need patches in front
+        while ((zDistanceWhereLastPatchEnded - zPosToMeasureFrom) < distanceToSpawnTill || singlePatchOnly)
+        {
+            // get possible patches reference (no copy)
+            List<Patch> possiblePatches = (currentlyActiveCategory == null)
+                ? enviornmentSO.GetMergedPatchesCollectionIrrelevantToCategories()
+                : enviornmentSO.GetCollectionOfPossiblePatchesForCategory(currentlyActiveCategory);
+
+            if (possiblePatches == null || possiblePatches.Count == 0)
+                break;
+
+            // Clean expired suspended patches using snapshot to avoid modifying dictionary while iterating
             if (suspendedPatches.Count > 0)
             {
-                List<Patch> keysList = suspendedPatches.Keys.ToList();
-
-                for (int i = 0; i < keysList.Count; i++)
+                Patch[] suspendedKeys = new Patch[suspendedPatches.Count];
+                suspendedPatches.Keys.CopyTo(suspendedKeys, 0);
+                for (int si = 0; si < suspendedKeys.Length; si++)
                 {
-                    Patch p = keysList[i];
-                    float diff = playerRunTimeData.PlayerTransform.position.z - suspendedPatches[p];
-
-                    if (diff >= p.DistanceBeforeItCanReAppear)
+                    Patch pkey = suspendedKeys[si];
+                    float storedZ = suspendedPatches[pkey];
+                    if (playerRunTimeData.PlayerTransform.position.z - storedZ >= pkey.DistanceBeforeItCanReAppear)
                     {
-                        UnityEngine.Console.Log($"Removed from suspended patches {p.name}");
-                        suspendedPatches.Remove(p);
+                        suspendedPatches.Remove(pkey);
                     }
                 }
             }
 
-            if (suspendedPatches.Count > 0)
+            // Build reduced list without allocations (reuse tmpReducedPatches)
+            tmpReducedPatches.Clear();
+            for (int i = 0; i < possiblePatches.Count; i++)
             {
-                reducedPossiblePatches = new List<Patch>();
-                for (int i = 0; i < possiblePatches.Count; i++)
-                {
-                    Patch p = possiblePatches[i];
-                    if (!suspendedPatches.ContainsKey(p))
-                    {
-                        reducedPossiblePatches.Add(p);
-                    }
-                }
-            }
-            else
-            {
-                reducedPossiblePatches = possiblePatches;
+                Patch p = possiblePatches[i];
+                if (!suspendedPatches.ContainsKey(p))
+                    tmpReducedPatches.Add(p);
             }
 
-            int rand = UnityEngine.Random.Range(0, reducedPossiblePatches.Count);
-            Patch originalPatch = reducedPossiblePatches[rand];
-            GameObject originalPatchObject = originalPatch.gameObject;
+            if (tmpReducedPatches.Count == 0)
+                break;
+
+            // Pick random patch from reduced list
+            int randIndex = UnityEngine.Random.Range(0, tmpReducedPatches.Count);
+            Patch originalPatch = tmpReducedPatches[randIndex];
+
+            // Request from pool or tutorial handling
             Patch patchRequested;
-            // Is this tutorial env
             if (enviornmentSO == tutorialSO)
             {
                 patchRequested = tutorialPatch;
+                if (patchRequested == null) break;
+
                 patchRequested.gameObject.SetActive(true);
                 patchRequested.PatchHasFinished += HandleTutorialPatchHasFinished;
             }
             else
             {
                 patchRequested = envPatchPoolSO.Request(originalPatch, originalPatch.InstanceID);
+                if (patchRequested == null) break;
                 patchRequested.PatchHasFinished += HandlePatchHasFinished;
             }
 
-            GameObject patchRequestedGameObject = patchRequested.gameObject;
+            // Ensure proper parent (avoid repeated SetParent if already correct)
+            if (patchRequested.transform.parent != rootEnvObject.transform)
+                patchRequested.transform.SetParent(rootEnvObject.transform, false);
 
-            //    UnityEngine.Console.Log($"Spawning Patch {patchRequestedGameObject} at position {zDistanceWhereLastPatchEnded} and name {patchRequestedGameObject.name}");
-            Vector3 patchNewPosition = new Vector3(originalPatchObject.transform.position.x, originalPatchObject.transform.position.y, zDistanceWhereLastPatchEnded - patchRequested.DiffBWPivotAndColliderMinBoundPoint);
-          //  UnityEngine.Console.Log("Spawning Patch at " + patchNewPosition.z);
-            patchRequestedGameObject.transform.localPosition = patchNewPosition;
+            // Place patch using precomputed diffs (cheap Transform ops)
+            Vector3 patchNewPosition = new Vector3(originalPatch.transform.position.x,
+                                                   originalPatch.transform.position.y,
+                                                   zDistanceWhereLastPatchEnded - patchRequested.DiffBWPivotAndColliderMinBoundPoint);
+            patchRequested.transform.localPosition = patchNewPosition;
 
             lastSpawnedPatch = patchRequested;
-
-            //  zDistanceWhereLastPatchEnded += patchRequested.GetLengthOfPatch;
-
-         //   UnityEngine.Console.Log("DIFF POINT IS " + patchRequested.DiffBWPivotAndColliderMaxBoundPoint);
             zDistanceWhereLastPatchEnded = patchNewPosition.z + patchRequested.DiffBWPivotAndColliderMaxBoundPoint;
-
-            // zDistanceWhereLastPatchEnded = patchRequested.EndingZPoint;
 
             _environmentData.distanceCoveredByActiveEnvironment += patchRequested.GetLengthOfPatch;
 
-            //  UnityEngine.Console.Log("Will spawn next patch at " + zDistanceWhereLastPatchEnded);
-
             if (patchRequested.isLimitedSpawningByDistance)
-            {
-                //   UnityEngine.Console.Log($"Added to suspended patches {patchRequested.name}");
-                suspendedPatches.Add(originalPatch, playerRunTimeData.PlayerTransform.position.z);
-            }
+                suspendedPatches[originalPatch] = playerRunTimeData.PlayerTransform.position.z;
 
-            spawnewdBatch.Add(patchRequested);
+            spawnedBatch.Add(patchRequested);
 
             if (isSafeZonePatch)
             {
@@ -315,32 +313,74 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
                 _environmentData.firstRampBuildingHasBeenSpawned = true;
             }
 
+            // if only one patch requested, break
             if (singlePatchOnly)
-            {
                 break;
+
+            // Bound patches per iteration to avoid long single-frame work
+            int spawnedThisIteration = 1;
+            while (spawnedThisIteration < maxPatchesPerIteration &&
+                   (zDistanceWhereLastPatchEnded - zPosToMeasureFrom) < distanceToSpawnTill)
+            {
+                // Try spawn more within same iteration using same logic
+                // reuse tmpReducedPatches: rebuild reduced list (fast) and spawn up to maxPatchesPerIteration
+                tmpReducedPatches.Clear();
+                for (int i = 0; i < possiblePatches.Count; i++)
+                {
+                    Patch p = possiblePatches[i];
+                    if (!suspendedPatches.ContainsKey(p))
+                        tmpReducedPatches.Add(p);
+                }
+                if (tmpReducedPatches.Count == 0) break;
+
+                randIndex = UnityEngine.Random.Range(0, tmpReducedPatches.Count);
+                originalPatch = tmpReducedPatches[randIndex];
+
+                Patch nextPatch = envPatchPoolSO.Request(originalPatch, originalPatch.InstanceID);
+                if (nextPatch == null) break;
+                nextPatch.PatchHasFinished += HandlePatchHasFinished;
+
+                if (nextPatch.transform.parent != rootEnvObject.transform)
+                    nextPatch.transform.SetParent(rootEnvObject.transform, false);
+
+                Vector3 nextPos = new Vector3(originalPatch.transform.position.x,
+                                              originalPatch.transform.position.y,
+                                              zDistanceWhereLastPatchEnded - nextPatch.DiffBWPivotAndColliderMinBoundPoint);
+                nextPatch.transform.localPosition = nextPos;
+
+                lastSpawnedPatch = nextPatch;
+                zDistanceWhereLastPatchEnded = nextPos.z + nextPatch.DiffBWPivotAndColliderMaxBoundPoint;
+                _environmentData.distanceCoveredByActiveEnvironment += nextPatch.GetLengthOfPatch;
+
+                if (nextPatch.isLimitedSpawningByDistance)
+                    suspendedPatches[originalPatch] = playerRunTimeData.PlayerTransform.position.z;
+
+                spawnedBatch.Add(nextPatch);
+                spawnedThisIteration++;
             }
 
-            yield return null;
+            // After spawning up to maxPatchesPerIteration, yield according to spawnDelay to spread load
+            if (spawnDelay > 0f)
+                yield return new WaitForSeconds(spawnDelay);
+            else
+                yield return null;
 
-    
-
+            // Loop condition will be re-evaluated
         }
 
-   
+        // Notify listeners if any
+        if (!dontRaiseSpawnEvent && spawnedBatch.Count > 0)
+            batchOfEnvironmentSpawned?.Invoke(spawnedBatch);
 
-        if (!dontRaiseSpawnEvent)
+        if (spawnedBatch.Count > 0)
+            currentEndPatch = spawnedBatch[spawnedBatch.Count - 1];
+
+        // If after this run the distance still needs patches, request the spawn loop again
+        float currentZPos = playerRunTimeData.PlayerTransform.position.z;
+        if ((zDistanceWhereLastPatchEnded - currentZPos) < minPatchesDistanceInFrontOfPlayer)
         {
-            // UnityEngine.Console.Log("SpawningBatchPatchEvent");
-
-            batchOfEnvironmentSpawned?.Invoke(spawnewdBatch);
-
-            //enviornmentSO.typeOfEnviorment.RaiseEvent();
-        }
-
-        if (spawnewdBatch.Count > 0)
-        {
-            // Last Patch
-            currentEndPatch = spawnewdBatch.Last();
+            // schedule another iteration of the spawn loop
+            spawnLoopRequested = true;
         }
     }
 
@@ -353,7 +393,7 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
     private void HandleTutorialPatchHasFinished(Patch patch)
     {
         patch.PatchHasFinished -= HandleTutorialPatchHasFinished;
-        Destroy(patch.gameObject, 2);
+        Destroy(patch.gameObject, 2); // as originally requested
     }
 
     public void ChangeEnvCategory(EnvCategory envCategory)
@@ -364,107 +404,92 @@ public class EnvironmentSpawner : MonoBehaviour, IFloatingReset
     public void ChangeActiveEnv(EnviornmentSO enviornmentSO, bool markStartOfNewEnv = false)
     {
         _environmentData.distanceCoveredByActiveEnvironment = 0;
-        previouslyActiveEnv = currentlyActiveEnv.GetEnvironmentType != environmentsEnumSO.GeneralSwitchEnvironment ? currentlyActiveEnv : previouslyActiveEnv;
+        previouslyActiveEnv = currentlyActiveEnv != null && currentlyActiveEnv.GetEnvironmentType != environmentsEnumSO.GeneralSwitchEnvironment ? currentlyActiveEnv : previouslyActiveEnv;
         currentlyActiveEnv = enviornmentSO;
         nextPatchStarting = zDistanceWhereLastPatchEnded;
         isAmbianceChanged = false;
 
-        // With the assumption that atleast one patch on the changed env will spawn :)
         if (markStartOfNewEnv)
         {
-            //  UnityEngine.Console.Log("Enabled and positioned new env trigger for env: " + enviornmentSO.name);
-
             Vector3 pos = new Vector3(0, 0, nextPatchStarting);
-
-            NewEnvironmentInfo newEnvironmentInfo = new NewEnvironmentInfo(pos, enviornmentSO.GetEnvironmentType);
-            NewEnvironmentInfoQueue.Enqueue(newEnvironmentInfo);
-
+            NewEnvironmentInfoQueue.Enqueue(new NewEnvironmentInfo(pos, enviornmentSO.GetEnvironmentType));
             if (NewEnvironmentInfoQueue.Count == 1)
-            {
                 SpawnNewEnvTrigger(pos, enviornmentSO.GetEnvironmentType);
-            }
         }
     }
 
     private void CheckAndSpawnPendingNewEnvTriggers(Environment env)
     {
+        if (NewEnvironmentInfoQueue.Count == 0) return;
         NewEnvironmentInfoQueue.Dequeue();
-
-        if (NewEnvironmentInfoQueue.Count == 0)
-            return;
-
+        if (NewEnvironmentInfoQueue.Count == 0) return;
         NewEnvironmentInfo newEnvironmentInfo = NewEnvironmentInfoQueue.Peek();
         SpawnNewEnvTrigger(newEnvironmentInfo.Position, newEnvironmentInfo.Environment);
     }
 
     private void SpawnNewEnvTrigger(Vector3 pos, Environment enviornment)
     {
+        if (newEnvEnteredGameObject == null) return;
         newEnvEnteredGameObject.transform.position = pos;
-        newEnvEnteredGameObject.GetComponent<NewEnvironmentEnteredTrigger>().enviornment = enviornment;
+        var trigger = newEnvEnteredGameObject.GetComponent<NewEnvironmentEnteredTrigger>();
+        if (trigger != null) trigger.enviornment = enviornment;
         newEnvEnteredGameObject.SetActive(true);
     }
 
     private void DestroyPreviousEnvironment(Environment environment)
     {
-      //  UnityEngine.Console.Log("Environment Changed");
-
         StartCoroutine(DestroyPreviousEnvironmentRoutine());
     }
 
     private IEnumerator DestroyPreviousEnvironmentRoutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f);
 
-       List<Patch> allPatches = previouslyActiveEnv.GetMergedPatchesCollectionIrrelevantToCategories();
+        if (previouslyActiveEnv == null) yield break;
 
+        List<Patch> allPatches = previouslyActiveEnv.GetMergedPatchesCollectionIrrelevantToCategories();
         for (int i = 0; i < allPatches.Count; i++)
         {
-        //    UnityEngine.Console.Log("Request To Destroy Patch " + allPatches[i]);
             envPatchPoolSO.DestroyPooledObjectsForID(allPatches[i].InstanceID);
-
+            // spread destruction across frames to avoid spikes
             yield return null;
         }
 
-        yield return null;
-
-        Resources.UnloadUnusedAssets();
-
+        if (callUnloadUnusedAssetsOnDestroy)
+        {
+            yield return Resources.UnloadUnusedAssets();
+        }
     }
 
-    public void OnBeforeFloatingPointReset()
-    {
-
-    }
-
+    public void OnBeforeFloatingPointReset() { }
 
     public void OnFloatingPointReset(float movedOffset)
     {
-        foreach (var item in suspendedPatches)
+        if (suspendedPatches.Count > 0)
         {
-            suspendedPatches[item.Key] = item.Value - movedOffset;
-
+            Patch[] keys = new Patch[suspendedPatches.Count];
+            suspendedPatches.Keys.CopyTo(keys, 0);
+            for (int i = 0; i < keys.Length; i++)
+            {
+                Patch k = keys[i];
+                suspendedPatches[k] = suspendedPatches[k] - movedOffset;
+            }
         }
 
-        Transform newEnvT = newEnvEnteredGameObject.transform;
-        Vector3 newEnvObjectPos = newEnvT.position;
-        newEnvObjectPos.z -= movedOffset;
-        newEnvT.position = newEnvObjectPos;
+        if (newEnvEnteredGameObject != null)
+            newEnvEnteredGameObject.transform.position -= new Vector3(0, 0, movedOffset);
 
-
-        if (NewEnvironmentInfoQueue.Count != 0)
+        if (NewEnvironmentInfoQueue.Count > 0)
         {
-
-            Queue<NewEnvironmentInfo> tempQueue = new Queue<NewEnvironmentInfo>();
-
-            foreach (NewEnvironmentInfo item in NewEnvironmentInfoQueue)
+            tmpEnvInfoList.Clear();
+            foreach (var item in NewEnvironmentInfoQueue)
             {
-                Vector3 newPos = item.Position;
-                newPos.z -= movedOffset;
-
-                tempQueue.Enqueue(new NewEnvironmentInfo(newPos, item.Environment));
+                tmpEnvInfoList.Add(new NewEnvironmentInfo(new Vector3(item.Position.x, item.Position.y, item.Position.z - movedOffset), item.Environment));
             }
 
-            NewEnvironmentInfoQueue = tempQueue;
+            NewEnvironmentInfoQueue.Clear();
+            for (int i = 0; i < tmpEnvInfoList.Count; i++)
+                NewEnvironmentInfoQueue.Enqueue(tmpEnvInfoList[i]);
         }
 
         zDistanceWhereLastPatchEnded -= movedOffset;

@@ -43,4 +43,12 @@ public class StartupResolutionReducer_GB : MonoBehaviour
         Screen.SetResolution(newWidth, newHeight, true);
         Debug.Log($"[Startup] Resolution set to {newWidth}x{newHeight} from {originalWidth}x{originalHeight}");
     }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.T))
+        {
+            Time.timeScale = 1;
+        }
+    }
 }

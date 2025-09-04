@@ -61,15 +61,11 @@ public class EnvironmentChanger : MonoBehaviour
 
     private void PauseSafeZoneGenerationAndOverrideUnPauseBehaviour(GameEvent gameEvent)
     {
-        Debug.LogError("PlayerFlying");
-        WaterParkEnter.isFlying = false;
         PauseSafeZoneGeneration();
     }
 
     private void CheckAndUnPauseSafeZoneGeneration(GameEvent gameEvent)
     {
-        Debug.LogError("PlayerNotFlying");
-        WaterParkEnter.isFlying = true;
         UnPauseSafeZoneGeneration();
     }
 
@@ -124,7 +120,7 @@ public class EnvironmentChanger : MonoBehaviour
         nextEnvIndex = nextEnvIndex >= environmentSwitchingOrder.EnvironmentToLoopThrough.Length ? 0 : nextEnvIndex;
         return environmentSwitchingOrder.EnvironmentToLoopThrough[nextEnvIndex];
     }
-    int currentRampndex=0;
+
     private IEnumerator CheckAndGenerateSafeZone_MergePatchRoutine(EnviornmentSO loadedEnvironment)
     {
         // envFactorySO.AddEnvironmentForWarmup(loadedEnvironment);
@@ -164,13 +160,7 @@ public class EnvironmentChanger : MonoBehaviour
         }
         else
         {
-            if (currentRampndex == 0)
-            {
-                environmentSpawner.ChangeActiveEnv(switchEnvGeneral); // Ramp Building
-            }
-            currentRampndex++;
-            if (currentRampndex == 3)
-                currentRampndex = 0;
+            environmentSpawner.ChangeActiveEnv(switchEnvGeneral); // Ramp Building
             environmentSpawner.ChangeEnvCategory(envChangeCategory);
             environmentSpawner.SpawnOnePatchOnly(true);
         }

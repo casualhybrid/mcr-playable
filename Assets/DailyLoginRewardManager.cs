@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +12,8 @@ public class DailyLoginRewardManager : MonoBehaviour
         public Image buttonImage;
         public GameObject claimObject;
         public int amount;
+        public GameObject rewardedVideoIcon;
+        public GameObject claimedImage;
     }
 
     public enum RewardIntervalType
@@ -28,17 +29,24 @@ public class DailyLoginRewardManager : MonoBehaviour
     [Header("Timing Control")]
     public RewardIntervalType rewardIntervalType = RewardIntervalType.OneMinute;
 
-    private int currentDayIndex = 0;
+    private int currentDayIndex;
     private DateTime nextRewardTime;
+
     private const string NextRewardKey = "NextRewardTime";
     private const string DayIndexKey = "DailyLoginDay";
 
+    private bool isRewardedVideoActive = false;
+
+    public static int newCurrentIndex;
+
     private void Start()
     {
+        Log("Manager Start → loading progress");
         LoadProgress();
-        CheckRewardAvailability();
+        RefreshUI();
     }
 
+    // ------------------- PROGRESS -------------------
     private void LoadProgress()
     {
         currentDayIndex = PlayerPrefs.GetInt(DayIndexKey, 0);
@@ -47,86 +55,170 @@ public class DailyLoginRewardManager : MonoBehaviour
             nextRewardTime = DateTime.Parse(PlayerPrefs.GetString(NextRewardKey));
         else
             nextRewardTime = DateTime.UtcNow;
+
+        Log($"LoadProgress → DayIndex: {currentDayIndex}, NextRewardTime: {nextRewardTime}");
     }
 
-    private void CheckRewardAvailability()
+    private void SaveProgress()
     {
+        PlayerPrefs.SetInt(DayIndexKey, currentDayIndex);
+        PlayerPrefs.SetString(NextRewardKey, nextRewardTime.ToString());
+        PlayerPrefs.Save();
+
+        Log($"SaveProgress → DayIndex: {currentDayIndex}, NextRewardTime: {nextRewardTime}");
+    }
+
+    // ------------------- UI REFRESH -------------------
+    private void RefreshUI()
+    {
+        Log("RefreshUI → checking state...");
+
         if (currentDayIndex >= dailyButtons.Count)
         {
-            Debug.Log("All rewards claimed.");
+            Log("All rewards claimed. Disabling buttons.");
             DisableAllButtons();
             return;
         }
 
         if (DateTime.UtcNow >= nextRewardTime)
         {
-            SetupButtons(); // reward available
+            isRewardedVideoActive = false;
+            Log($"Day {currentDayIndex + 1} available → setting up normal daily reward.");
+            SetupDailyReward();
         }
         else
         {
-            DisableAllButtons(); // wait for timer
+            isRewardedVideoActive = true;
+            Log($"Day {currentDayIndex + 1} locked until {nextRewardTime} → enabling Rewarded Video option.");
+            SetupRewardedAdReward();
         }
     }
 
-    private void SetupButtons()
+    private void SetupDailyReward()
     {
+        Log("SetupDailyReward → Highlighting current day button.");
+
         for (int i = 0; i < dailyButtons.Count; i++)
         {
             int index = i;
+            DailyRewardButton btn = dailyButtons[i];
+
             bool isCurrent = (index == currentDayIndex);
 
-            dailyButtons[i].buttonImage.sprite = isCurrent ? yellowSprite : blueSprite;
-            dailyButtons[i].rewardButton.interactable = isCurrent;
-            dailyButtons[i].claimObject.SetActive(isCurrent);
+            btn.buttonImage.sprite = isCurrent ? yellowSprite : blueSprite;
+            btn.rewardButton.interactable = isCurrent;
+            btn.claimObject.SetActive(isCurrent);
 
-            dailyButtons[i].rewardButton.onClick.RemoveAllListeners();
+            btn.claimedImage.SetActive(index < currentDayIndex);
+
+            btn.rewardedVideoIcon.SetActive(false);
+            btn.rewardButton.onClick.RemoveAllListeners();
 
             if (isCurrent)
-                dailyButtons[i].rewardButton.onClick.AddListener(() => ClaimReward(index));
+            {
+                Log($"Day {index + 1} is available → enabling claim button.");
+                btn.rewardButton.onClick.AddListener(() => ClaimReward(index));
+            }
         }
+    }
+
+    private void SetupRewardedAdReward()
+    {
+        Log("SetupRewardedAdReward → Rewarded Video active for current day.");
+
+        DisableAllButtons();
+
+        DailyRewardButton btn = dailyButtons[currentDayIndex];
+
+        btn.buttonImage.sprite = yellowSprite;
+        btn.rewardButton.interactable = true;
+        btn.claimObject.SetActive(true);
+        btn.rewardedVideoIcon.SetActive(true);
+
+        for (int i = 0; i < dailyButtons.Count; i++)
+            dailyButtons[i].claimedImage.SetActive(i < currentDayIndex);
+
+        btn.rewardButton.onClick.RemoveAllListeners();
+        btn.rewardButton.onClick.AddListener(() => ShowRewardedVideo(currentDayIndex));
     }
 
     private void DisableAllButtons()
     {
+        Log("DisableAllButtons → resetting all states.");
         foreach (var btn in dailyButtons)
         {
             btn.rewardButton.interactable = false;
             btn.claimObject.SetActive(false);
+            btn.rewardedVideoIcon.SetActive(false);
             btn.buttonImage.sprite = blueSprite;
         }
     }
-    public static int newCurrentIndex;
+
+    // ------------------- CLAIM REWARD -------------------
     public void ClaimReward(int index)
     {
+        Log($"ClaimReward → Claiming reward for Day {index + 1}, Amount: {dailyButtons[index].amount}");
+
         GamePlayMysteryBoxOpenPanel.currentIndex = index;
         newCurrentIndex = index;
         GamePlayMysteryBoxOpenPanel.isDailyReward = true;
-        GamePlayMysteryBoxOpenPanel.amountReward=dailyButtons[index].amount;
-        Debug.Log($"Reward claimed for Day {index + 1}");
+        GamePlayMysteryBoxOpenPanel.amountReward = dailyButtons[index].amount;
 
-        dailyButtons[index].rewardButton.interactable = false;
-        dailyButtons[index].claimObject.SetActive(false);
+        DailyRewardButton btn = dailyButtons[index];
+        btn.rewardButton.interactable = false;
+        btn.claimObject.SetActive(false);
+        btn.claimedImage.SetActive(true);
 
-        // Advance logic
         currentDayIndex++;
-        PlayerPrefs.SetInt(DayIndexKey, currentDayIndex);
 
-        // Set next unlock time
-        TimeSpan waitDuration = rewardIntervalType == RewardIntervalType.OneMinute
-            ? TimeSpan.FromMinutes(1)
-            : TimeSpan.FromDays(1);
+        if (!isRewardedVideoActive)
+        {
+            TimeSpan waitDuration = rewardIntervalType == RewardIntervalType.OneMinute
+                ? TimeSpan.FromMinutes(1)
+                : TimeSpan.FromDays(1);
 
-        nextRewardTime = DateTime.UtcNow + waitDuration;
-        PlayerPrefs.SetString(NextRewardKey, nextRewardTime.ToString());
+            nextRewardTime = DateTime.UtcNow + waitDuration;
+            Log($"Next reward scheduled at {nextRewardTime}");
+        }
 
-        PlayerPrefs.Save();
-
-        DisableAllButtons(); // prevent spamming
+        SaveProgress();
+        RefreshUI();
     }
 
+    // ------------------- REWARDED AD -------------------
+    private void ShowRewardedVideo(int index)
+    {
+        Log("ShowRewardedVideo → Attempting to show ad.");
+
+        if (!MaxAdMobController.Instance.IsRewardedAdAvailable())
+        {
+            Log("Rewarded ad not available.");
+            return;
+        }
+
+        MaxAdMobController.Instance.ShowRewardedVideoAd();
+
+        void HandleVideoComplete()
+        {
+            MaxAdMobController.OnVideoAdCompleteReward -= HandleVideoComplete;
+            Log("Rewarded Ad Completed → granting reward.");
+            ClaimReward(index);
+        }
+
+        MaxAdMobController.OnVideoAdCompleteReward += HandleVideoComplete;
+
+    }
+
+    // ------------------- PANEL CLOSE -------------------
     public void Close()
     {
-      
+        Log("Close → Closing daily reward panel.");
         GamePlayMysteryBoxOpenPanel.isDailyReward = false;
+    }
+
+    // ------------------- DEBUG UTIL -------------------
+    private void Log(string message)
+    {
+        Debug.Log($"<color=#00BFFF>[DAILY REWARD]</color> {message}");
     }
 }

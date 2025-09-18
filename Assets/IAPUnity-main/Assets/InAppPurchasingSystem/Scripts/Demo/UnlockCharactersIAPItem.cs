@@ -20,6 +20,7 @@ public class UnlockCharactersIAPItem : IAPItem
         RaiseRightBeforePurchaseCompleted();
 
         playerInventory.UnlockAllCharacters();
+        MATS_CheckIAP.allCharactersUnlocked = true;
 
         RaisePurchaseCompletionEvent();
 

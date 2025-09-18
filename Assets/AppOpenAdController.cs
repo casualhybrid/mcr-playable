@@ -6,11 +6,12 @@ using System.Collections;
 using Firebase.Analytics;
 using System.Collections.Generic;
 using AppsFlyerSDK;
+using static UnityEngine.CullingGroup;
 
 public class AppOpenAdController : MonoBehaviour
 {
     public static AppOpenAdController instance;
-    public  Action AdmobSdkInit;
+    public Action AdmobSdkInit;
 #if UNITY_ANDROID
     private string _adUnitId = "ca-app-pub-3940256099942544/9257395921";  //ca-app-pub-1919652342336147/5359299507
 #elif UNITY_IPHONE
@@ -23,12 +24,19 @@ public class AppOpenAdController : MonoBehaviour
     private DateTime _expireTime;
     private AppOpenAd _appOpenAd;
 
-    
+    public static bool isFirstTime = false;
+
+    public bool isAdShowing = false;
+
+
     public void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
         AppStateEventNotifier.AppStateChanged += OnAppStateChanged;
-      //  AdmobSdkInit += InitSdk;
+        //  AdmobSdkInit += InitSdk;
     }
     public void Start()
     {
@@ -70,6 +78,7 @@ public class AppOpenAdController : MonoBehaviour
         {
             return;
         }
+        isFirstTime = true;
         ShowAd();
     }
 
@@ -109,6 +118,7 @@ public class AppOpenAdController : MonoBehaviour
     int index = 0;
     public void ShowAd()
     {
+
         bool isFirstOpen = !PlayerPrefs.HasKey("first_open_done");
 
         if (isFirstOpen)
@@ -116,13 +126,15 @@ public class AppOpenAdController : MonoBehaviour
             PlayerPrefs.SetInt("first_open_done", 1); // Mark that we've opened the app at least once
             PlayerPrefs.Save();
 
-            if (!RemoteConfigManager.ShowOpenAdsFirstOpen)
+            if (!RemoteConfigManager.ShowOpenAdsFirstOpen && !isFirstTime)
             {
                 Debug.Log("[AppOpenAd] Skipping ad on first open (per Remote Config).");
+
                 return;
             }
             else
             {
+
                 Debug.Log("[AppOpenAd] Showing ad on first open (per Remote Config).");
             }
         }
@@ -131,9 +143,16 @@ public class AppOpenAdController : MonoBehaviour
             Debug.Log("[AppOpenAd] Not first open — always show.");
         }
 
+
+
+
         // Show ad if ready
         if (_appOpenAd != null && _appOpenAd.CanShowAd())
         {
+            if (PlayerPrefs.GetInt("IsAdsRemoved") == 1)
+            {
+                return;
+            }
             Debug.Log("[AppOpenAd] Showing app open ad.");
             _appOpenAd.Show();
         }
@@ -164,13 +183,20 @@ public class AppOpenAdController : MonoBehaviour
         }
     }
     int Index = 0;
+
+    bool IsStateChanged = false;
     private void OnAppStateChanged(AppState state)
     {
         Index++;
         Debug.Log("App State changed to : " + state);
 
+
         if (state == AppState.Foreground)
         {
+            if (!RemoteConfigManager.ResumeAds || isAdShowing)
+            {
+                return;
+            }
             ShowAd();
         }
     }
@@ -179,17 +205,23 @@ public class AppOpenAdController : MonoBehaviour
     {
         ad.OnAdPaid += (AdValue adValue) =>
         {
-           
+            //FireBase
             double revenue = adValue.Value / 1000000.0;
             FirebaseAnalytics.LogEvent("appopen_ad_revenue", new Parameter[] {
                 new Parameter("revenue", revenue),
                 new Parameter("currency_code", adValue.CurrencyCode)
             });
 
+
+            //AppsFlyer
             Dictionary<string, string> additionalParams = new Dictionary<string, string>();
             additionalParams.Add(AdRevenueScheme.AD_TYPE, "appopen");
             var logRevenue = new AFAdRevenueData("appopen_ad_revenue", MediationNetwork.GoogleAdMob, "USD", revenue);
-          AppsFlyer.logAdRevenue(logRevenue, additionalParams);
+            AppsFlyer.logAdRevenue(logRevenue, additionalParams);
+
+
+
+
 
         };
         ad.OnAdImpressionRecorded += () =>
@@ -207,7 +239,7 @@ public class AppOpenAdController : MonoBehaviour
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            Debug.Log("App open ad full screen content closed."); 
+            Debug.Log("App open ad full screen content closed.");
 
             LoadAd();
         };

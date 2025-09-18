@@ -22,6 +22,10 @@ public class SetKeyValues : MonoBehaviour
     public virtual void GiveReward()
     {
         gamePlaySessionInventory.AddThisKeyToGamePlayInventory(keyValue, rewardValue);
+        if (keyValue == "GameMysteryBox")
+        {
+            PlayerPrefs.SetInt("AwardBox", PlayerPrefs.GetInt("AwardBox") + rewardValue);
+        }
     }
 
     public void SendEvent(string eventName)

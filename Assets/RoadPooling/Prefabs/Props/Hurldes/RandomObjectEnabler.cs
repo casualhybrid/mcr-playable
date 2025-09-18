@@ -4,9 +4,17 @@ using UnityEngine;
 public class RandomObjectEnabler : MonoBehaviour
 {
     [SerializeField] private List<GameObject> objectsList;
-
+    public bool isTutorial = false;
     private void OnEnable()
     {
+        if (MATS_GameManager.instance.isTutorialPlaying)
+        {
+            for (int i = 0; i < objectsList.Count; i++)
+            {
+                objectsList[i].SetActive(false);
+            }
+            return;
+        }
         EnableRandomObject();
     }
 

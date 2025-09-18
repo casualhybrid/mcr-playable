@@ -86,6 +86,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GamePlayUIController gamePlayUIController;
     [SerializeField] private TutorialFeedBackPanel tutorialFeedBackPanel;
     [SerializeField] private Canvas tutorialHintPanelCanvas;
+    [SerializeField] private Rigidbody playerRigidBody;
 
 
     private readonly HashSet<TutorialGesture> completedGestures = new HashSet<TutorialGesture>();
@@ -231,8 +232,10 @@ public class TutorialManager : MonoBehaviour
         currentTutorialSegment = tutorialSegmentData.GetTutorialSegmentByIndex(tutorialSegmentData.curTutorialSegmentIndex);
 
         AnalyticsManager.CustomData("TutorialStarted");
-
+        //  playerRigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        // playerRigidBody.interpolation = RigidbodyInterpolation.None;
         listeningToInputEvents = true;
+        MATS_GameManager.instance.isTutorialPlaying = true;
         tutorialHasStarted.RaiseEvent();
     }
 
@@ -333,7 +336,8 @@ public class TutorialManager : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
 
-        sequence.Join(playerSharedData.PlayerTransform.DOMove(checkPointPosition, TutorialManager.RewindTime).SetEase(Ease.Linear));
+        // sequence.Join(playerSharedData.PlayerTransform.DOMove(checkPointPosition, TutorialManager.RewindTime).SetEase(Ease.Linear));
+        sequence.Join(playerRigidBody.DOMove(checkPointPosition, TutorialManager.RewindTime).SetEase(Ease.Linear));
         sequence.Join(playerSharedData.ChaserTransform.DOMove(new Vector3(checkPointPosition.x - diffX, checkPointPosition.y, checkPointPosition.z - diffZ), TutorialManager.RewindTime).SetEase(Ease.Linear).OnComplete(() =>
         {
             playerSharedData.ChaserTransform.GetComponent<ChaserRunner>().OverridePosition();
@@ -646,7 +650,7 @@ public class TutorialManager : MonoBehaviour
         TutorialGesture tutorialGesture = gesture == TutorialGesture.None ? currentTutorialSegment.tutorialGesture : gesture;
         tutorialHintPanelCanvas.enabled = true;
         tutorialHintPanelCanvas.GetComponent<TutorialActionText>().OnPropertiesSet(tutorialGesture);
-       // gamePlayUIController.ShowPanelScreen(ScreenIds.TutorialTextHintPanel, ScreenOperation.Open, new TutorialTextHintProperties() { CurrentTutorialGesture = tutorialGesture });
+        // gamePlayUIController.ShowPanelScreen(ScreenIds.TutorialTextHintPanel, ScreenOperation.Open, new TutorialTextHintProperties() { CurrentTutorialGesture = tutorialGesture });
     }
 
     #endregion Hints
@@ -662,6 +666,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowFeedbackTutorialIfRequired()
     {
+        Debug.LogError($"tutorialSegmentData.curTutorialSegmentIndex MATSSSSSS {tutorialSegmentData.curTutorialSegmentIndex}");
         if (tutorialSegmentData.curTutorialSegmentIndex == 5)
         {
             tutorialFeedBackPanel.gameObject.SetActive(true);
@@ -693,7 +698,7 @@ public class TutorialManager : MonoBehaviour
 
         tutorialHand.SetActive(false);
         tutorialHintPanelCanvas.enabled = false;
-       // gamePlayUIController.ShowPanelScreen(ScreenIds.TutorialTextHintPanel, ScreenOperation.Close);
+        // gamePlayUIController.ShowPanelScreen(ScreenIds.TutorialTextHintPanel, ScreenOperation.Close);
     }
 
     public void TurnOffActiveHints()
@@ -890,7 +895,9 @@ public class TutorialManager : MonoBehaviour
         tutorialFeedBackPanel.gameObject.SetActive(true);
 
         AnalyticsManager.CustomData("TutorialEnded");
-
+        MATS_GameManager.instance.isTutorialPlaying = false;
+        playerRigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        playerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;
         DeSubscribeEvents();
         saveManager.MainSaveFile.TutorialHasCompleted = true;
         IsTutorialActive = false;

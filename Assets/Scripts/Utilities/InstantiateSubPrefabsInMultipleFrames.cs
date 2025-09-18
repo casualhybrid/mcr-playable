@@ -54,7 +54,7 @@ public class InstantiateSubPrefabsInMultipleFrames : MonoBehaviour
             {
                 InstantiationCombo instantiationCombo = info.instantiationCombos[k];
 
-                foreach(Transform t in instantiationCombo.ParentT)
+                foreach (Transform t in instantiationCombo.ParentT)
                 {
                     if (PrefabUtility.IsPartOfPrefabInstance(t.gameObject) && t.gameObject.name == instantiationCombo.Prefab.name)
                     {
@@ -81,7 +81,7 @@ public class InstantiateSubPrefabsInMultipleFrames : MonoBehaviour
 
         for (int i = 0; i < instantiationInfos.Length; i++)
         {
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.08f);
 
             InstantiationInfo info = instantiationInfos[i];
 

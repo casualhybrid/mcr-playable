@@ -18,7 +18,9 @@ public class RemoveADSIAPItem : IAPItem
     public override void ProcessPurchaseCompletion()
     {
         RaiseRightBeforePurchaseCompleted();
-        saveManager.MainSaveFile.isAdsPurchased = true;
+        // saveManager.MainSaveFile.isAdsPurchased = true;
+        PlayerPrefs.SetInt("IsAdsRemoved", 1);
+        
         onPlayerBoughtAds.RaiseEvent();
         RaisePurchaseCompletionEvent();
     }

@@ -1,4 +1,6 @@
 using deVoid.UIFramework;
+using Facebook.Unity;
+
 //using fbg;
 using TheKnights.SaveFileSystem;
 //using UnityEditor.PackageManager;
@@ -24,8 +26,8 @@ public class MainMenuManager : AWindowController
     [SerializeField] private GameObject leaderBoardPanel;
     private GameObject leaderBoardRefrence;
     GameObject animator;
-   /* GameObject cameraRefrence;
-    GameObject cameraParent;*/
+    /* GameObject cameraRefrence;
+     GameObject cameraParent;*/
     GameObject parent;
     //private Coroutine StartCutSceneDelayRoutineRef;
     private bool cutSceneHasStarted = false;
@@ -39,7 +41,7 @@ public class MainMenuManager : AWindowController
         Instance = this;
         base.Awake();
     }
-   
+
     public void InterTest()
     {
         MaxAdMobController.Instance.ShowInterstitialAd();
@@ -47,7 +49,7 @@ public class MainMenuManager : AWindowController
     private void Start()
     {
 
-        if(!saveManager.MainSaveFile.TutorialHasCompleted)
+        if (!saveManager.MainSaveFile.TutorialHasCompleted)
         {
             TapToPlayFirstTimeCanvas.transform.SetParent(null, true);
             TapToPlayFirstTimeCanvas.enabled = true;
@@ -58,26 +60,26 @@ public class MainMenuManager : AWindowController
         /*cameraRefrence = CameraManager.Instance.camera;
         cameraParent = CameraManager.Instance.cameraParent;*/
         parent = CameraManager.Instance.parent;
-        GameObject gb = Instantiate(effect,transform);
+        GameObject gb = Instantiate(effect, transform);
         adsController.HideSmallBanner();
-        if(gameObject.transform.GetChild(2))
+        if (gameObject.transform.GetChild(2))
         {
             gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
 
-       
+
 
     }
 
-    
+
     public void RewardCoinPosition()
     {
-        UIEffectsHandler.newPosition = new Vector2(232f,585f);
+        UIEffectsHandler.newPosition = new Vector2(232f, 585f);
     }
     public void OnClickLeaderBoard()
     {
 
-         leaderBoardPanel.SetActive(true);
+        leaderBoardPanel.SetActive(true);
 
     }
 
@@ -93,10 +95,10 @@ public class MainMenuManager : AWindowController
         //adsController.HideSmallBanner();
         PersistentAudioPlayer.Instance.PlayAudio();
     }
-   /* public void OnClickDailyReward()
-    {
-        PersistentAudioPlayer.Instance.PanelSounds();
-    }*/
+    /* public void OnClickDailyReward()
+     {
+         PersistentAudioPlayer.Instance.PanelSounds();
+     }*/
     public void OnClickClose()
     {
         PersistentAudioPlayer.Instance.PlayAudio();
@@ -138,7 +140,7 @@ public class MainMenuManager : AWindowController
 
 
 
-    
+
 
 
     public void OpenRequiredWindow(string reqWindow)
@@ -174,27 +176,30 @@ public class MainMenuManager : AWindowController
         adsController.OnInterstitialAdCompleted.AddListener(ContinueWithCutScene);*/
         OnTapToPlay.RaiseEvent();
         ContinueWithCutScene();
-      PersistentAudioPlayer.Instance.PlayGameplayAudio();
+        PersistentAudioPlayer.Instance.PlayGameplayAudio();
         PersistentAudioPlayer.Instance.CheckMusicStatus();
         PersistentAudioPlayer.Instance.PlayTumTumSound();
+
+        SendEvents($"start_level_{MATS_GameManager.GetCurrentLevel()}");
+
         /*if (animator)
         {
             animator.GetComponent<Animator>().SetBool("Jump", true);
             *//* animator.transform.parent.gameObject.GetComponent<Animator>().enabled = true;*//*
         }*/
 
-      /*  if (cameraParent)
-            cameraParent.GetComponent<Animator>().enabled = true;
-        if (cameraRefrence)
-            cameraRefrence.GetComponent<Animator>().enabled = true;*/
+        /*  if (cameraParent)
+              cameraParent.GetComponent<Animator>().enabled = true;
+          if (cameraRefrence)
+              cameraRefrence.GetComponent<Animator>().enabled = true;*/
         /*if (parent)
             parent.GetComponent<Animator>().enabled = true;*/
-        
-        
+
+
 
         //   StartCutSceneDelayRoutineRef = StartCoroutine(StartCutSceneAfterDelay());
         //    OpenTheWindow("AdIsLoadingBeforeCutScene");
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("start_level");
+
     }
 
     private void ContinueWithCutScene()

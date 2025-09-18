@@ -28,7 +28,7 @@ public class CharacterSelectionManager : AWindowController
     [SerializeField] private string[] abilities;
     [SerializeField] private GameObject rightArrow, leftArrow, lockIcon, contentPanel;
     [SerializeField] private Image fillImage, abilityIcon;
-   // [SerializeField] private ScrollRect scrollRect;
+    // [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Button backButton;
     public GameObject /*SelectedArrowImage,*/ SelectButton, DiamondsButtons, WatchAdbutton, fillBar, figureIcon/*, tooltipButton*/;
 
@@ -54,12 +54,15 @@ public class CharacterSelectionManager : AWindowController
     [SerializeField] TextMeshProUGUI costText;
     [SerializeField] private InputChannel inputChannel;
 
+    public GameObject notEnoughResourcesCoins;
+    public GameObject notEnoughResourcesDiamonds;
+
     //   private Camera uiCamera;
 
     protected override void Awake()
     {
         base.Awake();
-       // uiCamera = GetComponentInParent<UIFrame>().UICamera;
+        // uiCamera = GetComponentInParent<UIFrame>().UICamera;
     }
 
     private void OnEnable()
@@ -267,7 +270,7 @@ public class CharacterSelectionManager : AWindowController
     public void ShowCharacter(int val)
     {
         pressedCharacterNumber = val;
-        if(pressedCharacterNumber==1)
+        if (pressedCharacterNumber == 1)
         {
             costText.text = "15000";
             Icon.sprite = icons[0];
@@ -278,7 +281,7 @@ public class CharacterSelectionManager : AWindowController
             Icon.sprite = icons[1];
         }
 
-            FigrineName.text = charactersDataBase.GetCharacterConfigurationData(val).GetName;
+        FigrineName.text = charactersDataBase.GetCharacterConfigurationData(val).GetName;
         abilityIcon.sprite = charAbility[val];
         abilityName.text = abilities[val];
         SnapInstance(val);
@@ -351,7 +354,7 @@ public class CharacterSelectionManager : AWindowController
 
                     LoadTheCharacter();
                 }
-             
+
             }
             else
             {
@@ -382,7 +385,7 @@ public class CharacterSelectionManager : AWindowController
         arrowHandler();
         pressedCharacterNumber = val;
 
- 
+
     }
 
     private void LoadTheCharacter()
@@ -440,7 +443,7 @@ public class CharacterSelectionManager : AWindowController
 
     public void SelectCharacter()
     {
-       
+
 
         //SelectedArrowImage.SetActive(true);
         selectedText.text = "SELECTED";
@@ -464,7 +467,7 @@ public class CharacterSelectionManager : AWindowController
 
     public void UnlockCharacterFigurineWithDiamonds()
     {
-      
+
         List<string> thingsGot = new List<string>();//z
         List<int> amountsGot = new List<int>();//z
         if (pressedCharacterNumber == 2)
@@ -494,13 +497,13 @@ public class CharacterSelectionManager : AWindowController
 
             else
             {
-                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+                notEnoughResourcesDiamonds.SetActive(true);
             }
 
 
             purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds", 300, amountsGot);
         }
-        else if(pressedCharacterNumber == 1)
+        else if (pressedCharacterNumber == 1)
         {
             costText.text = "15000";
             Icon.sprite = icons[0];
@@ -527,13 +530,19 @@ public class CharacterSelectionManager : AWindowController
 
             else
             {
-                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+                // OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+
+
+                notEnoughResourcesCoins.SetActive(true);
             }
 
 
             purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", 15000, amountsGot);
         }
     }
+
+    bool isActive = false;
+
 
     private void SendCharacterBuyAnalytic(string characterName)
     {

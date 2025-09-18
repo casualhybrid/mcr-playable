@@ -29,25 +29,25 @@ public class CoinsArray : MonoBehaviour, IFloatingReset
     [SerializeField] private GeneralGameObjectPool coinPool;
 
     [SerializeField] private GeneralGameObjectPool doubleCoinPool;
-    [EnumToggleButtons] [SerializeField] public CoinsSpawnType coinsSpawnType;
+    [EnumToggleButtons][SerializeField] public CoinsSpawnType coinsSpawnType;
 
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private GameObject doubleCoinPrefab;
 
-   // [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)] [SerializeField] private int ascendingCoins;
-   // [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)] [SerializeField] private int descendingCoins;
-    [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)] [SerializeField] private float distBetweeenCurvedCoins;
+    // [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)] [SerializeField] private int ascendingCoins;
+    // [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)] [SerializeField] private int descendingCoins;
+    [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)][SerializeField] private float distBetweeenCurvedCoins;
     [ShowIf("coinsSpawnType", CoinsSpawnType.CurvedRay)][SerializeField] private float yOffsetCurvedCoins;
 
     // [ShowIf("coinsSpawnType", CoinsSpawnType.Row)] [SerializeField] private int coinsToGen;
-    [ShowIf("coinsSpawnType", CoinsSpawnType.Row)] [SerializeField] public float lengthToGenerateCoins;
+    [ShowIf("coinsSpawnType", CoinsSpawnType.Row)][SerializeField] public float lengthToGenerateCoins;
 
-    [ShowIf("coinsSpawnType", (CoinsSpawnType.Row | CoinsSpawnType.ZigZag))] [SerializeField] private float distBetweenCoins;
+    [ShowIf("coinsSpawnType", (CoinsSpawnType.Row | CoinsSpawnType.ZigZag))][SerializeField] private float distBetweenCoins;
 
     [ShowIf("coinsSpawnType", CoinsSpawnType.ZigZag)] public float[] zigCoins;
 
-    [HideInInspector] [SerializeField] private float[] ZcoinsArray;
-    [HideInInspector] [SerializeField] private float[] YcoinsArray;
+    [HideInInspector][SerializeField] private float[] ZcoinsArray;
+    [HideInInspector][SerializeField] private float[] YcoinsArray;
     /*[HideInInspector]*/
     public List<CoinsSpawnInfo> coinsArraySpawnBuffer { get; set; } = new List<CoinsSpawnInfo>();
 
@@ -140,7 +140,7 @@ public class CoinsArray : MonoBehaviour, IFloatingReset
         }
 
         if ((IsInitialized && coinsSpawned.Count == 0 && specialPickupsSpawned.Count == 0) || forceReturn)
-            Destroy(this.gameObject,3);
+            Destroy(this.gameObject, 3);
     }
 
     [Button("Generate")]
@@ -321,7 +321,7 @@ public class CoinsArray : MonoBehaviour, IFloatingReset
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-       // CheckObstaclesState(spawnPoint); //zzzzn
+        // CheckObstaclesState(spawnPoint); //zzzzn
     }
     public void DissolveCoinBuffer()
     {
@@ -830,9 +830,10 @@ public class CoinsArray : MonoBehaviour, IFloatingReset
         }
         catch (Exception ex)
         {
+            MATS_GameManager.instance.Dummy = this.gameObject;
             print(ex);
         }
-        
+
     }
 
     public void OnFloatingPointReset(float movedOffset)

@@ -16,12 +16,12 @@ public class DailyRewardScript : MonoBehaviour
     [SerializeField] private AWindowController windowControllerObj;
     [SerializeField] private InventorySystem inventoryObj;
 
-    [SerializeField] private GameObject notificationObj; 
-    [SerializeField] private TextMeshProUGUI noOfBoxTxt; 
+    [SerializeField] private GameObject notificationObj;
+    [SerializeField] private TextMeshProUGUI noOfBoxTxt;
     [SerializeField] private GameEvent updateUIEvent;
     //[SerializeField] private GameObject icon;
 
-    private float timeUntilNextMysteryBox = /*86400.0f*/ 60f;
+    private float timeUntilNextMysteryBox = 86400.0f;
     private bool timeCheck = false;
 
     private void Start()
@@ -33,7 +33,7 @@ public class DailyRewardScript : MonoBehaviour
             PlayerPrefs.SetInt("AwardBox", 0);
         }
 
-        
+
         ulong prevLoginTime = ulong.Parse(PlayerPrefs.GetString("InitialTimer")) / TimeSpan.TicksPerMillisecond;
         ulong currentLoginTIme = (ulong)DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         float secondsLeft = (float)(currentLoginTIme - prevLoginTime) / (float)1000;
@@ -75,7 +75,7 @@ public class DailyRewardScript : MonoBehaviour
             notificationObj.SetActive(true);
 
             rewardBoxAvailableAnim.transform.localRotation = Quaternion.Euler(0, 0, -10);
-            rewardBoxAvailableAnim.CreateTween(false,false);
+            rewardBoxAvailableAnim.CreateTween(false, false);
             rewardBoxAvailableAnim.DORestart();
         }
         else
@@ -108,6 +108,7 @@ public class DailyRewardScript : MonoBehaviour
 
     public void OpenMysteryBoxPanel()
     {
+
         if (PlayerPrefs.GetInt("AwardBox") > 0)
         {
             PushNotificationsManager.RegisterDailyRewardNotification();

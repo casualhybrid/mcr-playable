@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using TheKnights.LeaderBoardSystem;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class GameOverUIManager : AWindowController
 {
@@ -36,7 +37,7 @@ public class GameOverUIManager : AWindowController
 
     [SerializeField] private GameObject mapProgression, generalProgression;
     [SerializeField] private MapProgressionSO mapData;
-  //  [SerializeField] private GameObject facebookLoginBar;
+    //  [SerializeField] private GameObject facebookLoginBar;
 
     [SerializeField] private UnityEvent onAdFinished;
 
@@ -51,22 +52,27 @@ public class GameOverUIManager : AWindowController
 
     private void OnEnable()
     {
-     //   SetupFaceBookLoginBarUIRelatedDisplay();
+        //   SetupFaceBookLoginBarUIRelatedDisplay();
 
         if (initialized)
             return;
 
-      SetLowerButtonPositionsAccordingToRewardedADAvailability();
+        SetLowerButtonPositionsAccordingToRewardedADAvailability();
 
         initialized = true;
 
         SubscribeToAdEvents();
-    //    FaceBookManager.OnUserLoggedInToFaceBook.AddListener(SetupFaceBookLoginBarUIRelatedDisplay);
+        //    FaceBookManager.OnUserLoggedInToFaceBook.AddListener(SetupFaceBookLoginBarUIRelatedDisplay);
 
         SendGameOverScreenAppearedEvent();
 
         highScoreRibbon.SetActive(GamePlaySessionCompleted.IsHighScoreMadeLastSession);
         PersistentAudioPlayer.Instance.LevelFailedAudio();
+
+
+        AnalyticsManager.CustomData($"end_level_{MATS_GameManager.GetCurrentLevel()}");
+        MATS_GameManager.IncrementLevel();
+
     }
 
     private IEnumerator Start()
@@ -98,12 +104,12 @@ public class GameOverUIManager : AWindowController
 
     private void SetLowerButtonPositionsAccordingToRewardedADAvailability()
     {
-       /* bool isRewardedADAvailable = adControl.IsRewardedADAvailable();
+        /* bool isRewardedADAvailable = adControl.IsRewardedADAvailable();
 
-        if (!isRewardedADAvailable)
-        {
-            DisableDoubleRewardedAndReAlignButtons();
-        }*/
+         if (!isRewardedADAvailable)
+         {
+             DisableDoubleRewardedAndReAlignButtons();
+         }*/
     }
 
     public void DisableDoubleRewardedAndReAlignButtons()
@@ -156,8 +162,8 @@ public class GameOverUIManager : AWindowController
 
         #region progression
 
-       // mapProgression.SetActive(!mapData.AllEnvironmentsCompleted);
-       // generalProgression.SetActive(mapData.AllEnvironmentsCompleted);
+        // mapProgression.SetActive(!mapData.AllEnvironmentsCompleted);
+        // generalProgression.SetActive(mapData.AllEnvironmentsCompleted);
 
         #endregion progression
 
@@ -190,7 +196,7 @@ public class GameOverUIManager : AWindowController
         coinsAddParticlaeObj.SetActive(sessionInventory.GetSessionIntKeyData("AccountCoins") > 0 ? true : false);
         // LeaderBoard();
         ScoreText.text = Mathf.FloorToInt(gamePlaySessionData.DistanceCoveredInMeters).ToString();
-        doubleCoin.text=(sessionInventory.GetSessionIntKeyData("AccountCoins")*2).ToString();
+        doubleCoin.text = (sessionInventory.GetSessionIntKeyData("AccountCoins") * 2).ToString();
         InputChannel.PauseInputsFromUser();
     }
 
@@ -273,7 +279,7 @@ public class GameOverUIManager : AWindowController
 
     private void UnsubscribeLeaderBoardDataRetrieved()
     {
-        if(leaderBoardHandler != null)
+        if (leaderBoardHandler != null)
         {
             leaderBoardHandler.OnLeaderBoardOperationDone -= OpenLeaderBoardScreenIfPendingRewardAvailable;
         }

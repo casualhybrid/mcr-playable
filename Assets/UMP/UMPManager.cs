@@ -9,42 +9,46 @@ using Unity.Advertisement.IosSupport;
 
 public class UMPManager : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isDebug;
-
-    [SerializeField]
-    private List<string> _testDeviceIds;
+    [Header("Debug Settings")]
+    [SerializeField] private bool _isDebug;
+    [SerializeField] private List<string> _testDeviceIds;
 
     public static UMPManager Instance;
 
     private Action _callback;
-    private Action _pauseFunc;
-    private Action _resumeFunc;
-
-
-  
 
     private void Awake()
     {
-        Instance = this;
-        Init();
-
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        StartCoroutine(InitAfterDelay(3f));
     }
 
-
-
-    public void InitUMP(Action callback = null, Action pauseFunc = null, Action resumeFunc = null)
+    /// <summary>
+    /// Initialize UMP. Pauses the game while the consent form is shown.
+    /// </summary>
+    public void InitUMP(Action callback = null)
     {
         _callback = callback;
-        _pauseFunc = pauseFunc;
-        _resumeFunc = resumeFunc;
 
 #if UNITY_ANDROID
-        Init();
+        StartCoroutine(InitAfterDelay(3f)); // wait 3s after MAX
 #elif UNITY_IOS
         StartCoroutine(WaitForATTDetermined());
 #endif
+    }
+
+    private IEnumerator InitAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Init();
     }
 
 #if UNITY_IOS
@@ -94,42 +98,56 @@ public class UMPManager : MonoBehaviour
     {
         if (consentError != null)
         {
-            if (_callback != null) _callback();
+            Debug.LogWarning("UMP Consent info update failed: " + consentError.Message);
+            _callback?.Invoke();
             return;
         }
 
-        PauseGame();
-
-        ConsentForm.LoadAndShowConsentFormIfRequired((FormError consentError) =>
+        // Pause the game before showing consent form
+        if (PlayerPrefs.GetInt("UMP", 0) == 0)
         {
+            PauseGame();
+        }
+
+
+
+        ConsentForm.LoadAndShowConsentFormIfRequired((FormError formError) =>
+        {
+            // Resume after form closes
             ResumeGame();
 
-            if (consentError != null)
+            if (formError != null)
             {
-                if (_callback != null) _callback();
+                Debug.LogWarning("UMP Consent form failed: " + formError.Message);
+                _callback?.Invoke();
                 return;
             }
 
             if (ConsentInformation.CanRequestAds())
             {
-                if (_callback != null) _callback();
+                Debug.Log("UMP: Consent granted. Ads can be requested.");
             }
+            else
+            {
+                Debug.Log("UMP: Consent not granted, ads limited.");
+            }
+
+            _callback?.Invoke();
         });
     }
 
     private void PauseGame()
     {
-        if (_pauseFunc != null)
-        {
-            _pauseFunc();
-        }
+        Debug.Log("UMP -> Pausing game");
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
     }
 
     private void ResumeGame()
     {
-        if (_resumeFunc != null)
-        {
-            _resumeFunc();
-        }
+        Debug.Log("UMP -> Resuming game");
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        PlayerPrefs.SetInt("UMP", 1);
     }
 }

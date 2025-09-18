@@ -43,12 +43,17 @@ public class ShopManagerUI : AWindowController
     private static int timesOpened;
 
     [SerializeField] GameObject inventoryPanel;
+
+    public GameObject removeAdsButton;
+    public GameObject allCharacters;
+    public GameObject allCars;
+    public GameObject allGame;
     protected override void Awake()
     {
         base.Awake();
     }
 
-  
+
 
     private void OnEnable()
     {
@@ -68,7 +73,7 @@ public class ShopManagerUI : AWindowController
         IAPManager.OnPurchaseFailed.AddListener(PurchaseFailed);
         IAPManager.OnPurchaseSuccessfull.AddListener(PurchaseSuccessful);
 
-       StartCoroutine(InitializeUICounterEvent());
+        StartCoroutine(InitializeUICounterEvent());
 
         if (inventoryObj.saveManagerObj.MainSaveFile.isAdsPurchased == true)
         {
@@ -79,7 +84,33 @@ public class ShopManagerUI : AWindowController
 
         timesOpened++;
         inventoryPanel = WindowParaLayer.instance.Get();
-       // OpenRemoveADSPopupIfPossible();
+
+
+        if (PlayerPrefs.GetInt("IsAdsRemoved") == 1)
+        {
+            removeAdsButton.SetActive(false);
+        }
+        if (MATS_CheckIAP.allCarsUnlocked)
+        {
+            allCars.SetActive(false);
+        }
+        if (MATS_CheckIAP.allCharactersUnlocked)
+        {
+            allCharacters.SetActive(false);
+        }
+
+        if (MATS_CheckIAP.allGame)
+        {
+            allCharacters.SetActive(false);
+            allCars.SetActive(false);
+            removeAdsButton.SetActive(false);
+        }
+        // OpenRemoveADSPopupIfPossible();
+    }
+    public void HideBanner()
+    {
+        MaxAdMobController.Instance.HideAdmobBanner();
+        PlayerPrefs.SetInt("IsAdsRemoved", 1);
     }
 
 
@@ -88,7 +119,7 @@ public class ShopManagerUI : AWindowController
         if (timesOpened == 1)
             return;
 
-        if(timesOpened % 2 != 0 && !saveManagerObj.MainSaveFile.isAdsPurchased)
+        if (timesOpened % 2 != 0 && !saveManagerObj.MainSaveFile.isAdsPurchased)
         {
             //OpenTheWindow(ScreenIds.RemoveADS_IAP_Popup);
         }
@@ -131,7 +162,7 @@ public class ShopManagerUI : AWindowController
     // Ammmm
     private IEnumerator InitializeUICounterEvent()
     {
-     //   await Task.Delay(TimeSpan.FromMilliseconds(100));   // Making sure all components are enabled
+        //   await Task.Delay(TimeSpan.FromMilliseconds(100));   // Making sure all components are enabled
         yield return null;
         uiCounterEvent.RaiseEvent(); // Event is raised so that we can save initial state of inventory
     }
@@ -161,12 +192,12 @@ public class ShopManagerUI : AWindowController
 
             OpenTheWindow(ScreenIds.ResourcesNotAvailable);
         }
-        purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds",  100, amountsGot);
+        purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds", 100, amountsGot);
     }
 
     public void SnapTo(/*RectTransform target*/)
     {
-       // Canvas.ForceUpdateCanvases();
+        // Canvas.ForceUpdateCanvases();
         contentPanel.anchoredPosition = new Vector2(0, 0);
         //contentPanel.anchoredPosition =
         //        (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)
@@ -217,7 +248,7 @@ public class ShopManagerUI : AWindowController
             inventoryItems.Add(new InventoryItem<int>("AccountDiamonds", -itemObj.inventoryItemsPrice[0].GetAmount));
 
 
-            inventoryObj.UpdateKeyValues(inventoryItems,true,true,null,false);
+            inventoryObj.UpdateKeyValues(inventoryItems, true, true, null, false);
 
             SendCoinPackageClickeAnalyticsEvent(itemObj.name, true);
         }
@@ -231,6 +262,7 @@ public class ShopManagerUI : AWindowController
 
 
         purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds", itemObj.inventoryItemsPrice[0].GetAmount, amountsGot);
+
     }
 
     private void SendCoinPackageClickeAnalyticsEvent(string productID, bool purchaseStatus)
@@ -269,14 +301,15 @@ public class ShopManagerUI : AWindowController
             amountsGot.Add(itemWithAmount.GetAmount);//z
         }
 
-        pendingPurchasedItemResult = () => {
+        pendingPurchasedItemResult = () =>
+        {
             purchaseEvent.RaiseEvent(thingsGot, "Dollars", itemObj.ProductID[itemObj.ProductID.Length - 1], amountsGot);
         };
 
 
         iAPManagerObj.BuyTheProduct(itemObj.ProductID);
 
- 
+
 
 
     }
@@ -324,16 +357,16 @@ public class ShopManagerUI : AWindowController
         if (pendingPurchasedItemResult == null)
             return;
 
-      //  OpenTheWindow(ScreenIds.PurchaseSuccess);
+        //  OpenTheWindow(ScreenIds.PurchaseSuccess);
 
         pendingPurchasedItemResult?.Invoke();
     }
 
     private void PurchaseFailed(PurchaseFailureReason reason)
     {
-     //   OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+        //   OpenTheWindow(ScreenIds.ResourcesNotAvailable);
 
-       // pendingPurchasedItemResult?.Invoke();
+        // pendingPurchasedItemResult?.Invoke();
 
     }
 

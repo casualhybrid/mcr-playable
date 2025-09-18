@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,11 +42,24 @@ public class DailyLoginRewardManager : MonoBehaviour
 
     public static int newCurrentIndex;
 
+    public GameObject notificationIcon;
+
+
+
+    [Header("Reward")]
+    [SerializeField] private InventorySystem playerInventory;
+    public GameObject rewardPanel;
+    public Sprite[] rewardSprites;
+    public Image rewardDisplayImage;
+    public GameObject closeButton, doubleRewardButton;
+    public GameObject[] particles;
+
     private void Start()
     {
         Log("Manager Start → loading progress");
         LoadProgress();
         RefreshUI();
+        // GamePlayMysteryBoxOpenPanel.isDailyReward = true;
     }
 
     // ------------------- PROGRESS -------------------
@@ -77,6 +93,7 @@ public class DailyLoginRewardManager : MonoBehaviour
         {
             Log("All rewards claimed. Disabling buttons.");
             DisableAllButtons();
+            notificationIcon.SetActive(false);
             return;
         }
 
@@ -84,12 +101,14 @@ public class DailyLoginRewardManager : MonoBehaviour
         {
             isRewardedVideoActive = false;
             Log($"Day {currentDayIndex + 1} available → setting up normal daily reward.");
+            notificationIcon.SetActive(true);
             SetupDailyReward();
         }
         else
         {
             isRewardedVideoActive = true;
             Log($"Day {currentDayIndex + 1} locked until {nextRewardTime} → enabling Rewarded Video option.");
+            notificationIcon.SetActive(false);
             SetupRewardedAdReward();
         }
     }
@@ -155,16 +174,18 @@ public class DailyLoginRewardManager : MonoBehaviour
     }
 
     // ------------------- CLAIM REWARD -------------------
+
+    int amount;
     public void ClaimReward(int index)
     {
         Log($"ClaimReward → Claiming reward for Day {index + 1}, Amount: {dailyButtons[index].amount}");
+        StartCoroutine(RewardPanel(index));
 
-        GamePlayMysteryBoxOpenPanel.currentIndex = index;
         newCurrentIndex = index;
-        GamePlayMysteryBoxOpenPanel.isDailyReward = true;
-        GamePlayMysteryBoxOpenPanel.amountReward = dailyButtons[index].amount;
+
 
         DailyRewardButton btn = dailyButtons[index];
+        amount = dailyButtons[index].amount;
         btn.rewardButton.interactable = false;
         btn.claimObject.SetActive(false);
         btn.claimedImage.SetActive(true);
@@ -183,42 +204,121 @@ public class DailyLoginRewardManager : MonoBehaviour
 
         SaveProgress();
         RefreshUI();
+
+
+
+    }
+
+    int selectedIndex;
+    private IEnumerator RewardPanel(int index)
+    {
+        selectedIndex = index;
+        closeButton.SetActive(false);
+        doubleRewardButton.SetActive(false);
+        rewardPanel.SetActive(true);
+
+        if (index == 0 || index == 4) { index = 0; }
+        if (index == 1 || index == 5) { index = 1; }
+        if (index == 2 || index == 6 || index == 3) { index = 2; }
+
+        rewardDisplayImage.sprite = rewardSprites[index];
+        // yield return new WaitForSeconds(0.5f);
+        // particles[selectedIndex].SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        if (index == 0)
+        {//coin
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", +amount) });
+        }
+        if (index == 1)
+        {//energy
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("GameBoost", +amount) });
+        }
+        if (index == 2 || index == 3)
+        {//diamond
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", +amount) });
+        }
+
+        yield return new WaitForSeconds(1f);
+        // particles[selectedIndex].SetActive(false);
+        yield return new WaitForSeconds(0.3f);
+        doubleRewardButton.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        closeButton.SetActive(true);
+    }
+
+    public void DoublePlayerReward()
+    {
+
+        MaxAdMobController.OnVideoAdCompleteReward += ShowRewarded;
+        MaxAdMobController.Instance.ShowRewardedVideoAd();
+    }
+    void ShowRewarded()
+    {
+        MaxAdMobController.OnVideoAdCompleteReward -= ShowRewarded;
+        StartCoroutine(DoubleRewardCoroutine());
+    }
+
+
+    public IEnumerator DoubleRewardCoroutine()
+    {
+        //  particles[selectedIndex].SetActive(true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        if (selectedIndex == 0)
+        {//coin
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountCoins", +amount) });
+        }
+        if (selectedIndex == 1)
+        {//energy
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("GameBoost", +amount) });
+        }
+        if (selectedIndex == 2)
+        {//diamond
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("AccountDiamonds", +amount) });
+        }
+        if (selectedIndex == 3)
+        {//rocket
+            playerInventory.UpdateKeyValues(new List<InventoryItem<int>>() { new InventoryItem<int>("GameHeadStart", +amount) });
+        }
+        doubleRewardButton.SetActive(false);
     }
 
     // ------------------- REWARDED AD -------------------
-    private void ShowRewardedVideo(int index)
+    int index;
+    private void ShowRewardedVideo(int Index)
     {
         Log("ShowRewardedVideo → Attempting to show ad.");
 
-        if (!MaxAdMobController.Instance.IsRewardedAdAvailable())
-        {
-            Log("Rewarded ad not available.");
-            return;
-        }
 
+
+        index = Index;
+        MaxAdMobController.OnVideoAdCompleteReward += HandleVideoComplete;
         MaxAdMobController.Instance.ShowRewardedVideoAd();
 
-        void HandleVideoComplete()
-        {
-            MaxAdMobController.OnVideoAdCompleteReward -= HandleVideoComplete;
-            Log("Rewarded Ad Completed → granting reward.");
-            ClaimReward(index);
-        }
 
-        MaxAdMobController.OnVideoAdCompleteReward += HandleVideoComplete;
+
 
     }
-
-    // ------------------- PANEL CLOSE -------------------
-    public void Close()
+    void HandleVideoComplete()
     {
-        Log("Close → Closing daily reward panel.");
-        GamePlayMysteryBoxOpenPanel.isDailyReward = false;
+
+        MaxAdMobController.OnVideoAdCompleteReward -= HandleVideoComplete;
+        Log("Rewarded Ad Completed → granting reward.");
+        ClaimReward(index);
     }
+    // ------------------- PANEL CLOSE -------------------
+    /* public void Close()
+     {
+         Log("Close → Closing daily reward panel.");
+         GamePlayMysteryBoxOpenPanel.isDailyReward = false;
+     }*/
 
     // ------------------- DEBUG UTIL -------------------
     private void Log(string message)
     {
         Debug.Log($"<color=#00BFFF>[DAILY REWARD]</color> {message}");
+    }
+    private void OnDisable()
+    {
+        //  GamePlayMysteryBoxOpenPanel.isDailyReward = false;
     }
 }

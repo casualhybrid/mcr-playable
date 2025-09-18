@@ -17,7 +17,7 @@ public class CharacterCounter
     public GameObject completeGO;   // Show when complete or claimed
     public GameObject videoAdGO;    // Show when ad needed
 
-    public ResetDuration resetDuration; // 👈 added
+    public ResetDuration resetDuration = ResetDuration.SevenDays; // 👈 added
 }
 
 public enum ResetDuration
@@ -114,25 +114,24 @@ public class CharacterCounterManager : MonoBehaviour
     }
 
 
-
+    CharacterCounter index;
     private void ShowRewardedAd(CharacterCounter counter)
     {
-        // Subscribe to the ad completion event with a lambda
-        // that calls a dedicated reward method, passing the counter object.
-        MaxAdMobController.OnVideoAdCompleteReward += () => RewardUser(counter);
+        index = counter;
+        MaxAdMobController.OnVideoAdCompleteReward += RewardUser;
         MaxAdMobController.Instance.ShowRewardedVideoAd();
     }
 
     // This method is called when the ad is complete and the user should be rewarded
-    private void RewardUser(CharacterCounter counter)
+    private void RewardUser()
     {
         // IMPORTANT: Unsubscribe immediately to prevent this from being called multiple times
-        MaxAdMobController.OnVideoAdCompleteReward -= () => RewardUser(counter);
+        MaxAdMobController.OnVideoAdCompleteReward -= RewardUser;
 
-        string rewardKey = "RewardClaimed_" + counter.characterID;
-        string timeKey = "RewardTime_" + counter.characterID;
+        string rewardKey = "RewardClaimed_" + index.characterID;
+        string timeKey = "RewardTime_" + index.characterID;
 
-        Debug.Log($"Ad finished. Rewarding {counter.characterID}");
+        Debug.Log($"Ad finished. Rewarding {index.characterID}");
 
         // Perform the rewarding logic
         PlayerPrefs.SetInt(rewardKey, 1);
@@ -140,18 +139,18 @@ public class CharacterCounterManager : MonoBehaviour
         PlayerPrefs.Save();
 
         // Update the UI
-        counter.videoAdGO.SetActive(false);
-        counter.completeGO.SetActive(true);
-        counter.counterImage.fillAmount = 1f;
-        counter.counterText.text = counter.totalCount + "/" + counter.totalCount;
+        index.videoAdGO.SetActive(false);
+        index.completeGO.SetActive(true);
+        index.counterImage.fillAmount = 1f;
+        index.counterText.text = index.totalCount + "/" + index.totalCount;
 
-        
+
     }
 
 
 
-// 👇 Replace this method call with your actual ad function
-void YourCustomAdFunction(Action onComplete)
+    // 👇 Replace this method call with your actual ad function
+    void YourCustomAdFunction(Action onComplete)
     {
         // Tumhari ad logic yahan aye gi
         onComplete?.Invoke();

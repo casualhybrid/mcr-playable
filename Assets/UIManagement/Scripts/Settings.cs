@@ -55,6 +55,12 @@ public class Settings : MonoBehaviour
         }
     }
 
+
+
+    public void ShowInterstitialAd()
+    {
+        MaxAdMobController.Instance?.ShowInterstitialAd();
+    }
     /// <summary>
     /// Signs in the user if the user is logged out and signs out if it's the other way around
     /// </summary>

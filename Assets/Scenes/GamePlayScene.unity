@@ -4546,6 +4546,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 601504895}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &601504898 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 341195932915851606, guid: 62a49cd297e476a4d888156c22781871,
+    type: 3}
+  m_PrefabInstance: {fileID: 601504895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &673412155
 GameObject:
   m_ObjectHideFlags: 3
@@ -10624,7 +10630,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 000000000000000000000000
+  idremap: 020000000200000002000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0
@@ -11986,6 +11992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isQualityLevelSet: 0
+  isTutorialPlaying: 0
+  Dummy: {fileID: 0}
 --- !u!4 &1503246002
 Transform:
   m_ObjectHideFlags: 0
@@ -17354,6 +17362,7 @@ MonoBehaviour:
   gamePlayUIController: {fileID: 978953786}
   tutorialFeedBackPanel: {fileID: 8585941461994707610}
   tutorialHintPanelCanvas: {fileID: 963653764}
+  playerRigidBody: {fileID: 601504898}
 --- !u!4 &1900770938
 Transform:
   m_ObjectHideFlags: 0
@@ -18737,7 +18746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 4627202986569129225}
   distanceBeforeItCanReAppear: -1
-  instanceID: 353804
+  instanceID: 389210
   envCategory: {fileID: 11400000, guid: 007e54ce74cee0d498e1db4bbd1432ea, type: 2}
   DiffBWPivotAndColliderMinBoundPoint: 0
   DiffBWPivotAndColliderMaxBoundPoint: 0
@@ -19940,8 +19949,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Great Job!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5db7ca0e43ede7b48b97690ff93d95a7, type: 2}
-  m_sharedMaterial: {fileID: 6550230327970245496, guid: 5db7ca0e43ede7b48b97690ff93d95a7,
+  m_fontAsset: {fileID: 11400000, guid: 53824edfbe850b7498aded44d361dfc1, type: 2}
+  m_sharedMaterial: {fileID: -2165146271797698000, guid: 53824edfbe850b7498aded44d361dfc1,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

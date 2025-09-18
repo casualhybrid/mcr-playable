@@ -6,7 +6,7 @@ using TMPro;
 
 public class MATSQualitySettings : MonoBehaviour
 {
-    public TMP_Dropdown qualityLevel;
+    // public TMP_Dropdown qualityLevel;
 
     [Header("Cameras")]
     public Camera[] sceneAllCameras;
@@ -14,57 +14,60 @@ public class MATSQualitySettings : MonoBehaviour
     [Header("Lights")]
     public Light[] sceneAllLights;
 
-   // [Header("Fog")]
+    public Image[] qualityButtons;
+    public Sprite[] buttonSprites;
+
+    // [Header("Fog")]
     //public LightingBox.Effects.GlobalFog[] sceneAllFogEffects;
 
     //[Header("Volume")]
     //public UnityEngine.Rendering.PostProcessing.PostProcessVolume scenePostProcessingVolumes;
 
     //[Header("Layers")]
-  //  public UnityEngine.Rendering.PostProcessing.PostProcessLayer[] scenePostProcessingLayers;
+    //  public UnityEngine.Rendering.PostProcessing.PostProcessLayer[] scenePostProcessingLayers;
     private void OnEnable()
     {
-       
-            if (MATS_GameManager.instance)
-            {
-               // scenePostProcessingLayers = MATS_GameManager.instance.scenePostProcessingLayers;
+
+        if (MATS_GameManager.instance)
+        {
+            // scenePostProcessingLayers = MATS_GameManager.instance.scenePostProcessingLayers;
 
 
-            }
+        }
 
-            
+
         SetQualityBasedOnRAM();
     }
-    public void Set_QualityLevel()
+    public void Set_QualityLevel(int index)
     {
-        Debug.Log($"Selecteed Quality Drop Down   " + qualityLevel.value);
+        Debug.Log($"Selecteed Quality Drop Down   " + index);
         // Very Low
-        if (qualityLevel.value == 0)
+        if (index == 0)
         {
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.45f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.45f), true);
-           /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
-            {
-                return;
-            }
-            foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in scenePostProcessingLayers)
-            {
-                lll.enabled = true;
-                lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.PostProcessLayer.Antialiasing.None;
-            }*/
-      /*      foreach (Light light in sceneAllLights)
-            {
-                light.shadows = LightShadows.None;
-            }
-            foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
-            {
-                gf.enabled = false;
-            }*/
+            /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
+             {
+                 return;
+             }
+             foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in scenePostProcessingLayers)
+             {
+                 lll.enabled = true;
+                 lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.PostProcessLayer.Antialiasing.None;
+             }*/
+            /*      foreach (Light light in sceneAllLights)
+                  {
+                      light.shadows = LightShadows.None;
+                  }
+                  foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
+                  {
+                      gf.enabled = false;
+                  }*/
             Set_Reflection(false, false);
         }
         //_________________________________________
         //  Low
-        if (qualityLevel.value == 1)
+        if (index == 1)
         {
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.45f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.45f), true);
@@ -78,109 +81,109 @@ public class MATSQualitySettings : MonoBehaviour
                 lll.enabled = true;
                 lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.PostProcessLayer.Antialiasing.None;
             }*/
-     /*       foreach (Light light in sceneAllLights)
-            {
-                light.shadows = LightShadows.Soft;
-                light.shadowResolution =
-                    UnityEngine.Rendering.LightShadowResolution.Low;
-            }
-            foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
-            {
-                gf.enabled = false;
-            }*/
+            /*       foreach (Light light in sceneAllLights)
+                   {
+                       light.shadows = LightShadows.Soft;
+                       light.shadowResolution =
+                           UnityEngine.Rendering.LightShadowResolution.Low;
+                   }
+                   foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
+                   {
+                       gf.enabled = false;
+                   }*/
             Set_Reflection(false, false);
         }
         //_________________________________________
         //  Medium
-        if (qualityLevel.value == 2)
+        if (index == 2)
         {
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.5f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.5f), true);
-           /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
-            {
-                return;
-            }
-            foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in scenePostProcessingLayers)
-            {
-                lll.enabled = true;
-                lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
-                    PostProcessLayer.Antialiasing.SubpixelMorphologicalAntialiasing;
-                lll.subpixelMorphologicalAntialiasing.quality =
-                    UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing.Quality.Low;
-            }*/
-       /*     foreach (Light light in sceneAllLights)
-            {
-                light.shadows = LightShadows.Soft;
-                light.shadowResolution =
-                    UnityEngine.Rendering.LightShadowResolution.Medium;
-            }
-            foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
-            {
-                gf.enabled = true;
-            }*/
+            /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
+             {
+                 return;
+             }
+             foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in scenePostProcessingLayers)
+             {
+                 lll.enabled = true;
+                 lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
+                     PostProcessLayer.Antialiasing.SubpixelMorphologicalAntialiasing;
+                 lll.subpixelMorphologicalAntialiasing.quality =
+                     UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing.Quality.Low;
+             }*/
+            /*     foreach (Light light in sceneAllLights)
+                 {
+                     light.shadows = LightShadows.Soft;
+                     light.shadowResolution =
+                         UnityEngine.Rendering.LightShadowResolution.Medium;
+                 }
+                 foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
+                 {
+                     gf.enabled = true;
+                 }*/
             Set_Reflection(false, false);
         }
         //_________________________________________
         //  High
-        if (qualityLevel.value == 3)
+        if (index == 3)
         {
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.55f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.55f), true);
-           /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
-            {
-                return;
-            }
-            foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in
-                scenePostProcessingLayers)
-            {
-                lll.enabled = true;
-                lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
-                    PostProcessLayer.Antialiasing.TemporalAntialiasing;
-            }*/
-      /*      foreach (Light light in sceneAllLights)
-            {
-                light.shadows = LightShadows.Soft;
-                light.shadowResolution =
-                    UnityEngine.Rendering.LightShadowResolution.High;
-            }
-            foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
-            {
-                gf.enabled = true;
-            }*/
+            /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
+             {
+                 return;
+             }
+             foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in
+                 scenePostProcessingLayers)
+             {
+                 lll.enabled = true;
+                 lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
+                     PostProcessLayer.Antialiasing.TemporalAntialiasing;
+             }*/
+            /*      foreach (Light light in sceneAllLights)
+                  {
+                      light.shadows = LightShadows.Soft;
+                      light.shadowResolution =
+                          UnityEngine.Rendering.LightShadowResolution.High;
+                  }
+                  foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
+                  {
+                      gf.enabled = true;
+                  }*/
             Set_Reflection(true, false);
         }
         //_________________________________________
         //  Ultra
-        if (qualityLevel.value == 4)
+        if (index == 4)
         {
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.6f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.6f), true);
-           /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
-            {
-                return;
-            }
-            foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in
-                scenePostProcessingLayers)
-            {
-                lll.enabled = true;
-                lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
-                    PostProcessLayer.Antialiasing.TemporalAntialiasing;
-            }*/
-         /*   foreach (Light light in sceneAllLights)
-            {
-                light.shadows = LightShadows.Soft;
-                light.shadowResolution =
-                    UnityEngine.Rendering.LightShadowResolution.High;
-            }
-            foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
-            {
-                gf.enabled = true;
-            }*/
+            /* if (scenePostProcessingLayers == null && scenePostProcessingLayers.Length < 0)
+             {
+                 return;
+             }
+             foreach (UnityEngine.Rendering.PostProcessing.PostProcessLayer lll in
+                 scenePostProcessingLayers)
+             {
+                 lll.enabled = true;
+                 lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
+                     PostProcessLayer.Antialiasing.TemporalAntialiasing;
+             }*/
+            /*   foreach (Light light in sceneAllLights)
+               {
+                   light.shadows = LightShadows.Soft;
+                   light.shadowResolution =
+                       UnityEngine.Rendering.LightShadowResolution.High;
+               }
+               foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
+               {
+                   gf.enabled = true;
+               }*/
             Set_Reflection(false, true);
         }
         //_________________________________________
         //  Max
-        if (qualityLevel.value == 5)
+        if (index == 5)
         {
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.7f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.7f), true);
@@ -195,16 +198,16 @@ public class MATSQualitySettings : MonoBehaviour
                 lll.antialiasingMode = UnityEngine.Rendering.PostProcessing.
                     PostProcessLayer.Antialiasing.TemporalAntialiasing;
             }*/
-       /*     foreach (Light light in sceneAllLights)
-            {
-                light.shadows = LightShadows.Soft;
-                light.shadowResolution =
-                    UnityEngine.Rendering.LightShadowResolution.High;
-            }*/
-         /*   foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
-            {
-                gf.enabled = true;
-            }*/
+            /*     foreach (Light light in sceneAllLights)
+                 {
+                     light.shadows = LightShadows.Soft;
+                     light.shadowResolution =
+                         UnityEngine.Rendering.LightShadowResolution.High;
+                 }*/
+            /*   foreach (LightingBox.Effects.GlobalFog gf in sceneAllFogEffects)
+               {
+                   gf.enabled = true;
+               }*/
             Set_Reflection(false, true);
         }
     }
@@ -274,7 +277,7 @@ public class MATSQualitySettings : MonoBehaviour
 
         if (ramMB < 2000)
         {
-        // Very Low
+            // Very Low
             selectedQuality = 0;
 
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.45f),
@@ -282,7 +285,7 @@ public class MATSQualitySettings : MonoBehaviour
         }
         else if (ramMB < 3000)
         {
-        // Low
+            // Low
             Screen.SetResolution((int)(PlayerPrefs.GetInt("OriginalX") * 0.45f),
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.45f), true);
             selectedQuality = 1;
@@ -312,13 +315,34 @@ public class MATSQualitySettings : MonoBehaviour
                 (int)(PlayerPrefs.GetInt("OriginalY") * 0.7f), true);
             selectedQuality = 5;
         } // Max
-        Debug.Log($"Selecteed Quality According to RAM   "+selectedQuality);
+        Debug.Log($"Selecteed Quality According to RAM   " + selectedQuality);
         // Set dropdown and apply
-        if (qualityLevel != null)
+        /* if (qualityLevel != null)
+         {
+             qualityLevel.value = selectedQuality;
+             Set_QualityLevel();
+         }*/
+
+
+        for (int i = 0; i < qualityButtons.Length; i++)
         {
-            qualityLevel.value = selectedQuality;
-            Set_QualityLevel();
+            qualityButtons[i].sprite = buttonSprites[0];
         }
+
+
+        if (selectedQuality == 0 || selectedQuality == 1)
+        {
+            qualityButtons[0].sprite = buttonSprites[1];
+        }
+        else if (selectedQuality == 3 || selectedQuality == 3)
+        {
+            qualityButtons[1].sprite = buttonSprites[1];
+        }
+        else if (selectedQuality == 4 || selectedQuality == 5)
+        {
+            qualityButtons[2].sprite = buttonSprites[1];
+        }
+        Set_QualityLevel(selectedQuality);
     }
 
 }

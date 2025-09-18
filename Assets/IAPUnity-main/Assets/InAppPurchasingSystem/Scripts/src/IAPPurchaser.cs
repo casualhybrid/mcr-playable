@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppsFlyerSDK;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -237,7 +238,7 @@ namespace TheKnights.Purchasing
 
         public void OnInitializeFailed(InitializationFailureReason error, string message)
         {
-          
+
         }
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
@@ -254,7 +255,7 @@ namespace TheKnights.Purchasing
             //{
             //    UnityEngine.Console.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
             //}
-
+            MaxAdMobController.SendPurchaseEventCustomMATS(args.purchasedProduct);
             return PurchaseProcessingResult.Complete;
         }
 
@@ -267,6 +268,6 @@ namespace TheKnights.Purchasing
             OnPurchaseHasFailed?.Invoke(product.transactionID, failureReason);
         }
 
- 
+
     }
 }

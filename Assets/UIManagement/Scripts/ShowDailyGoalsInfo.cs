@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using TheKnights.SaveFileSystem;
 using static UnityEngine.ResourceManagement.ResourceProviders.AssetBundleResource;
 using System;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class ShowDailyGoalsInfo : MonoBehaviour
 {
@@ -43,7 +42,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
             {
                 case DailyGoalTypes.WallRun:
                     {
-                       
+
 
                         if (gamePlaySessionInventory.noOfWallRuns >= obj[i].targetToAchive)
                         {
@@ -55,7 +54,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
                 case DailyGoalTypes.DashKill:
                     {
-                       if( gamePlaySessionInventory.noOfDashKills >= obj[i].targetToAchive)
+                        if (gamePlaySessionInventory.noOfDashKills >= obj[i].targetToAchive)
                         {
                             dailyGoalUIContainer[i].rewardedButton.gameObject.SetActive(false);
                             dailyGoalUIContainer[i].completedImage.SetActive(true);
@@ -65,7 +64,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
                 case DailyGoalTypes.ShockwaveKill:
                     {
-                     
+
                         if (gamePlaySessionInventory.noOfShockwaveKills >= obj[i].targetToAchive)
                         {
                             dailyGoalUIContainer[i].rewardedButton.gameObject.SetActive(false);
@@ -76,7 +75,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
                 case DailyGoalTypes.InAir:
                     {
-                       
+
                         if (gamePlaySessionInventory.noOfInAir >= obj[i].targetToAchive)
                         {
                             dailyGoalUIContainer[i].rewardedButton.gameObject.SetActive(false);
@@ -87,7 +86,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
                 case DailyGoalTypes.SideHit:
                     {
-                      
+
                         if (gamePlaySessionInventory.noOfHits >= obj[i].targetToAchive)
                         {
                             dailyGoalUIContainer[i].rewardedButton.gameObject.SetActive(false);
@@ -98,7 +97,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
                 case DailyGoalTypes.LaneSwitch:
                     {
-                      
+
                         if (gamePlaySessionInventory.noOfLaneSwitch >= obj[i].targetToAchive)
                         {
                             dailyGoalUIContainer[i].rewardedButton.gameObject.SetActive(false);
@@ -109,7 +108,7 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
                 case DailyGoalTypes.DestroyEnemies:
                     {
-                       
+
                         if (gamePlaySessionInventory.noOfEnemiesDestroyed >= obj[i].targetToAchive)
                         {
                             dailyGoalUIContainer[i].rewardedButton.gameObject.SetActive(false);
@@ -189,14 +188,15 @@ public class ShowDailyGoalsInfo : MonoBehaviour
     }
 
 
-   
+
 
 
 }
 
 
 [System.Serializable]
-public class DailyGoalContainer {
+public class DailyGoalContainer
+{
     public Image goalStatusImage;
     public TextMeshProUGUI goalTextObj;
     public TextMeshProUGUI goalTextInfo;

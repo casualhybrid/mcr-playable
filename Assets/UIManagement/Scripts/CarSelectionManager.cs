@@ -27,33 +27,33 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     [SerializeField] private InventorySystem inventoryObj;
     [SerializeField] private InputChannel input;
     [SerializeField] private ShopPurchaseEvent purchaseEvent;
-    [SerializeField] private Camera camera;
+    //  [SerializeField] private Camera camera;
     [SerializeField] private GameEvent onCarPurchased;
     [SerializeField] private GameEvent onAllCarsPurchased;
 
     [Space]
     [Space]
-    [BoxGroup("SelectionBox", true, true)] [SerializeField] private GameEvent carHasBeenSelected;
+    [BoxGroup("SelectionBox", true, true)][SerializeField] private GameEvent carHasBeenSelected;
 
-    [BoxGroup("SelectionBox", true, true)] [SerializeField] private GameEvent newCarIsGoingToSpawn;
-    [BoxGroup("SelectionBox", true, true)] [SerializeField] private GameObject parentObjForCars, contentPanel;
-    [BoxGroup("SelectionBox", true, true)] [SerializeField] private CarInstance[] CarList;
+    [BoxGroup("SelectionBox", true, true)][SerializeField] private GameEvent newCarIsGoingToSpawn;
+    [BoxGroup("SelectionBox", true, true)][SerializeField] private GameObject parentObjForCars, contentPanel;
+    [BoxGroup("SelectionBox", true, true)][SerializeField] private CarInstance[] CarList;
 
     [Space]
     [Space]
-    [BoxGroup("UIBox", true, true)] [SerializeField] private GameObject rightArrow;
+    [BoxGroup("UIBox", true, true)][SerializeField] private GameObject rightArrow;
 
-    [BoxGroup("UIBox", true, true)] [SerializeField] private GameObject leftArrow;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private GameObject lockIcon;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private Button backButton;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private Image thrustFill1, thrustFill2, airplaneFill1, airplaneFill2, boostFill1, boostFill2;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private GameObject /*SelectedArrowImage,*/ SelectButton, CoinsButton, WatchAdbutton, tooltipButton;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private TextMeshProUGUI carName, unlocksAtLvlTxt;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private GameObject levelRequiredLockObject;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private string[] toolTipTexts;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private TextMeshProUGUI toolTipInfoText, CostTextToShow, selectedText;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private ScrollRect scrollRect;
-    [BoxGroup("UIBox", true, true)] [SerializeField] private GameObject loadingIconGameObject;
+    [BoxGroup("UIBox", true, true)][SerializeField] private GameObject leftArrow;
+    [BoxGroup("UIBox", true, true)][SerializeField] private GameObject lockIcon;
+    [BoxGroup("UIBox", true, true)][SerializeField] private Button backButton;
+    [BoxGroup("UIBox", true, true)][SerializeField] private Image thrustFill1, thrustFill2, airplaneFill1, airplaneFill2, boostFill1, boostFill2;
+    [BoxGroup("UIBox", true, true)][SerializeField] private GameObject /*SelectedArrowImage,*/ SelectButton, CoinsButton, WatchAdbutton, tooltipButton;
+    [BoxGroup("UIBox", true, true)][SerializeField] private TextMeshProUGUI carName, unlocksAtLvlTxt;
+    [BoxGroup("UIBox", true, true)][SerializeField] private GameObject levelRequiredLockObject;
+    [BoxGroup("UIBox", true, true)][SerializeField] private string[] toolTipTexts;
+    [BoxGroup("UIBox", true, true)][SerializeField] private TextMeshProUGUI toolTipInfoText, CostTextToShow, selectedText;
+    [BoxGroup("UIBox", true, true)][SerializeField] private ScrollRect scrollRect;
+    [BoxGroup("UIBox", true, true)][SerializeField] private GameObject loadingIconGameObject;
 
     private AsyncOperationSpawning<PlayerCarAssets> currentlyActiveCarAssetLoadingHandler;
     private int selectedCarIndex;
@@ -72,7 +72,9 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
     [SerializeField] Sprite[] icons;
     [SerializeField] Image Icon;
     [SerializeField] private InputChannel inputChannel;
-    //[SerializeField] AdsController adsController;
+    // public GameObject carRenderTexture;    //[SerializeField] AdsController adsController;
+    public GameObject notEnoughResourcesCoins;
+    public GameObject notEnoughResourcesDiamonds;
 
     protected override void Awake()
     {
@@ -94,15 +96,16 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         InitilizeUI(saveManager.MainSaveFile.currentlySelectedCar);
         int carToShow = carToSnapToData.isValid ? carToSnapToData.index : saveManager.MainSaveFile.currentlySelectedCar;
         ShowCar(carToShow);
-       
-      
+
+
         SubsribeInputEvents();
         SubscribeToEvents();
 
         SetCarAvailableSpriteIfAnyCarIsAvailable();
-       // adsController.ShowSmallBannerAd("CarSelectionPanel");
+        // adsController.ShowSmallBannerAd("CarSelectionPanel");
 
-       // OpenUnlockAllCarsPopupIfPossible();
+        // OpenUnlockAllCarsPopupIfPossible();
+        //carRenderTexture.SetActive(true);
     }
 
     protected override void OnPropertiesSet()
@@ -124,7 +127,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         carToSnapToData.isValid = false;
 
         scrollRect.enabled = false;
-        camera.enabled = false;
+        // camera.enabled = false;
 
         if (previousDisplayingCar != null)
         {
@@ -136,6 +139,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         animatorToDisable.enabled = true;
 
         KillSelectButtonAnimAndRewind();
+        //  carRenderTexture.SetActive(false);
     }
 
     public override void ForeGroundLost()
@@ -152,9 +156,9 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     private void OpenUnlockAllCarsPopupIfPossible()
     {
-        if(timesEnabled % 2 == 0 && !inventoryObj.AreAllCarsUnlocked())
+        if (timesEnabled % 2 == 0 && !inventoryObj.AreAllCarsUnlocked())
         {
-           // OpenTheWindow(ScreenIds.UnlockCars_IAP_Popup);
+            // OpenTheWindow(ScreenIds.UnlockCars_IAP_Popup);
         }
     }
 
@@ -177,22 +181,25 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     private IEnumerator turnOfAnimator()
     {
-        yield return null;
-        camera.enabled = true;
+        yield return new WaitForSecondsRealtime(0.1f);
+        // camera.enabled = true;
         yield return null;
         scrollRect.enabled = true;
-        SnapScrollToCar(carToSnapToData.isValid ? carToSnapToData.index : selectedCarIndex); 
+        SnapScrollToCar(carToSnapToData.isValid ? carToSnapToData.index : selectedCarIndex);
+
+
 
         yield return new WaitForSeconds(time);
 
-      //  scrollRect.enabled = true;
+        //  scrollRect.enabled = true;
 
         yield return null;
 
         animatorToDisable.enabled = false;
-    //    SnapScrollToCar(carToSnapToData.isValid ? carToSnapToData.index : selectedCarIndex);
+        //    SnapScrollToCar(carToSnapToData.isValid ? carToSnapToData.index : selectedCarIndex);
         arrowHandler();
         SnapInstance(saveManager.MainSaveFile.currentlySelectedCar);
+
     }
 
     public float GetCurrentAnimatorTime(Animator targetAnim, int layer = 0)
@@ -379,28 +386,28 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
         else if (selectedCarIndex == 3 || selectedCarIndex == 4)
         {
             CostTextToShow.text = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice.ToString();
-          /*  Icon.sprite = icons[1];
-            Debug.LogError("Diamonds");*/
+            /*  Icon.sprite = icons[1];
+              Debug.LogError("Diamonds");*/
         }
         if (selectedCarIndex == val)
         {
-            
+
             return;
         }
 
 
 
-            
-        
+
+
         onChangeVisibleCar.Invoke();
 
-       
+
 
         carName.text = carsDataBase.GetCarConfigurationData(val).GetName.ToUpper();
         PopulateCarStats(saveManager.MainSaveFile.currentlySelectedCar, val);
         SnapInstance(val);
         KillSelectButtonAnimAndRewind();
-       
+
         for (int i = 0; i < CarList.Length; i++)
         {
             var temp = CarList[i].GetComponent<CarInstance>();
@@ -409,7 +416,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
                 if (inventoryObj.isCarUnlocked(i)) //Car i unlocked
                 {
                     lockIcon.SetActive(false);
-                  //  unlocksAtLvlTxt.text = "";
+                    //  unlocksAtLvlTxt.text = "";
                     levelRequiredLockObject.SetActive(false);
                     SelectButton.SetActive(true);
                     CoinsButton.SetActive(false);
@@ -430,7 +437,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
                     unlocksAtLvlTxt.text = "UNLOCKS AT LVL " + (val * 5);
                     SelectButton.SetActive(false);
                     CoinsButton.SetActive(true);
-                    CoinsButton.GetComponent<Button>().interactable = (playerLevelSystem.GetCurrentPlayerLevel() >= carConfigurationData.GetUnlockLevel);
+                    //  CoinsButton.GetComponent<Button>().interactable = (playerLevelSystem.GetCurrentPlayerLevel() >= carConfigurationData.GetUnlockLevel);
                     CostTextToShow.text = price.ToString();
                     temp.isLockedAndSelected();
                 }
@@ -633,7 +640,7 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
 
     public void UnlockCarWithCoins()
     {
-        
+
         List<string> thingsGot = new List<string>();//z
         List<int> amountsGot = new List<int>();//z
         if (selectedCarIndex == 1 || selectedCarIndex == 2)
@@ -658,13 +665,14 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
             }
             else
             {
-                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+                //OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+                notEnoughResourcesCoins.SetActive(true);
             }
             purchaseEvent.RaiseEvent(thingsGot, "AccountCoins", price, amountsGot);
         }
-        else if(selectedCarIndex == 3 || selectedCarIndex == 4)
+        else if (selectedCarIndex == 3 || selectedCarIndex == 4)
         {
-           // Icon.sprite = icons[1];
+            // Icon.sprite = icons[1];
             int price = carsDataBase.GetCarConfigurationData(selectedCarIndex).GetPrice;
 
             if (inventoryObj.GetIntKeyValue("AccountDiamonds") >= price)
@@ -685,10 +693,11 @@ public class CarSelectionManager : AWindowController<CarAvailableProperties>
             }
             else
             {
-                OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+                //  OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+                notEnoughResourcesDiamonds.SetActive(true);
             }
         }
-      
+
 
 
 

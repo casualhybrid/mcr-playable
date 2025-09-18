@@ -8,20 +8,25 @@ public class Triggered : MonoBehaviour
     [SerializeField] private string colliderTag = "Player";
     public GameEvent Event;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(colliderTag))
         {
             //StartCoroutine(SetTriggeredForSeconds(3f));
+
             Event?.RaiseEvent();
             response.Invoke();
 
         }
     }
-   /* private IEnumerator SetTriggeredForSeconds(float seconds)
-    {
-        WaterParkEnter.isFlying = false;
-        yield return new WaitForSeconds(seconds);
-        WaterParkEnter.isFlying = true;
-    }*/
+
+
+
+    /* private IEnumerator SetTriggeredForSeconds(float seconds)
+     {
+         WaterParkEnter.isFlying = false;
+         yield return new WaitForSeconds(seconds);
+         WaterParkEnter.isFlying = true;
+     }*/
 }

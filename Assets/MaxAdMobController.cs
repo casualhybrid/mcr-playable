@@ -1,5 +1,7 @@
 using AppsFlyerSDK;
+using deVoid.UIFramework;
 using GoogleMobileAds.Api;
+using Knights.UISystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,8 @@ using TheKnights.AdsSystem;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.Purchasing;
 using UnityEngine.UI;
 using static MaxSdkBase;
 
@@ -40,7 +44,11 @@ public class MaxAdMobController : MonoBehaviour
     public bool Backfromhome, modesads;
     private RewardedAdSO _currentRequester;
     string RewardInfo = "";
+
+    public GameObject adsNotAvailibleNoti;
+
     private float lastInterstitialTime = -999f;
+
 
     bool AdsCompability => SystemInfo.systemMemorySize > 1500;
     public bool LowMemoryDevice => SystemInfo.systemMemorySize <= 1500;
@@ -56,7 +64,6 @@ public class MaxAdMobController : MonoBehaviour
         {
             Instance = this;
         }
-
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
@@ -64,8 +71,17 @@ public class MaxAdMobController : MonoBehaviour
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         MaxSdk.SetHasUserConsent(true);
         MaxSdk.SetDoNotSell(false);
-
-        Invoke(nameof(Init), 0.52f);
+        //Invoke(nameof(PuaseDelay), 0.5f);
+        if (PlayerPrefs.GetInt("MaxPrivacyShown", 0) == 0)
+        {
+            Invoke(nameof(Init), 1.0f);
+            Invoke(nameof(DelayToPause), 2f);
+        }
+        else
+        {
+            // Just init directly, no pause
+            Invoke(nameof(Init), 1.0f);
+        }
     }
     public bool IsInternetConnection()
     {
@@ -74,15 +90,28 @@ public class MaxAdMobController : MonoBehaviour
         else
             return false;
     }
+    public void PuaseDelay()
+    {
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+    }
     public void Init()
     {
-        if (!AdsCompability || PlayerPrefs.GetInt("IsAdsRemoved") == 1)
+        if (!AdsCompability)
         {
             return;
         }
-
+        MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) =>
+        {
+            // Show Mediation Debugger
+            // MaxSdk.ShowMediationDebugger();
+        };
         MaxSdkCallbacks.OnSdkInitializedEvent += sdkConfiguration =>
         {
+            Time.timeScale = 1;
+            AudioListener.pause = false;
+            PlayerPrefs.SetInt("PrivacyShownKey", 1);
+
             StartCoroutine(InitializeFullScreenAds());
             Debug.LogError("MaxSdkInit....................................");
 
@@ -96,18 +125,30 @@ public class MaxAdMobController : MonoBehaviour
             Debug.LogError("An error occurred during SDK Init : " + ex.Message);
         }
 
-        MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) =>
+
+    }
+    public void DelayToPause()
+    {
+
+        if (PlayerPrefs.GetInt("PrivacyShownKey") == 1)
         {
-            // Show Mediation Debugger
-            MaxSdk.ShowMediationDebugger();
-        };
+            return;
+        }
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        Debug.LogError("timescale testing");
+        PlayerPrefs.SetInt("PrivacyShownKey", 1);
+        Debug.LogError("Pref value check " + PlayerPrefs.GetInt("PrivacyShownKey"));
     }
     public IEnumerator InitializeFullScreenAds()
     {
-        yield return new WaitForSeconds(0.3f);
-        RequestBannerAd();
-        yield return new WaitForEndOfFrame();
-        InitializeInterstitialAds();
+        if (PlayerPrefs.GetInt("IsAdsRemoved") != 1)
+        {
+            yield return new WaitForSeconds(0.3f);
+            RequestBannerAd();
+            yield return new WaitForEndOfFrame();
+            InitializeInterstitialAds();
+        }
         yield return new WaitForEndOfFrame();
         InitializeRewardedAds();
 
@@ -174,6 +215,7 @@ public class MaxAdMobController : MonoBehaviour
         // Show if ready
         if (MaxSdk.IsInterstitialReady(InterstitialAdUnitId))
         {
+            AppOpenAdController.instance.isAdShowing = true;
             MaxSdk.ShowInterstitial(InterstitialAdUnitId);
             lastInterstitialTime = Time.time; // mark the time ad was shown
             Debug.Log($"[Interstitial] Ad shown. Next ad allowed after {interval} seconds.");
@@ -217,6 +259,7 @@ public class MaxAdMobController : MonoBehaviour
     {
         // Interstitial ad is hidden. Pre-load the next ad
         Debug.Log("Interstitial dismissed");
+        AppOpenAdController.instance.isAdShowing = false;
         LoadInterstitial();
     }
 
@@ -324,8 +367,15 @@ public class MaxAdMobController : MonoBehaviour
     {
         //  RewardInfo = Info;
         _currentRequester = requester;
-        if (Application.internetReachability == NetworkReachability.NotReachable)
+        if (Application.internetReachability == NetworkReachability.NotReachable || MaxSdk.IsRewardedAdReady(RewardedAdUnitId) == false)
         {
+            if (once == false)
+            {
+                once = true;
+                adsNotAvailibleNoti.SetActive(true);
+                Invoke(nameof(DelayFalseOnce), 1.5f);
+            }
+
             return;
         }
         if (MaxSdk.IsRewardedAdReady(RewardedAdUnitId))
@@ -337,16 +387,26 @@ public class MaxAdMobController : MonoBehaviour
             //rewardedStatusText.text = "Ad not ready";
         }
     }
+
+    bool once = false;
     public void ShowRewardedVideoAd()
     {
         //  RewardInfo = Info;
         //  _currentRequester = requester;
-        if (Application.internetReachability == NetworkReachability.NotReachable)
+        if (Application.internetReachability == NetworkReachability.NotReachable || MaxSdk.IsRewardedAdReady(RewardedAdUnitId) == false)
         {
+            if (once == false)
+            {
+                once = true;
+                adsNotAvailibleNoti.SetActive(true);
+                Invoke(nameof(DelayFalseOnce), 1.5f);
+            }
+
             return;
         }
         if (MaxSdk.IsRewardedAdReady(RewardedAdUnitId))
         {
+            AppOpenAdController.instance.isAdShowing = true;
             MaxSdk.ShowRewardedAd(RewardedAdUnitId);
         }
         else
@@ -354,11 +414,14 @@ public class MaxAdMobController : MonoBehaviour
             //rewardedStatusText.text = "Ad not ready";
         }
     }
-    public bool IsRewardedAdAvailable()
+
+
+    void DelayFalseOnce()
     {
-        // depends on your ad SDK, usually something like:
-        return MaxSdk.IsRewardedAdReady(RewardedAdUnitId);
+        once = false;
+        adsNotAvailibleNoti.SetActive(false);
     }
+
     private void OnRewardedAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Rewarded ad is ready to be shown. MaxSdk.IsRewardedAdReady(rewardedAdUnitId) will now return 'true'
@@ -410,6 +473,7 @@ public class MaxAdMobController : MonoBehaviour
         // Rewarded ad was displayed and user should receive the reward
         Debug.Log("Rewarded ad received reward");
         GiveReward();
+        AppOpenAdController.instance.isAdShowing = false;
         OnUserEarnedRewardEvent.Invoke();
         OnVideoAdCompleteReward?.Invoke();
         _currentRequester?.CompletionCallBack(Status.Succeded, new ADMeta());
@@ -440,19 +504,6 @@ public class MaxAdMobController : MonoBehaviour
         var logRevenue = new AFAdRevenueData("applovin", MediationNetwork.IronSource, "USD", revenue);
         AppsFlyer.logAdRevenue(logRevenue, parameters);
 
-        Debug.Log(
-       $"[AppsFlyer] logAdRevenue Called\n" +
-       $"Monetization Network: {logRevenue.monetizationNetwork}\n" +
-       $"Mediation Network: {logRevenue.mediationNetwork}\n" +
-       $"Currency: {logRevenue.currencyIso4217Code} | Revenue: {logRevenue.eventRevenue}\n" +
-       $"ad_platform: {parameters["ad_platform"]}\n" +
-       $"ad_source: {parameters["ad_source"]}\n" +
-       $"ad_unit_name: {parameters["ad_unit_name"]}\n" +
-       $"ad_format: {parameters["ad_format"]}\n" +
-       $"currency: {parameters["currency"]}\n" +
-       $"value: {parameters["value"]}"
-   );
-
 
 
         var impressionParameters = new[] {
@@ -464,6 +515,25 @@ public class MaxAdMobController : MonoBehaviour
   new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
 };
         Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
+
+
+        Debug.Log(
+       $"[AppsFlyer] logAdRevenue Called\n" +
+       $"Monetization Network: {logRevenue.monetizationNetwork}\n" +
+       $"Mediation Network: {logRevenue.mediationNetwork}\n" +
+       $"Currency: {logRevenue.currencyIso4217Code} | Revenue: {logRevenue.eventRevenue}\n" +
+       $"ad_platform: {parameters["ad_platform"]}\n" +
+       $"ad_source: {parameters["ad_source"]}\n" +
+       $"ad_unit_name: {parameters["ad_unit_name"]}\n" +
+       $"ad_format: {parameters["ad_format"]}\n" +
+       $"currency: {parameters["currency"]}\n" +
+       $"value: {parameters["value"]}"
+
+   );
+
+
+
+
 
 
         var eventValues = new Dictionary<string, string>()
@@ -576,6 +646,15 @@ public class MaxAdMobController : MonoBehaviour
         string placement = adInfo.Placement; // The placement this ad's postbacks are tied to
 
 
+        var impressionParameters = new[] {
+  new Firebase.Analytics.Parameter("ad_platform", "AppLovin"),
+  new Firebase.Analytics.Parameter("ad_source", adInfo.NetworkName),
+  new Firebase.Analytics.Parameter("ad_unit_name", adInfo.AdUnitIdentifier),
+  new Firebase.Analytics.Parameter("ad_format", adInfo.AdFormat),
+  new Firebase.Analytics.Parameter("value", revenue),
+  new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
+};
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
         var parameters = new Dictionary<string, string>()
   {
     { "ad_platform", "applovin_max" },
@@ -700,6 +779,49 @@ public class MaxAdMobController : MonoBehaviour
         }
     }
 
+    #endregion
+
+
+    /// <summary>
+    /// Send an af_purchase event to AppsFlyer
+    /// </summary>
+    /// <param name="productId">Store product ID</param>
+    /// <param name="currencyCode">ISO 4217 currency code (e.g. USD, EUR, PKR)</param>
+    /// <param name="grossRevenue">Gross purchase price before store cut</param>
+    /// <param name="quantity">Number of items purchased</param>
+    public static void SendPurchaseEventCustomMATS(Product product)
+    {
+        if (product == null)
+        {
+            Debug.LogError("<color=red>[MATS_AppsFlyerIAP]</color> Product is null, cannot send event.");
+            return;
+        }
+
+        string productId = product.definition.id;
+        string currencyCode = product.metadata.isoCurrencyCode;
+        double grossRevenue = (double)product.metadata.localizedPrice;
+        double netRevenue = grossRevenue * 0.65;
+
+        Dictionary<string, string> eventData = new Dictionary<string, string>
+        {
+            { AFInAppEvents.CURRENCY, currencyCode },
+            { AFInAppEvents.REVENUE, netRevenue.ToString("F2") },
+            { AFInAppEvents.CONTENT_ID, productId },
+            { AFInAppEvents.QUANTITY, "1" }
+        };
+
+        if (product.definition.type == ProductType.Subscription)
+        {
+            AppsFlyer.sendEvent("af_subscribe", eventData);
+            Debug.Log($"<color=cyan>[MATS_AppsFlyerIAP]</color> Sent af_subscribe event: Product={productId}, Revenue={netRevenue}");
+        }
+        else
+        {
+            AppsFlyer.sendEvent(AFInAppEvents.PURCHASE, eventData);
+            Debug.Log($"<color=cyan>[MATS_AppsFlyerIAP]</color> Sent af_purchase event: Product={productId}, Revenue={netRevenue}");
+        }
+    }
+
+
 }
-#endregion
 

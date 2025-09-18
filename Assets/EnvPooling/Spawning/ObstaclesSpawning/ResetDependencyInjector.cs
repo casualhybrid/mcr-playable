@@ -17,11 +17,13 @@ public class ResetDependencyInjector : MonoBehaviour
     {
         T[] objectDestructions = GetComponentsInChildren<T>(true);
         T[] objectDestructionsOriginal = individualObstaclesSO.allIndividualObstacles[originalGameObjectName].GetComponentsInChildren<T>(true);
-
-        for (int i = 0; i < objectDestructionsOriginal.Length; i++)
+        if (objectDestructionsOriginal != null)
         {
-            IResetObject<T> toReset = objectDestructions[i] as IResetObject<T>;
-            toReset.OriginalComponent = objectDestructionsOriginal[i];
+            for (int i = 0; i < objectDestructionsOriginal.Length; i++)
+            {
+                IResetObject<T> toReset = objectDestructions[i] as IResetObject<T>;
+                toReset.OriginalComponent = objectDestructionsOriginal[i];
+            }
         }
     }
 }

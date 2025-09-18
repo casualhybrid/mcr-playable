@@ -10,6 +10,7 @@ public class UnlockCarsAndCharactersIAPItem : IAPItem
     [SerializeField] private InventorySystem playerInventory;
     [SerializeField] private GameEvent playerBoughtAllCars;
 
+
     public override bool ShouldTheInAppOfferBeShown()
     {
         return !playerInventory.AreAllCarsUnlocked() || !playerInventory.AreAllCharactersUnlocked();
@@ -20,6 +21,10 @@ public class UnlockCarsAndCharactersIAPItem : IAPItem
         RaiseRightBeforePurchaseCompleted();
 
         playerInventory.UnlockAllCars();
+        MATS_CheckIAP.allCarsUnlocked = true;
+        MATS_CheckIAP.allCharactersUnlocked = true;
+        MATS_CheckIAP.allGame = true;
+        PlayerPrefs.SetInt("IsAdsRemoved", 1);
         playerBoughtAllCars.RaiseEvent();
         playerInventory.UnlockAllCharacters();
         RaisePurchaseCompletionEvent();

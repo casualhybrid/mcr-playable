@@ -20,7 +20,7 @@ public class UnlockCarsIAPItem : IAPItem
         RaiseRightBeforePurchaseCompleted();
 
         playerInventory.UnlockAllCars();
-
+        MATS_CheckIAP.allCarsUnlocked = true;
         playerBoughtAllCars.RaiseEvent();
 
         RaisePurchaseCompletionEvent();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace AppsFlyerSDK
 {
     public class AppsFlyer : MonoBehaviour
@@ -70,7 +71,7 @@ namespace AppsFlyerSDK
                 appsFlyerAndroid.initSDK(devKey, gameObject);
                 instance = appsFlyerAndroid;
                 instance.isInit = true;
-                
+
             }
 #elif UNITY_WSA_10_0
             AppsFlyerWindows.InitSDK(devKey, appID, gameObject);
@@ -101,10 +102,10 @@ namespace AppsFlyerSDK
 #endif
         }
 
-        
-  
 
-     
+
+
+
 
         /// <summary>
         /// Send an In-App Event.
@@ -176,7 +177,9 @@ namespace AppsFlyerSDK
             if (instance != null)
             {
                 instance.setIsDebug(shouldEnable);
-            } else {
+            }
+            else
+            {
 #if UNITY_IOS || UNITY_STANDALONE_OSX
                 instance = new AppsFlyeriOS();
                 instance.setIsDebug(shouldEnable);
@@ -276,7 +279,7 @@ namespace AppsFlyerSDK
         /// <param name="domains">Array of domains.</param>
         public static void setOneLinkCustomDomain(params string[] domains)
         {
-            
+
             if (instance != null)
             {
                 instance.setOneLinkCustomDomain(domains);
@@ -291,7 +294,7 @@ namespace AppsFlyerSDK
 
 #endif
 
-                
+
 
             }
         }
@@ -308,7 +311,9 @@ namespace AppsFlyerSDK
             if (instance != null)
             {
                 instance.setCurrencyCode(currencyCode);
-            } else {
+            }
+            else
+            {
 #if UNITY_IOS || UNITY_STANDALONE_OSX
                 instance = new AppsFlyeriOS();
                 instance.setCurrencyCode(currencyCode);
@@ -317,7 +322,7 @@ namespace AppsFlyerSDK
                 instance.setCurrencyCode(currencyCode);
 #else
 #endif
-        }
+            }
         }
 
         /// <summary>
@@ -344,6 +349,12 @@ namespace AppsFlyerSDK
                 instance.logAdRevenue(adRevenueData, additionalParameters);
             }
         }
+
+
+
+       
+
+
 
         /// <summary>
         /// Manually record the location of the user.
@@ -436,7 +447,9 @@ namespace AppsFlyerSDK
             if (instance != null)
             {
                 instance.setHost(hostPrefixName, hostName);
-            } else {
+            }
+            else
+            {
 #if UNITY_IOS || UNITY_STANDALONE_OSX
                 instance = new AppsFlyeriOS();
                 instance.setHost(hostPrefixName, hostName);
@@ -445,7 +458,7 @@ namespace AppsFlyerSDK
                 instance.setHost(hostPrefixName, hostName);
 #else
 #endif
-        }
+            }
         }
 
         /// <summary>
@@ -683,7 +696,7 @@ namespace AppsFlyerSDK
             {
                 instance.attributeAndOpenStore(appID, campaign, userParams, gameObject);
             }
-            
+
         }
 
         public static void setPreinstallAttribution(string mediaSource, string campaign, string siteId)
@@ -737,7 +750,7 @@ namespace AppsFlyerSDK
             {
                 instance.recordCrossPromoteImpression(appID, campaign, parameters);
             }
-            
+
         }
 
         public static void setUseUninstallSandbox(bool useUninstallSandbox)
@@ -792,7 +805,7 @@ namespace AppsFlyerSDK
             if (instance != null && instance is IAppsFlyerAndroidBridge)
             {
                 IAppsFlyerAndroidBridge appsFlyerAndroidInstance = (IAppsFlyerAndroidBridge)instance;
-                appsFlyerAndroidInstance.validateAndSendInAppPurchase(publicKey, signature,purchaseData, price, currency, additionalParameters, gameObject);
+                appsFlyerAndroidInstance.validateAndSendInAppPurchase(publicKey, signature, purchaseData, price, currency, additionalParameters, gameObject);
             }
         }
 
@@ -807,7 +820,7 @@ namespace AppsFlyerSDK
         }
 
         public static void handleOpenUrl(string url, string sourceApplication, string annotation)
-        { 
+        {
             if (instance != null && instance is IAppsFlyerIOSBridge)
             {
                 IAppsFlyerIOSBridge appsFlyeriOSInstance = (IAppsFlyerIOSBridge)instance;
@@ -854,7 +867,7 @@ namespace AppsFlyerSDK
             {
                 instance.generateUserInviteLink(parameters, gameObject);
             }
-            
+
         }
 
         public static void disableSKAdNetwork(bool isDisabled)
@@ -863,14 +876,16 @@ namespace AppsFlyerSDK
             {
                 IAppsFlyerIOSBridge appsFlyeriOSInstance = (IAppsFlyerIOSBridge)instance;
                 appsFlyeriOSInstance.disableSKAdNetwork(isDisabled);
-            } else {
+            }
+            else
+            {
 #if UNITY_IOS || UNITY_STANDALONE_OSX
                 instance = new AppsFlyeriOS();
                 IAppsFlyerIOSBridge appsFlyeriOSInstance = (IAppsFlyerIOSBridge)instance;
                 appsFlyeriOSInstance.disableSKAdNetwork(isDisabled);
 #else
 #endif
-        }
+            }
         }
 
         public static void setCollectOaid(bool isCollect)
@@ -940,8 +955,10 @@ namespace AppsFlyerSDK
         /// <summary>
         /// Use to opt-out of collecting the network operator name (carrier) and sim operator name from the device.
         /// </summary>
-        public static void setDisableNetworkData(bool disable) {
-            if (instance != null && instance is IAppsFlyerAndroidBridge) {
+        public static void setDisableNetworkData(bool disable)
+        {
+            if (instance != null && instance is IAppsFlyerAndroidBridge)
+            {
                 IAppsFlyerAndroidBridge appsFlyerAndroidInstance = (IAppsFlyerAndroidBridge)instance;
                 appsFlyerAndroidInstance.setDisableNetworkData(disable);
             }
@@ -951,7 +968,7 @@ namespace AppsFlyerSDK
         /// <summary>
         /// Use to disable app vendor identifier (IDFV) collection, 'true' to disable.
         /// </summary>
-        public static void disableIDFVCollection(bool isDisabled) 
+        public static void disableIDFVCollection(bool isDisabled)
         {
 #if UNITY_IOS || UNITY_STANDALONE_OSX
             if (instance == null) { 
@@ -973,13 +990,13 @@ namespace AppsFlyerSDK
             add
             {
                 onRequestResponse += value;
-            }  
-            remove  
-            {  
+            }
+            remove
+            {
                 onRequestResponse -= value;
-            }     
+            }
         }
-        
+
         /// <summary>
         /// In-App callback event.
         /// </summary>
@@ -988,11 +1005,11 @@ namespace AppsFlyerSDK
             add
             {
                 onInAppResponse += value;
-            }  
-            remove  
-            {  
+            }
+            remove
+            {
                 onInAppResponse -= value;
-            }     
+            }
         }
 
         /// <summary>
@@ -1004,11 +1021,11 @@ namespace AppsFlyerSDK
             {
                 onDeepLinkReceived += value;
                 subscribeForDeepLink();
-            }  
-            remove  
-            {  
+            }
+            remove
+            {
                 onDeepLinkReceived -= value;
-            }     
+            }
         }
 
         /// <summary>
@@ -1016,12 +1033,12 @@ namespace AppsFlyerSDK
         /// </summary>
         public void inAppResponseReceived(string response)
         {
-            if (onInAppResponse != null) 
+            if (onInAppResponse != null)
             {
                 onInAppResponse.Invoke(null, parseRequestCallback(response));
             }
         }
-        
+
         /// <summary>
         /// Used to accept in-app callback from UnitySendMessage on native side.
         /// </summary>
@@ -1051,13 +1068,13 @@ namespace AppsFlyerSDK
         {
             int responseCode = 0;
             string errorDescription = "";
-            
+
             try
             {
                 Dictionary<string, object> dictionary = CallbackStringToDictionary(response);
                 var errorResponse = dictionary.ContainsKey("errorDescription") ? dictionary["errorDescription"] : "";
                 errorDescription = (string)errorResponse;
-                responseCode = (int)(long) dictionary["statusCode"];
+                responseCode = (int)(long)dictionary["statusCode"];
             }
             catch (Exception e)
             {

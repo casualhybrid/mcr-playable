@@ -78,7 +78,7 @@ public class MaxSdkLogger
     public static void LogException(Exception exception)
     {
         if (MaxSdk.DisableAllLogs) return;
-        
+
         Debug.LogException(exception);
     }
 }

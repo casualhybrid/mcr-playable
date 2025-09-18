@@ -6,9 +6,9 @@ using UnityEngine.Scripting;
 [System.Serializable]
 public class CelebrationBatchProperties : WindowProperties
 {
-   [System.NonSerialized] public List<InventoryItem<int>> BatchToBeCelebrated;
-   [System.NonSerialized] public string Context;
-   [System.NonSerialized] public bool isDoubleRewardPossible;
+    [System.NonSerialized] public List<InventoryItem<int>> BatchToBeCelebrated;
+    [System.NonSerialized] public string Context;
+    [System.NonSerialized] public bool isDoubleRewardPossible;
 }
 
 [Preserve]
@@ -47,14 +47,17 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         }
         else
         {
-          
+
             doubleButton.SetActive(false);
-            if(crossButton)
+            if (crossButton)
                 crossButton.SetActive(false);
             Debug.LogError("CloseCall?");
             UI_Close();
         }
-        if(isShop)
+        if (MATS_GameManager.instance)
+            MATS_GameManager.instance.activeInventoryCelebrationPanel = this;
+
+        if (isShop)
             UI_Close();
     }
     public void Close()
@@ -67,7 +70,7 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         isDoubled = false;
         doubleRewardAdComplete.TheEvent.RemoveListener(AddDoubleReward);
         doubleButton.SetActive(false);
-        if(crossButton != null)
+        if (crossButton != null)
             crossButton.SetActive(false);
     }
 
@@ -112,7 +115,7 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         }
 
         entity.RewardImage.sprite = rewardSprites[RewardKeys.IndexOf(itemName)];
-        Debug.LogError(itemName + " mohsin "+ entity.AmountText.text);
+        Debug.LogError(itemName + " mohsin " + entity.AmountText.text);
         entity.BackgroundImage.color = colors[RewardKeys.IndexOf(itemName)];
     }
 

@@ -168,7 +168,7 @@ TextureImporter:
       213: -3632022251332201833
     second: LdrBrd_star
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -185,11 +185,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -228,6 +229,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -239,6 +242,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -251,18 +255,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: 65
     textureCompression: 1
-    compressionQuality: 100
+    compressionQuality: 0
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -275,6 +281,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1467,65 +1474,64 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Purple_Icon: 7750412675279909940
-      Dax_locked: 796222133966991868
-      3: -641153949350344947
-      Figureines_Icon: 6133029975404331515
-      Iron: 8246953672502988631
-      Zade_Icon: 2924179777101827330
-      Current_Player InFo: 6701888965372173279
-      Orange_Bg: 1307834111682512034
-      Menu_Sprite_40: 4052804782512608664
-      Zade_locked: 7564242213891982858
-      LeaderBoardtop: 5702767394212206778
-      Name_Holder: 7095946156194758041
-      InProcess_icon: -2916833777321172849
-      RateUs_Icon: -8571351165875124085
-      AbilitesHolder: -7821247634681862264
-      Laser_Icon: -8675984113894183346
-      LdrBrd_star: -3632022251332201833
-      Gold: -4262629120581849634
-      Lock_icon: -5281984662433293821
-      Blue_bg: -7981738078785128689
-      Icon_Holder_Generic: 3434921662337050243
-      Car_iconV2: 6046002789209981962
-      LdrBrd_Time: -2731267181978232828
-      Boost_Icon: -6749880958757887875
-      LeaderBoard_btn: 3525063443439543527
-      Shop_Icon: 1980775243721181083
-      Ldr_brd_gold: -5976286494947854461
-      Setting_Icon: 1818044393727834895
-      Selected_effect: -5190518030623462519
-      LeaderBoard_base: 6751772365555959581
-      Gradient Effect: -8862298340345906874
-      Silver: -8204849723635372341
-      Dax_Icon: 4922565666460299723
-      car_stats_fillBlue: -7879784193890461807
-      Bronze: 1031529886792608512
-      2: -4408490576157833319
-      AirPlane_Icon: -107574485132726619
-      DoubleJump_icon: 7647281427312115910
-      Ari_Icon: -8925243648678750165
-      LeaderBoard_Player Info: 3701418125368207037
-      Main_Btn: -5502403818257531508
-      Circle: -6165861149805245775
-      Ari_Locked: -5826079047637087456
-      DailyRewad_Icon: -8451919171919611596
-      Car_Stats_holder: -2056008536415145318
-      Menu_Sprite_0: 1208633068
-      Car_statsBar_Base: -2127354436668762976
-      car_stats_fillYellow: -2025392124454762595
-      MysteryBox: -9047878539478687863
       1: 188985967533069682
-      NoAbilites_Icon: 6755939826458029835
+      2: -4408490576157833319
+      3: -641153949350344947
+      AbilitesHolder: -7821247634681862264
+      AirPlane_Icon: -107574485132726619
+      Ari_Icon: -8925243648678750165
+      Ari_Locked: -5826079047637087456
+      Blue_bg: -7981738078785128689
+      Boost_Icon: -6749880958757887875
+      Bronze: 1031529886792608512
+      Car_Stats_holder: -2056008536415145318
+      Car_iconV2: 6046002789209981962
+      Car_statsBar_Base: -2127354436668762976
+      Circle: -6165861149805245775
+      Current_Player InFo: 6701888965372173279
+      DailyRewad_Icon: -8451919171919611596
+      Dax_Icon: 4922565666460299723
+      Dax_locked: 796222133966991868
+      DoubleJump_icon: 7647281427312115910
+      Figureines_Icon: 6133029975404331515
+      Gold: -4262629120581849634
+      Gradient Effect: -8862298340345906874
+      Icon_Holder_Generic: 3434921662337050243
+      InProcess_icon: -2916833777321172849
+      Iron: 8246953672502988631
+      Laser_Icon: -8675984113894183346
+      LdrBrd_Time: -2731267181978232828
+      LdrBrd_star: -3632022251332201833
+      Ldr_brd_gold: -5976286494947854461
+      LeaderBoard_Player Info: 3701418125368207037
+      LeaderBoard_base: 6751772365555959581
+      LeaderBoard_btn: 3525063443439543527
+      LeaderBoardtop: 5702767394212206778
+      Lock_icon: -5281984662433293821
       Main_Blue_Btn: -5442640319332510541
-      Thrust_Icon: 4209420054829326524
+      Main_Btn: -5502403818257531508
+      Menu_Sprite_0: 1208633068
+      Menu_Sprite_40: 4052804782512608664
+      MysteryBox: -9047878539478687863
+      Name_Holder: 7095946156194758041
+      NoAbilites_Icon: 6755939826458029835
+      Orange_Bg: 1307834111682512034
       Player_Icon: -1853728605837877730
-      Vechical_Icon: -695548960016731222
+      Purple_Icon: 7750412675279909940
+      RateUs_Icon: -8571351165875124085
+      Selected_effect: -5190518030623462519
+      Setting_Icon: 1818044393727834895
+      Shop_Icon: 1980775243721181083
+      Silver: -8204849723635372341
+      Thrust_Icon: 4209420054829326524
       Trasnparent_Btn: 5466615050193141092
-  spritePackingTag: 
+      Vechical_Icon: -695548960016731222
+      Zade_Icon: 2924179777101827330
+      Zade_locked: 7564242213891982858
+      car_stats_fillBlue: -7879784193890461807
+      car_stats_fillYellow: -2025392124454762595
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

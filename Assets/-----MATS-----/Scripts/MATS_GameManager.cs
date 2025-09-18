@@ -9,6 +9,8 @@ public class MATS_GameManager : MonoBehaviour
     public bool isQualityLevelSet = false;
     public bool isTutorialPlaying = false;
 
+    public InventoryCelebrationPanel activeInventoryCelebrationPanel;
+
     public GameObject Dummy;
 
     // public UnityEngine.Rendering.PostProcessing.PostProcessLayer[] scenePostProcessingLayers;

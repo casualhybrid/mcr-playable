@@ -181,16 +181,16 @@ public class ShopManagerUI : AWindowController
             thingsGot.Add("No Ads Package");
             amountsGot.Add(1);
 
-            OpenTheWindow(ScreenIds.PurchaseSuccess);
+            //  OpenTheWindow(ScreenIds.PurchaseSuccess);
             BuyAdFreePanel.SetActive(false);
             //zaid
             //contentPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(1080, /*4505*/5110);
         }
         else
         {
-            print("Item is not purchaseable...");
+            Debug.LogError("Item is not purchaseable...");
 
-            OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            // OpenTheWindow(ScreenIds.ResourcesNotAvailable);
         }
         purchaseEvent.RaiseEvent(thingsGot, "AccountDiamonds", 100, amountsGot);
     }
@@ -257,7 +257,8 @@ public class ShopManagerUI : AWindowController
             //   print("Item is not purchaseable...");
 
             SendCoinPackageClickeAnalyticsEvent(itemObj.name, false);
-            OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            // OpenTheWindow(ScreenIds.ResourcesNotAvailable);
+            Debug.LogError("Item is not purchaseable...");
         }
 
 
@@ -348,7 +349,7 @@ public class ShopManagerUI : AWindowController
         inventoryObj.saveManagerObj.MainSaveFile.isAdsPurchased = true;
 
         playerBoughtAdFree.RaiseEvent();
-        OpenTheWindow(ScreenIds.PurchaseSuccess);
+        //  OpenTheWindow(ScreenIds.PurchaseSuccess);
         BuyAdFreePanel.SetActive(false);
     }
 
@@ -386,14 +387,35 @@ public class ShopManagerUI : AWindowController
 
     public void CloseShopPanel()
     {
+
+        if (MATS_GameManager.instance != null && MATS_GameManager.instance.activeInventoryCelebrationPanel != null)
+        {
+            if (MATS_GameManager.instance.activeInventoryCelebrationPanel.gameObject.activeSelf)
+            {
+                try
+                {
+                    MATS_GameManager.instance.activeInventoryCelebrationPanel.UI_Close();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                    throw;
+                }
+                MATS_GameManager.instance.activeInventoryCelebrationPanel.gameObject.SetActive(false);
+            }
+
+        }
+
+        // CheckCLosePanel();
         PersistentAudioPlayer.Instance.PlayAudio();
         InventoryCelebrationPanel.isShop = false;
-        inventoryPanel = WindowParaLayer.instance.Get();
+        //   inventoryPanel = WindowParaLayer.instance.Get();
         //Debug.LogError(inventoryPanel.name);
-        if (inventoryPanel != null)
-            inventoryPanel.SetActive(false);
+        // if (inventoryPanel != null)
+        //   inventoryPanel.SetActive(false);
         //  saveManagerObj.SaveGame(0, false);
         inputChannel.UnPauseInputsFromUser();
+
         this.UI_Close();
     }
     public void CheckCLosePanel()

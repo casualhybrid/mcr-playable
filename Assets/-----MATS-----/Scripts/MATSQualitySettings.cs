@@ -323,26 +323,28 @@ public class MATSQualitySettings : MonoBehaviour
              Set_QualityLevel();
          }*/
 
+        if (qualityButtons != null)
+        {
+            for (int i = 0; i < qualityButtons.Length; i++)
+            {
+                qualityButtons[i].sprite = buttonSprites[0];
+            }
 
-        for (int i = 0; i < qualityButtons.Length; i++)
-        {
-            qualityButtons[i].sprite = buttonSprites[0];
+
+            if (selectedQuality == 0 || selectedQuality == 1)
+            {
+                qualityButtons[0].sprite = buttonSprites[1];
+            }
+            else if (selectedQuality == 3 || selectedQuality == 3)
+            {
+                qualityButtons[1].sprite = buttonSprites[1];
+            }
+            else if (selectedQuality == 4 || selectedQuality == 5)
+            {
+                qualityButtons[2].sprite = buttonSprites[1];
+            }
+        }
+            Set_QualityLevel(selectedQuality);
         }
 
-
-        if (selectedQuality == 0 || selectedQuality == 1)
-        {
-            qualityButtons[0].sprite = buttonSprites[1];
-        }
-        else if (selectedQuality == 3 || selectedQuality == 3)
-        {
-            qualityButtons[1].sprite = buttonSprites[1];
-        }
-        else if (selectedQuality == 4 || selectedQuality == 5)
-        {
-            qualityButtons[2].sprite = buttonSprites[1];
-        }
-        Set_QualityLevel(selectedQuality);
     }
-
-}

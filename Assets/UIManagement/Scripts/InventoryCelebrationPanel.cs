@@ -57,8 +57,8 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         if (MATS_GameManager.instance)
             MATS_GameManager.instance.activeInventoryCelebrationPanel = this;
 
-        if (isShop)
-            UI_Close();
+/*        if (isShop)
+            UI_Close();*/
     }
     public void Close()
     {

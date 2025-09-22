@@ -126,6 +126,7 @@ public class CollisionBasedAudioPlayer : MonoBehaviour
     {
         if(eventName=="GamePlayScreen_Thrust_Pickup")
         {
+           
             
             StartCoroutine(Delay());
         }

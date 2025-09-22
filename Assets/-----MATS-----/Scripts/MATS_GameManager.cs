@@ -1,3 +1,4 @@
+using deVoid.UIFramework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class MATS_GameManager : MonoBehaviour
     public bool isTutorialPlaying = false;
 
     public InventoryCelebrationPanel activeInventoryCelebrationPanel;
+    public WindowUILayer gameUiLayer;
+
+
+    public PlayerSharedData playerData;
+
 
     public GameObject Dummy;
 

@@ -323,7 +323,8 @@ public class MATSQualitySettings : MonoBehaviour
              Set_QualityLevel();
          }*/
 
-        if (qualityButtons != null)
+        if (qualityButtons != null && qualityButtons.Length > 0 &&
+    buttonSprites != null && buttonSprites.Length > 0)
         {
             for (int i = 0; i < qualityButtons.Length; i++)
             {
@@ -344,7 +345,7 @@ public class MATSQualitySettings : MonoBehaviour
                 qualityButtons[2].sprite = buttonSprites[1];
             }
         }
-            Set_QualityLevel(selectedQuality);
-        }
-
+        Set_QualityLevel(selectedQuality);
     }
+
+}

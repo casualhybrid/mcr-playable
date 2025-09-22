@@ -380,6 +380,7 @@ public class MaxAdMobController : MonoBehaviour
         }
         if (MaxSdk.IsRewardedAdReady(RewardedAdUnitId))
         {
+            AppOpenAdController.instance.isAdShowing = true;
             MaxSdk.ShowRewardedAd(RewardedAdUnitId);
         }
         else
@@ -793,7 +794,7 @@ public class MaxAdMobController : MonoBehaviour
     {
         if (product == null)
         {
-            Debug.LogError("<color=red>[MATS_AppsFlyerIAP]</color> Product is null, cannot send event.");
+            MATS_Debug.Log("<color=red>[MATS_AppsFlyerIAP]</color> Product is null, cannot send event.");
             return;
         }
 
@@ -813,12 +814,12 @@ public class MaxAdMobController : MonoBehaviour
         if (product.definition.type == ProductType.Subscription)
         {
             AppsFlyer.sendEvent("af_subscribe", eventData);
-            Debug.Log($"<color=cyan>[MATS_AppsFlyerIAP]</color> Sent af_subscribe event: Product={productId}, Revenue={netRevenue}");
+            MATS_Debug.Log($"<color=cyan>[MATS_AppsFlyerIAP]</color> Sent af_subscribe event: Product={productId}, Revenue={netRevenue}");
         }
         else
         {
             AppsFlyer.sendEvent(AFInAppEvents.PURCHASE, eventData);
-            Debug.Log($"<color=cyan>[MATS_AppsFlyerIAP]</color> Sent af_purchase event: Product={productId}, Revenue={netRevenue}");
+            MATS_Debug.Log($"<color=cyan>[MATS_AppsFlyerIAP]</color> Sent af_purchase event: Product={productId}, Revenue={netRevenue}");
         }
     }
 

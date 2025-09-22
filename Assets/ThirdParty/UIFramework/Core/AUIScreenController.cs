@@ -51,6 +51,7 @@ namespace deVoid.UIFramework
 
         public void OpenTheWindow(string id)
         {
+            MATS_Debug.Log("WHAT IS HE TRYING TO OPEN NOW ID: ", id);
             UIScreenEvents.RaiseWindowOpenEvent(id);
         }
 
@@ -220,7 +221,7 @@ namespace deVoid.UIFramework
                 }
             }
 
-        
+
             HierarchyFixOnShow();
             OnPropertiesSet();
 
@@ -242,8 +243,8 @@ namespace deVoid.UIFramework
 
             ScreenType screenType;
             bool isWindow = typeof(AWindowController).IsAssignableFrom(this.GetType());
-            
-            if(isWindow)
+
+            if (isWindow)
             {
                 AWindowController aWindowController = this as AWindowController;
                 screenType = aWindowController.IsPopup ? ScreenType.PopUp : ScreenType.Window;
@@ -291,7 +292,7 @@ namespace deVoid.UIFramework
 
                     action += () =>
                     {
-                    //    UnityEngine.Console.Log($"Opened Screen After Animation{ScreenId} ");
+                        //    UnityEngine.Console.Log($"Opened Screen After Animation{ScreenId} ");
                         UIScreenEvents.OnScreenOperationEventAfterAnimation.Invoke(ScreenId, ScreenOperation.Open, screenType);
                     };
                 }
@@ -302,7 +303,7 @@ namespace deVoid.UIFramework
 
                     action += () =>
                     {
-                    //   UnityEngine.Console.Log($"Closed Screen After Animation {ScreenId} ");
+                        //   UnityEngine.Console.Log($"Closed Screen After Animation {ScreenId} ");
                         UIScreenEvents.OnScreenOperationEventAfterAnimation.Invoke(ScreenId, ScreenOperation.Close, screenType);
                     };
                 }

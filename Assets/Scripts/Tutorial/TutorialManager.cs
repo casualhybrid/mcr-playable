@@ -666,7 +666,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowFeedbackTutorialIfRequired()
     {
-        Debug.LogError($"tutorialSegmentData.curTutorialSegmentIndex MATSSSSSS {tutorialSegmentData.curTutorialSegmentIndex}");
+        MATS_Debug.Log($"tutorialSegmentData.curTutorialSegmentIndex MATSSSSSS {tutorialSegmentData.curTutorialSegmentIndex}");
         if (tutorialSegmentData.curTutorialSegmentIndex == 5)
         {
             tutorialFeedBackPanel.gameObject.SetActive(true);

@@ -53,9 +53,13 @@ public class DailyLoginRewardManager : MonoBehaviour
     public Image rewardDisplayImage;
     public GameObject closeButton, doubleRewardButton;
     public GameObject[] particles;
-
-    private void Start()
+    private void OnEnable()
     {
+
+        /* }
+
+         private void Start()
+         {*/
         Log("Manager Start → loading progress");
         LoadProgress();
         RefreshUI();
@@ -315,7 +319,7 @@ public class DailyLoginRewardManager : MonoBehaviour
     // ------------------- DEBUG UTIL -------------------
     private void Log(string message)
     {
-        Debug.Log($"<color=#00BFFF>[DAILY REWARD]</color> {message}");
+        // Debug.Log($"<color=#00BFFF>[DAILY REWARD]</color> {message}");
     }
     private void OnDisable()
     {

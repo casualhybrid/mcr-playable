@@ -387,36 +387,34 @@ public class ShopManagerUI : AWindowController
 
     public void CloseShopPanel()
     {
+        //MATS_GameManager.instance.gameUiLayer.CurrentWindow
 
-        if (MATS_GameManager.instance != null && MATS_GameManager.instance.activeInventoryCelebrationPanel != null)
+        MATS_Debug.Log("Current Window -- -- ", MATS_GameManager.instance?.gameUiLayer.CurrentWindow.ScreenId);
+
+        if (MATS_GameManager.instance?.gameUiLayer.CurrentWindow.ScreenId == this.ScreenId)
         {
-            if (MATS_GameManager.instance.activeInventoryCelebrationPanel.gameObject.activeSelf)
-            {
-                try
-                {
-                    MATS_GameManager.instance.activeInventoryCelebrationPanel.UI_Close();
-                }
-                catch (Exception e)
-                {
-                    Debug.LogException(e);
-                    throw;
-                }
-                MATS_GameManager.instance.activeInventoryCelebrationPanel.gameObject.SetActive(false);
-            }
+
+            inputChannel.UnPauseInputsFromUser();
+            this.UI_Close();
+
 
         }
 
-        // CheckCLosePanel();
-        PersistentAudioPlayer.Instance.PlayAudio();
-        InventoryCelebrationPanel.isShop = false;
-        //   inventoryPanel = WindowParaLayer.instance.Get();
-        //Debug.LogError(inventoryPanel.name);
-        // if (inventoryPanel != null)
-        //   inventoryPanel.SetActive(false);
-        //  saveManagerObj.SaveGame(0, false);
-        inputChannel.UnPauseInputsFromUser();
+        else
+        {
+            //  MATS_GameManager.instance?.activeInventoryCelebrationPanel.gameObject.SetActive(true);
+            MATS_GameManager.instance?.activeInventoryCelebrationPanel.UI_Close();
 
-        this.UI_Close();
+            if (MATS_GameManager.instance?.gameUiLayer.CurrentWindow.ScreenId == this.ScreenId)
+            {
+                inputChannel.UnPauseInputsFromUser();
+                this.UI_Close();
+            }
+        }
+
+
+
+
     }
     public void CheckCLosePanel()
     {

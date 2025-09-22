@@ -24,6 +24,7 @@ public class MainMenuManager : AWindowController
     [SerializeField] private Canvas TapToPlayFirstTimeCanvas;
     [SerializeField] private GameObject profilePanel;
     [SerializeField] private GameObject leaderBoardPanel;
+    [SerializeField] private GameObject dailyReward;
     private GameObject leaderBoardRefrence;
     GameObject animator;
     /* GameObject cameraRefrence;
@@ -68,7 +69,7 @@ public class MainMenuManager : AWindowController
         }
 
 
-
+        dailyReward.SetActive(false);
     }
 
 

@@ -1,5 +1,4 @@
 using deVoid.UIFramework;
-using Facebook.Unity;
 
 //using fbg;
 using TheKnights.SaveFileSystem;
@@ -43,10 +42,7 @@ public class MainMenuManager : AWindowController
         base.Awake();
     }
 
-    public void InterTest()
-    {
-        MaxAdMobController.Instance.ShowInterstitialAd();
-    }
+    
     private void Start()
     {
 
@@ -86,13 +82,11 @@ public class MainMenuManager : AWindowController
 
     public void OnClickCounterClick()
     {
-        //adsController.ShowSmallBannerAd("MainMenuPanel");
-        MaxAdMobController.Instance.ShowAdmobBanner();
+        
         PersistentAudioPlayer.Instance.PanelSounds();
     }
     public void CloseCounterClick()
     {
-        MaxAdMobController.Instance.HideAdmobBanner();
         //adsController.HideSmallBanner();
         PersistentAudioPlayer.Instance.PlayAudio();
     }

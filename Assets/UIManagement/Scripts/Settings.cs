@@ -45,21 +45,20 @@ public class Settings : MonoBehaviour
 
     private void UpdateFaceBookLogInStatusUI()
     {
-        if (FaceBookManager.isLoggedInToFaceBook)
-        {
-            facebookConnectButtonText.text = "Connected";
-        }
-        else
-        {
-            facebookConnectButtonText.text = "Connect To FaceBook";
-        }
+        //if (FaceBookManager.isLoggedInToFaceBook)
+        //{
+        //    facebookConnectButtonText.text = "Connected";
+        //}
+        //else
+        //{
+        //    facebookConnectButtonText.text = "Connect To FaceBook";
+        //}
     }
 
 
 
     public void ShowInterstitialAd()
     {
-        MaxAdMobController.Instance?.ShowInterstitialAd();
     }
     /// <summary>
     /// Signs in the user if the user is logged out and signs out if it's the other way around

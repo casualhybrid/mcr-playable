@@ -72,7 +72,7 @@ public abstract class RewardedAdSO : ScriptableObject
 
         //CoroutineRunner.Instance.StartCoroutine(ShowPriortiyRewardedADAfterDelay());
 
-        MaxAdMobController.Instance.ShowRewardedVideoAd(this);
+      //  MaxAdMobController.Instance.ShowRewardedVideoAd(this);
     }
 
     protected IEnumerator ShowPriortiyRewardedADAfterDelay()

@@ -23,19 +23,19 @@ public class LeaderBoardManager : AWindowController
     {
         OpenGlobalLeaderBoard();
 
-        if (FaceBookManager.isInitialized)
-        {
-            SetupBackUI();
+        //if (FaceBookManager.isInitialized)
+        //{
+        //    SetupBackUI();
 
-            FaceBookManager.OnUserLoggedInToFaceBook.AddListener(SetupBackUI);
-        }
-        else
-        {
-            faceBookButtonGameObject.SetActive(false);
-            Vector2 pos = globalLeaderBoardButtonRectT.anchoredPosition;
-            pos.x = 0;
-            globalLeaderBoardButtonRectT.anchoredPosition = pos;
-        }
+        //    FaceBookManager.OnUserLoggedInToFaceBook.AddListener(SetupBackUI);
+        //}
+        //else
+        //{
+        //    faceBookButtonGameObject.SetActive(false);
+        //    Vector2 pos = globalLeaderBoardButtonRectT.anchoredPosition;
+        //    pos.x = 0;
+        //    globalLeaderBoardButtonRectT.anchoredPosition = pos;
+        //}
     }
 
     private void OnDisable()
@@ -71,7 +71,7 @@ public class LeaderBoardManager : AWindowController
 
     private void SetupBackUI()
     {
-        facebookBarLowerUI.SetActive(!FaceBookManager.isLoggedInToFaceBook);
-        normalBackButton.SetActive(FaceBookManager.isLoggedInToFaceBook);
+       // facebookBarLowerUI.SetActive(!FaceBookManager.isLoggedInToFaceBook);
+       // normalBackButton.SetActive(FaceBookManager.isLoggedInToFaceBook);
     }
 }

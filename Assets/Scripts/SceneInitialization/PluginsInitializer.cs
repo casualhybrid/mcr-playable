@@ -121,6 +121,7 @@ public class PluginsInitializer : MonoBehaviour
 
     private IEnumerator LoadPluginsRoutine()
     {
+        LoadGamePlayLevel();
         yield return null;
 
         AdManager adManagerChosen = adsController.GetCurrentADManager;
@@ -169,8 +170,8 @@ public class PluginsInitializer : MonoBehaviour
 
         // UnityEngine.Console.Log("Step Load GamePlay");
         Debug.LogError("Sceneloader6");
-        yield return new WaitForSeconds(7);
-        LoadGamePlayLevel();
+      //  yield return new WaitForSeconds(7);
+       // LoadGamePlayLevel();
     }
 
     private void SubscribeEvents()
@@ -179,7 +180,7 @@ public class PluginsInitializer : MonoBehaviour
         //  FireBaseInitializer.OnFireBaseInitialized += LoadTheSaveGame;
 
         saveManager.OnSessionLoaded.AddListener(SaveGameLoaded);
-
+        InitializeStartingPlugins();
         FaceBookManager.OnFaceBookInitialized.AddListener(InitializeStartingPlugins);
         FaceBookManager.OnFaceBookFailedInitialized.AddListener(InitializeStartingPlugins);
 

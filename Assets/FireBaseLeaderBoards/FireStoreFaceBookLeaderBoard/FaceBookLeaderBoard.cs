@@ -82,14 +82,14 @@ namespace TheKnights.LeaderBoardSystem.FaceBook
         /// <param name="profilePicBytes">Optional profile picture data to be uploaded</param>
         public async Task SubmitHighScoreToLeaderBoard(int score, byte[] profilePicBytes = null)
         {
-            string userFaceBookID = FaceBookManager.GetUserFaceBookID;
-            string userFaceBookName = FaceBookManager.GetUserFaceBookName;
+           // string userFaceBookID = FaceBookManager.GetUserFaceBookID;
+           // string userFaceBookName = FaceBookManager.GetUserFaceBookName;
 
-            if (string.IsNullOrEmpty(userFaceBookID))
-            {
-                UnityEngine.Console.Log("Failed to submit score to facebook leaderboard as the user facebook id is null/empty");
-                return;
-            }
+            //if (string.IsNullOrEmpty(userFaceBookID))
+            //{
+            //    UnityEngine.Console.Log("Failed to submit score to facebook leaderboard as the user facebook id is null/empty");
+            //    return;
+            //}
 
            
 

@@ -109,7 +109,6 @@ public class ShopManagerUI : AWindowController
     }
     public void HideBanner()
     {
-        MaxAdMobController.Instance.HideAdmobBanner();
         PlayerPrefs.SetInt("IsAdsRemoved", 1);
     }
 

@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class InterGp : MonoBehaviour
 {
-    public void OnEnable()
-    {
-        MaxAdMobController.Instance.ShowInterstitialAd();
-    }
+   
 }

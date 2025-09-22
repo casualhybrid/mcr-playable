@@ -107,13 +107,13 @@ public class FaceBookLeaderBoardUI : MonoBehaviour
 
             bool hasInternetConnection = e == null || e.GetType() != typeof(InternetNotAvailableException);
 
-            if (hasInternetConnection && !FaceBookManager.isLoggedInToFaceBook && !hasShownLoginToFacebookPopup)
-            {
-                hasShownLoginToFacebookPopup = true;
-                leaderboardController.OpenTheWindow(ScreenIds.FaceBookLoginPopup);
+            //if (hasInternetConnection && !FaceBookManager.isLoggedInToFaceBook && !hasShownLoginToFacebookPopup)
+            //{
+            //    hasShownLoginToFacebookPopup = true;
+            //    leaderboardController.OpenTheWindow(ScreenIds.FaceBookLoginPopup);
 
-                return;
-            }
+            //    return;
+            //}
         }
     }
 
@@ -148,18 +148,18 @@ public class FaceBookLeaderBoardUI : MonoBehaviour
 
         bool hasInternetConnection = e == null || e.GetType() != typeof(InternetNotAvailableException);
 
-        if (hasInternetConnection && !FaceBookManager.isLoggedInToFaceBook)
-        {
-            connectionErrorTxt.text = "Not logged in to FaceBook";
-            tryAgainObject.SetActive(false);
-            loginObject.SetActive(true);
-        }
-        else
-        {
-            connectionErrorTxt.text = "Ooops! Connection Error. Please try again later";
-            tryAgainObject.SetActive(true);
-            loginObject.SetActive(false);
-        }
+        //if (hasInternetConnection && !FaceBookManager.isLoggedInToFaceBook)
+        //{
+        //    connectionErrorTxt.text = "Not logged in to FaceBook";
+        //    tryAgainObject.SetActive(false);
+        //    loginObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    connectionErrorTxt.text = "Ooops! Connection Error. Please try again later";
+        //    tryAgainObject.SetActive(true);
+        //    loginObject.SetActive(false);
+        //}
     }
 
     private void DisableConnectionErrorDetails()

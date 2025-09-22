@@ -122,15 +122,14 @@ public class ShowDailyGoalsInfo : MonoBehaviour
 
     public void CompleteGoalReward(int index)
     {
-        MaxAdMobController.OnVideoAdCompleteReward += () => GiveRewardedReward(index);
-        MaxAdMobController.Instance.ShowRewardedVideoAd();
+        
 
     }
 
 
     void GiveRewardedReward(int index)
     {
-        MaxAdMobController.OnVideoAdCompleteReward -= () => GiveRewardedReward(index);
+       
 
         List<GoalItemDataSet> obj = dailyGoalManager.dailyGoalsObj.genericDailyGoals;
 

@@ -4,12 +4,5 @@ using UnityEngine;
 
 public class HideBanner : MonoBehaviour
 {
-    public void OnEnable()
-    {
-        MaxAdMobController.Instance.HideAdmobBanner();
-    }
-    public void OnDisable()
-    {
-        MaxAdMobController.Instance.ShowAdmobBanner();
-    }
+    
 }

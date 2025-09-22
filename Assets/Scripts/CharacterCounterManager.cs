@@ -118,15 +118,14 @@ public class CharacterCounterManager : MonoBehaviour
     private void ShowRewardedAd(CharacterCounter counter)
     {
         index = counter;
-        MaxAdMobController.OnVideoAdCompleteReward += RewardUser;
-        MaxAdMobController.Instance.ShowRewardedVideoAd();
+      
     }
 
     // This method is called when the ad is complete and the user should be rewarded
     private void RewardUser()
     {
         // IMPORTANT: Unsubscribe immediately to prevent this from being called multiple times
-        MaxAdMobController.OnVideoAdCompleteReward -= RewardUser;
+      
 
         string rewardKey = "RewardClaimed_" + index.characterID;
         string timeKey = "RewardTime_" + index.characterID;

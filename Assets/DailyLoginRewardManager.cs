@@ -253,12 +253,9 @@ public class DailyLoginRewardManager : MonoBehaviour
     public void DoublePlayerReward()
     {
 
-        MaxAdMobController.OnVideoAdCompleteReward += ShowRewarded;
-        MaxAdMobController.Instance.ShowRewardedVideoAd();
     }
     void ShowRewarded()
     {
-        MaxAdMobController.OnVideoAdCompleteReward -= ShowRewarded;
         StartCoroutine(DoubleRewardCoroutine());
     }
 
@@ -295,9 +292,7 @@ public class DailyLoginRewardManager : MonoBehaviour
 
 
         index = Index;
-        MaxAdMobController.OnVideoAdCompleteReward += HandleVideoComplete;
-        MaxAdMobController.Instance.ShowRewardedVideoAd();
-
+     
 
 
 
@@ -305,7 +300,6 @@ public class DailyLoginRewardManager : MonoBehaviour
     void HandleVideoComplete()
     {
 
-        MaxAdMobController.OnVideoAdCompleteReward -= HandleVideoComplete;
         Log("Rewarded Ad Completed → granting reward.");
         ClaimReward(index);
     }

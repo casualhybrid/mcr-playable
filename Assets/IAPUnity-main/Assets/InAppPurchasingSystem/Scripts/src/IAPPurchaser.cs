@@ -1,5 +1,4 @@
-﻿using AppsFlyerSDK;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -255,7 +254,6 @@ namespace TheKnights.Purchasing
             //{
             //    UnityEngine.Console.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
             //}
-            MaxAdMobController.SendPurchaseEventCustomMATS(args.purchasedProduct);
             return PurchaseProcessingResult.Complete;
         }
 

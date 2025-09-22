@@ -1,4 +1,4 @@
-using Firebase.Firestore;
+//using Firebase.Firestore;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -61,20 +61,20 @@ namespace TheKnights.LeaderBoardSystem
 
         #region Private Fields
 
-        private FirebaseFirestore _db;
+     //   private FirebaseFirestore _db;
 
-        private FirebaseFirestore db
-        {
-            get
-            {
-                if (_db == null)
-                {
-                    _db = FirebaseFirestore.DefaultInstance;
-                }
+        //private FirebaseFirestore db
+        //{
+        //    get
+        //    {
+        //        if (_db == null)
+        //        {
+        //            _db = FirebaseFirestore.DefaultInstance;
+        //        }
 
-                return _db;
-            }
-        }
+        //        return _db;
+        //    }
+        //}
 
         [InfoBox("Using cache is recommended if you want to avoid several read operations", InfoMessageType.Info)]
         [SerializeField] private bool useCacheIfAvailable = true;
@@ -85,7 +85,7 @@ namespace TheKnights.LeaderBoardSystem
         private readonly List<LeaderBoardAsyncHandler<LeaderBoardQueryResult<LeaderBoardGroupQueryResponseData>>> leaderBoardAsyncHandlers =
             new List<LeaderBoardAsyncHandler<LeaderBoardQueryResult<LeaderBoardGroupQueryResponseData>>>();
 
-        private ListenerRegistration weekChangeListener;
+       // private ListenerRegistration weekChangeListener;
 
         #endregion Private Fields
 
@@ -94,7 +94,7 @@ namespace TheKnights.LeaderBoardSystem
         private void OnEnable()
         {
             LeaderBoardGroupDataVersion = 0;
-            weekChangeListener = null;
+            //weekChangeListener = null;
             isProcessingGroupQuery = false;
             CurrentRewardedGroupBeingClaimed = null;
             CurrentGroupInformation = null;
@@ -324,10 +324,10 @@ namespace TheKnights.LeaderBoardSystem
                 CurrentGroupInformation.Version = ++LeaderBoardGroupDataVersion;
 
                 // Start listening to week change
-                if (weekChangeListener == null)
-                {
-                    ListenToLeaderBoardWeekChange();
-                }
+                //if (weekChangeListener == null)
+                //{
+                //    ListenToLeaderBoardWeekChange();
+                //}
             }
             catch (Exception e)
             {
@@ -356,214 +356,214 @@ namespace TheKnights.LeaderBoardSystem
                 groupInfo.leaderBoardRankScoreThresholds = new int[Enum.GetNames(typeof(LeaderBoardRank)).Length];
             }
 
-            int baseScore = users[0].score;
+           // int baseScore = users[0].score;
             float factor = 1;
 
-            for (int l = 0; l < groupInfo.leaderBoardRankScoreThresholds.Length; l++)
-            {
-                groupInfo.leaderBoardRankScoreThresholds[l] = (int)((float)baseScore * factor);
-                factor -= 0.2f;
-            }
+            //for (int l = 0; l < groupInfo.leaderBoardRankScoreThresholds.Length; l++)
+            //{
+            //    groupInfo.leaderBoardRankScoreThresholds[l] = (int)((float)baseScore * factor);
+            //    factor -= 0.2f;
+            //}
 
-            for (int k = 0; k < users.Count; k++)
-            {
-                LeaderBoardGroupUserData entity = users[k];
+            //for (int k = 0; k < users.Count; k++)
+            //{
+            //    LeaderBoardGroupUserData entity = users[k];
 
-                for (int i = 0; i < groupInfo.leaderBoardRankScoreThresholds.Length; i++)
-                {
-                    if (entity.score >= groupInfo.leaderBoardRankScoreThresholds[i])
-                    {
-                        entity.LeaderBoardRank = (LeaderBoardRank)i;
-                        break;
-                    }
+            //    for (int i = 0; i < groupInfo.leaderBoardRankScoreThresholds.Length; i++)
+            //    {
+            //        if (entity.score >= groupInfo.leaderBoardRankScoreThresholds[i])
+            //        {
+            //            entity.LeaderBoardRank = (LeaderBoardRank)i;
+            //            break;
+            //        }
 
-                    if (i == groupInfo.leaderBoardRankScoreThresholds.Length - 1)
-                    {
-                        entity.LeaderBoardRank = (LeaderBoardRank)i;
-                    }
-                }
-            }
+            //        if (i == groupInfo.leaderBoardRankScoreThresholds.Length - 1)
+            //        {
+            //            entity.LeaderBoardRank = (LeaderBoardRank)i;
+            //        }
+            //    }
+            //}
         }
 
         private async Task SetLeaderBoardGroupUsersDataFromGroupID(GroupInfo currentGroupInfo, bool isRewardGroup)
         {
-            UnityEngine.Console.Log($"Was group info null? {currentGroupInfo == null}");
+            //UnityEngine.Console.Log($"Was group info null? {currentGroupInfo == null}");
 
-            string lastRealLeaderBoardFetchedDateString = PlayerPrefs.GetString(PlayerPrefKeys.LastTimeRealLeaderBoardFetched, null);
-            int cachedHighScore = PlayerPrefs.GetInt(PlayerPrefKeys.LastHighScoreSubmittedToLeaderBoard);
-            string lastStampHighScoreWasSubmittedFor = PlayerPrefs.GetString(PlayerPrefKeys.LastStampHighScoreWasSubmittedFor);
+            //string lastRealLeaderBoardFetchedDateString = PlayerPrefs.GetString(PlayerPrefKeys.LastTimeRealLeaderBoardFetched, null);
+            //int cachedHighScore = PlayerPrefs.GetInt(PlayerPrefKeys.LastHighScoreSubmittedToLeaderBoard);
+            //string lastStampHighScoreWasSubmittedFor = PlayerPrefs.GetString(PlayerPrefKeys.LastStampHighScoreWasSubmittedFor);
 
-            List<LeaderBoardGroupUserData> currentLeaderBoardGroupInformation = await Task.Run(async () =>
-            {
-                List<LeaderBoardGroupUserData> _currentLeaderBoardGroupInformation = new List<LeaderBoardGroupUserData>();
+            //List<LeaderBoardGroupUserData> currentLeaderBoardGroupInformation = await Task.Run(async () =>
+            //{
+            //    List<LeaderBoardGroupUserData> _currentLeaderBoardGroupInformation = new List<LeaderBoardGroupUserData>();
 
-                UnityEngine.Console.Log("Making Query");
+            //    UnityEngine.Console.Log("Making Query");
 
-                Source source = Source.Server;
+            //   // Source source = Source.Server;
 
-                // Try a cached query if its a NON rewarded group
-                if (!isRewardGroup)
-                {
-                    DateTime lastRealLeaderBoardFetchedDate;
-                    bool success = DateTime.TryParse(lastRealLeaderBoardFetchedDateString, out lastRealLeaderBoardFetchedDate);
+            //    // Try a cached query if its a NON rewarded group
+            //    if (!isRewardGroup)
+            //    {
+            //        DateTime lastRealLeaderBoardFetchedDate;
+            //        bool success = DateTime.TryParse(lastRealLeaderBoardFetchedDateString, out lastRealLeaderBoardFetchedDate);
 
-                    if (success)
-                    {
-                        TimeSpan timePassedSinceLastRealUpdate = DateTime.Now.Subtract(lastRealLeaderBoardFetchedDate);
+            //        if (success)
+            //        {
+            //            TimeSpan timePassedSinceLastRealUpdate = DateTime.Now.Subtract(lastRealLeaderBoardFetchedDate);
 
-                        // Do cachaed update if within cached time zone and last used firebaseID is same as current
-                        if (timePassedSinceLastRealUpdate.Hours < 3)
-                        {
-                            UnityEngine.Console.Log("Less than three hours has passed since real leadeboard update. Trying cached query for current group");
-                            source = Source.Cache;
-                        }
-                    }
-                    else
-                    {
-                        UnityEngine.Console.Log($"Failed parsing last real leaderboard fetched date string. Date string value : {lastRealLeaderBoardFetchedDateString}");
-                    }
-                }
+            //            // Do cachaed update if within cached time zone and last used firebaseID is same as current
+            //            if (timePassedSinceLastRealUpdate.Hours < 3)
+            //            {
+            //                UnityEngine.Console.Log("Less than three hours has passed since real leadeboard update. Trying cached query for current group");
+            //                source = Source.Cache;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            UnityEngine.Console.Log($"Failed parsing last real leaderboard fetched date string. Date string value : {lastRealLeaderBoardFetchedDateString}");
+            //        }
+            //    }
 
-                Query groupReferenceQuery = db.Collection($"LeaderBoardTournament/GeneralTournament/Tournaments/{currentGroupInfo.stamp}/GeneralCountryGroups" +
-                    $"/{currentGroupInfo.userCountry}/CountrySubGroups/{currentGroupInfo.userGroupID}/SubGroupUsers").OrderByDescending("score");
+            //    Query groupReferenceQuery = db.Collection($"LeaderBoardTournament/GeneralTournament/Tournaments/{currentGroupInfo.stamp}/GeneralCountryGroups" +
+            //        $"/{currentGroupInfo.userCountry}/CountrySubGroups/{currentGroupInfo.userGroupID}/SubGroupUsers").OrderByDescending("score");
 
-                UnityEngine.Console.Log($"Running Query. Source: {source}");
+            //    UnityEngine.Console.Log($"Running Query. Source: {source}");
 
-                QuerySnapshot groupSnapShot;
+            //    QuerySnapshot groupSnapShot;
 
-                try
-                {
-                    groupSnapShot = await groupReferenceQuery.GetSnapshotAsync(source);
-                }
-                catch (Exception e)
-                {
-                    if (source == Source.Cache)
-                    {
-                        source = Source.Server;
-                        UnityEngine.Console.Log("Cache query failed. Retrying from server");
-                        groupSnapShot = await groupReferenceQuery.GetSnapshotAsync(source);
-                    }
-                    else
-                    {
-                        throw e;
-                    }
-                }
+            //    try
+            //    {
+            //        groupSnapShot = await groupReferenceQuery.GetSnapshotAsync(source);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        if (source == Source.Cache)
+            //        {
+            //            source = Source.Server;
+            //            UnityEngine.Console.Log("Cache query failed. Retrying from server");
+            //            groupSnapShot = await groupReferenceQuery.GetSnapshotAsync(source);
+            //        }
+            //        else
+            //        {
+            //            throw e;
+            //        }
+            //    }
 
-                if (groupSnapShot == null)
-                    throw new System.Exception($"Group snapshot was null. Is reward group? : {isRewardGroup}");
-
-
-                UnityEngine.Console.Log($"Query was successfull. Was it from cache? : {groupSnapShot.Metadata?.IsFromCache}");
-
-                // Check whether it was a real time update (given group is NON rewarded)
-                if (!isRewardGroup)
-                {
-                    if (source == Source.Server && groupSnapShot.Count > 0)
-                    {
-                        UnityEngine.Console.Log($"Cached last time leaderboard updated in real time");
-
-                        UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                        {
-                            PlayerPrefs.SetString(PlayerPrefKeys.LastTimeRealLeaderBoardFetched, DateTime.Now.ToString());
-                        });
-                    }
-                }
+            //    if (groupSnapShot == null)
+            //        throw new System.Exception($"Group snapshot was null. Is reward group? : {isRewardGroup}");
 
 
-                var usersDocs = groupSnapShot.Documents;
+            //    UnityEngine.Console.Log($"Query was successfull. Was it from cache? : {groupSnapShot.Metadata?.IsFromCache}");
 
-                UnityEngine.Console.Log($"Query group {currentGroupInfo.userGroupID} documents count :" + groupSnapShot.Count);
+            //    // Check whether it was a real time update (given group is NON rewarded)
+            //    if (!isRewardGroup)
+            //    {
+            //        if (source == Source.Server && groupSnapShot.Count > 0)
+            //        {
+            //            UnityEngine.Console.Log($"Cached last time leaderboard updated in real time");
 
-                if (groupSnapShot.Count == 0)
-                {
-                    UnityMainThreadDispatcher.Instance().Enqueue(() => { ClearCachedPlayerPrefs(); });
+            //            UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            //            {
+            //                PlayerPrefs.SetString(PlayerPrefKeys.LastTimeRealLeaderBoardFetched, DateTime.Now.ToString());
+            //            });
+            //        }
+            //    }
+
+
+            //    var usersDocs = groupSnapShot.Documents;
+
+            //    UnityEngine.Console.Log($"Query group {currentGroupInfo.userGroupID} documents count :" + groupSnapShot.Count);
+
+            //    if (groupSnapShot.Count == 0)
+            //    {
+            //        UnityMainThreadDispatcher.Instance().Enqueue(() => { ClearCachedPlayerPrefs(); });
                  
-                    throw new System.Exception("No Users found");
-                }
+            //        throw new System.Exception("No Users found");
+            //    }
 
-                foreach (var doc in usersDocs)
-                {
-                    LeaderBoardGroupUserData entity = doc.ConvertTo<LeaderBoardGroupUserData>();
-                    _currentLeaderBoardGroupInformation.Add(entity);
+            //    foreach (var doc in usersDocs)
+            //    {
+            //        LeaderBoardGroupUserData entity = doc.ConvertTo<LeaderBoardGroupUserData>();
+            //        _currentLeaderBoardGroupInformation.Add(entity);
 
-                    if (entity.myID == FireBaseAuthentication.FireBaseUserID)
-                    {
-                        currentGroupInfo.localPlayerData = entity;
-                    }
-                }
+            //        if (entity.myID == FireBaseAuthentication.FireBaseUserID)
+            //        {
+            //            currentGroupInfo.localPlayerData = entity;
+            //        }
+            //    }
 
-                if (currentGroupInfo.localPlayerData == null)
-                {
-                    UnityMainThreadDispatcher.Instance().Enqueue(() => { ClearCachedPlayerPrefs(); });
-                    throw new System.Exception("No local user found");
-                }
+            //    if (currentGroupInfo.localPlayerData == null)
+            //    {
+            //        UnityMainThreadDispatcher.Instance().Enqueue(() => { ClearCachedPlayerPrefs(); });
+            //        throw new System.Exception("No local user found");
+            //    }
 
-                if (_currentLeaderBoardGroupInformation.Count == 0)
-                {
-                    throw new System.Exception($"No Users Found {currentGroupInfo.userGroupID}");
-                }
+            //    if (_currentLeaderBoardGroupInformation.Count == 0)
+            //    {
+            //        throw new System.Exception($"No Users Found {currentGroupInfo.userGroupID}");
+            //    }
 
-                currentGroupInfo.usersData = _currentLeaderBoardGroupInformation;
+            //    currentGroupInfo.usersData = _currentLeaderBoardGroupInformation;
 
-                // Read highscore from cache if source is Cached or from server (given last highscore submitted stamp is similar to the acquired ones and for the same ID)
-                if (!isRewardGroup)
-                {
-                    if ((source == Source.Cache || (source == Source.Server && currentGroupInfo.stamp == lastStampHighScoreWasSubmittedFor))
-                    && cachedHighScore > currentGroupInfo.localPlayerData.score)
-                    {
-                        currentGroupInfo.localPlayerData.score = cachedHighScore;
+            //    // Read highscore from cache if source is Cached or from server (given last highscore submitted stamp is similar to the acquired ones and for the same ID)
+            //    if (!isRewardGroup)
+            //    {
+            //        if ((source == Source.Cache || (source == Source.Server && currentGroupInfo.stamp == lastStampHighScoreWasSubmittedFor))
+            //        && cachedHighScore > currentGroupInfo.localPlayerData.score)
+            //        {
+            //            currentGroupInfo.localPlayerData.score = cachedHighScore;
 
-                        // Sort the data again
-                        currentGroupInfo.usersData.Sort((a, b) => b.CompareTo(a));
-                    }
-                }
+            //            // Sort the data again
+            //            currentGroupInfo.usersData.Sort((a, b) => b.CompareTo(a));
+            //        }
+            //    }
 
-                // Set ranks
-                SetRanksOfLeaderBoardGroupPlayers(currentGroupInfo);
+            //    // Set ranks
+            //    SetRanksOfLeaderBoardGroupPlayers(currentGroupInfo);
 
             
-                return _currentLeaderBoardGroupInformation;
-            });
+            //    return _currentLeaderBoardGroupInformation;
+            //});
 
-            UnityEngine.Console.Log("Starting loading country flag");
+            //UnityEngine.Console.Log("Starting loading country flag");
 
-            // Get Country Flag
+            //// Get Country Flag
 
-            TaskCompletionSource<bool> taskCompletionSourceFlag = new TaskCompletionSource<bool>();
-            ResourceRequest flagLoadrequest = Resources.LoadAsync<Sprite>($"CountryFlags/{currentGroupInfo.userCountryIso}_64");
-            bool isDone = false;
-            flagLoadrequest.completed += (handle) => { isDone = true; taskCompletionSourceFlag.SetResult(isDone); };
+            //TaskCompletionSource<bool> taskCompletionSourceFlag = new TaskCompletionSource<bool>();
+            //ResourceRequest flagLoadrequest = Resources.LoadAsync<Sprite>($"CountryFlags/{currentGroupInfo.userCountryIso}_64");
+            //bool isDone = false;
+            //flagLoadrequest.completed += (handle) => { isDone = true; taskCompletionSourceFlag.SetResult(isDone); };
 
-            await taskCompletionSourceFlag.Task;
+            //await taskCompletionSourceFlag.Task;
 
-            if (flagLoadrequest != null && flagLoadrequest.asset != null)
-            {
-                Sprite flagSprite = flagLoadrequest.asset as Sprite;
-                if (flagSprite != null)
-                {
-                    currentGroupInfo.countrySprite = flagSprite;
-                }
-            }
-            else
-            {
-                UnityEngine.Console.LogWarning($"Failed to get country flag sprite for counter ISO {currentGroupInfo.userCountryIso}");
-            }
+            //if (flagLoadrequest != null && flagLoadrequest.asset != null)
+            //{
+            //    Sprite flagSprite = flagLoadrequest.asset as Sprite;
+            //    if (flagSprite != null)
+            //    {
+            //        currentGroupInfo.countrySprite = flagSprite;
+            //    }
+            //}
+            //else
+            //{
+            //    UnityEngine.Console.LogWarning($"Failed to get country flag sprite for counter ISO {currentGroupInfo.userCountryIso}");
+            //}
 
-            // Get user Pics
+            //// Get user Pics
 
-            foreach (var user in currentLeaderBoardGroupInformation)
-            {
-                try
-                {
-                    user.LoadUserProfileImageTextureFromBytes();
+            //foreach (var user in currentLeaderBoardGroupInformation)
+            //{
+            //    try
+            //    {
+            //        user.LoadUserProfileImageTextureFromBytes();
 
-                    await Task.Yield();
-                }
-                catch (Exception e)
-                {
-                    UnityEngine.Console.LogWarning($"Loading image failed for user ${user.userName}.Error: {e}. Skipping User");
-                }
-            }
+            //        await Task.Yield();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        UnityEngine.Console.LogWarning($"Loading image failed for user ${user.userName}.Error: {e}. Skipping User");
+            //    }
+            //}
         }
 
         private async void PushResultToGroupDetailsListeners(LeaderBoardQueryResult<LeaderBoardGroupQueryResponseData> result)
@@ -618,22 +618,22 @@ namespace TheKnights.LeaderBoardSystem
         // Just a dummy effect. Has no effect on the database
         private void LocallyUpdateThePlayersHighScoreAndResortData(int score)
         {
-            if (CurrentGroupInformation != null && CurrentGroupInformation.currentGroupInfo != null && CurrentGroupInformation.currentGroupInfo.IsValid)
-            {
-                LeaderBoardGroupUserData userData = CurrentGroupInformation.currentGroupInfo.localPlayerData;
+            //if (CurrentGroupInformation != null && CurrentGroupInformation.currentGroupInfo != null && CurrentGroupInformation.currentGroupInfo.IsValid)
+            //{
+            //    LeaderBoardGroupUserData userData = CurrentGroupInformation.currentGroupInfo.localPlayerData;
 
-                if (score <= userData.score)
-                    return;
+            //    if (score <= userData.score)
+            //        return;
 
-                PlayerPrefs.SetInt(PlayerPrefKeys.LastHighScoreSubmittedToLeaderBoard, score);
-                PlayerPrefs.SetString(PlayerPrefKeys.LastStampHighScoreWasSubmittedFor, currentGroupInformation.currentGroupInfo.stamp);
+            //    PlayerPrefs.SetInt(PlayerPrefKeys.LastHighScoreSubmittedToLeaderBoard, score);
+            //    PlayerPrefs.SetString(PlayerPrefKeys.LastStampHighScoreWasSubmittedFor, currentGroupInformation.currentGroupInfo.stamp);
 
-                userData.score = score;
+            //    userData.score = score;
 
-                CurrentGroupInformation.currentGroupInfo.usersData.Sort((a, b) => b.score.CompareTo(a.score));
+            //    CurrentGroupInformation.currentGroupInfo.usersData.Sort((a, b) => b.score.CompareTo(a.score));
 
-                SetRanksOfLeaderBoardGroupPlayers(CurrentGroupInformation.currentGroupInfo);
-            }
+            //    SetRanksOfLeaderBoardGroupPlayers(CurrentGroupInformation.currentGroupInfo);
+            //}
         }
 
         private void HandleLeaderBoardGroupHighScoreOperation(LeaderBoardQueryResult<string> operation)
@@ -658,61 +658,61 @@ namespace TheKnights.LeaderBoardSystem
 
         private void ListenToLeaderBoardWeekChange()
         {
-            DocumentReference leaderBoardDocRef = db.Document("LeaderBoardTournament/GeneralTournament");
+          //  DocumentReference leaderBoardDocRef = db.Document("LeaderBoardTournament/GeneralTournament");
 
             //**Note: This will cause an initial read operation (callback would be invoked once on registering the listener)
-            weekChangeListener = leaderBoardDocRef.Listen(MetadataChanges.Exclude, LeaderBoardWeekChangeListener);
+           // weekChangeListener = leaderBoardDocRef.Listen(MetadataChanges.Exclude, LeaderBoardWeekChangeListener);
         }
 
         private void DesubscribeToLeaderBoardWeekChange()
         {
-            if (weekChangeListener != null)
-            {
-                weekChangeListener.Stop();
-            }
+            //if (weekChangeListener != null)
+            //{
+            //    weekChangeListener.Stop();
+            //}
         }
 
-        private void LeaderBoardWeekChangeListener(DocumentSnapshot documentSnapshot)
-        {
-            if (documentSnapshot.Metadata.IsFromCache)
-            {
-                UnityEngine.Console.Log("Ignoring week document change read as the data is from the cache");
-                return;
-            }
+        //private void LeaderBoardWeekChangeListener(DocumentSnapshot documentSnapshot)
+        //{
+        //    if (documentSnapshot.Metadata.IsFromCache)
+        //    {
+        //        UnityEngine.Console.Log("Ignoring week document change read as the data is from the cache");
+        //        return;
+        //    }
 
-            if (CurrentGroupInformation == null || CurrentGroupInformation.currentGroupInfo == null || !CurrentGroupInformation.currentGroupInfo.IsValid)
-            {
-                UnityEngine.Console.Log("A change in week was detected but there's no currently loaded leaderboard/Current group data");
-                return;
-            }
+        //    if (CurrentGroupInformation == null || CurrentGroupInformation.currentGroupInfo == null || !CurrentGroupInformation.currentGroupInfo.IsValid)
+        //    {
+        //        UnityEngine.Console.Log("A change in week was detected but there's no currently loaded leaderboard/Current group data");
+        //        return;
+        //    }
 
-            var data = documentSnapshot.ToDictionary();
+        //    var data = documentSnapshot.ToDictionary();
 
-            int week = (int)(long)data["week"];
+        //    int week = (int)(long)data["week"];
 
-            int curWeek = int.Parse(CurrentGroupInformation.currentGroupInfo.weekNumber);
+        //    int curWeek = int.Parse(CurrentGroupInformation.currentGroupInfo.weekNumber);
 
-            if (week == curWeek)
-            {
-                UnityEngine.Console.Log($"Leaderboard setup document changed but there's no week change. Week No. {week}");
-                return;
-            }
+        //    if (week == curWeek)
+        //    {
+        //        UnityEngine.Console.Log($"Leaderboard setup document changed but there's no week change. Week No. {week}");
+        //        return;
+        //    }
 
-            if (week < curWeek)
-            {
-                UnityEngine.Console.LogWarning($"The changed week is even less than the current week!");
-                return;
-            }
+        //    if (week < curWeek)
+        //    {
+        //        UnityEngine.Console.LogWarning($"The changed week is even less than the current week!");
+        //        return;
+        //    }
 
-            PlayerPrefs.SetString(PlayerPrefKeys.LastTimeRealLeaderBoardFetched, null);
+        //    PlayerPrefs.SetString(PlayerPrefKeys.LastTimeRealLeaderBoardFetched, null);
 
-            UnityEngine.Console.Log($"LeaderBoard week has changed!. Old week was {curWeek}, New week is {week}");
+        //    UnityEngine.Console.Log($"LeaderBoard week has changed!. Old week was {curWeek}, New week is {week}");
 
-            WipeWholeLeaderBoardCache();
+        //    WipeWholeLeaderBoardCache();
 
-            // Force refresh the leaderboard
-            GetLeaderBoardGroupDetails(true);
-        }
+        //    // Force refresh the leaderboard
+        //    GetLeaderBoardGroupDetails(true);
+        //}
 
         #endregion LeaderBoardListeners
 
@@ -769,66 +769,66 @@ namespace TheKnights.LeaderBoardSystem
 
         private async void HandleLeaderBoardProfileUpdateOperation(LeaderBoardQueryResult<string> operation)
         {
-            if (operation.IsError || !operation.IsValid)
-            {
-                RequestTokenIfUnauthorized(operation.ResponseCode);
-                UnityEngine.Console.Log($"Failed to update player group profile. Reason {operation.Exception}");
-                return;
-            }
+            //if (operation.IsError || !operation.IsValid)
+            //{
+            //    RequestTokenIfUnauthorized(operation.ResponseCode);
+            //    UnityEngine.Console.Log($"Failed to update player group profile. Reason {operation.Exception}");
+            //    return;
+            //}
 
-            if (operation.ResponseCode == 200)
-            {
-                UnityEngine.Console.Log($"Successfully obtained new user group profile. " + operation.ResponseBody);
-            }
+            //if (operation.ResponseCode == 200)
+            //{
+            //    UnityEngine.Console.Log($"Successfully obtained new user group profile. " + operation.ResponseBody);
+            //}
 
-            try
-            {
-                // We can just return the data here to save a read but sadly jsonserializer can't deserialize properties
-                // and i don't want to create a whole new class just for that (^_^)
+            //try
+            //{
+            //    // We can just return the data here to save a read but sadly jsonserializer can't deserialize properties
+            //    // and i don't want to create a whole new class just for that (^_^)
 
-                string pathToPlayerDoc = operation.ResponseBody;
+            //    string pathToPlayerDoc = operation.ResponseBody;
 
-                var doc = await db.Document(pathToPlayerDoc).GetSnapshotAsync();
+            //    var doc = await db.Document(pathToPlayerDoc).GetSnapshotAsync();
 
-                LeaderBoardGroupUserData userUpdatedProfile = doc.ConvertTo<LeaderBoardGroupUserData>();
+            //    LeaderBoardGroupUserData userUpdatedProfile = doc.ConvertTo<LeaderBoardGroupUserData>();
 
-                if (CurrentGroupInformation != null && CurrentGroupInformation.currentGroupInfo != null && CurrentGroupInformation.currentGroupInfo.IsValid)
-                {
-                    // Keep the old rank
-                    userUpdatedProfile.LeaderBoardRank = CurrentGroupInformation.currentGroupInfo.localPlayerData.LeaderBoardRank;
+            //    if (CurrentGroupInformation != null && CurrentGroupInformation.currentGroupInfo != null && CurrentGroupInformation.currentGroupInfo.IsValid)
+            //    {
+            //        // Keep the old rank
+            //        userUpdatedProfile.LeaderBoardRank = CurrentGroupInformation.currentGroupInfo.localPlayerData.LeaderBoardRank;
 
-                    // Keep the old score as our focus is on user info like name, pic
-                    userUpdatedProfile.score = CurrentGroupInformation.currentGroupInfo.localPlayerData.score;
+            //        // Keep the old score as our focus is on user info like name, pic
+            //        userUpdatedProfile.score = CurrentGroupInformation.currentGroupInfo.localPlayerData.score;
 
-                    // fix
-                    CurrentGroupInformation.currentGroupInfo.localPlayerData = userUpdatedProfile;
+            //        // fix
+            //        CurrentGroupInformation.currentGroupInfo.localPlayerData = userUpdatedProfile;
 
-                    for (int i = 0; i < CurrentGroupInformation.currentGroupInfo.usersData.Count; i++)
-                    {
-                        var usr = CurrentGroupInformation.currentGroupInfo.usersData[i];
+            //        for (int i = 0; i < CurrentGroupInformation.currentGroupInfo.usersData.Count; i++)
+            //        {
+            //            var usr = CurrentGroupInformation.currentGroupInfo.usersData[i];
 
-                        if (usr.myID == userUpdatedProfile.myID)
-                        {
-                            CurrentGroupInformation.currentGroupInfo.usersData[i] = userUpdatedProfile;
-                            break;
-                        }
-                    }
+            //            if (usr.myID == userUpdatedProfile.myID)
+            //            {
+            //                CurrentGroupInformation.currentGroupInfo.usersData[i] = userUpdatedProfile;
+            //                break;
+            //            }
+            //        }
 
-                    // Update profile picture
-                    userUpdatedProfile.LoadUserProfileImageTextureFromBytes();
+            //        // Update profile picture
+            //        userUpdatedProfile.LoadUserProfileImageTextureFromBytes();
 
-                    OnPlayerGroupProfileUpdated?.Invoke(userUpdatedProfile);
-                    UpdateLeaderBoardGroupVersionWithoutNotifying();
-                }
-                else
-                {
-                    UnityEngine.Console.Log("Player profile was received but there's no cached leaderboard. Ignoring");
-                }
-            }
-            catch (Exception e)
-            {
-                UnityEngine.Console.LogWarning($"Failed to deserialize and update the local user profile even though the request was successfull. Exception {e}");
-            }
+            //        OnPlayerGroupProfileUpdated?.Invoke(userUpdatedProfile);
+            //        UpdateLeaderBoardGroupVersionWithoutNotifying();
+            //    }
+            //    else
+            //    {
+            //        UnityEngine.Console.Log("Player profile was received but there's no cached leaderboard. Ignoring");
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    UnityEngine.Console.LogWarning($"Failed to deserialize and update the local user profile even though the request was successfull. Exception {e}");
+            //}
         }
 
         #endregion LeaderBoardProfileUpdateRequest
@@ -837,33 +837,33 @@ namespace TheKnights.LeaderBoardSystem
         /// Get the local player's profile picture data in bytes if loaded
         /// </summary>
         /// <returns>The local player's profile picture in bytes</returns>
-        public byte[] GetPlayerProfilePictureData()
-        {
-            try
-            {
-                if (CurrentGroupInformation != null && CurrentGroupInformation.currentGroupInfo != null && CurrentGroupInformation.currentGroupInfo.IsValid
-                    && CurrentGroupInformation.currentGroupInfo.localPlayerData != null && CurrentGroupInformation.currentGroupInfo.localPlayerData.profilePic != null)
-                {
-                    return CurrentGroupInformation.currentGroupInfo.localPlayerData.profilePic.ToBytes();
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch
-            {
-                return null;
-            }
-        }
+        //public byte[] GetPlayerProfilePictureData()
+        //{
+        //    //try
+        //    //{
+        //    //    if (CurrentGroupInformation != null && CurrentGroupInformation.currentGroupInfo != null && CurrentGroupInformation.currentGroupInfo.IsValid
+        //    //        && CurrentGroupInformation.currentGroupInfo.localPlayerData != null && CurrentGroupInformation.currentGroupInfo.localPlayerData.profilePic != null)
+        //    //    {
+        //    //        return CurrentGroupInformation.currentGroupInfo.localPlayerData.profilePic.ToBytes();
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return null;
+        //    //    }
+        //    //}
+        //    //catch
+        //    //{
+        //    //    return null;
+        //    //}
+        //}
 
         private async void RequestTokenIfUnauthorized(long statusCode)
         {
-            if (statusCode == 401)
-            {
-                UnityEngine.Console.Log("Player is unauthorized to query/request leaderBoard. Sending request to refresh token");
-                await FireBaseAuthentication.RefreshUserAuthenticationToken();
-            }
+            //if (statusCode == 401)
+            //{
+            //    UnityEngine.Console.Log("Player is unauthorized to query/request leaderBoard. Sending request to refresh token");
+            //    await FireBaseAuthentication.RefreshUserAuthenticationToken();
+            //}
         }
 
         private void HandleAccountLinkedToFireBase(string providerID)

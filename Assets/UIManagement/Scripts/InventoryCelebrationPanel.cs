@@ -125,7 +125,7 @@ public class InventoryCelebrationPanel : ACelebrationWindow
         {
             UnityEngine.Console.Log("DOUBLE " + Properties.Context);
             AnalyticsManager.CustomData("Rewarded_2X", new Dictionary<string, object> { { "DoubleRewardType", Properties.Context } });
-            Firebase.Analytics.FirebaseAnalytics.LogEvent("Rewarded_2X", "DoubleRewardType", Properties.Context);
+           // Firebase.Analytics.FirebaseAnalytics.LogEvent("Rewarded_2X", "DoubleRewardType", Properties.Context);
 
         }
 

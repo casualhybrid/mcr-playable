@@ -99,10 +99,10 @@ public class NextPlayerToBeatUI : MonoBehaviour
         {
             ActiveBattleLeaderBoardType = LeaderBoardType.FaceBook;
 
-            PlayerToBeat firstPlayer = new PlayerToBeat() { PlayerName = localPlayerDataFaceBook.name, ProfilePicTex = localPlayerDataFaceBook.profilePicTex, Score = localPlayerDataFaceBook.score };
-            PlayerToBeat secondPlayer = new PlayerToBeat() { PlayerName = lastPlayerToBeatFaceBook.name, ProfilePicTex = lastPlayerToBeatFaceBook.profilePicTex, Score = lastPlayerToBeatFaceBook.score };
+          //  PlayerToBeat firstPlayer = new PlayerToBeat() { PlayerName = localPlayerDataFaceBook.name, ProfilePicTex = localPlayerDataFaceBook.profilePicTex, Score = localPlayerDataFaceBook.score };
+          //  PlayerToBeat secondPlayer = new PlayerToBeat() { PlayerName = lastPlayerToBeatFaceBook.name, ProfilePicTex = lastPlayerToBeatFaceBook.profilePicTex, Score = lastPlayerToBeatFaceBook.score };
 
-            PlayerToBeatBattle = new PlayerToBeatBattle() { FirstPlayer = firstPlayer, SecondPlayer = secondPlayer, LeaderBoardType = ActiveBattleLeaderBoardType };
+         //   PlayerToBeatBattle = new PlayerToBeatBattle() { FirstPlayer = firstPlayer, SecondPlayer = secondPlayer, LeaderBoardType = ActiveBattleLeaderBoardType };
 
             return;
         }
@@ -152,7 +152,7 @@ public class NextPlayerToBeatUI : MonoBehaviour
             faceBookPlayerToBeatDisplay.gameObject.SetActive(true);
             weeklyLeaderBoardPlayerToBeatDisplay.gameObject.SetActive(false);
 
-            faceBookPlayerToBeatDisplay.Initialize(playerToBeat.profilePicTex, playerToBeat.name, playerToBeat.score);
+          //  faceBookPlayerToBeatDisplay.Initialize(playerToBeat.profilePicTex, playerToBeat.name, playerToBeat.score);
             IsPlayerToBeatActive = true;
             lastPlayerToBeatFaceBook = playerToBeat;
         }
@@ -206,7 +206,7 @@ public class NextPlayerToBeatUI : MonoBehaviour
             faceBookPlayerToBeatDisplay.gameObject.SetActive(false);
             weeklyLeaderBoardPlayerToBeatDisplay.gameObject.SetActive(true);
 
-            weeklyLeaderBoardPlayerToBeatDisplay.Initialize(playerToBeat.ProfileImageTexture, playerToBeat.userName, playerToBeat.score);
+            //weeklyLeaderBoardPlayerToBeatDisplay.Initialize(playerToBeat.ProfileImageTexture, playerToBeat.userName, playerToBeat.score);
             IsPlayerToBeatActive = true;
             lastPlayerWeeklyLeaderBoard = playerToBeat;
         }
@@ -220,10 +220,10 @@ public class NextPlayerToBeatUI : MonoBehaviour
         {
             ActiveBattleLeaderBoardType = LeaderBoardType.Weekly;
 
-            PlayerToBeat firstPlayer = new PlayerToBeat() { PlayerName = localPlayerDataWeekly.userName, ProfilePicTex = localPlayerDataWeekly.ProfileImageTexture, Score = localPlayerDataWeekly.score, isAnonymous = localPlayerDataWeekly.isAnonymous };
-            PlayerToBeat secondPlayer = new PlayerToBeat() { PlayerName = lastPlayerWeeklyLeaderBoard.userName, ProfilePicTex = lastPlayerWeeklyLeaderBoard.ProfileImageTexture, Score = lastPlayerWeeklyLeaderBoard.score };
+          //  PlayerToBeat firstPlayer = new PlayerToBeat() { PlayerName = localPlayerDataWeekly.userName, ProfilePicTex = localPlayerDataWeekly.ProfileImageTexture, Score = localPlayerDataWeekly.score, isAnonymous = localPlayerDataWeekly.isAnonymous };
+          //  PlayerToBeat secondPlayer = new PlayerToBeat() { PlayerName = lastPlayerWeeklyLeaderBoard.userName, ProfilePicTex = lastPlayerWeeklyLeaderBoard.ProfileImageTexture, Score = lastPlayerWeeklyLeaderBoard.score };
 
-            PlayerToBeatBattle = new PlayerToBeatBattle() { FirstPlayer = firstPlayer, SecondPlayer = secondPlayer, LeaderBoardType = ActiveBattleLeaderBoardType };
+           // PlayerToBeatBattle = new PlayerToBeatBattle() { FirstPlayer = firstPlayer, SecondPlayer = secondPlayer, LeaderBoardType = ActiveBattleLeaderBoardType };
         }
     }
 }

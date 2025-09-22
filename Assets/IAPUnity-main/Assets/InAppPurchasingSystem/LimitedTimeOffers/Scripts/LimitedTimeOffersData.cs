@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TheKnights.Purchasing;
 using UnityEngine;
 using deVoid.UIFramework;
-using Firebase.Firestore;
 
 [System.Serializable]
 public struct LimitedTimeOffer

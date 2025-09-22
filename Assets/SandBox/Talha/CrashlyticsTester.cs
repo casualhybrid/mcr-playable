@@ -1,4 +1,4 @@
-using Firebase.Crashlytics;
+
 using System;
 using System.Collections;
 using UnityEngine;
@@ -24,9 +24,7 @@ public class CrashlyticsTester : MonoBehaviour
     private IEnumerator Test()
     {
         yield return new WaitForSeconds(40);
-        Crashlytics.LogException(new Exception("Test Exception"));
-        Crashlytics.Log("Test Exception Occurred");
-      //  Utils.ForceCrash(ForcedCrashCategory.FatalError);
+       
     }
 
     // Update is called once per frame
@@ -42,18 +40,6 @@ public class CrashlyticsTester : MonoBehaviour
     // Firebase console a few minutes after running your app with this method.
     void throwExceptionEvery60Updates()
     {
-        if (updatesBeforeException > 0)
-        {
-            Crashlytics.LogException(new Exception("Test Exception"));
-            updatesBeforeException--;
-        }
-        else
-        {
-            // Set the counter to 60 updates
-            updatesBeforeException = 60;
-
-            // Throw an exception to test your Crashlytics implementation
-            throw new System.Exception("test exception please ignore");
-        }
+        
     }
 }

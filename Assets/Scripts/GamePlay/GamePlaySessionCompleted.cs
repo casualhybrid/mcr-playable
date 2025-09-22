@@ -83,7 +83,7 @@ public class GamePlaySessionCompleted : MonoBehaviour
 
     private void UpdateFaceBookLeaderBoard()
     {
-        faceBookLeaderBoard.SubmitHighScoreToLeaderBoard((int)gamePlaySessionData.DistanceCoveredInMeters, leaderBoardManager.GetPlayerProfilePictureData());
+       // faceBookLeaderBoard.SubmitHighScoreToLeaderBoard((int)gamePlaySessionData.DistanceCoveredInMeters, leaderBoardManager.GetPlayerProfilePictureData());
     }
 
     private void HighScoreAnalyticsEvent()

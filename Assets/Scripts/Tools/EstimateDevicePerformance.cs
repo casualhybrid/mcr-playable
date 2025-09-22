@@ -1,5 +1,4 @@
-﻿using Firebase.Crashlytics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -111,10 +110,7 @@ public static class EstimateDevicePerformance
         string log = "Device Group Is: " + group + " with a score of: " + TotalScore;
         UnityEngine.Console.Log(log);
 
-        if (FireBaseInitializer.isInitialized)
-        {
-            Crashlytics.Log(log);
-        }
+       
 
         deviceGroupAssigned = true;
         deviceGroup = group;

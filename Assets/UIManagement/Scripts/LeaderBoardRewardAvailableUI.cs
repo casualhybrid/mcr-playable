@@ -69,7 +69,7 @@ public class LeaderBoardRewardAvailableUI : AWindowController
             weekNumberText.text = "Week " + pendingRewardGroupInfo.weekNumber;
             countryText.text = pendingRewardGroupInfo.userCountry;
             countryImage.sprite = pendingRewardGroupInfo.countrySprite;
-            scoreText.text = userData.score.ToString();
+          
             rankText.text = userData.LeaderBoardRank.ToString();
             rankIconImage.sprite = leaderBoardRankDataSet.GetLeaderBoardRankSprite(userData.LeaderBoardRank);
         }

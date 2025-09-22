@@ -15,7 +15,7 @@ public class GameOverDoubleRewardedADSO : RewardedAdSO
         {
             gamePlaySessionInventory.DoubleTheGamePlayReward();
             AnalyticsManager.CustomData("Rewarded_2X", new Dictionary<string, object> { { "DoubleRewardType", "GameOver" } });
-            Firebase.Analytics.FirebaseAnalytics.LogEvent("Rewarded_2X", "DoubleRewardType", "GameOver");
+           // Firebase.Analytics.FirebaseAnalytics.LogEvent("Rewarded_2X", "DoubleRewardType", "GameOver");
             OnUserEarnedReward.Invoke();
         }
     }

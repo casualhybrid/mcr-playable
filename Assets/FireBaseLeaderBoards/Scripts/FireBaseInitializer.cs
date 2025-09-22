@@ -1,5 +1,5 @@
-using Firebase;
-using Firebase.Extensions;
+//using Firebase;
+// Firebase.Extensions;
 using System;
 using UnityEngine;
 
@@ -26,36 +26,36 @@ public static class FireBaseInitializer
 
     public static void InitializeFireBaseSDK()
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(Task =>
-        {
-            IsFireBaseInitializationProcessDone = true;
+    //    FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(Task =>
+    //    {
+    //        IsFireBaseInitializationProcessDone = true;
 
-            // UnityEngine.Console.Log("FireBaseDependencies Checked");
+    //        // UnityEngine.Console.Log("FireBaseDependencies Checked");
 
-            var dependencyStatus = Task.Result;
-            if (dependencyStatus == Firebase.DependencyStatus.Available)
-            {
-                // Create and hold a reference to your FirebaseApp,
-                // where app is a Firebase.FirebaseApp property of your application class.
-                //   app = Firebase.FirebaseApp.DefaultInstance;
+    //        var dependencyStatus = Task.Result;
+    //        if (dependencyStatus == Firebase.DependencyStatus.Available)
+    //        {
+    //            // Create and hold a reference to your FirebaseApp,
+    //            // where app is a Firebase.FirebaseApp property of your application class.
+    //            //   app = Firebase.FirebaseApp.DefaultInstance;
 
-                // Set a flag here to indicate whether Firebase is ready to use by your app.
-                isInitialized = true;
+    //            // Set a flag here to indicate whether Firebase is ready to use by your app.
+    //            isInitialized = true;
 
-                //  Firebase.FirebaseApp.LogLevel = Firebase.LogLevel.Debug;
+    //            //  Firebase.FirebaseApp.LogLevel = Firebase.LogLevel.Debug;
 
-                OnFireBaseInitialized?.Invoke();
+    //            OnFireBaseInitialized?.Invoke();
 
 
-            Debug.LogError("FireBase Successfully Initialized");
-            }
-            else
-            {
-                UnityEngine.Console.LogError(System.String.Format(
-                  "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                // Firebase Unity SDK is not safe to use here.
-                OnFireBaseFailedToInitialize?.Invoke();
-            }
-        });
+    //        Debug.LogError("FireBase Successfully Initialized");
+    //        }
+    //        else
+    //        {
+    //            UnityEngine.Console.LogError(System.String.Format(
+    //              "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+    //            // Firebase Unity SDK is not safe to use here.
+    //            OnFireBaseFailedToInitialize?.Invoke();
+    //        }
+    //    });
     }
 }

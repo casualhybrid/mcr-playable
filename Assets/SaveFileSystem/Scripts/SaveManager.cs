@@ -1,4 +1,4 @@
-﻿using Firebase.Crashlytics;
+﻿
 using System;
 using System.Threading.Tasks;
 
@@ -184,16 +184,13 @@ namespace TheKnights.SaveFileSystem
             {
                 isCurrentlySavingGame = true;
 
-                if (FireBaseInitializer.isInitialized)
-                    Crashlytics.Log("Saving The Game To Disk");
-
+               
                 CopyingDataFromInventoryToSaveFile();
 
                 var handle = SaveTheGame.SaveTheFile(MainSaveFile, MainSaveFile.MainSaveGame, ThisSessionTime, AlsoToCloud && CloudCompareCompletedMainSave);
                 await handle.Task;
 
-                if (FireBaseInitializer.isInitialized)
-                    Crashlytics.Log("Game Saved To Disk WIth Status : " + handle.Task.Result);
+               
             }
             catch (Exception e)
             {

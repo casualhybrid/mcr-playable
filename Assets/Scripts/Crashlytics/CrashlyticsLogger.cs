@@ -1,4 +1,3 @@
-using Firebase.Crashlytics;
 using UnityEngine;
 
 public static partial class GameStateKeys
@@ -175,6 +174,6 @@ public class CrashlyticsLogger : ScriptableObject
 
     public void SetGameState(string key, string value)
     {
-        Crashlytics.SetCustomKey(key, value);
+       
     }
 }

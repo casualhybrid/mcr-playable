@@ -87,7 +87,7 @@ public class FaceBookLeaderBoardUI : MonoBehaviour
             foreach (var userData in data.Data)
             {
                 FaceBookLeaderBoardPrefab entity = Instantiate(faceBookLeaderBoardPrefab, contentT);
-                entity.SetInformation(userData.name, userData.score.ToString(), userData.profilePicTex, userData == data.LocalPlayerData);
+              //  entity.SetInformation(userData.name, userData.score.ToString(), userData.profilePicTex, userData == data.LocalPlayerData);
             }
 
             DisableLoadingDetails();

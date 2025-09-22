@@ -112,7 +112,7 @@ public class RateGame : AWindowController
             { "GameRating", stars }
         });
 
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("GameRated", "GameRating", stars.ToString());
+       
     }
 
 }

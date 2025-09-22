@@ -1,6 +1,5 @@
 ﻿
 //using TheKnights.AdsSystem;
-using Firebase.Crashlytics;
 using FMODUnity;
 using System.Collections;
 
@@ -144,10 +143,7 @@ public class PluginsInitializer : MonoBehaviour
 
       //  yield return adManagerChosen.InitializeAds();
         Debug.LogError("Sceneloader3");
-        if (FireBaseInitializer.isInitialized)
-        {
-            Crashlytics.Log("Ads Initialized");
-        }
+       
         Debug.LogError("Sceneloader4");
         StopFakeLoadRoutine();
         UpdateLoadingProgress(MaxPluginInitLoadingVal);
@@ -163,11 +159,7 @@ public class PluginsInitializer : MonoBehaviour
         iAPManager.InitializeOnGameServicesInitComplete = true;
         iAPManager.Initialize();
         Debug.LogError("Sceneloader5");
-        if (FireBaseInitializer.isInitialized)
-        {
-            Crashlytics.Log("In App Initalized");
-        }
-
+        
         yield return null;
         yield return null;
 
@@ -233,10 +225,7 @@ public class PluginsInitializer : MonoBehaviour
 
         //  UnityEngine.Console.Log("Step Load Banks");
 
-        if (FireBaseInitializer.isInitialized)
-        {
-            Crashlytics.Log("FMOD Banks Loaded");
-        }
+       
 
         StartCoroutine(LoadPluginsRoutine());
     }
@@ -275,10 +264,7 @@ public class PluginsInitializer : MonoBehaviour
 
     private void LoadBanks()
     {
-        if (FireBaseInitializer.isInitialized)
-        {
-            Crashlytics.Log("Facebook SDK Initialized");
-        }
+        
 
         CoroutineRunner.Instance.WaitForUpdateAndExecute(() => { RuntimeManager.Instance.CreateInstanceOfRunTimeManager(); });
     }

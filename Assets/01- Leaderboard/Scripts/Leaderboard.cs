@@ -253,14 +253,14 @@ public class Leaderboard : MonoBehaviour
         for (int i = 0; i < body.Count; i++)
         {
             var entity = Instantiate(leaderBoardEntityObject, ranksContent[(int)body[i].LeaderBoardRank]);
-            bool isLocal = body[i].myID == groupInfo.localPlayerData.myID;
+            //bool isLocal = body[i].myID == groupInfo.localPlayerData.myID;
 
-            if (isLocal)
-            {
-                localPlayerUIEntity = entity;
-            }
+            //if (isLocal)
+            //{
+            //    localPlayerUIEntity = entity;
+            //}
 
-            SetupLeaderBoardEntityInformation(entity, body[i], isLocal);
+            //SetupLeaderBoardEntityInformation(entity, body[i], isLocal);
 
             yield return null;
 
@@ -371,7 +371,7 @@ public class Leaderboard : MonoBehaviour
     private void SetupLeaderBoardEntityInformation(LeaderboardPrefab entity, LeaderBoardGroupUserData data, bool isLocal = false)
     {
         Color backGroundColor = rankEntitiesColor[(int)data.LeaderBoardRank];
-        entity.SetInformation(data.userName, data.score.ToString(), data.ProfileImageTexture, backGroundColor, isLocal, data.isAnonymous);
+       // entity.SetInformation(data.userName, data.score.ToString(), data.ProfileImageTexture, backGroundColor, isLocal, data.isAnonymous);
     }
 
     private void EnableTournamentEndWindowIfIsRewardGroup(bool isRewardGroup, GroupInfo groupInfo)

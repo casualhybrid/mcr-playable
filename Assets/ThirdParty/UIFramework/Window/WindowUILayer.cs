@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Firebase.Crashlytics;
 
 namespace deVoid.UIFramework
 {
@@ -135,10 +134,7 @@ namespace deVoid.UIFramework
 
                 Exception exception = new Exception(msg);
 
-                if (FireBaseInitializer.isInitialized)
-                {
-                    Crashlytics.Log(msg);
-                }
+                
 
                 throw exception;
             }
